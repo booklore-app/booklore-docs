@@ -53,6 +53,11 @@ const sidebars: SidebarsConfig = {
             {type: 'doc', id: 'walkthroughs/book-browser/grid', label: 'Grid View'},
             {type: 'doc', id: 'walkthroughs/book-browser/table', label: 'Table View'},
           ]
+        },
+        {
+          type: 'doc',
+          id: 'walkthroughs/bookdrop',
+          label: 'Bookdrop'
         }
       ],
     },
