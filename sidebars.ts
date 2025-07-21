@@ -30,6 +30,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Walkthroughs',
+      collapsed: false,
       items: [
         {
           type: 'doc',
