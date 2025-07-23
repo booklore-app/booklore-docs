@@ -10,7 +10,7 @@ This guide will help you **set up your first library**.
 
 Begin by clicking the **"Add a Library"** button on the dashboard, as shown in the screenshot below.
 
-![Empty Dashboard](/img/first-library/click-add-a-library.jpg)
+![Empty Dashboard](/static/img/first-library/click-add-a-library.jpg)
 
 
 ### Step 2: Enter Library Details
@@ -23,7 +23,7 @@ On the next screen, fill in the following details to set up your library:
 
 Click **Next** to proceed.
 
-![Library Details Form](/img/first-library/monitoring-library.jpg)
+![Library Details Form](/static/img/first-library/monitoring-library.jpg)
 
 
 ### Step 3: Choose Book Folders
@@ -42,9 +42,9 @@ After you’ve selected the folders, they will appear in the list as shown in th
 - Arrow 2 lets you remove a folder by clicking the ❌ icon.
 - Arrow 3 indicates the **"Save"** button, which finalizes the setup and begins library processing.
 
-![Add Book Folders](/img/first-library/add-book-folders.jpg)
-![Library Folder Picker](/img/first-library/library-folder-picker.jpg)
-![Selected Library Folders](/img/first-library/selected-library-folders.jpg)
+![Add Book Folders](/static/img/first-library/add-book-folders.jpg)
+![Library Folder Picker](/static/img/first-library/library-folder-picker.jpg)
+![Selected Library Folders](/static/img/first-library/selected-library-folders.jpg)
 
 ### Step 4: Finalize and Process Library
 
@@ -59,7 +59,7 @@ You’ll see real-time progress updates in the top notification widget. Addition
 All thumbnail and cache data are stored in the `data` folder within your Docker volume.
 :::
 
-![Library Processing](/img/first-library/library-processing.jpg)
+![Library Processing](/static/img/first-library/library-processing.jpg)
 
 :::success 🎉 Setup Complete!
 Your first library is now set up and ready to use.
