@@ -37,8 +37,8 @@ Before you begin, make sure you have:
 
 Boost your Booklore skills with these detailed guides:
 
-- 🏗️ [Setup Your First Library](./walkthroughs/library/setup-first-library)
-- ✍️ [Edit Library Metadata](./walkthroughs/library/edit-library)
-- 🗂️ [Shelf Management](./walkthroughs/shelf)
-- 🔳 [Book Browser: Grid View](./walkthroughs/book-browser/grid)
-- 📋 [Book Browser: Table View](./walkthroughs/book-browser/table)
+- 🏗️ [Setup Your First Library](library/setup-first-library)
+- ✍️ [Edit Library Metadata](library/edit-library)
+- 🗂️ [Shelf Management](shelf.md)
+- 🔳 [Book Browser: Grid View](book-browser/grid)
+- 📋 [Book Browser: Table View](book-browser/table)

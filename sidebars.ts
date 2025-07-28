@@ -13,54 +13,51 @@ import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
  Create as many sidebars as you want.
  */
 const sidebars: SidebarsConfig = {
-  // By default, Docusaurus generates a sidebar from the docs folder structure
-  
-  // But you can create a sidebar manually
   tutorialSidebar: [
     {
       type: 'doc',
       id: 'getting-started',
-      label: 'Getting Started',
+      label: '🚀 Getting Started',
     },
     {
       type: 'doc',
       id: 'installation',
-      label: 'Installation',
+      label: '🛠️ Installation',
+    },
+    {
+      type: 'doc',
+      id: 'initial-setup',
+      label: '👤 Setup Admin User',
     },
     {
       type: 'category',
-      label: 'Walkthroughs',
+      label: '🏛️ Library',
+      collapsed: false,
+      items: ['library/setup-first-library', 'library/edit-library'],
+    },
+    {
+      type: 'doc',
+      id: 'shelf',
+      label: '🗂️ Shelf',
+    },
+    {
+      type: 'category',
+      label: '📚 Book Browser',
       collapsed: false,
       items: [
-        {
-          type: 'doc',
-          id: 'walkthroughs/initial-setup',
-          label: 'Setup Admin User',
-        },
-        {
-          type: 'category',
-          label: 'Library',
-          items: ['walkthroughs/library/setup-first-library', 'walkthroughs/library/edit-library']
-        },
-        {
-          type: 'doc',
-          id: 'walkthroughs/shelf',
-          label: 'Shelf'
-        },
-        {
-          type: 'category',
-          label: 'Book Browser',
-          items: [
-            {type: 'doc', id: 'walkthroughs/book-browser/grid', label: 'Grid View'},
-            {type: 'doc', id: 'walkthroughs/book-browser/table', label: 'Table View'},
-          ]
-        },
-        {
-          type: 'doc',
-          id: 'walkthroughs/bookdrop',
-          label: 'Bookdrop'
-        }
+        { type: 'doc', id: 'book-browser/grid', label: '🔲 Grid View' },
+        { type: 'doc', id: 'book-browser/table', label: '📊 Table View' },
       ],
+    },
+    {
+      type: 'doc',
+      id: 'bookdrop',
+      label: '📥 Bookdrop',
+    },
+    {
+      type: 'doc',
+      id: 'magic-shelf',
+      label: '✨ Magic Shelf',
     },
   ],
 };
