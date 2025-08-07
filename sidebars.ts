@@ -45,8 +45,8 @@ const sidebars: SidebarsConfig = {
       label: '📚 Book Browser',
       collapsed: false,
       items: [
-        { type: 'doc', id: 'book-browser/grid', label: '🔲 Grid View' },
-        { type: 'doc', id: 'book-browser/table', label: '📊 Table View' },
+        {type: 'doc', id: 'book-browser/grid', label: '🔲 Grid View'},
+        {type: 'doc', id: 'book-browser/table', label: '📊 Table View'},
       ],
     },
     {
@@ -58,6 +58,15 @@ const sidebars: SidebarsConfig = {
       type: 'doc',
       id: 'magic-shelf',
       label: '✨ Magic Shelf',
+    },
+    {
+      type: 'category',
+      label: '📱 Devices',
+      collapsed: false,
+      items: [
+        {type: 'doc', id: 'devices/koreader', label: '📖 KOReader'},
+        {type: 'doc', id: 'devices/kobo', label: '📘 Kobo'},
+      ],
     },
   ],
 };

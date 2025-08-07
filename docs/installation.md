@@ -19,6 +19,22 @@ Before you start, make sure you have the following installed on your system:
 
 You can easily set up and run **Booklore** using Docker containers.
 
+**Official Booklore Docker Images:**
+- [Docker Hub: booklore/booklore-app](https://hub.docker.com/r/booklore/booklore-app)
+- [GitHub Container Registry: booklore-app/booklore](https://github.com/booklore-app/booklore/pkgs/container/booklore)
+
+You can use either registry to pull the Booklore image. Replace the `image:` field in your `docker-compose.yml` as needed.
+
+Example for Docker Hub:
+```yaml
+image: booklore/booklore-app:latest
+```
+
+Example for GitHub Container Registry:
+```yaml
+image: ghcr.io/booklore-app/booklore:latest
+```
+
 ---
 
 ### 📁 Step 1: Create Necessary Folders
@@ -61,7 +77,9 @@ In your preferred folder, create a file named `docker-compose.yml` and add the f
 ```yaml
 services:
   booklore:
-    image: ghcr.io/adityachandelgit/booklore-app:latest
+    image: booklore/booklore-app:latest
+    # Or use the GitHub Container Registry image:
+    # image: ghcr.io/booklore-app/booklore:latest
     container_name: booklore
     environment:
       - PUID=1000
@@ -107,7 +125,10 @@ services:
 
 > ⚠️ Use strong, secure passwords for `MYSQL_ROOT_PASSWORD` and `MYSQL_PASSWORD`. These must match in both services.
 
-> 🔄 You can check for the latest Booklore image tags on the [GitHub Releases page](https://github.com/adityachandelgit/booklore/releases).
+> 💡 You can find more information and available tags on:
+> - [Docker Hub: booklore/booklore-app](https://hub.docker.com/r/booklore/booklore-app)
+> - [GitHub Container Registry: booklore-app/booklore](https://github.com/booklore-app/booklore/pkgs/container/booklore)
+> - [GitHub Releases page](https://github.com/adityachandelgit/booklore/releases).
 
 ---
 
