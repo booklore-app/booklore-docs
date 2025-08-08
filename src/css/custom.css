@@ -15,6 +15,7 @@
 
     --ifm-navbar-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     --ifm-card-box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    --ifm-code-background: #f1f5f9;
 }
 
 [data-theme='dark'] {
@@ -27,6 +28,7 @@
     --ifm-menu-color-background-hover: #2e2f36;
     --ifm-navbar-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
     --ifm-card-box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7);
+    --ifm-code-background: #1e293b;
 }
 
 .container {
@@ -84,11 +86,11 @@
 }
 
 .markdown table {
-    width: 100%;
     margin: 1rem 0;
     border-radius: 6px;
     box-shadow: var(--ifm-card-box-shadow);
     overflow: hidden;
+    display: table;
 }
 
 .button {
@@ -153,4 +155,13 @@
 
 .col--3 {
     --ifm-col-width: calc(2.5 / 12 * 100%) !important;
+}
+
+.theme-code-block {
+    background: var(--ifm-code-background) !important;
+    border-radius: var(--ifm-card-border-radius);
+}
+
+code {
+    background: var(--ifm-code-background);
 }
