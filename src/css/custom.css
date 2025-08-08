@@ -15,8 +15,6 @@
 
     --ifm-navbar-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     --ifm-card-box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-
-    --doc-sidebar-width: 280px;
 }
 
 [data-theme='dark'] {
