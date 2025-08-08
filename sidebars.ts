@@ -64,8 +64,7 @@ const sidebars: SidebarsConfig = {
       label: '📱 Devices',
       collapsed: false,
       items: [
-        {type: 'doc', id: 'devices/koreader', label: '📖 KOReader'},
-        {type: 'doc', id: 'devices/kobo', label: '📘 Kobo'},
+        {type: 'doc', id: 'devices/koreader', label: '📖 KOReader'}
       ],
     },
   ],

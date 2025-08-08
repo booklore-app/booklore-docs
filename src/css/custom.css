@@ -15,6 +15,8 @@
 
     --ifm-navbar-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     --ifm-card-box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+
+    --doc-sidebar-width: 280px;
 }
 
 [data-theme='dark'] {
@@ -29,27 +31,11 @@
     --ifm-card-box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7);
 }
 
-body {
-    margin: 0;
-    background: var(--ifm-background-color);
-    font: var(--ifm-font-weight-base) var(--ifm-font-size-base)/1.6 var(--ifm-font-family-base);
-}
-
 .container {
     margin: 0;
     padding: 0;
     width: 100%;
     max-width: var(--ifm-container-width-3xl);
-}
-
-.row {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.col {
-    flex: 1 0;
-    padding: 0 var(--ifm-spacing-horizontal);
 }
 
 .navbar {
@@ -158,4 +144,15 @@ body {
     .docSidebarContainer_YfHR {
         margin-top: 1rem !important;
     }
+}
+
+@media (min-width: 997px) {
+    .docItemCol_VOVn {
+        max-width: 2500px !important;
+        width: 2500px !important;
+    }
+}
+
+.col--3 {
+    --ifm-col-width: calc(2.5 / 12 * 100%) !important;
 }
