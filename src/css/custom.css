@@ -11,9 +11,6 @@
   --ifm-font-weight-base: 400;
   --ifm-heading-weight:    600;
   --ifm-font-size-base:    14.75px;
-
-  --ifm-navbar-height: var(--ifm-spacing-vertical-xl);
-  --ifm-container-width-3xl: 1200px;
   --ifm-card-border-radius: 12px;
 
   --ifm-navbar-shadow:    0 2px 8px rgba(0,0,0,0.08);
@@ -65,7 +62,6 @@ body {
 }
 
 .theme-doc-sidebar-container {
-  width: var(--doc-sidebar-width);
   margin: 1.25rem;
   background: var(--ifm-card-background);
   border-radius: var(--ifm-card-border-radius);
@@ -131,7 +127,7 @@ body {
 @media (min-width: 997px) {
   @supports (scrollbar-gutter: stable) {
     .menu_SIkG {
-      padding: 2rem 0.75rem !important;
+      padding: 0.75rem !important;
       scrollbar-gutter: stable;
     }
   }
