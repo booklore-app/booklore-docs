@@ -1,138 +1,161 @@
 :root {
-  --ifm-color-primary:            #818cf8;
-  --ifm-color-primary-dark:       #6f7ee6;
-  --ifm-background-color:         #f5f7fa;
-  --ifm-navbar-background-color:  #ffffff;
-  --ifm-card-background:          #ffffff;
-  --ifm-menu-color-background-active: #e4e8f7;
-  --ifm-menu-color-background-hover:  #f0f2f9;
+    --ifm-color-primary: #818cf8;
+    --ifm-color-primary-dark: #6f7ee6;
+    --ifm-background-color: #f5f7fa;
+    --ifm-navbar-background-color: #ffffff;
+    --ifm-card-background: #ffffff;
+    --ifm-menu-color-background-active: #e4e8f7;
+    --ifm-menu-color-background-hover: #f0f2f9;
 
-  --ifm-font-family-base: 'Inter','Segoe UI',sans-serif;
-  --ifm-font-weight-base: 400;
-  --ifm-heading-weight:    600;
-  --ifm-font-size-base:    14.75px;
-  --ifm-card-border-radius: 12px;
+    --ifm-font-family-base: 'Inter', 'Segoe UI', sans-serif;
+    --ifm-font-weight-base: 400;
+    --ifm-heading-weight: 600;
+    --ifm-font-size-base: 14.75px;
+    --ifm-card-border-radius: 12px;
 
-  --ifm-navbar-shadow:    0 2px 8px rgba(0,0,0,0.08);
-  --ifm-card-box-shadow:  0 4px 16px rgba(0,0,0,0.06);
+    --ifm-navbar-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --ifm-card-box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
 }
 
 [data-theme='dark'] {
-  --ifm-color-primary:            #a2a9ff;
-  --ifm-color-primary-dark:       #8f96f0;
-  --ifm-background-color:         #1e1f25;
-  --ifm-navbar-background-color:  #26272e;
-  --ifm-card-background:          #2a2b33;
-  --ifm-menu-color-background-active: #323347;
-  --ifm-menu-color-background-hover:  #2e2f36;
-  --ifm-navbar-shadow:    0 2px 8px rgba(0,0,0,0.5);
-  --ifm-card-box-shadow:  0 4px 16px rgba(0,0,0,0.7);
+    --ifm-color-primary: #a2a9ff;
+    --ifm-color-primary-dark: #8f96f0;
+    --ifm-background-color: #1e1f25;
+    --ifm-navbar-background-color: #26272e;
+    --ifm-card-background: #2a2b33;
+    --ifm-menu-color-background-active: #323347;
+    --ifm-menu-color-background-hover: #2e2f36;
+    --ifm-navbar-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    --ifm-card-box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7);
 }
 
 body {
-  margin: 0;
-  background: var(--ifm-background-color);
-  font: var(--ifm-font-weight-base) var(--ifm-font-size-base)/1.6 var(--ifm-font-family-base);
+    margin: 0;
+    background: var(--ifm-background-color);
+    font: var(--ifm-font-weight-base) var(--ifm-font-size-base)/1.6 var(--ifm-font-family-base);
 }
 
 .container {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  max-width: var(--ifm-container-width-3xl);
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: var(--ifm-container-width-3xl);
 }
 
 .row {
-  display: flex;
-  flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .col {
-  flex: 1 0;
-  padding: 0 var(--ifm-spacing-horizontal);
+    flex: 1 0;
+    padding: 0 var(--ifm-spacing-horizontal);
 }
 
 .navbar {
-  display: flex;
-  align-items: center;
-  height: var(--ifm-navbar-height);
-  background: var(--ifm-navbar-background-color);
-  box-shadow: var(--ifm-navbar-shadow);
-  padding-left: calc(var(--ifm-navbar-padding-horizontal) + 1rem);
+    display: flex;
+    align-items: center;
+    height: var(--ifm-navbar-height);
+    background: var(--ifm-navbar-background-color);
+    box-shadow: var(--ifm-navbar-shadow);
+    padding-left: calc(var(--ifm-navbar-padding-horizontal) + 1rem);
 }
 
 .theme-doc-sidebar-container {
-  margin: 1.25rem;
-  background: var(--ifm-card-background);
-  border-radius: var(--ifm-card-border-radius);
-  box-shadow: var(--ifm-card-box-shadow);
+    margin: 1.25rem;
+    background: var(--ifm-card-background);
+    border-radius: var(--ifm-card-border-radius);
+    box-shadow: var(--ifm-card-box-shadow);
 }
 
 .markdown {
-  background: var(--ifm-card-background);
-  padding: 2rem;
-  border-radius: var(--ifm-card-border-radius);
-  box-shadow: var(--ifm-card-box-shadow);
+    background: var(--ifm-card-background);
+    padding: 2rem;
+    border-radius: var(--ifm-card-border-radius);
+    box-shadow: var(--ifm-card-box-shadow);
 }
 
 .markdown h1,
 .markdown h2,
 .markdown h3,
 .markdown h4 {
-  font-weight: var(--ifm-heading-weight);
-  letter-spacing: -0.5px;
+    font-weight: var(--ifm-heading-weight);
+    letter-spacing: -0.5px;
 }
 
-.markdown h1 { font-size: 2.5rem; }
-.markdown h2 { font-size: 1.6rem; }
-.markdown h3 { font-size: 1.4rem; }
-.markdown h4 { font-size: 1.2rem; }
+.markdown h1 {
+    font-size: 2.5rem;
+}
+
+.markdown h2 {
+    font-size: 1.6rem;
+}
+
+.markdown h3 {
+    font-size: 1.4rem;
+}
+
+.markdown h4 {
+    font-size: 1.2rem;
+}
 
 .markdown table {
-  width: 100%;
-  margin: 1rem 0;
-  border-radius: 6px;
-  box-shadow: var(--ifm-card-box-shadow);
-  overflow: hidden;
+    width: 100%;
+    margin: 1rem 0;
+    border-radius: 6px;
+    box-shadow: var(--ifm-card-box-shadow);
+    overflow: hidden;
 }
 
 .button {
-  border-radius: 8px;
-  transition: background 0.2s, box-shadow 0.2s;
+    border-radius: 8px;
+    transition: background 0.2s, box-shadow 0.2s;
 }
+
 .button:hover {
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .menu__link--active,
 .menu__link--active:not(.menu__link--sublist) {
-  background: var(--ifm-menu-color-background-active);
-  color: var(--ifm-color-primary);
-  border-radius: 8px;
+    background: var(--ifm-menu-color-background-active);
+    color: var(--ifm-color-primary);
+    border-radius: 8px;
 }
+
 .menu__link:hover {
-  background: var(--ifm-menu-color-background-hover);
-  color: var(--ifm-color-primary-dark);
+    background: var(--ifm-menu-color-background-hover);
+    color: var(--ifm-color-primary-dark);
 }
 
 .theme-doc-toc-desktop,
 .row > .col:last-child {
-  padding: 0;
+    padding: 0;
 }
 
 @media (min-width: 996px) {
-  .row > .col:last-child { padding: 0; }
+    .row > .col:last-child {
+        padding: 0;
+    }
 }
 
 @media (min-width: 997px) {
-  @supports (scrollbar-gutter: stable) {
-    .menu_SIkG {
-      padding: 0.75rem !important;
-      scrollbar-gutter: stable;
+    @supports (scrollbar-gutter: stable) {
+        .menu_SIkG {
+            padding: 0.75rem !important;
+            scrollbar-gutter: stable;
+        }
     }
-  }
 }
 
 @media (min-width: 1440px) {
-  .container { max-width: 2500px; }
+    .container {
+        max-width: 2500px;
+    }
+}
+
+@media (min-width: 997px) {
+    .docSidebarContainer_YfHR {
+        margin-top: 1rem !important;
+    }
 }
