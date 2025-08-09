@@ -1,4 +1,4 @@
-# Browsing Books in Grid View
+# 🪟 Browsing Books in Grid View
 
 Booklore offers two main ways to explore your book collection:
 

@@ -1,4 +1,4 @@
-# Shelves
+# 🗄️ Shelves
 
 Shelves are one of the key organization features in Booklore. Just like shelves in a physical library, they let you group books by theme, purpose, or preference, for example: *"To Read Next"*, *"My Favorites"*, or *"Sci-Fi Picks"*.
 

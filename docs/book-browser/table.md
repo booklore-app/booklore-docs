@@ -1,4 +1,4 @@
-# Browsing Books in Table View
+# 📊 Browsing Books in Table View
 
 Booklore offers two primary ways to explore your book collection:
 

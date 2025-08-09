@@ -1,4 +1,4 @@
-# Editing Your Library
+# 🏛️ Editing Your Library
 
 This guide will walk you through how to edit an existing library in Booklore.
 

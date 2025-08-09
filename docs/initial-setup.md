@@ -1,4 +1,4 @@
-# Initial Admin User Setup
+# 🛡️ Initial Admin User Setup
 
 Welcome to **Booklore**! Your journey begins here.
 

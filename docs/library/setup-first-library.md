@@ -1,4 +1,4 @@
-# Setting Up Your First Library
+# 📚 Setting Up Your First Library
 
 In Booklore, a **library** is a folder on your system that contains books you want to manage. Each library is scanned and indexed so you can browse, search, and read your collection within the app.
 
