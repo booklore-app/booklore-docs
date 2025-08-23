@@ -61,9 +61,10 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: '📱 Devices',
+      label: '🖥️ Devices',
       collapsed: false,
       items: [
+        {type: 'doc', id: 'devices/kobo', label: '📱 Kobo'},
         {type: 'doc', id: 'devices/koreader', label: '📖 KOReader'}
       ],
     },
