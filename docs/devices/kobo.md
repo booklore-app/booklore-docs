@@ -87,7 +87,7 @@ You'll need to modify your Kobo's configuration file to point it to your Booklor
    - **Enable viewing hidden files** in your file manager
    - Navigate to `.kobo/Kobo/Kobo eReader.conf`
 
-   <img src="/img/kobo/kobo-2.jpg" alt="Open Kobo eReader.conf" width="800px" />
+   ![Open Kobo eReader.conf](/img/kobo/kobo-2.jpg)
 
 3. **Open the Configuration:**
    - Open `Kobo eReader.conf` in a text editor (Notepad, TextEdit, etc.)
@@ -101,10 +101,10 @@ You'll need to modify your Kobo's configuration file to point it to your Booklor
 
 2. **Update the Endpoint:**
    - **Before modification:**
-   <img src="/img/kobo/kobo-3.jpg" alt="Before change" width="800px" />
+   ![Before change](/img/kobo/kobo-3.jpg)
 
    - **After modification:**
-   <img src="/img/kobo/kobo-4.jpg" alt="After change" width="800px" />
+   ![After change](/img/kobo/kobo-4.jpg)
 
 ### Configuration Options
 
@@ -171,13 +171,13 @@ Follow these steps to add books from your Booklore library to your Kobo eReader.
    - Tap the **sync icon** at the top of the screen
    - Tap **"Sync sow"**
    
-   <img src="/img/kobo/kobo-7.jpg" alt="Sync Now button" width="400px" />
+   ![Sync Now button](/img/kobo/kobo-7.jpg)
 
 3. **Verify sync completion:**
    - Wait for the sync process to complete
    - Your Booklore books will now appear on your Kobo eReader
    
-   <img src="/img/kobo/kobo-8.jpg" alt="Books synced to Kobo" width="400px" />
+   ![Books synced to Kobo](/img/kobo/kobo-8.jpg)
 
 > 💡 **Tip:** The sync process may take a few moments depending on the number of books and your internet connection speed.
 
@@ -191,24 +191,24 @@ You can remove books from your Kobo device in two ways. When you remove a book, 
    - Tap the three dots icon on the book cover
    - Select **"Remove"**
    
-   <img src="/img/kobo/kobo-9.jpg" alt="Remove book menu" width="400px" />
+   ![Remove book menu](/img/kobo/kobo-9.jpg)
 
 2. **Confirm removal:**
    - Select **"Remove from My Books"**
    
-   <img src="/img/kobo/kobo-10.jpg" alt="Confirm removal" width="400px" />
+   ![Confirm removal](/img/kobo/kobo-10.jpg)
 
 3. **Sync the changes:**
    - Tap **"Sync Now"** at the top of the screen
    - The book will be removed from both your Kobo device and your Kobo shelf in Booklore
    
-   <img src="/img/kobo/kobo-11.jpg" alt="Sync after removal" width="400px" />
+   ![Sync after removal](/img/kobo/kobo-11.jpg)
 
 4. **Verify in Booklore:**
    - Check your Kobo shelf in Booklore - the book will no longer appear there
    - The book remains in your main library, just not on the Kobo shelf
    
-   <img src="/img/kobo/kobo-12.jpg" alt="Book removed from Kobo shelf" width="400px" />
+   ![Book removed from Kobo shelf](/img/kobo/kobo-12.jpg)
 
 ### Method 2: Remove via Booklore
 
