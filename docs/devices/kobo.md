@@ -19,19 +19,41 @@ With Kobo integration, you can:
 ## ✨ Key Features & Capabilities
 
 ### 📖 Smart Shelf Management
+
 - **Dedicated Kobo Shelf**: Each user gets a special Kobo shelf that automatically syncs with their device
 - **Two-Way Synchronization**: Add/remove books in Booklore or on your Kobo - changes sync both ways
 - **Instant Updates**: Book changes reflect immediately after syncing
 
 ### 📱 Device Integration
+
 - **Seamless Setup**: One-time configuration connects your Kobo to Booklore
 - **Proxy Support**: Access both your Booklore library and Kobo Store purchases
 - **Multiple Users**: Each user has their own independent Kobo integration
 
 ### 📄 File Support
+
 - **EPUB Files**: Full support for EPUB format books
 - **Quality Preservation**: Books maintain their original formatting and metadata
 - **No PDF Support**: PDF files are currently not supported for Kobo sync
+
+---
+
+## ⚙️ nginx Proxy Configuration
+
+If you're using nginx as a reverse proxy in front of Booklore, the following headers are required for Kobo sync to work properly:
+
+```nginx
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_set_header X-Forwarded-Host $host;
+proxy_set_header X-Forwarded-Proto $scheme;
+proxy_set_header X-Forwarded-Port $server_port;
+```
+
+> ✅ **Nginx Proxy Manager Users:** These headers are already configured automatically in nginx Proxy Manager, so no additional configuration is needed.
+>
+> ⚠️ **Other Reverse Proxies:** If you're using Caddy, Traefik, or other reverse proxy solutions, you'll need to configure equivalent headers manually. Consult your proxy's documentation for the appropriate header forwarding configuration.
 
 ---
 
