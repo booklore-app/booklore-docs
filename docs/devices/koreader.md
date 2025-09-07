@@ -6,6 +6,9 @@ Booklore enables you to synchronize your reading progress between KOReader and y
 > Progress synchronization between the Booklore inbuilt reader and KOReader is **not supported** at this time, as they use different formats for storing reading progress.  
 > Progress for KOReader and the inbuilt Booklore reader is maintained separately.
 
+> 📚 **Important - OPDS Requirement:**  
+> KOReader sync **only works for books that have been downloaded from Booklore to KOReader via Booklore's OPDS feed**. Books that are sideloaded directly to KOReader (copied manually or obtained from other sources) cannot be synced with Booklore, as the sync system relies on matching books through Booklore's internal identifiers that are only assigned when books are accessed through OPDS.
+
 ---
 
 ## 🛠️ Step 1: Configure KOReader Sync in Booklore
