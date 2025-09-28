@@ -50,6 +50,14 @@ const sidebars: SidebarsConfig = {
       ],
     },
     {
+      type: 'category',
+      label: '🗂️ Metadata',
+      collapsed: false,
+      items: [
+        { type: 'doc', id: 'metadata/amazon-cookie', label: '🍪 Amazon Cookie' },
+      ],
+    },
+    {
       type: 'doc',
       id: 'bookdrop',
       label: '📥 Bookdrop',
