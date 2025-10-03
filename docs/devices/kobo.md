@@ -40,20 +40,27 @@ With Kobo integration, you can:
 
 ## ⚙️ nginx Proxy Configuration
 
-If you're using nginx as a reverse proxy in front of Booklore, the following headers are required for Kobo sync to work properly:
+If you're using nginx as a reverse proxy in front of Booklore, the following configuration is required for Kobo sync to work properly:
 
 ```nginx
+# Required headers for Kobo sync
 proxy_set_header Host $host;
 proxy_set_header X-Real-IP $remote_addr;
 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 proxy_set_header X-Forwarded-Host $host;
 proxy_set_header X-Forwarded-Proto $scheme;
 proxy_set_header X-Forwarded-Port $server_port;
+
+# Required buffer settings
+proxy_buffer_size 128k;
+proxy_buffers 4 256k;
+proxy_busy_buffers_size 256k;
+large_client_header_buffers 8 32k;
 ```
 
-> ✅ **Nginx Proxy Manager Users:** These headers are already configured automatically in nginx Proxy Manager, so no additional configuration is needed.
+> ✅ **Nginx Proxy Manager Users:** The proxy headers are already configured automatically in nginx Proxy Manager, but you'll still need to add the buffer settings manually as they are required for proper functionality.
 >
-> ⚠️ **Other Reverse Proxies:** If you're using Caddy, Traefik, or other reverse proxy solutions, you'll need to configure equivalent headers manually. Consult your proxy's documentation for the appropriate header forwarding configuration.
+> ⚠️ **Other Reverse Proxies:** If you're using Caddy, Traefik, or other reverse proxy solutions, you'll need to configure equivalent headers and buffer settings manually. Consult your proxy's documentation for the appropriate configuration.
 
 ---
 
