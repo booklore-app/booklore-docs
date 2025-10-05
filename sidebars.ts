@@ -40,6 +40,7 @@ const sidebars: SidebarsConfig = {
       id: 'shelf',
       label: '🗂️ Shelf',
     },
+    {type: 'doc', id: 'email-setup', label: '📧 Email Setup'},
     {
       type: 'category',
       label: '📚 Book Browser',
