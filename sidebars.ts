@@ -71,11 +71,12 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: '🖥️ Devices',
+      label: '🔗 Integrations',
       collapsed: false,
       items: [
-        {type: 'doc', id: 'devices/kobo', label: '📱 Kobo'},
-        {type: 'doc', id: 'devices/koreader', label: '📖 KOReader'}
+        {type: 'doc', id: 'integration/kobo', label: '📱 Kobo'},
+        {type: 'doc', id: 'integration/koreader', label: '📖 KOReader'},
+        {type: 'doc', id: 'integration/opds', label: '🌐 OPDS'}
       ],
     },
   ],
