@@ -54,7 +54,8 @@ const sidebars: SidebarsConfig = {
       label: '🗂️ Metadata',
       collapsed: false,
       items: [
-        { type: 'doc', id: 'metadata/amazon-cookie', label: '🍪 Amazon Cookie' },
+        {type: 'doc', id: 'metadata/amazon-cookie', label: '🍪 Amazon Cookie'},
+        {type: 'doc', id: 'metadata/hardcover-token', label: '🔑 Hardcover Token'},
       ],
     },
     {
