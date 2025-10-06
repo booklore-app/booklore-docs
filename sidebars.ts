@@ -32,31 +32,10 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: '🏛️ Library',
-      collapsed: false,
-      items: ['library/setup-first-library', 'library/edit-library'],
-    },
-    {
-      type: 'doc',
-      id: 'shelf',
-      label: '🗂️ Shelf',
-    },
-    {type: 'doc', id: 'email-setup', label: '📧 Email Setup'},
-    {
-      type: 'category',
-      label: '📚 Book Browser',
-      collapsed: false,
+      collapsed: true,
       items: [
-        {type: 'doc', id: 'book-browser/grid', label: '🔲 Grid View'},
-        {type: 'doc', id: 'book-browser/table', label: '📊 Table View'},
-      ],
-    },
-    {
-      type: 'category',
-      label: '🗂️ Metadata',
-      collapsed: false,
-      items: [
-        {type: 'doc', id: 'metadata/amazon-cookie', label: '🍪 Amazon Cookie'},
-        {type: 'doc', id: 'metadata/hardcover-token', label: '🔑 Hardcover Token'},
+        {type: 'doc', id: 'library/setup-first-library', label: '🆕 Setup First Library'},
+        {type: 'doc', id: 'library/edit-library', label: '✏️ Edit Library'},
       ],
     },
     {
@@ -71,12 +50,37 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
+      label: '🛠️ Metadata Configurations',
+      collapsed: true,
+      items: [
+        {type: 'doc', id: 'metadata/metadata-fetch-configuration', label: '🔄 Fetch Configuration'},
+        {type: 'doc', id: 'metadata/amazon-cookie', label: '🍪 Amazon Cookie'},
+        {type: 'doc', id: 'metadata/hardcover-token', label: '🔑 Hardcover API'},
+      ],
+    },
+    {
+      type: 'category',
       label: '🔗 Integrations',
-      collapsed: false,
+      collapsed: true,
       items: [
         {type: 'doc', id: 'integration/kobo', label: '📱 Kobo'},
         {type: 'doc', id: 'integration/koreader', label: '📖 KOReader'},
         {type: 'doc', id: 'integration/opds', label: '🌐 OPDS'}
+      ],
+    },
+    {
+      type: 'doc',
+      id: 'shelf',
+      label: '🗂️ Shelf',
+    },
+    {type: 'doc', id: 'email-setup', label: '📧 Email Setup'},
+    {
+      type: 'category',
+      label: '📚 Book Browser',
+      collapsed: true,
+      items: [
+        {type: 'doc', id: 'book-browser/grid', label: '🔲 Grid View'},
+        {type: 'doc', id: 'book-browser/table', label: '📊 Table View'},
       ],
     },
   ],

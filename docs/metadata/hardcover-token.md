@@ -24,7 +24,7 @@ The Hardcover API provides access to an extensive database of book information, 
 
 ## 📡 Step 3: Generate Your API Token
 
-![Accessing Hardcover API token in account settings](/img/metadata/hardcover-1.jpg)
+![Accessing Hardcover API token in account settings](/img/metadata/hardcover-api/hardcover-1.jpg)
 
 1. **Find the API Token section** on the API settings page
 2. **Generate a new token** if you don't already have one
@@ -37,7 +37,7 @@ The Hardcover API provides access to an extensive database of book information, 
 
 ## ⚙️ Step 4: Configure Booklore
 
-![Configuring Hardcover token in Booklore settings](/img/metadata/hardcover-2.jpg)
+![Configuring Hardcover token in Booklore settings](/img/metadata/hardcover-api/hardcover-2.jpg)
 
 1. **Open Booklore settings**
 2. **Navigate to the 'Metadata 1' section**

@@ -33,7 +33,7 @@ Amazon uses sophisticated anti-bot measures to protect their services. By using 
 
 ## 📡 Step 3: Capture Network Requests and Extract Cookie Information
 
-![Accessing Amazon cookies in browser developer tools](/img/metadata/amazon-cookie-1.jpg)
+![Accessing Amazon cookies in browser developer tools](/img/metadata/amazon-cookie/amazon-cookie-1.jpg)
 
 1. **Refresh the page** by pressing `F5` or clicking the refresh button
 2. **Wait for all requests to load** - you'll see a list of network requests appear
@@ -47,7 +47,7 @@ Amazon uses sophisticated anti-bot measures to protect their services. By using 
 
 ## ⚙️ Step 4: Configure Booklore
 
-![Copying the cookie header value](/img/metadata/amazon-cookie-2.jpg)
+![Copying the cookie header value](/img/metadata/amazon-cookie/amazon-cookie-2.jpg)
 
 1. **Open Booklore settings**
 2. **Navigate to the metadata section**
