@@ -50,10 +50,11 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: '🛠️ Metadata Configurations',
+      label: '🛠️ Metadata',
       collapsed: true,
       items: [
         {type: 'doc', id: 'metadata/metadata-fetch-configuration', label: '🔄 Fetch Configuration'},
+        {type: 'doc', id: 'metadata/metadata-manager', label: '🪄 Metadata Manager'},
         {type: 'doc', id: 'metadata/amazon-cookie', label: '🍪 Amazon Cookie'},
         {type: 'doc', id: 'metadata/hardcover-token', label: '🔑 Hardcover API'},
       ],
