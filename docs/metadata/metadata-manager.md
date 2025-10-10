@@ -4,6 +4,8 @@ Take complete control of your library's organization. Clean up inconsistencies, 
 
 ![Metadata Manager Overview](/img/metadata/manager/metadata-manager-0.jpg)
 
+> Note: If you have enabled "Auto-Move Files on Metadata Update" and/or "Write to File", those settings will be honored when metadata changes are applied.
+
 ---
 
 ## 🌟 What You'll Achieve
@@ -517,4 +519,3 @@ Automatically selects:
 ---
 
 Remember: The Metadata Manager is a powerful tool for maintaining a clean, organized library. Take your time, verify your changes, and enjoy a perfectly categorized book collection! 📚✨
-
