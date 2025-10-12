@@ -70,6 +70,14 @@ const sidebars: SidebarsConfig = {
       ],
     },
     {
+      type: 'category',
+      label: '⚙️ Tools',
+      collapsed: true,
+      items: [
+        {type: 'doc', id: 'tools/task-manager', label: '📊 Task Manager'}
+      ],
+    },
+    {
       type: 'doc',
       id: 'shelf',
       label: '🗂️ Shelf',
