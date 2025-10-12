@@ -74,7 +74,7 @@ const sidebars: SidebarsConfig = {
       label: '⚙️ Tools',
       collapsed: true,
       items: [
-        {type: 'doc', id: 'tools/task-manager', label: '📊 Task Manager'}
+        {type: 'doc', id: 'tools/task-manager', label: '📊 System Task Manager'}
       ],
     },
     {

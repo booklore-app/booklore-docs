@@ -1,4 +1,4 @@
-# 🔧 Task Management
+# 🔧 System Task Manager
 
 Keep your library running smoothly with automated maintenance tasks. Monitor progress in real-time, manage storage efficiently, and ensure your metadata stays synchronized with your book files.
 
@@ -10,7 +10,7 @@ Keep your library running smoothly with automated maintenance tasks. Monitor pro
 
 ## 🌟 What You'll Achieve
 
-With Task Management, you can:
+With System Task Manager, you can:
 
 - **Free up disk space** by clearing cached files when needed
 - **Synchronize metadata** between your database and book files
