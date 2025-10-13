@@ -217,7 +217,7 @@ A: Any device supporting OPDS: Kobo, Kindle (with apps), Android/iOS apps, etc.
 ## 🌟 Get Help
 
 - **[GitHub Issues](https://github.com/adityachandelgit/booklore)** - Report bugs
-- **[Discussions](https://github.com/adityachandelgit/booklore/discussions)** - Ask questions
+- **[Community Discord](https://discord.gg/Ee5hd458Uz)** - Chat and get support
 
 ---
 
