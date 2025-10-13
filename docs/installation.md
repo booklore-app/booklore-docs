@@ -449,7 +449,7 @@ volumes:
   - /mnt/nas-books:/books
 ```
 
-> ⚠️ **Bookdrop Warning:** Network storage may not support real-time file watching. See [Bookdrop documentation](/bookdrop#-bookdrop) for details.
+> ⚠️ **Bookdrop Warning:** Network storage may not support real-time file watching. See [Bookdrop documentation](./bookdrop#-bookdrop) for details.
 
 ---
 
@@ -674,18 +674,18 @@ tar -czf backup-booklore-$DATE.tar.gz \
 
 Now that Booklore is installed, explore these essential features to get started:
 
-1. **[Setup Admin User](/initial-setup)** - Create your administrator account and secure your instance
-2. **[Setup First Library](/library/setup-first-library)** - Configure your first library and organize your collection
-3. **[Configure Bookdrop](/bookdrop)** - Enable automatic imports by dropping files into a folder
-4. **[Metadata Fetch Configuration](/metadata/metadata-fetch-configuration)** - Set up metadata sources for enriching book information
-5. **[Magic Shelf](/magic-shelf)** - Automatically organize books with smart shelving rules
+1. **[Setup Admin User](./initial-setup)** - Create your administrator account and secure your instance
+2. **[Setup First Library](./library/setup-first-library)** - Configure your first library and organize your collection
+3. **[Configure Bookdrop](./bookdrop)** - Enable automatic imports by dropping files into a folder
+4. **[Metadata Fetch Configuration](./metadata/metadata-fetch-configuration)** - Set up metadata sources for enriching book information
+5. **[Magic Shelf](./magic-shelf)** - Automatically organize books with smart shelving rules
 
 ### Optional Advanced Setup
 
-- **[Email Setup](/email-setup)** - Configure email notifications and password resets
-- **[Kobo Integration](/integration/kobo)** - Connect your Kobo e-reader
-- **[OPDS Integration](/integration/opds)** - Access your library from compatible reading apps
-- **[System Task Manager](/tools/task-manager)** - Monitor background tasks and system performance
+- **[Email Setup](./email-setup)** - Configure email notifications and password resets
+- **[Kobo Integration](./integration/kobo)** - Connect your Kobo e-reader
+- **[OPDS Integration](./integration/opds)** - Access your library from compatible reading apps
+- **[System Task Manager](./tools/task-manager)** - Monitor background tasks and system performance
 
 ---
 
@@ -695,7 +695,7 @@ Now that Booklore is installed, explore these essential features to get started:
 - **[GitHub Releases](https://github.com/adityachandelgit/booklore/releases)** - Version history and changelogs
 - **[Docker Hub](https://hub.docker.com/r/booklore/booklore-app)** - Official container images
 - **[Community Discord](#)** - Get help and share tips
-- **[Documentation](/docs)** - Full feature documentation
+- **[Documentation](../)** - Full feature documentation
 
 ---
 
