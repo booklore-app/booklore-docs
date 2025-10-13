@@ -27,7 +27,7 @@ Before you start:
 - **Port 6060** available
 - **Internet connection** for metadata fetching
 
-> 📖 See the [Installation Guide](./installation) for detailed setup instructions.
+> 📖 See the [Installation Guide](installation) for detailed setup instructions.
 
 ---
 
@@ -60,7 +60,7 @@ docker compose up -d
 docker compose ps
 ```
 
-> 📖 **Full Guide:** [Installation Documentation](./installation)
+> 📖 **Full Guide:** [Installation Documentation](installation)
 
 ---
 
@@ -75,7 +75,7 @@ docker compose ps
 
 > 🔐 **Security Tip:** Use a strong, unique password with a password manager.
 
-> 📖 **Details:** [Initial Setup Guide](./initial-setup)
+> 📖 **Details:** [Initial Setup Guide](initial-setup)
 
 ---
 
@@ -93,7 +93,7 @@ Libraries organize your books by folder paths. You can create multiple libraries
 
 > 💡 **Tip:** Start with one library to learn the workflow.
 
-> 📖 **Learn More:** [Setup First Library](./library/setup-first-library)
+> 📖 **Learn More:** [Setup First Library](library/setup-first-library)
 
 ---
 
@@ -124,7 +124,7 @@ cp /path/to/your/books/* ~/booklore/books/
    ```
 3. Booklore processes automatically
 
-> 📖 **Full Guide:** [Bookdrop Configuration](./bookdrop)
+> 📖 **Full Guide:** [Bookdrop Configuration](bookdrop)
 
 ### Method 3: Web Upload
 
@@ -146,13 +146,13 @@ cp /path/to/your/books/* ~/booklore/books/
 ### E-Reader/Mobile App
 
 **For Kobo devices:**
-- Follow the [Kobo Integration](./integration/kobo) guide
+- Follow the [Kobo Integration](integration/kobo) guide
 
 **For other OPDS clients:**
 - Get your OPDS URL from **Settings** → **OPDS**
 - Add to your reading app
 
-> 📖 **More Options:** [OPDS Integration](./integration/opds)
+> 📖 **More Options:** [OPDS Integration](integration/opds)
 
 ---
 
@@ -166,7 +166,7 @@ Enable automatic book information fetching:
 2. Add Google Books API key (optional but recommended)
 3. Enable auto-fetch on import
 
-> 📖 **Setup Guide:** [Metadata Configuration](./metadata/metadata-fetch-configuration)
+> 📖 **Setup Guide:** [Metadata Configuration](metadata/metadata-fetch-configuration)
 
 ### Organization
 
@@ -174,7 +174,7 @@ Enable automatic book information fetching:
 **Tags:** Add flexible labels to your books  
 **Series:** Group related books together
 
-> 📖 **Learn More:** [Magic Shelf](./magic-shelf)
+> 📖 **Learn More:** [Magic Shelf](magic-shelf)
 
 ---
 
@@ -182,12 +182,12 @@ Enable automatic book information fetching:
 
 Once you're comfortable with the basics, explore:
 
-- **[Setup Admin User](./initial-setup)** - Detailed account configuration
-- **[Bookdrop](./bookdrop)** - Automatic import setup
-- **[Magic Shelf](./magic-shelf)** - Dynamic organization
-- **[Kobo Integration](./integration/kobo)** - Connect your e-reader
-- **[OPDS Integration](./integration/opds)** - Mobile app access
-- **[Task Manager](./tools/task-manager)** - Monitor system operations
+- **[Setup Admin User](initial-setup)** - Detailed account configuration
+- **[Bookdrop](bookdrop)** - Automatic import setup
+- **[Magic Shelf](magic-shelf)** - Dynamic organization
+- **[Kobo Integration](integration/kobo)** - Connect your e-reader
+- **[OPDS Integration](integration/opds)** - Mobile app access
+- **[Task Manager](tools/task-manager)** - Monitor system operations
 
 ---
 
@@ -204,7 +204,7 @@ Once you're comfortable with the basics, explore:
 ## ❓ Common Questions
 
 **Q: Can I access Booklore remotely?**  
-A: Yes, set up a reverse proxy with HTTPS. See [Installation Guide](./installation#setting-up-https-with-reverse-proxy).
+A: Yes, set up a reverse proxy with HTTPS. See [Installation Guide](installation#setting-up-https-with-reverse-proxy).
 
 **Q: How do I backup my library?**  
 A: Backup `~/booklore/data` and `~/your-books-directory/books` directories regularly.
@@ -218,7 +218,7 @@ A: Any device supporting OPDS: Kobo, Kindle (with apps), Android/iOS apps, etc.
 
 - **[GitHub Issues](https://github.com/adityachandelgit/booklore)** - Report bugs
 - **[Discussions](https://github.com/adityachandelgit/booklore/discussions)** - Ask questions
-- **[Documentation](../)** - Complete guides
+- **[Documentation](.)** - Complete guides
 
 ---
 
