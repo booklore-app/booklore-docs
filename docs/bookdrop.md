@@ -1,153 +1,278 @@
 # 📥 Bookdrop
 
-Bookdrop is one of Booklore's most powerful and convenient features, designed to streamline the process of adding books to your library.
+Effortlessly add books to your library by simply dropping files into a folder. No manual uploads, no tedious clicking, just drop, review, and import. Bookdrop automates metadata extraction, enrichment, and organization, making library management a breeze.
 
-Instead of manually uploading each file through the interface, simply place your book files (`.pdf`, `.epub`, `.cbz`, etc.) into a designated Bookdrop folder. Booklore will automatically detect, analyze, and prepare them for import, saving you time and effort.
+![Bookdrop Processing](/img/bookdrop/bookdrop-1.jpg)
 
----
+> ⚠️ Note: Bookdrop may not reliably detect new files on network-mounted storage (e.g., NFS or SMB). Many network filesystems do not propagate real-time filesystem events to the host process, so Bookdrop may not notice newly added files. If Bookdrop doesn't react when you add files, use a local folder, adjust mount options to enable notification support, restart Booklore to trigger a manual rescan, or open the Bookdrop UI and click the manual "Refresh" button to force the folder to be reloaded.
 
-## How Bookdrop Works
-
-- 📡 Real-Time Monitoring: A background file watcher continuously scans the Bookdrop folder for new files.
-- 🧠 Smart Detection: When a new file is dropped, Booklore extracts basic metadata like title and author from the filename or embedded tags.
-- 🌐 Optional Metadata Enrichment: If enabled, Booklore can enhance metadata by querying sources such as Google Books or Open Library.
-- 📝 Review & Import: All detected files appear in the Bookdrop UI, where you can refine metadata, assign to libraries, and finalize the import.
+> 💡 **Pro Tip:** Drop entire folders of books at once. Bookdrop processes them sequentially and queues everything for easy review.
 
 ---
 
-## Step 1: Configure the Bookdrop Folder
+## 🌟 What You'll Achieve
 
-If you're using Docker, mount a local directory as the Bookdrop path in your `docker-compose.yml`:
+With Bookdrop, you can:
+
+- **Import books automatically** without manual uploads
+- **Process multiple books at once** by dropping entire folders
+- **Enrich metadata automatically** from online sources like Google Books
+- **Review and refine** metadata before finalizing imports
+- **Organize books instantly** with smart library and subfolder assignments
+- **Maintain clean libraries** with customizable filename patterns
+
+---
+
+## ✨ How Bookdrop Works
+
+### 🔄 The Automated Pipeline
+
+1. **📡 Real-Time Monitoring**  
+   A background file watcher continuously scans your Bookdrop folder for new files.
+
+2. **🧠 Smart Detection**  
+   When files appear, Booklore extracts metadata from filenames and embedded tags.
+
+3. **🌐 Automatic Enrichment**  
+   If enabled, Booklore queries Google Books and Open Library to enhance metadata with covers, descriptions, and more.
+
+4. **📋 Queue for Review**  
+   All detected books appear in the Bookdrop UI for your review and approval.
+
+5. **✅ Finalize Import**  
+   After reviewing, books are renamed, organized, and moved to their designated libraries.
+
+---
+
+## 🚀 Getting Started
+
+### Step 1: Configure the Bookdrop Folder
+
+If you're using Docker, mount a local directory as your Bookdrop path in `docker-compose.yml`:
 
 ```yaml
 services:
   booklore:
-    ...
+    # ...existing configuration...
     volumes:
       - /your/local/path/to/booklore/data:/app/data
       - /your/local/path/to/booklore/books:/books
       - /your/local/path/to/booklore/bookdrop:/bookdrop  # Bookdrop directory
 ```
 
----
-
-## Step 2: Add Books to Bookdrop
-
-To import new books:
-
-1. Locate the Bookdrop folder on your system (shown as arrow 1 in the screenshot).
-2. Copy your book files into this folder (shown as arrow 2).
-
-Booklore will automatically detect them and queue them for review.
-
-![Library Details Form](/img/bookdrop/bookdrop-folder.jpg)
+> ⚠️ **Important:** Ensure the Bookdrop folder has proper read/write permissions for the Booklore container.
 
 ---
 
-## Step 3: Monitor Bookdrop Processing
+### Step 2: Add Books to Bookdrop
 
-Once your books are added to the Bookdrop folder, Booklore automatically begins processing them. You can monitor the progress as follows:
+Adding books is as simple as copying files:
 
-1. Click the notification bell icon in the top-right corner of the interface to open the notification panel.
-2. The panel displays the book currently being processed, along with the total number of remaining files.
-3. You will also see a count of books that have been successfully processed so far.
-4. Once all files are processed, a "Review" button will appear. Click it to open the Bookdrop UI and review the metadata before finalizing the import.
+1. **Locate Your Bookdrop Folder**  
+   Find the folder on your system (as configured in Step 1)
 
-![Bookdrop Processing](/img/bookdrop/bookdrop-progress.jpg)
+2. **Drop Your Books**  
+   Copy any supported book files (`.pdf`, `.epub`, `.cbz`, `.mobi`, etc.) into the folder
 
----
+3. **Drop Folders Too**  
+   You can drop entire folders containing multiple books, Booklore processes them all
 
-## Step 4: Review and Finalize in the Bookdrop UI
+![Bookdrop Folder](/img/bookdrop/bookdrop-folder.jpg)
 
-After Booklore has processed your dropped files, the Bookdrop UI is where you review and finalize the metadata before the books are imported into your library. The interface provides several tools and options to help you ensure everything is categorized and labeled correctly.
-
-![Bookdrop Processing](/img/bookdrop/bookdrop-pre.jpg)
-
-1. **Filename Pattern Preview**  
-   This section displays the currently configured filename pattern, which determines how each file will be renamed and where it will be stored in your library. The pattern uses metadata fields such as title, author, and publication year. You can edit this pattern in the Metadata Settings.
-
-2. **Default Library Selection**  
-   Use this dropdown to select a default library for all listed books. This is especially useful when importing multiple books that belong to the same collection.
-
-3. **Default Subfolder Selection**  
-   You can also define a default subfolder within the selected library (e.g., "Sci-Fi" or "Non-Fiction") to keep your content organized.
-
-4. **Apply Defaults to All**  
-   This action applies the selected library and subfolder to every book in the list. If needed, you can still override these settings for individual books.
-
-5. **Metadata Status Indicator**  
-   A small colored dot appears next to each book:
-   - Green indicates that metadata has been successfully fetched from an online source.
-   - Yellow indicates that only internal metadata from the file (e.g., filename, embedded tags) is available.
-
-6. **Fetched Cover Preview**  
-   Displays the book cover retrieved from online metadata sources.
-
-7. **Internal Cover Preview**  
-   Shows the cover image embedded within the book file itself, if one exists. You can compare this to the fetched cover.
-
-8. **Per-Book Library Override**  
-   Allows you to assign a different library for individual books. This is useful if some files belong in separate categories (e.g., some in "Novels," others in "Comics").
-
-9. **Per-Book Subfolder Override**  
-   Similarly, you can override the default subfolder for individual books to ensure they are stored in the correct path.
-
-10. **Metadata Comparison Panel**  
-    Opens a detailed side-by-side comparison of fetched versus internal metadata. You can copy individual fields or bulk apply them to ensure accuracy.
-
-11. **Apply All Metadata (with Cover)**  
-    Copies all fetched metadata, including the cover image, to all books. This is recommended only when you are confident in the quality and accuracy of the fetched data.
-
-12. **Apply All Metadata (without Cover)**  
-    Applies all fetched metadata but retains the book’s original embedded cover image.
-
-13. **Reset All Metadata**  
-    Reverts any metadata changes made during this session, restoring the original file-based values.
-
-14. **Delete All**  
-    Clears the entire Bookdrop queue. This cancels the import session and discards all pending metadata edits, but does not delete the actual files from disk.
-
-15. **Finalize Import**  
-    Completes the import process by moving files into their assigned libraries and renaming them according to the filename pattern. You can monitor progress in the top-right notification panel.
-
-16. **Post-Import Cleanup**  
-    After the import is successful, the original files are removed from the Bookdrop folder to prevent reprocessing.
+> 💡 **Supported Formats:** PDF, EPUB, CBZ, CBR, MOBI, AZW3, and more
 
 ---
 
-## Step 5: Customize Metadata for Individual Books
+### Step 3: Monitor Processing Progress
 
-If you prefer to manually verify and edit metadata on a per-book basis, Booklore provides a metadata comparison panel accessible through a dropdown next to each book.
+Booklore automatically detects and processes dropped files. Track progress in real-time:
 
-![Bookdrop Pre Final](/img/bookdrop/bookdrop-dropdown.jpg)
+![Bookdrop Progress](/img/bookdrop/bookdrop-progress.jpg)
 
-1. **Open Metadata Picker**  
-   Click the dropdown icon to reveal the metadata comparison view. This panel shows both the internal metadata (extracted from the file) and the fetched metadata (downloaded from online sources).
+1. **Open Notifications**  
+   Click the 🔔 bell icon in the top-right corner
 
-2. **Auto-Fill Missing Fields**  
-   Click the single-arrow button to copy only the fields that are missing in the current data. Existing values will not be overwritten.
+2. **View Current Status**
+    - Currently processing book
+    - Books remaining in queue
+    - Books successfully processed
 
-3. **Overwrite All Fields**  
-   Click the double-arrow button to replace all existing metadata fields with the fetched ones. This is useful if the downloaded metadata is more accurate or complete.
+3. **Access Review**  
+   When processing completes, click the **"Review"** button to open the Bookdrop UI
 
-4. **Visual Feedback for Updates**  
-   Any field that has been updated will be highlighted in green. This provides an easy way to track which fields have been modified.
-
-5. **Copy Individual Fields**  
-   If you only want to update a specific field (such as the title, author, or description), you can use the individual copy button next to each field to selectively apply changes.
-
-This tool offers granular control and is ideal when accuracy is important or when automatic metadata enrichment doesn't meet your expectations.
+> ⏱️ **Processing Time:** Varies based on file size, number of books, and metadata enrichment settings. Most books process in seconds.
 
 ---
 
-## Step 6: Import Summary
+## 📖 Understanding the Bookdrop UI
 
-Once the import has been completed, Booklore displays a summary dialog to confirm the results. This summary includes:
+### Interface Overview
 
-![Bookdrop Pre Final](/img/bookdrop/bookdrop-summary.jpg)
+The Bookdrop UI is your control center for reviewing and finalizing imports. Let's explore each component:
 
-- ✅ A list of books that were successfully imported
-- 📚 The library and subfolder where each book was placed
-- ⚠️ Any books that were skipped or ignored due to issues or duplicates
+![Bookdrop UI Overview](/img/bookdrop/bookdrop-pre.jpg)
 
-Reviewing this summary ensures that everything was imported as expected. You can now visit your libraries to begin reading and managing your newly added books.
+---
+
+### 🎯 Global Settings (Top Section)
+
+#### 1. Filename Pattern Preview
+
+Shows how books will be renamed based on your configured pattern. Patterns use metadata fields like `{title}`, `{author}`, and `{year}`.
+
+> 🔧 **Customize:** Edit patterns in **Settings → Metadata Settings**
+
+#### 2. Default Library Selection
+
+Choose which library all books should be imported into. This applies to all books unless overridden individually.
+
+#### 3. Default Subfolder Selection
+
+Optionally specify a subfolder within the library (e.g., "Sci-Fi", "Non-Fiction") for better organization.
+
+#### 4. Apply Defaults to All
+
+Click this button to apply the selected library and subfolder to every book in the list. Individual overrides remain respected.
+
+---
+
+### 📚 Per-Book Controls (Middle Section)
+
+Each book in the list has individual controls:
+
+#### 5. Metadata Status Indicator
+
+A colored dot shows metadata quality:
+
+- 🟢 **Green:** Metadata successfully fetched from online sources
+- 🟡 **Yellow:** Only internal metadata available (from filename/embedded tags)
+
+#### 6. Fetched Cover Preview
+
+The book cover retrieved from online sources (Google Books, Open Library)
+
+#### 7. Internal Cover Preview
+
+The cover image embedded within the book file itself
+
+> 💡 **Pro Tip:** Compare both covers to choose the best quality one
+
+#### 8. Per-Book Library Override
+
+Assign individual books to different libraries (overrides the default)
+
+#### 9. Per-Book Subfolder Override
+
+Assign individual books to different subfolders (overrides the default)
+
+#### 10. Metadata Comparison Panel
+
+Opens a detailed side-by-side view of fetched vs. internal metadata for precise control
+
+---
+
+### 🛠️ Bulk Action Buttons (Bottom Section)
+
+#### 11. Apply All Metadata (with Cover)
+
+Copies all fetched metadata **including covers** to all books. Use when confident in online data quality.
+
+#### 12. Apply All Metadata (without Cover)
+
+Applies fetched metadata but **keeps original embedded covers**. Best for books with high-quality embedded covers.
+
+#### 13. Reset All Metadata
+
+Reverts all changes made during this session, restoring original file-based values.
+
+#### 14. Delete All
+
+Clears the entire Bookdrop queue and discards all pending metadata. Original files remain on disk.
+
+> ⚠️ **Warning:** This clears your review queue but doesn't delete the actual files.
+
+#### 15. Finalize Import
+
+Begins the import process: moves files to libraries, applies metadata, and renames files. Progress shows in notifications.
+
+#### 16. Post-Import Cleanup
+
+After successful import, original files are automatically removed from Bookdrop to prevent reprocessing.
+
+---
+
+## 🎨 Advanced Metadata Management
+
+### Per-Book Metadata Comparison
+
+For granular control over individual books, use the metadata comparison dropdown:
+
+![Metadata Picker](/img/bookdrop/bookdrop-dropdown.jpg)
+
+#### 1. Open Metadata Picker
+
+Click the dropdown icon next to any book to reveal the comparison panel.
+
+#### 2. Auto-Fill Missing Fields (Single Arrow)
+
+Copies **only missing fields** from fetched metadata. Existing values remain unchanged.
+
+**Example:**
+
+```
+Current: Title="Book", Author=""
+Fetched: Title="The Book", Author="John Doe"
+Result: Title="Book", Author="John Doe" ← Only author copied
+```
+
+#### 3. Overwrite All Fields (Double Arrow)
+
+Replaces **all fields** with fetched metadata. Use when fetched data is more accurate.
+
+**Example:**
+
+```
+Current: Title="Book", Author="Unknown"
+Fetched: Title="The Book", Author="John Doe"
+Result: Title="The Book", Author="John Doe" ← Everything replaced
+```
+
+#### 4. Visual Feedback
+
+Fields that have been updated are **highlighted in green** for easy tracking.
+
+#### 5. Copy Individual Fields
+
+Use the copy button next to specific fields to selectively update only what you want.
+
+> 💡 **Best Practice:** Review the comparison for important books or when automatic enrichment seems uncertain.
+
+---
+
+## ✅ Finalizing the Import
+
+### Step 4: Review Import Summary
+
+After clicking "Finalize Import", Booklore processes all books and displays a comprehensive summary:
+
+![Import Summary](/img/bookdrop/bookdrop-summary.jpg)
+
+The summary includes:
+
+- ✅ **Successfully Imported Books**  
+  Books that were processed and added to your libraries
+
+- 📚 **Library & Subfolder Placement**  
+  Where each book was stored in your collection
+
+- ⚠️ **Skipped or Ignored Books**  
+  Files that couldn't be processed or were duplicates
+
+- 📊 **Processing Statistics**  
+  Total counts and success rates
+
+> 🎉 **Success!** Your books are now in your library and ready to read.
+
+---
+
+Remember: Bookdrop is designed to make book management effortless. Drop files, review metadata, and build your perfect library with minimal effort. Happy reading! 📚✨
