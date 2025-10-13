@@ -1,44 +1,225 @@
 # 🚀 Getting Started with Booklore
 
-Welcome to **Booklore**, your personal, self-hosted library system to manage, read, and sync books seamlessly across all your devices.
-
-This quick start guide will help you get up and running with Booklore in just a few simple steps.
+Welcome to **Booklore** – your self-hosted digital library management system. This guide will help you get up and running quickly.
 
 ---
 
-## ✨ Features Overview
+## 🎯 What is Booklore?
 
-Booklore offers a powerful and modern digital library experience, including:
+Booklore is an open-source library management system that gives you complete control over your digital book collection. Your books and data stay on your own server, ensuring privacy and independence.
 
-- 📚 Manage and organize your personal book collection, supporting PDF, EPUB, and CBZ formats.
-- 👥 Multi-user support with individualized reading preferences and settings.
-- 📖 Integrated online reader with progress sync across devices and sessions.
-- 🔍 Automatic metadata fetching from popular sources like Amazon and Goodreads.
-- 🔄 Sync reading progress and activity with KOReader and other compatible apps.
-- 📱 Fully responsive, user-friendly web interface.
-- 🔐 Self-hosted with robust authentication options (OIDC, JWT).
-- 📂 Drop folder (BookDrop) support for automatic book imports as you add files.
+### Key Benefits
 
-Enjoy full control over your collection, anytime, anywhere.
+- **🔒 Privacy First** - Your books, your data, your server
+- **💰 Free & Open Source** - No subscription fees
+- **🌐 Access Anywhere** - Web, e-readers, and mobile devices
+- **👥 Multi-User** - Support for family and friends
+- **🤖 Smart Metadata** - Automatic book information enrichment
 
 ---
 
-## 🧱 System Requirements
+## 📋 Prerequisites
 
-Before you begin, make sure you have:
+Before you start:
 
-- 🐳 Docker & Docker Compose installed
-- 🌐 A domain name (optional but recommended for remote access)
-- ⚙️ At least 1 GB RAM and 1 vCPU for smooth operation
+- **Docker & Docker Compose** (v20.10+ / v2.0+)
+- **System Resources:** 2GB RAM, 10GB+ storage
+- **Port 6060** available
+- **Internet connection** for metadata fetching
+
+> 📖 See the [Installation Guide](/installation) for detailed setup instructions.
 
 ---
 
-## 📖 Walkthroughs & Tutorials
+## 🏁 Quick Start
 
-Boost your Booklore skills with these detailed guides:
+### Your 5-Step Journey
 
-- 🏗️ [Setup Your First Library](library/setup-first-library)
-- ✍️ [Edit Library Metadata](library/edit-library)
-- 🗂️ [Shelf Management](shelf.md)
-- 🔳 [Book Browser: Grid View](book-browser/grid)
-- 📋 [Book Browser: Table View](book-browser/table)
+```
+1. Install → 2. Create Admin → 3. Add Library → 4. Import Books → 5. Start Reading
+```
+
+---
+
+## 📥 Step 1: Installation
+
+Create the directory structure and start the containers:
+
+```bash
+# Create directories
+mkdir -p ~/booklore/{config/mariadb,data,books,bookdrop}
+cd ~/booklore
+
+# Create and configure docker-compose.yml
+# (See Installation Guide for complete configuration)
+
+# Start containers
+docker compose up -d
+
+# Verify
+docker compose ps
+```
+
+> 📖 **Full Guide:** [Installation Documentation](/installation)
+
+---
+
+## 👤 Step 2: Create Admin Account
+
+1. Open your browser: `http://localhost:6060`
+2. Complete the setup wizard:
+   - Create administrator username and password
+   - Set your email address
+   - Configure timezone (optional)
+3. Click "Complete Setup"
+
+> 🔐 **Security Tip:** Use a strong, unique password with a password manager.
+
+> 📖 **Details:** [Initial Setup Guide](/initial-setup)
+
+---
+
+## 📚 Step 3: Create Your First Library
+
+Libraries organize your books by folder paths. You can create multiple libraries for different collections.
+
+1. Go to **Settings** → **Libraries**
+2. Click **"Add Library"**
+3. Configure:
+   - **Name:** "My Main Library"
+   - **Path:** `/books`
+   - **Enable scanning:** On
+4. Click **"Save"** then **"Scan Library"**
+
+> 💡 **Tip:** Start with one library to learn the workflow.
+
+> 📖 **Learn More:** [Setup First Library](/library/setup-first-library)
+
+---
+
+## 📖 Step 4: Add Books
+
+Choose the method that works best for you:
+
+### Method 1: Direct File Copy
+
+**Best for:** Initial bulk import
+
+```bash
+# Copy books to the directory
+cp /path/to/your/books/* ~/booklore/books/
+
+# Trigger scan in Booklore UI
+# Settings → Libraries → Scan Now
+```
+
+### Method 2: Bookdrop (Recommended)
+
+**Best for:** Automatic, hands-free importing
+
+1. Enable in **Settings** → **Bookdrop**
+2. Drop files into the folder:
+   ```bash
+   cp /path/to/book.epub ~/booklore/bookdrop/
+   ```
+3. Booklore processes automatically
+
+> 📖 **Full Guide:** [Bookdrop Configuration](/bookdrop)
+
+### Method 3: Web Upload
+
+1. Navigate to your library
+2. Click **"Upload Books"**
+3. Select and upload files
+
+---
+
+## 📱 Step 5: Start Reading
+
+### Web Reader
+
+1. Click any book cover
+2. Click **"Read"**
+3. Customize settings (font, theme, size)
+4. Enjoy!
+
+### E-Reader/Mobile App
+
+**For Kobo devices:**
+- Follow the [Kobo Integration](/integration/kobo) guide
+
+**For other OPDS clients:**
+- Get your OPDS URL from **Settings** → **OPDS**
+- Add to your reading app
+
+> 📖 **More Options:** [OPDS Integration](/integration/opds)
+
+---
+
+## 🔧 Essential Configuration
+
+### Metadata Enrichment
+
+Enable automatic book information fetching:
+
+1. **Settings** → **Metadata**
+2. Add Google Books API key (optional but recommended)
+3. Enable auto-fetch on import
+
+> 📖 **Setup Guide:** [Metadata Configuration](/metadata/metadata-fetch-configuration)
+
+### Organization
+
+**Shelves:** Create custom or magic shelves for categorization  
+**Tags:** Add flexible labels to your books  
+**Series:** Group related books together
+
+> 📖 **Learn More:** [Magic Shelf](/magic-shelf)
+
+---
+
+## 🎓 Next Steps
+
+Once you're comfortable with the basics, explore:
+
+- **[Setup Admin User](/initial-setup)** - Detailed account configuration
+- **[Bookdrop](/bookdrop)** - Automatic import setup
+- **[Magic Shelf](/magic-shelf)** - Dynamic organization
+- **[Kobo Integration](/integration/kobo)** - Connect your e-reader
+- **[OPDS Integration](/integration/opds)** - Mobile app access
+- **[Task Manager](/tools/task-manager)** - Monitor system operations
+
+---
+
+## 💡 Quick Tips
+
+- **Start small:** Import 10-20 books first to learn the system
+- **Let metadata work:** Enable auto-fetching for enriched book info
+- **Use Bookdrop:** Set it up early for hassle-free importing
+- **Backup regularly:** `data` and `books` directories
+- **Check Task Manager:** Monitor import and scan progress
+
+---
+
+## ❓ Common Questions
+
+**Q: Can I access Booklore remotely?**  
+A: Yes, set up a reverse proxy with HTTPS. See [Installation Guide](/installation#setting-up-https-with-reverse-proxy).
+
+**Q: How do I backup my library?**  
+A: Backup `~/booklore/data` and `~/your-books-directory/books` directories regularly.
+
+**Q: What e-readers work with Booklore?**  
+A: Any device supporting OPDS: Kobo, Kindle (with apps), Android/iOS apps, etc.
+
+---
+
+## 🌟 Get Help
+
+- **[GitHub Issues](https://github.com/adityachandelgit/booklore)** - Report bugs
+- **[Discussions](https://github.com/adityachandelgit/booklore/discussions)** - Ask questions
+- **[Documentation](/docs)** - Complete guides
+
+---
+
+Happy reading! 📚✨ If you need detailed information on any feature, check the linked guides above.
