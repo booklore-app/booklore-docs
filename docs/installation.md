@@ -695,7 +695,6 @@ Now that Booklore is installed, explore these essential features to get started:
 - **[GitHub Releases](https://github.com/adityachandelgit/booklore/releases)** - Version history and changelogs
 - **[Docker Hub](https://hub.docker.com/r/booklore/booklore-app)** - Official container images
 - **[Community Discord](#)** - Get help and share tips
-- **[Documentation](.)** - Full feature documentation
 
 ---
 
