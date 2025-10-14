@@ -2,6 +2,8 @@
 
 Booklore allows you to send books directly via email using various email providers. This guide will walk you through setting up Gmail as your email provider, enabling you to use the "Quick Book Send" feature from any book card.
 
+> ✨ **What's New in v2:** Users with email permission can now set up their own personal email providers and recipients without interfering with other users' configurations. Each user manages their own email settings independently.
+
 ---
 
 ## 🔧 Prerequisites
@@ -11,6 +13,7 @@ Before setting up Gmail as your email provider, ensure you have:
 1. **A Gmail account** with email sending privileges
 2. **2-Factor Authentication enabled** on your Google account (required for app passwords)
 3. **App Password generated** for Booklore (we'll guide you through this process)
+4. **Email permission** in your Booklore account (contact your administrator if needed)
 
 ---
 
@@ -37,6 +40,8 @@ Since Gmail requires secure authentication, you'll need to create an app-specifi
 ## ⚙️ Step 2: Configure Email Provider in Booklore
 
 Now let's add Gmail as an email provider in your Booklore settings.
+
+> 👥 **Personal Configuration:** Your email provider configuration is personal to your account. Other users won't see or be able to use your email providers, and you won't see theirs.
 
 ![Email Providers Page](/img/email/email-1.jpg)
 
@@ -68,6 +73,8 @@ Fill in the Gmail configuration details:
 
 After configuring your email provider, you'll need to add recipients who will receive your books via email.
 
+> 👥 **Personal Recipients:** Your recipient list is private to your account. Each user maintains their own list of recipients independently.
+
 1. Navigate to **Email** > **Recipients** in Booklore
 2. Click **Create Recipient**
 
@@ -87,7 +94,7 @@ Fill in the recipient details:
 
 > 💡 **Tip:** You can add multiple recipients such as family members, friends, or different devices (Kindle, tablet, etc.)
 
-> 🚀 **Quick Send Ready:** Once you have configured a default email provider and default recipient, you can send books with one click using "Quick Book Send" from any book card.
+> 🚀 **Quick Send Ready:** Once you have configured a default email provider and default recipient, you can send books with one click using "Quick Book Send" from any book card. Your default settings are personal to your account.
 
 ---
 
@@ -100,6 +107,8 @@ This is how the interface should look after setting up both the email provider a
 ## 📚 Step 4: Sending Books via Email
 
 Booklore offers two convenient methods to send books via email:
+
+> 👤 **Your Settings, Your Send:** When sending books, you'll use your own configured email providers and recipients. Other users sending books will use their own configurations.
 
 ![Advanced Send](/img/email/email-5.jpg)
 
@@ -126,6 +135,37 @@ For flexible sending with specific provider and recipient selection:
 6. Click **Send**
 
 > 🎯 **Perfect for:** Sending to different recipients or using specific email providers for certain books
+
+---
+
+## 👥 Multi-User Email Configuration
+
+### How Email v2 Works
+
+In the new email configuration system:
+
+- **Personal Email Providers**: Each user can configure their own email providers (Gmail, Outlook, custom SMTP, etc.)
+- **Personal Recipients**: Each user maintains their own list of email recipients
+- **Independent Defaults**: Each user sets their own default email provider and default recipient
+- **No Interference**: Users cannot see or modify other users' email configurations
+- **Shared Library**: All users can send any book from the shared library using their own email settings
+
+### Use Cases
+
+**Scenario 1: Family Library**
+- Dad uses his Gmail to send to his Kindle
+- Mom uses her Outlook to send to her tablet
+- Each has their own recipient lists and defaults
+
+**Scenario 2: Organization**
+- Team members can send books to their own devices
+- Each person's email configuration is private
+- No shared credentials or confusion
+
+**Scenario 3: Privacy**
+- Your email provider credentials are yours alone
+- Your recipient list remains private
+- Other users cannot see who you send books to
 
 ---
 
@@ -162,6 +202,20 @@ For flexible sending with specific provider and recipient selection:
 - Check if the recipient needs to whitelist your Gmail address
 - For Kindle users, ensure your Gmail address is added to their approved email list in their Amazon account settings
 
+### Permission and Visibility Issues
+
+**❌ Cannot See Email Settings**
+
+- Verify you have email permission in your Booklore account
+- Contact your administrator to request email access
+- Check that you're logged into the correct account
+
+**❌ Cannot See Other Users' Providers**
+
+- This is expected behavior - email configurations are personal to each user
+- Each user must set up their own email providers and recipients
+- If you need to send using different credentials, create a new provider in your account
+
 ---
 
 ## 🔒 Security Best Practices
@@ -185,4 +239,6 @@ The configuration process is similar - simply adjust the host, port, and authent
 
 ---
 
-> 💡 **Tip:** You can configure multiple email providers and switch between them as needed. The default provider will be used for Quick Book Send, but you can select different providers when manually sending books.
+> 💡 **Tip:** You can configure multiple email providers and switch between them as needed. The default provider will be used for Quick Book Send, but you can select different providers when manually sending books. All your email configurations are personal to your account and won't be visible to other users.
+
+> 🔐 **Privacy Note:** In email configuration v2, your email provider credentials, recipient lists, and sending history are private to your account. Other users with email permission will have their own separate configurations.
