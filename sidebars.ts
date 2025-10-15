@@ -51,7 +51,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: '🗂️ Metadata',
-      collapsed: true,
+      collapsed: false,
       items: [
         {type: 'doc', id: 'metadata/metadata-fetch-configuration', label: '🔃 Fetch Configuration'},
         {type: 'doc', id: 'metadata/file-naming-patterns', label: '🗒️ File Naming Patterns'},
@@ -63,7 +63,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: '🔒 Authentication',
-      collapsed: true,
+      collapsed: false,
       items: [
         {type: 'doc', id: 'authentication/overview', label: '🗝️ Overview'},
         {
@@ -82,7 +82,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: '🔗 Integrations',
-      collapsed: true,
+      collapsed: false,
       items: [
         {type: 'doc', id: 'integration/kobo', label: '📲 Kobo'},
         {type: 'doc', id: 'integration/koreader', label: '📚 KOReader'},
