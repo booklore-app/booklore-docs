@@ -474,7 +474,6 @@ Default Libraries:
 ## 📚 Additional Resources
 
 - **[Pocket ID Authentication](./pocket-id.md):** Complete guide to setting up OIDC with Pocket ID
-- **[User Management](./user-management.md):** Managing user accounts and permissions
 - **[OIDC Specification](https://openid.net/specs/openid-connect-core-1_0.html):** Technical details about OIDC claims
 - **Security Best Practices:** Guidelines for secure authentication and authorization
 
