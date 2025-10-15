@@ -69,7 +69,7 @@ const sidebars: SidebarsConfig = {
         {
           type: 'category',
           label: '🌐 Identity Providers (OIDC)',
-          collapsed: true,
+          collapsed: false,
           items: [
             {type: 'doc', id: 'authentication/authentik', label: '🛡️ Authentik'},
             {type: 'doc', id: 'authentication/pocket-id', label: '💳 Pocket ID'},
