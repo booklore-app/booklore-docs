@@ -62,6 +62,15 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
+      label: '🔒 Authentication',
+      collapsed: true,
+      items: [
+        {type: 'doc', id: 'authentication/overview', label: '🗝️ Overview'},
+        {type: 'doc', id: 'authentication/authentik', label: '🌐 Authentik'}
+      ],
+    },
+    {
+      type: 'category',
       label: '🔗 Integrations',
       collapsed: true,
       items: [
