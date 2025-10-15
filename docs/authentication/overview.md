@@ -33,9 +33,9 @@ Integrate with OpenID Connect (OIDC) providers for centralized authentication:
 - **Standard Compliant** - Works with any OAuth2/OIDC provider
 
 **Supported Identity Providers:**
+- ✅ Authelia  (detailed setup guide available)
 - ✅ Authentik (detailed setup guide available)
 - ✅ Pocket ID (detailed setup guide available)
-- ✅ Authelia (not tested yet)
 
 **Perfect for:**
 - Already running an identity provider for other apps
@@ -61,6 +61,7 @@ No setup needed! Just:
 4. Test the login flow
 
 **📚 Setup Guides:**
+- [**Authelia Integration Guide**](./authelia.md) - Complete step-by-step tutorial with screenshots
 - [**Authentik Integration Guide**](./authentik.md) - Complete step-by-step tutorial with screenshots
 - [**Pocket ID Integration Guide**](./pocket-id.md) - Complete step-by-step tutorial with screenshots
 
