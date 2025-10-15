@@ -66,8 +66,17 @@ const sidebars: SidebarsConfig = {
       collapsed: true,
       items: [
         {type: 'doc', id: 'authentication/overview', label: '🗝️ Overview'},
-        {type: 'doc', id: 'authentication/authentik', label: '🛡️ Authentik'},
-        {type: 'doc', id: 'authentication/pocket-id', label: '💳 Pocket ID'}
+        {
+          type: 'category',
+          label: '🌐 Identity Providers (OIDC)',
+          collapsed: true,
+          items: [
+            {type: 'doc', id: 'authentication/authentik', label: '🛡️ Authentik'},
+            {type: 'doc', id: 'authentication/pocket-id', label: '💳 Pocket ID'},
+            {type: 'doc', id: 'authentication/authelia', label: '🔐 Authelia'},
+          ],
+        },
+        {type: 'doc', id: 'authentication/auto-user-provisioning', label: '👥 Auto User Provisioning'},
       ],
     },
     {
