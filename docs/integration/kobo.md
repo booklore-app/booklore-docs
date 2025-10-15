@@ -11,9 +11,7 @@ With Kobo integration, you can:
 - **Sync books automatically** between Booklore and your device
 
 :::warning[Important Note About Reading Progress]
-
 Reading progress is **not synchronized** between Booklore's built-in EPUB reader and your Kobo device. Each platform maintains its own reading position independently, as they use different progress tracking systems.
-
 :::
 
 ---
@@ -61,15 +59,11 @@ large_client_header_buffers 8 32k;
 ```
 
 :::info[Nginx Proxy Manager Users]
-
 The proxy headers are already configured automatically in nginx Proxy Manager, but you'll still need to add the buffer settings manually as they are required for proper functionality.
-
 :::
 
 :::warning[Other Reverse Proxies]
-
 If you're using Caddy, Traefik, or other reverse proxy solutions, you'll need to configure equivalent headers and buffer settings manually. Consult your proxy's documentation for the appropriate configuration.
-
 :::
 
 ---
@@ -84,9 +78,7 @@ The setup process involves four main steps:
 4. **🗑️ Manage Your Library** - Add/remove books as needed
 
 :::tip[Estimated Setup Time]
-
 10-15 minutes for first-time setup.
-
 :::
 
 ---
@@ -112,9 +104,7 @@ Before you can sync books to your Kobo eReader, you need to obtain your unique A
 ![Booklore Device Settings](/img/kobo/kobo-1.jpg)
 
 :::info[Admin Note]
-
 Kobo Sync is enabled by default for admin users. Other users may need this permission granted by an administrator.
-
 :::
 
 ---
@@ -185,8 +175,8 @@ api_endpoint=https://booklore.example.com/api/kobo/3c67f2ba-20f5-4a6e-b5b9-f7e94
    - Disconnect the USB cable
 
 :::warning[Important]
-
 Ensure your Booklore server is accessible from your Kobo's network location. Test connectivity before proceeding to the next step.
+:::
 
 ---
 
@@ -231,8 +221,8 @@ Follow these steps to add books from your Booklore library to your Kobo eReader.
    ![Books synced to Kobo](/img/kobo/kobo-8.jpg)
 
 :::tip[Sync Tip]
-
 The sync process may take a few moments depending on the number of books and your internet connection speed.
+:::
 
 ---
 
@@ -280,8 +270,8 @@ You can remove books from your Kobo device in two ways. When you remove a book, 
    - The book will be removed from your device
 
 :::info[Remember]
-
 Removing books only affects your Kobo shelf and device. All books remain safely stored in your main Booklore library.
+:::
 
 ---
 
@@ -327,7 +317,5 @@ After granting permission:
 - Each user will have their own unique API token and Kobo shelf
 
 :::tip[Admin Tip]
-
 You can revoke Kobo Sync permission at any time by unchecking the permission and saving the user profile.
-
 :::

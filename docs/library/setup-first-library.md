@@ -1,66 +1,139 @@
-# 📚 Setting Up Your First Library
+# 📚 First Library Configuration
 
-In Booklore, a **library** is a folder on your system that contains books you want to manage. Each library is scanned and indexed so you can browse, search, and read your collection within the app.
-
-This guide will help you **set up your first library**.
+Set up your first library to organize and manage your digital book collection. A library monitors one or more folders for automatic indexing and metadata enrichment.
 
 ---
 
+## 📖 Understanding Libraries
+
+A **library** is a logical grouping of book folders with its own configuration and metadata cache. Each library can monitor multiple folders, but folders can only belong to one library.
+
+**Supported Formats:** EPUB, PDF, CBZ, CBR, and CB7
+
+:::tip[Multiple Libraries]
+Create separate libraries for different collections (e.g., Novels, Comics, Technical Books).
+:::
+
+---
+
+## 🛠️ Configuration Steps
+
 ### Step 1: Start Library Creation
 
-Begin by clicking the **"Add a Library"** button on the dashboard, as shown in the screenshot below.
+Click **"Add a Library"** from your dashboard.
 
 ![Empty Dashboard](/img/first-library/click-add-a-library.jpg)
 
+---
 
-### Step 2: Enter Library Details
-
-On the next screen, fill in the following details to set up your library:
-
-1. **Library Name**: Choose a name that reflects the type of books the library will contain (e.g., *Novels*, *Comics*, *Technical Books*).
-2. **Library Icon**: Select an icon that visually represents your library. This is optional but helpful for quickly identifying libraries.
-3. **Monitoring**: Toggle this option on if you want Booklore to automatically detect new or removed books from the folder. If disabled, you’ll need to manually refresh the library to update its contents.
-
-Click **Next** to proceed.
+### Step 2: Configure Library Details
 
 ![Library Details Form](/img/first-library/monitoring-library.jpg)
 
+**Required:**
+- **Library Name**: Descriptive identifier (e.g., "Science Fiction", "Manga Collection")
+- **Library Icon**: Visual identifier from icon picker
 
-### Step 3: Choose Book Folders
+**Optional:**
+- **Monitoring**: Enable to automatically detect new/changed/deleted books
+  - Recommended for active collections
+  - May impact performance with large folders
 
-Click the **"Add Book Folders"** button to open the folder picker. You can add one or more folders to your library ,  these should contain your actual book files (e.g., EPUB, PDF, CBZ, etc.).
+Click **"Next"** to continue.
 
-Booklore will scan and index the files in these folders so they appear in your library.
+---
 
-To add a folder:
-1. Navigate to the desired folder.
-2. Select the desired path.
-3. Click **"Select"** to confirm.
+### Step 3: Add Book Folders
 
-After you’ve selected the folders, they will appear in the list as shown in the third screenshot below:
-- Arrow 1 shows the added folders.
-- Arrow 2 lets you remove a folder by clicking the ❌ icon.
-- Arrow 3 indicates the **"Save"** button, which finalizes the setup and begins library processing.
+1. Click **"Add Book Folders"**
+2. Navigate to your books folder
+3. Click **"Select"** to confirm
 
 ![Add Book Folders](/img/first-library/add-book-folders.jpg)
 ![Library Folder Picker](/img/first-library/library-folder-picker.jpg)
+
+**Managing Folders:**
+
 ![Selected Library Folders](/img/first-library/selected-library-folders.jpg)
 
-### Step 4: Finalize and Process Library
+- Multiple folders can be added to one library
+- Remove folders using the ❌ button
+- Ensure Docker has read permissions for selected paths
 
-Once you click **"Save"**, Booklore will begin processing your library. It will:
-- Scan all added folders.
-- Extract embedded metadata from book files.
-- Generate and cache cover thumbnails for fast browsing.
-
-You’ll see real-time progress updates in the top notification widget. Additionally, the book count will update automatically in the left sidebar next to your library’s name.
-
-:::note
-All thumbnail and cache data are stored in the `data` folder within your Docker volume.
+:::warning[Permissions]
+Check Docker volume mounts in `docker-compose.yml` if folders aren't accessible.
 :::
+
+Click **"Save"** to begin processing.
+
+---
+
+### Step 4: Library Processing
+
+Booklore automatically processes your library:
 
 ![Library Processing](/img/first-library/library-processing.jpg)
 
-:::success 🎉 Setup Complete!
-Your first library is now set up and ready to use.
+**Processing includes:**
+1. Folder scanning for supported files
+2. Metadata extraction from books
+3. Cover thumbnail generation
+4. Database indexing
+
+:::info[Background Processing]
+Processing continues in the background. Navigate freely while it completes.
 :::
+
+---
+
+## 🎯 Post-Setup
+
+### Verify Setup
+
+1. Check book count in sidebar
+2. Browse library to view indexed books
+3. Test search functionality
+
+### Next Steps
+
+- Configure [metadata providers](../metadata/metadata-fetch-configuration.md)
+- Adjust library settings for monitoring and caching
+- Add more libraries for different collections
+
+:::success[Setup Complete!]
+Your library is ready. Start browsing, searching, and reading your collection!
+:::
+
+---
+
+## 📋 Troubleshooting
+
+### Books Not Appearing
+
+**Check:**
+- Docker volume mounts in `docker-compose.yml`
+- File formats are supported
+- Files have proper extensions (.epub, .pdf, etc.)
+- Container logs for permission errors
+
+### Slow Processing
+
+**Solutions:**
+- Increase Docker memory/CPU limits
+- Process network folders in batches
+- Temporarily disable monitoring during scan
+- Split into smaller libraries
+
+### Missing Metadata
+
+**Solutions:**
+- Use online metadata fetchers
+- Manually add covers/data via editor
+- Check file integrity
+
+### Monitoring Not Working
+
+**Solutions:**
+- Verify monitoring enabled in settings
+- Trigger manual scan: Library settings → Scan Now
+- Use scheduled scans for network folders
