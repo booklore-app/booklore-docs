@@ -4,7 +4,9 @@ Take complete control of your library's organization. Clean up inconsistencies, 
 
 ![Metadata Manager Overview](/img/metadata/manager/metadata-manager-0.jpg)
 
-> Note: If you have enabled "Auto-Move Files on Metadata Update" and/or "Write to File", those settings will be honored when metadata changes are applied.
+:::info[File Management Settings]
+If you have enabled "Auto-Move Files on Metadata Update" and/or "Write to File", those settings will be honored when metadata changes are applied.
+:::
 
 ---
 
@@ -18,7 +20,9 @@ With the Metadata Manager, you can:
 - **Clean up inconsistencies** from different sources
 - **View and filter** all metadata with comprehensive statistics
 
-> 💡 **Pro Tip:** Use the Metadata Manager regularly after adding new books to maintain a clean, organized library.
+:::tip[Pro Tip]
+Use the Metadata Manager regularly after adding new books to maintain a clean, organized library.
+:::
 
 ---
 
@@ -69,7 +73,9 @@ These fields allow only one value per book:
 - Merge "En", "English", "en-US" into "English" (standardized)
 - Rename "Penguin Books Inc." to "Penguin Books"
 
-> ⚠️ **Important:** For single-value fields, merge operations standardize all selected values to one target value.
+:::warning[Important - Single-Value Fields]
+For single-value fields (Series, Publisher, Language), merge operations standardize all selected values to one target value.
+:::
 
 ---
 
@@ -283,7 +289,10 @@ Delete metadata when:
 - ✅ Metadata is removed from all affected books
 - ✅ Books remain in your library
 - ✅ Other metadata on books is unchanged
-- ⚠️ **This action cannot be undone**
+
+:::danger[Cannot Be Undone]
+This action cannot be undone. Make sure you're deleting the correct metadata.
+:::
 
 ---
 
@@ -301,15 +310,9 @@ Find and select entries with similar names automatically.
     - Selects variations and similar entries
     - Useful for finding duplicates
 
-**Example:**
-
-```
-Click "Select Similar" on "Science Fiction"
-Automatically selects:
-- "Science Fiction"
-- "Sci-Fi" (contains part of the words)
-- "Science" (matches word)
-```
+:::tip[Finding Duplicates]
+Click "Select Similar" on any item to automatically find and select variations and similar entries.
+:::
 
 ---
 
@@ -331,6 +334,10 @@ Automatically selects:
     - Review new metadata entries
     - Merge with existing standards
     - Clean up automatic imports
+
+:::tip[Regular Maintenance]
+Check Metadata Manager monthly to catch duplicates early and maintain consistent standards.
+:::
 
 ### Naming Conventions
 
@@ -377,6 +384,10 @@ Automatically selects:
     - Focus on entries affecting many books
     - Maximum impact for your effort
 
+:::success[Best Practice]
+Start with high-count items by sorting the "Books" column. Focus on entries affecting many books for maximum impact.
+:::
+
 2. **Use Search Effectively**
     - Search for common variations
     - Look for special characters
@@ -398,10 +409,13 @@ Automatically selects:
 
 ### Data Safety
 
-- **No Undo**: Merge, rename, and delete operations cannot be undone
-- **Use Confirmations**: Always read confirmation dialogs carefully
-- **Backup First**: Consider backing up your database before major changes
-- **Test Small**: Try operations on a few items before bulk actions
+:::danger[No Undo Available]
+Merge, rename, and delete operations cannot be undone. Always read confirmation dialogs carefully and consider backing up your database before major changes.
+:::
+
+:::warning[Test First]
+Try operations on a few items before bulk actions to build confidence with the tools.
+:::
 
 ### Performance Considerations
 
@@ -411,10 +425,11 @@ Automatically selects:
 
 ### Limitations
 
-- **Case Sensitivity**: Metadata is case-sensitive ("fiction" ≠ "Fiction")
-- **Special Characters**: Be careful with punctuation and special characters
-- **Whitespace**: Leading/trailing spaces matter ("Author" ≠ "Author ")
-- **Single vs Multi-Value**: Remember which fields allow multiple values
+:::note[Remember]
+- Metadata is case-sensitive ("fiction" ≠ "Fiction")
+- Leading/trailing spaces matter ("Author" ≠ "Author ")
+- Single vs Multi-Value fields have different merge behaviors
+:::
 
 ---
 
@@ -478,44 +493,63 @@ Automatically selects:
 ### "Merge Selected" Button is Disabled
 
 **Cause:** You need at least 2 items selected
+
 **Solution:** Select more items by checking their boxes
+
+---
 
 ### Changes Don't Appear Immediately
 
 **Cause:** Browser cache or table not refreshed
-**Solution:**
 
+**Solution:**
 - Wait a moment for the table to reload
 - Refresh the page if needed
 - Check the All Books view to verify changes
 
+---
+
 ### Can't Find a Specific Entry
 
 **Cause:** Searching with wrong case or spelling
-**Solution:**
 
+**Solution:**
 - Try different search terms
 - Sort the table alphabetically
 - Check for special characters or extra spaces
 
+:::tip[Search Tip]
+Metadata is case-sensitive. Try searching with different capitalization if you can't find an entry.
+:::
+
+---
+
 ### Accidentally Deleted Metadata
 
 **Cause:** No undo feature available
-**Solution:**
 
+**Solution:**
 - Re-add metadata manually to affected books
 - Restore from backup if available
 - Use book edit feature to add back metadata
 
+:::warning[Prevention]
+Always verify the list of affected books before confirming deletion operations.
+:::
+
+---
+
 ### Merge Created Too Many Tags
 
 **Cause:** Used commas when single value intended
-**Solution:**
 
+**Solution:**
 - Select the unwanted tags
 - Delete them
 - Re-merge with correct target value
 
 ---
 
-Remember: The Metadata Manager is a powerful tool for maintaining a clean, organized library. Take your time, verify your changes, and enjoy a perfectly categorized book collection! 📚✨
+:::success[Clean Library Achieved]
+The Metadata Manager is a powerful tool for maintaining a clean, organized library. Take your time, verify your changes, and enjoy a perfectly categorized book collection! 📚✨
+:::

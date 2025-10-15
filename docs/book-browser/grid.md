@@ -21,7 +21,9 @@ At the top of the grid, you'll find several useful controls to customize your br
 
 A slider allows you to control the size of each book card. Whether you prefer compact covers to fit more books on the screen, or larger ones for better readability, it's your choice.
 
-> Note: The chosen size is saved automatically ~3 seconds after your last adjustment. This ensures that your preferred layout is preserved the next time you open Booklore.
+:::info[Note]
+The chosen size is saved automatically ~3 seconds after your last adjustment. This ensures that your preferred layout is preserved the next time you open Booklore.
+:::
 
 ![Adjust Grid Size](/img/grid/grid-2.jpg)
 
@@ -48,7 +50,9 @@ You can sort sidebar items by:
 - **Alphabetical Order**: Organizes the list from A to Z, ideal when you're looking for a specific name.
 - **Number of Books**: Sorts items based on how many books are associated with them. For example, if Author B has 10 books and Author A has 5, Author B appears first.
 
-> Why it’s useful: This flexibility allows you to prioritize frequently used filters (like prolific authors or popular categories), or quickly browse alphabetically if you're not sure of book counts.
+:::tip[Why it’s useful]
+This flexibility allows you to prioritize frequently used filters (like prolific authors or popular categories), or quickly browse alphabetically if you're not sure of book counts.
+:::
 
 ![Sidebar Filters](/img/grid/grid-5.jpg)
 ![Sidebar Sort Options](/img/grid/grid-6.jpg)
@@ -65,7 +69,9 @@ The sort dropdown lets you organize your library in the way that suits you best:
 
 Click once to sort in ascending order; click again to reverse it.
 
-> Why it’s useful: Sorting allows you to quickly reframe your library based on context. Want to revisit your newest downloads? Use “Date Added.” Looking for a specific book? “Title” has you covered.
+:::tip[Why it’s useful]
+Sorting allows you to quickly reframe your library based on context. Want to revisit your newest downloads? Use “Date Added.” Looking for a specific book? “Title” has you covered.
+:::
 
 ![Sort Options](/img/grid/grid-7.jpg)
 
@@ -78,7 +84,9 @@ The live search bar helps you quickly find specific books without leaving the gr
 - Results update in real-time as you type.
 - Matches across **titles**, **series names**, and **author names**.
 
-> Why it’s useful: No need to scroll endlessly, just type part of a title or author’s name and instantly narrow down the grid. Especially helpful in large libraries.
+:::tip[Why it’s useful]
+No need to scroll endlessly, just type part of a title or author’s name and instantly narrow down the grid. Especially helpful in large libraries.
+:::
 
 ![Search in Grid](/img/grid/grid-8.jpg)
 

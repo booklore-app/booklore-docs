@@ -10,9 +10,11 @@ With Kobo integration, you can:
 - **Access your entire Booklore library** on your Kobo eReader
 - **Sync books automatically** between Booklore and your device
 
-> ⚠️ **Important Note About Reading Progress**
-> 
-> Reading progress is **not synchronized** between Booklore's built-in EPUB reader and your Kobo device. Each platform maintains its own reading position independently, as they use different progress tracking systems.
+:::warning[Important Note About Reading Progress]
+
+Reading progress is **not synchronized** between Booklore's built-in EPUB reader and your Kobo device. Each platform maintains its own reading position independently, as they use different progress tracking systems.
+
+:::
 
 ---
 
@@ -58,9 +60,17 @@ proxy_busy_buffers_size 256k;
 large_client_header_buffers 8 32k;
 ```
 
-> ✅ **Nginx Proxy Manager Users:** The proxy headers are already configured automatically in nginx Proxy Manager, but you'll still need to add the buffer settings manually as they are required for proper functionality.
->
-> ⚠️ **Other Reverse Proxies:** If you're using Caddy, Traefik, or other reverse proxy solutions, you'll need to configure equivalent headers and buffer settings manually. Consult your proxy's documentation for the appropriate configuration.
+:::info[Nginx Proxy Manager Users]
+
+The proxy headers are already configured automatically in nginx Proxy Manager, but you'll still need to add the buffer settings manually as they are required for proper functionality.
+
+:::
+
+:::warning[Other Reverse Proxies]
+
+If you're using Caddy, Traefik, or other reverse proxy solutions, you'll need to configure equivalent headers and buffer settings manually. Consult your proxy's documentation for the appropriate configuration.
+
+:::
 
 ---
 
@@ -73,7 +83,11 @@ The setup process involves four main steps:
 3. **📥 Sync Your Books** - Add books to your Kobo shelf and sync to device
 4. **🗑️ Manage Your Library** - Add/remove books as needed
 
-> 💡 **Estimated Setup Time:** 10-15 minutes for first-time setup
+:::tip[Estimated Setup Time]
+
+10-15 minutes for first-time setup.
+
+:::
 
 ---
 
@@ -97,7 +111,11 @@ Before you can sync books to your Kobo eReader, you need to obtain your unique A
 
 ![Booklore Device Settings](/img/kobo/kobo-1.jpg)
 
-> 💡 **Admin Note:** Kobo Sync is enabled by default for admin users. Other users may need this permission granted by an administrator.
+:::info[Admin Note]
+
+Kobo Sync is enabled by default for admin users. Other users may need this permission granted by an administrator.
+
+:::
 
 ---
 
@@ -166,7 +184,11 @@ api_endpoint=https://booklore.example.com/api/kobo/3c67f2ba-20f5-4a6e-b5b9-f7e94
    - Safely eject/unmount your Kobo device from your computer
    - Disconnect the USB cable
 
-> ⚠️ **Important:** Ensure your Booklore server is accessible from your Kobo's network location. Test connectivity before proceeding to the next step.
+:::warning[Important]
+
+Ensure your Booklore server is accessible from your Kobo's network location. Test connectivity before proceeding to the next step.
+
+---
 
 ## 📥 Step 3: Syncing Books from Booklore to Kobo
 
@@ -208,7 +230,11 @@ Follow these steps to add books from your Booklore library to your Kobo eReader.
    
    ![Books synced to Kobo](/img/kobo/kobo-8.jpg)
 
-> 💡 **Tip:** The sync process may take a few moments depending on the number of books and your internet connection speed.
+:::tip[Sync Tip]
+
+The sync process may take a few moments depending on the number of books and your internet connection speed.
+
+---
 
 ## 🗑️ Step 4: Removing Books from Your Kobo
 
@@ -253,7 +279,9 @@ You can remove books from your Kobo device in two ways. When you remove a book, 
    - On your Kobo eReader, tap **"Sync Now"**
    - The book will be removed from your device
 
-> 💡 **Remember:** Removing books only affects your Kobo shelf and device. All books remain safely stored in your main Booklore library.
+:::info[Remember]
+
+Removing books only affects your Kobo shelf and device. All books remain safely stored in your main Booklore library.
 
 ---
 
@@ -298,4 +326,8 @@ After granting permission:
 - They can then follow Steps 1-4 above to set up their Kobo integration
 - Each user will have their own unique API token and Kobo shelf
 
-> 💡 **Admin Tip:** You can revoke Kobo Sync permission at any time by unchecking the permission and saving the user profile.
+:::tip[Admin Tip]
+
+You can revoke Kobo Sync permission at any time by unchecking the permission and saving the user profile.
+
+:::

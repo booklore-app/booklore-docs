@@ -24,7 +24,9 @@ First, let's enable and configure the OPDS server in your Booklore settings.
 1. Navigate to **Settings** > **OPDS** in Booklore
 2. Under **Server Control**, toggle **OPDS Server Enabled** to activate the service
 
-> 💡 **Note:** By default, all libraries you have access to will be included in the OPDS feed.
+:::info[Note]
+By default, all libraries you have access to will be included in the OPDS feed.
+:::
 
 ---
 
@@ -44,7 +46,9 @@ Booklore provides two OPDS endpoints for maximum compatibility:
 - **Compatibility:** Limited client support
 - **Best for:** Apps that specifically support OPDS v2 features
 
-> ⚠️ **Recommendation:** Use OPDS v1 for better compatibility unless your reading app specifically requires v2.
+:::warning[Recommendation]
+Use OPDS v1 for better compatibility unless your reading app specifically requires v2.
+:::
 
 ---
 
@@ -62,9 +66,13 @@ To access your OPDS feed, you'll need to create dedicated OPDS user credentials.
 
 3. Click **Save** to create the OPDS user
 
-> 🔒 **Security Note:** OPDS users are separate from your main Booklore account and are specifically for reading app access.
+:::danger[Security Note]
+OPDS users are separate from your main Booklore account and are specifically for reading app access.
+:::
 
-> ⚠️ **Important:** Passwords are created once and cannot be retrieved later. Make sure to store your OPDS credentials securely before saving.
+:::warning[Important]
+Passwords are created once and cannot be retrieved later. Make sure to store your OPDS credentials securely before saving.
+:::
 
 ---
 
@@ -106,6 +114,10 @@ Now that your OPDS server is configured, you can connect various reading apps to
 5. Tap **Add** to save the catalog
 6. Browse and download books from your Booklore library
 
+:::tip[KOReader Example]
+KOReader sync only works for books downloaded from Booklore via OPDS. Sideloaded books cannot be synced.
+:::
+
 ---
 
 ## 🔍 Troubleshooting
@@ -143,21 +155,18 @@ Now that your OPDS server is configured, you can connect various reading apps to
 
 ### Local Network Access
 
-- Replace `localhost:8080` with your actual Booklore server IP address
-- Example: `http://192.168.1.100:8080/api/v2/opds/catalog`
+:::info[Local Network Access]
+Replace `localhost:8080` with your actual Booklore server IP address.
+:::
 
 ### Remote Access
 
-- Ensure your Booklore server is accessible from the internet
-- Use your domain name: `http://your-domain.com/api/v2/opds/catalog`
-- Consider HTTPS for secure connections: `https://your-domain.com/api/v2/opds/catalog`
+:::info[Remote Access]
+Ensure your Booklore server is accessible from the internet. Use HTTPS for secure connections.
+:::
 
 ### Firewall Settings
 
-- Ensure your Booklore server port is accessible
-- Configure router port forwarding if accessing remotely
-- Check that your firewall allows OPDS connections
-
----
-
-
+:::warning[Firewall Settings]
+Ensure your Booklore server port is accessible and your firewall allows OPDS connections.
+:::

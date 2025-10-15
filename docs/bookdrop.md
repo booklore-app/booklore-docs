@@ -4,9 +4,19 @@ Effortlessly add books to your library by simply dropping files into a folder. N
 
 ![Bookdrop Processing](/img/bookdrop/bookdrop-1.jpg)
 
-> ⚠️ Note: Bookdrop may not reliably detect new files on network-mounted storage (e.g., NFS or SMB). Many network filesystems do not propagate real-time filesystem events to the host process, so Bookdrop may not notice newly added files. If Bookdrop doesn't react when you add files, use a local folder, adjust mount options to enable notification support, restart Booklore to trigger a manual rescan, or open the Bookdrop UI and click the manual "Refresh" button to force the folder to be reloaded.
+:::warning[Network Storage Limitation]
+Bookdrop may not reliably detect new files on network-mounted storage (e.g., NFS or SMB). Many network filesystems do not propagate real-time filesystem events to the host process, so Bookdrop may not notice newly added files.
 
-> 💡 **Pro Tip:** Drop entire folders of books at once. Bookdrop processes them sequentially and queues everything for easy review.
+**If Bookdrop doesn't react when you add files:**
+- Use a local folder instead
+- Adjust mount options to enable notification support
+- Restart Booklore to trigger a manual rescan
+- Open the Bookdrop UI and click the manual "Refresh" button to force a reload
+:::
+
+:::tip[Pro Tip]
+Drop entire folders of books at once. Bookdrop processes them sequentially and queues everything for easy review.
+:::
 
 ---
 
@@ -60,7 +70,9 @@ services:
       - /your/local/path/to/booklore/bookdrop:/bookdrop  # Bookdrop directory
 ```
 
-> ⚠️ **Important:** Ensure the Bookdrop folder has proper read/write permissions for the Booklore container.
+:::warning[Permissions Required]
+Ensure the Bookdrop folder has proper read/write permissions for the Booklore container.
+:::
 
 ---
 
@@ -79,7 +91,9 @@ Adding books is as simple as copying files:
 
 ![Bookdrop Folder](/img/bookdrop/bookdrop-folder.jpg)
 
-> 💡 **Supported Formats:** PDF, EPUB, CBZ, CBR, MOBI, AZW3, and more
+:::info[Supported Formats]
+PDF, EPUB, CBZ, CBR, and CB7 are supported.
+:::
 
 ---
 
@@ -100,7 +114,9 @@ Booklore automatically detects and processes dropped files. Track progress in re
 3. **Access Review**  
    When processing completes, click the **"Review"** button to open the Bookdrop UI
 
-> ⏱️ **Processing Time:** Varies based on file size, number of books, and metadata enrichment settings. Most books process in seconds.
+:::info[Processing Time]
+Varies based on file size, number of books, and metadata enrichment settings. Most books process in seconds.
+:::
 
 ---
 
@@ -120,7 +136,9 @@ The Bookdrop UI is your control center for reviewing and finalizing imports. Let
 
 Shows how books will be renamed based on your configured pattern. Patterns use metadata fields like `{title}`, `{author}`, and `{year}`.
 
-> 🔧 **Customize:** Edit patterns in **Settings → Metadata Settings**
+:::tip[Customize Filename Patterns]
+Edit patterns in **Settings → Metadata Settings** to control how books are renamed.
+:::
 
 #### 2. Default Library Selection
 
@@ -155,7 +173,9 @@ The book cover retrieved from online sources (Google Books, Open Library)
 
 The cover image embedded within the book file itself
 
-> 💡 **Pro Tip:** Compare both covers to choose the best quality one
+:::tip[Cover Quality Comparison]
+Compare both covers to choose the best quality one for your library.
+:::
 
 #### 8. Per-Book Library Override
 
@@ -189,7 +209,9 @@ Reverts all changes made during this session, restoring original file-based valu
 
 Clears the entire Bookdrop queue and discards all pending metadata. Original files remain on disk.
 
-> ⚠️ **Warning:** This clears your review queue but doesn't delete the actual files.
+:::danger[Queue Reset Warning]
+This clears your review queue but doesn't delete the actual files from disk.
+:::
 
 #### 15. Finalize Import
 
@@ -245,7 +267,9 @@ Fields that have been updated are **highlighted in green** for easy tracking.
 
 Use the copy button next to specific fields to selectively update only what you want.
 
-> 💡 **Best Practice:** Review the comparison for important books or when automatic enrichment seems uncertain.
+:::tip[Best Practice - Metadata Review]
+Review the comparison for important books or when automatic enrichment seems uncertain.
+:::
 
 ---
 
@@ -271,7 +295,9 @@ The summary includes:
 - 📊 **Processing Statistics**  
   Total counts and success rates
 
-> 🎉 **Success!** Your books are now in your library and ready to read.
+:::success[Import Complete]
+Your books are now in your library and ready to read.
+:::
 
 ---
 

@@ -16,9 +16,9 @@ With advanced metadata fetch configuration, you can:
 - **Manage genre merging** - Choose to combine or replace existing genres
 - **Review before applying** - Preview and approve changes before saving
 
-> 💡 **Smart Fallback System**
->
-> If your first-choice provider doesn't have data for a field, Booklore automatically tries your second choice, then third, then fourth. This ensures you get the most complete metadata possible.
+:::tip[Smart Fallback System]
+If your first-choice provider doesn't have data for a field, Booklore automatically tries your second choice, then third, then fourth. This ensures you get the most complete metadata possible.
+:::
 
 ---
 
@@ -88,7 +88,9 @@ For the "Title" field:
 
 If Google Books doesn't have the title, the system automatically tries Amazon, then Goodreads, then Hardcover until it finds data.
 
-> ⚠️ **Important:** At least one priority (P1, P2, P3, or P4) must be set for each enabled field, or the system will show an error.
+:::warning[Required Priority]
+At least one priority (P1, P2, P3, or P4) must be set for each enabled field, or the system will show an error.
+:::
 
 ---
 
@@ -117,7 +119,9 @@ The configuration table has six columns:
 | **2nd Priority** | Second choice provider                         |
 | **1st Priority** | First choice provider                          |
 
-> 💡 **Tip:** Priorities are displayed right-to-left (4th → 1st) to make it easy to read the fallback sequence from left to right.
+:::tip[Reading Order]
+Priorities are displayed right-to-left (4th → 1st) to make it easy to read the fallback sequence from left to right.
+:::
 
 ### Step 3: Setting Individual Field Priorities
 
@@ -173,7 +177,9 @@ Setting "Google" in the "Set All P1" dropdown:
 - All enabled fields get "Google" as their 1st Priority
 - You can still customize individual fields afterward
 
-> 💡 **Efficiency Tip:** Use bulk operations to set a base configuration, then fine-tune specific fields as needed.
+:::tip[Efficiency Tip]
+Use bulk operations to set a base configuration, then fine-tune specific fields as needed.
+:::
 
 ---
 
@@ -200,6 +206,10 @@ Some fields are unique to specific providers and work differently:
 2. **Simple Enable/Disable**: Just check or uncheck the field
 3. **Automatic Provider**: The field's native provider is automatically used
 
+:::info[Provider-Specific Behavior]
+These fields don't have P1-P4 dropdowns. Just check or uncheck to enable/disable, and the field's native provider is automatically used.
+:::
+
 #### Example Configuration
 
 ```
@@ -224,7 +234,9 @@ Some fields are unique to specific providers and work differently:
     - Only adds covers to books that don't have one
     - Preserves your custom or preferred covers
 
-> 💡 **Best Practice:** Enable this when you want to upgrade cover quality, disable it to preserve custom covers.
+:::tip[Best Practice]
+Enable this when you want to upgrade cover quality, disable it to preserve custom covers.
+:::
 
 ### Genre Management
 
@@ -239,7 +251,9 @@ Some fields are unique to specific providers and work differently:
     - Completely replaces current genres with fetched ones
     - Useful for cleaning up incorrect genre assignments
 
-> ⚠️ **Warning:** When disabled, all existing genres are removed and replaced with fetched genres.
+:::warning[Data Loss Warning]
+When "Merge genres" is disabled, all existing genres are removed and replaced with fetched genres.
+:::
 
 ### Review Before Apply
 
@@ -256,7 +270,9 @@ Some fields are unique to specific providers and work differently:
     - Faster for bulk operations
     - Trust the provider data completely
 
-> 💡 **Recommendation:** Enable manual review for valuable collections or when testing new configurations.
+:::tip[Recommendation]
+Enable manual review for valuable collections or when testing new configurations.
+:::
 
 ---
 
@@ -286,12 +302,9 @@ Before saving, the system checks:
 - ✅ Provider-specific fields are only enabled/disabled (no provider required)
 - ✅ At least one field is enabled
 
-If validation fails:
-
-```
-❌ Error: At least one provider (P1–P4) must be selected 
-   for each enabled book field.
-```
+:::danger[Validation Error]
+If validation fails, you'll see: "At least one provider (P1–P4) must be selected for each enabled book field."
+:::
 
 ---
 
@@ -394,14 +407,17 @@ Options:
 | Cover          | Amazon         | Goodreads      | Hardcover      | Google         | Amazon highest resolution; Goodreads good fallback; Google may have dated covers             |
 | Page Count     | Google         | Goodreads      | Hardcover      | Amazon         | Varies by edition (hardcover vs paperback); Google most consistent with print editions       |
 
-> 💡 **Provider-Specific Tips:**
-> - **Google Books**: Best overall accuracy and completeness; authoritative publisher data
-> - **Goodreads**: Excellent for series, genres, and author names; strong community curation
-> - **Hardcover**: Best for recent releases (2020+); modern genre classification and moods
-> - **Amazon**: High-quality covers but may add marketing text to titles; use as fallback
-> - **Comicvine**: Essential for comics/manga; use as P1 for all fields when working with comics
-> - **Douban**: Excellent for Asian literature; use as P1 when building Chinese/Japanese/Korean libraries
+:::tip[Provider-Specific Tips]
+- **Google Books**: Best overall accuracy and completeness; authoritative publisher data
+- **Goodreads**: Excellent for series, genres, and author names; strong community curation
+- **Hardcover**: Best for recent releases (2020+); modern genre classification and moods
+- **Amazon**: High-quality covers but may add marketing text to titles; use as fallback
+- **Comicvine**: Essential for comics/manga; use as P1 for all fields when working with comics
+- **Douban**: Excellent for Asian literature; use as P1 when building Chinese/Japanese/Korean libraries
+:::
 
 ---
 
-Remember: There's no "perfect" configuration - it depends on your library content, priorities, and preferences. Experiment to find what works best for you!
+:::note[Configuration Flexibility]
+There's no "perfect" configuration - it depends on your library content, priorities, and preferences. Experiment to find what works best for you!
+:::

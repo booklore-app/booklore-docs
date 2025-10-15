@@ -2,7 +2,9 @@
 
 Magic Shelves are dynamic, rule-based collections based on **book metadata fields** that automatically organize your books based on filters you define, like *"Unread Sci-Fi Books from the 1980s"* or *"Books Rated 4+ Stars and Finished Last Month."*
 
-> ✨ **Magic Shelves = Dynamic Smart Playlists for Your Books!**
+:::info[What are Magic Shelves?]
+Magic Shelves are like dynamic smart playlists for your books, they automatically update based on rules you define.
+:::
 
 They eliminate the need for manual categorization and keep your collections up to date as your library grows and changes.
 
@@ -51,7 +53,9 @@ Follow these steps to create your own Magic Shelf:
 
 ---
 
-> 💡 **Tip:** Magic Shelves work entirely based on your book's metadata. The more complete your data, the smarter your shelves!
+:::tip[Metadata Matters]
+Magic Shelves work entirely based on your book's metadata. The more complete your data, the smarter your shelves!
+:::
 
 ## 📝 Detailed Instructions for Creating Rules
 

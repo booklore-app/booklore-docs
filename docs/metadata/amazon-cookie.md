@@ -4,8 +4,9 @@ When fetching book metadata from Amazon, you might encounter 503 service errors 
 
 Amazon uses sophisticated anti-bot measures to protect their services. By using cookies from an authenticated browser session, Booklore can appear as a legitimate user request, significantly improving the success rate of metadata retrieval.
 
-> ⚠️ **Security Note:**  
-> Use a secondary Amazon account when possible to protect your main account from any potential restrictions. Cookies contain session information - keep them private and regenerate them periodically for security.
+:::warning[Security Note]
+Use a secondary Amazon account when possible to protect your main account from any potential restrictions. Cookies contain session information - keep them private and regenerate them periodically for security.
+:::
 
 ---
 
@@ -17,6 +18,10 @@ Amazon uses sophisticated anti-bot measures to protect their services. By using 
    - Other regions: Use your local Amazon domain
 
 2. **Sign in to Amazon** using a secondary account if available. This helps protect your main account from any potential restrictions.
+
+:::tip[Account Protection]
+Creating a dedicated Amazon account for metadata fetching protects your primary account from potential rate limiting or restrictions.
+:::
 
 ---
 
@@ -43,6 +48,10 @@ Amazon uses sophisticated anti-bot measures to protect their services. By using 
 6. **Scroll to Request Headers** and locate the `cookie` field
 7. **Copy the entire cookie value** - This will be a long string of text
 
+:::info[Cookie Location]
+Look for the first request in the Network tab - it typically shows the Amazon homepage URL. Click it to view detailed headers.
+:::
+
 ---
 
 ## ⚙️ Step 4: Configure Booklore
@@ -66,7 +75,10 @@ If you're still experiencing issues after setting up cookies:
 - 🔐 Verify your Amazon account is properly logged in
 - 🗑️ Consider clearing your browser cache and repeating the process
 
-> 💡 **Pro Tips:**  
-> Cookies typically remain valid for several weeks. If you encounter issues again, simply repeat this process. Different Amazon regions may require separate cookies.
+:::tip[Pro Tips]
+Cookies typically remain valid for several weeks. If you encounter issues again, simply repeat this process. Different Amazon regions may require separate cookies.
+:::
 
----
+:::note[Regional Considerations]
+If you're fetching metadata for books from different Amazon regions (US, UK, etc.), you may need to configure separate cookies for each region.
+:::

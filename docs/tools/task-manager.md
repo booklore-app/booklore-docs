@@ -4,7 +4,9 @@ Keep your library running smoothly with automated maintenance tasks. Monitor pro
 
 ![Task Management Overview](/img/task-manager/task-manager-1.jpg)
 
-> Note: Tasks run asynchronously in the background, allowing you to continue using Booklore while they execute.
+:::note
+Tasks run asynchronously in the background, allowing you to continue using Booklore while they execute.
+:::
 
 ---
 
@@ -18,7 +20,9 @@ With System Task Manager, you can:
 - **Manage background operations** without interrupting your workflow
 - **Handle stuck tasks** with built-in stale detection
 
-> 💡 **Pro Tip:** Run cache clearing tasks periodically to maintain optimal storage usage, and refresh metadata after bulk file modifications.
+:::tip[Pro Tip]
+Run cache clearing tasks periodically to maintain optimal storage usage, and refresh metadata after bulk file modifications.
+:::
 
 ---
 
@@ -67,7 +71,9 @@ Synchronizes your database with metadata stored in actual book files.
 - **Replace Missing Only (Recommended)**: Updates only empty or missing metadata fields while preserving existing data
 - **Replace All Metadata**: Overwrites all database metadata with file-based metadata, even if data already exists
 
-> ⚠️ **Important:** "Replace All Metadata" will overwrite your existing database metadata. Use this mode carefully, preferably after backing up your database.
+:::warning[Important]
+"Replace All Metadata" will overwrite your existing database metadata. Use this mode carefully, preferably after backing up your database.
+:::
 
 ---
 
@@ -255,7 +261,9 @@ A task becomes "stale" when:
    - Restart the task if needed
    - Monitor for recurring issues
 
-> 💡 **Tip:** Stale tasks usually resolve by cancelling and restarting. If the issue persists, check your server logs or network connection.
+:::tip
+Stale tasks usually resolve by cancelling and restarting. If the issue persists, check your server logs or network connection.
+:::
 
 ---
 
@@ -272,6 +280,10 @@ A task becomes "stale" when:
    - Clear caches monthly for active libraries
    - After major reading sessions
    - Before running low on disk space
+
+:::tip
+Monitor cache sizes and clear them monthly for active libraries, or before running low on disk space.
+:::
 
 ### Metadata Refresh Strategy
 

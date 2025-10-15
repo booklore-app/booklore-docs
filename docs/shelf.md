@@ -4,9 +4,10 @@ Shelves are one of the key organization features in Booklore. Just like shelves 
 
 Books on a shelf can come from multiple libraries, and a single book can belong to multiple shelves.
 
-> 📌 **Default Shelves:**  
+:::info[Default Shelves]
 Booklore comes with a built-in **Favorites** shelf to help you quickly access your favorite reads.  
 You’ll also see an **Unshelved** section, this automatically lists books that haven’t been added to any shelf yet.
+:::
 
 ---
 

@@ -2,7 +2,9 @@
 
 Get Booklore up and running in minutes with Docker Compose. This comprehensive guide walks you through every step of the installation process, from prerequisites to your first login.
 
-> 💡 **Quick Start:** If you're experienced with Docker, skip to [Step 3](#step-3-create-the-docker-composeyml-file) to grab the configuration and start deploying.
+:::tip[Quick Start]
+If you're experienced with Docker, skip to [Step 3](#step-3-create-the-docker-composeyml-file) to grab the configuration and start deploying.
+:::
 
 ---
 
@@ -91,9 +93,13 @@ mkdir -p ~/booklore/bookdrop
 | `books` | Your main library storage | Add books here or import via Bookdrop |
 | `bookdrop` | Automatic import folder | Drop files here for hands-free importing |
 
-> ⚠️ **Backup Important Directories:** Always backup `config/mariadb` and `books` to prevent data loss.
+:::warning[Backup Important Directories]
+Always backup `config/mariadb` and `books` to prevent data loss.
+:::
 
-> 💡 **Pro Tip:** Use absolute paths for volumes in production. Relative paths can cause issues with container restarts.
+:::tip[Pro Tip]
+Use absolute paths for volumes in production. Relative paths can cause issues with container restarts.
+:::
 
 ---
 
@@ -128,7 +134,12 @@ docker compose version
 
 You should see version numbers for both commands.
 
-> ⚠️ **Important:** Ensure Docker daemon is running before proceeding. On Linux, use `sudo systemctl start docker`.
+:::warning[Docker Daemon Required]
+Ensure the Docker daemon is running before proceeding. On Linux, use:
+```bash
+sudo systemctl start docker
+```
+:::
 
 ---
 
@@ -263,7 +274,9 @@ image: booklore/booklore-app:latest
 image: booklore/booklore-app:v1.2.3
 ```
 
-> 💡 **Best Practice:** Pin to specific versions in production to prevent unexpected updates. Check [GitHub Releases](https://github.com/adityachandelgit/booklore/releases) for available versions.
+:::tip[Best Practice]
+Pin images to specific versions in production to prevent unexpected updates. Check [GitHub Releases](https://github.com/adityachandelgit/booklore/releases) for available versions.
+:::
 
 ---
 
@@ -294,7 +307,9 @@ docker compose logs -f booklore
 docker compose logs -f mariadb
 ```
 
-> ⏱️ **First Start:** Initial startup may take 1-2 minutes as the database initializes. Subsequent starts are much faster.
+:::info[First Start]
+Initial startup may take 1-2 minutes as the database initializes. Subsequent starts are much faster.
+:::
 
 #### Verify Containers are Running
 
@@ -310,7 +325,9 @@ booklore   booklore/booklore-app:latest          Up 2 minutes
 mariadb    lscr.io/linuxserver/mariadb:11.4.5    Up 2 minutes (healthy)
 ```
 
-> ✅ **Healthy Status:** Wait until MariaDB shows "(healthy)" before accessing Booklore.
+:::success[Healthy Status]
+Wait until MariaDB shows "(healthy)" before accessing Booklore.
+:::
 
 ---
 
@@ -344,7 +361,9 @@ http://YOUR_SERVER_IP:6060
 4. **Optional: API Keys**  
    Add Google Books API key for enhanced metadata enrichment
 
-> 🎉 **Success!** You're now ready to start building your digital library.
+:::success[Installation Complete]
+You're now ready to start building your digital library.
+:::
 
 ---
 
@@ -449,7 +468,9 @@ volumes:
   - /mnt/nas-books:/books
 ```
 
-> ⚠️ **Bookdrop Warning:** Network storage may not support real-time file watching. See [Bookdrop documentation](bookdrop) for details.
+:::warning[Bookdrop on Network Storage]
+Network storage may not support real-time file watching. See [Bookdrop documentation](bookdrop) for details.
+:::
 
 ---
 
@@ -481,7 +502,9 @@ docker compose pull booklore
 docker compose up -d booklore
 ```
 
-> 💡 **Backup First:** Always backup your database before major updates.
+:::tip[Backup First]
+Always backup your database before major updates.
+:::
 
 ### Viewing Logs
 
@@ -545,7 +568,9 @@ rm -rf ~/booklore/config/mariadb/*
 docker compose up -d
 ```
 
-> ⚠️ **Warning:** This deletes all library metadata. Books remain but need re-importing.
+:::danger[Database Reset Warning]
+This deletes all library metadata. Books remain but need re-importing.
+:::
 
 ### Permission Errors
 

@@ -26,7 +26,9 @@ Click the eye icon in the library header to open the **Visible Columns** panel. 
 
 ![Table Visible Columns](/img/table/table-visible-columns.jpg)
 
-> **Why it’s useful:** Tailor the table to show only the information that matters to you. Hide less relevant columns to reduce clutter and focus on the fields you care about most.
+:::tip[Why it’s useful]
+Tailor the table to show only the information that matters to you. Hide less relevant columns to reduce clutter and focus on the fields you care about most.
+:::
 
 ---
 
@@ -39,7 +41,9 @@ Click the sort icon next to any column header (e.g., Title, Author, Date Added) 
 
 ![Table Sorting](/img/table/table-sorting.jpg)
 
-> **Why it’s useful:** Quickly organize your books by any field, making it easier to browse alphabetically, locate recent additions, or group by author.
+:::tip[Why it’s useful]
+Quickly organize your books by any field, making it easier to browse alphabetically, locate recent additions, or group by author.
+:::
 
 ---
 
@@ -51,7 +55,9 @@ Use the search bar in the library header to find books in real time. As you type
 
 ![Table Search](/img/table/table-search.jpg)
 
-> **Why it’s useful:** Instantly locate any book without scrolling through the full list, especially helpful in large libraries.
+:::tip[Why it’s useful]
+Instantly locate any book without scrolling through the full list, especially helpful in large libraries.
+:::
 
 ---
 
@@ -67,7 +73,9 @@ You can sort sidebar items by:
 ![Table Sidebar Sort 1](/img/table/table-sidebar-sort-1.jpg)
 ![Table Sidebar Sort 2](/img/table/table-sidebar-sort-2.jpg)
 
-> **Why it’s useful:** Customize the sidebar to reflect your browsing style, whether you want fast alphabetical access or to focus on high-volume filters.
+:::tip[Why it’s useful]
+Customize the sidebar to reflect your browsing style, whether you want fast alphabetical access or to focus on high-volume filters.
+:::
 
 ---
 
@@ -77,7 +85,9 @@ Use the action bar at the bottom to select or deselect all visible books. Once s
 
 ![Table Select All](/img/table/table-select-all.jpg)
 
-> **Why it’s useful:** Manage groups of books efficiently, perfect for organizing, updating, or shelving multiple items at once.
+:::tip[Why it’s useful]
+Manage groups of books efficiently, perfect for organizing, updating, or shelving multiple items at once.
+:::
 
 ---
 
@@ -90,6 +100,10 @@ A confirmation dialog will appear to make sure you’re aware of the consequence
 ![Table Delete Books 1](/img/table/table-delete-books-1.jpg)
 ![Table Delete Books 2](/img/table/table-delete-books-2.jpg)
 
-> ⚠️ **Important:** Deleting books from here will permanently remove the physical files from your drive. Make sure you have backups or truly want to discard them before confirming.
+:::danger[Important]
+Deleting books from here will permanently remove the physical files from your drive. Make sure you have backups or truly want to discard them before confirming.
+:::
 
-> **Why it’s useful:** A convenient way to clean up books you no longer need, without having to manually hunt down files on disk. But use it with care!
+:::tip[Why it’s useful]
+A convenient way to clean up books you no longer need, without having to manually hunt down files on disk. But use it with care!
+:::

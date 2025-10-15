@@ -2,12 +2,13 @@
 
 Booklore enables you to synchronize your reading progress between KOReader and your Booklore library. You can push your current progress from KOReader to Booklore, or pull updates from Booklore back into KOReader to keep your reading status consistent across devices.
 
-> ⚠️ **Note:**  
-> Progress synchronization between the Booklore inbuilt reader and KOReader is **not supported** at this time, as they use different formats for storing reading progress.  
-> Progress for KOReader and the inbuilt Booklore reader is maintained separately.
+:::warning[Note]
+Progress synchronization between the Booklore inbuilt reader and KOReader is **not supported** at this time, as they use different formats for storing reading progress. Progress for KOReader and the inbuilt Booklore reader is maintained separately.
+:::
 
-> 📚 **Important - OPDS Requirement:**  
-> KOReader sync **only works for books that have been downloaded from Booklore to KOReader via Booklore's OPDS feed**. Books that are sideloaded directly to KOReader (copied manually or obtained from other sources) cannot be synced with Booklore, as the sync system relies on matching books through Booklore's internal identifiers that are only assigned when books are accessed through OPDS.
+:::danger[OPDS Requirement]
+KOReader sync **only works for books that have been downloaded from Booklore to KOReader via Booklore's OPDS feed**. Books that are sideloaded directly to KOReader (copied manually or obtained from other sources) cannot be synced with Booklore, as the sync system relies on matching books through Booklore's internal identifiers that are only assigned when books are accessed through OPDS.
+:::
 
 ---
 
@@ -93,4 +94,6 @@ Quickly check your KOReader sync status right on the book’s detail page, see a
 
 ---
 
-> 💡 **Tip:** If syncing fails, double-check your credentials, API URL, and network connection.
+:::tip[Sync Troubleshooting]
+If syncing fails, double-check your credentials, API URL, and network connection.
+:::

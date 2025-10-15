@@ -5,7 +5,9 @@ your files stay perfectly organized.
 
 ![File Naming Patterns UI](/img/metadata/file-naming-patterns.jpg)
 
-> 💡 **Pro Tip:** Patterns are applied automatically during uploads, file moves, and metadata updates. Set them once and let Booklore handle the rest!
+:::tip[Pro Tip]
+Patterns are applied automatically during uploads, file moves, and metadata updates. Set them once and let Booklore handle the rest!
+:::
 
 ---
 
@@ -79,7 +81,9 @@ The default pattern serves as the fallback for all libraries unless overridden.
 2. Preview updates in real-time
 3. Click "Save" to apply the pattern
 
-> ⚠️ **Validation:** Patterns are validated before saving. Invalid characters will trigger an error message.
+:::warning[Validation Required]
+Patterns are validated before saving. Invalid characters will trigger an error message.
+:::
 
 ---
 
@@ -102,7 +106,9 @@ Customize naming patterns for individual libraries to match different organizati
 4. Click "Clear" to remove a library-specific pattern
 5. Click "Save All Library Patterns" to apply changes
 
-> 💡 **Tip:** Leave patterns empty to inherit the default. This makes it easy to maintain consistency while allowing specific libraries to have unique organization.
+:::tip[Inheritance Tip]
+Leave patterns empty to inherit the default. This makes it easy to maintain consistency while allowing specific libraries to have unique organization.
+:::
 
 ---
 
@@ -214,7 +220,9 @@ The entire block (including the dash and space) is removed!
 - With series: `[Harry Potter] Harry Potter and the Chamber of Secrets - J.K. Rowling.epub`
 - Without series: `Harry Potter and the Chamber of Secrets - J.K. Rowling.epub`
 
-> 💡 **Best Practice:** Use optional blocks for any metadata that might be missing (series, subtitle, ISBN, etc.)
+:::tip[Best Practice]
+Use optional blocks for any metadata that might be missing (series, subtitle, ISBN, etc.)
+:::
 
 ---
 
@@ -414,7 +422,9 @@ File naming patterns are automatically applied in these scenarios:
 5. **🔄 Bulk Operations**  
    When performing bulk metadata updates or reorganization
 
-> ⚡ **Automatic:** Once configured, patterns work behind the scenes. No manual intervention needed!
+:::warning[Automatic Application]
+Once configured, patterns work behind the scenes. No manual intervention needed!
+:::
 
 ---
 
@@ -429,6 +439,10 @@ File naming patterns are automatically applied in these scenarios:
 - Check for invalid characters (only letters, numbers, spaces, and allowed symbols)
 - Ensure placeholders are properly formatted with curly braces
 - Verify optional blocks have matching angle brackets
+
+:::tip[Quick Fix]
+Copy a working example pattern and modify it gradually to identify problematic characters.
+:::
 
 ---
 
@@ -456,6 +470,10 @@ File naming patterns are automatically applied in these scenarios:
 - Check if library-specific pattern overrides default
 - Try re-uploading a test file
 
+:::warning[Common Mistake]
+Make sure you clicked "Save" after entering the pattern. Unsaved patterns won't be applied.
+:::
+
 ---
 
 ### Folder Structure Not Created
@@ -471,36 +489,6 @@ File naming patterns are automatically applied in these scenarios:
 
 ---
 
-## 🎯 Quick Reference
-
-### Common Patterns
-
-| Use Case  | Pattern                        | Example Output                        |
-|-----------|--------------------------------|---------------------------------------|
-| Simple    | `{title} - {authors}`          | `Dune - Frank Herbert.epub`           |
-| With Year | `{authors} - {title} ({year})` | `Frank Herbert - Dune (1965).epub`    |
-| Series    | `{seriesIndex}. {title}`       | `01. Dune.epub`                       |
-| Nested    | `{authors}/{series}/{title}`   | `Frank Herbert/Dune Series/Dune.epub` |
-| Optional  | `<{seriesIndex} - >{title}`    | `01 - Dune.epub` or `Dune.epub`       |
-
-### Placeholder Quick List
-
-- `{title}` – Book title
-- `{authors}` – Author(s)
-- `{year}` – Year
-- `{series}` – Series name
-- `{seriesIndex}` – Series number
-- `{currentFilename}` – Original name
-
-### Syntax Reminders
-
-- `/` – Creates folders
-- `<...>` – Optional blocks
-- `{...}` – Metadata placeholders
-- Trailing `/` – Keeps original filename
-- Leading `/` – Absolute path from library root
-
----
-
-Remember: File naming patterns are your foundation for a perfectly organized library. Set them up once and let Booklore handle the rest! Happy organizing! 📚✨
-
+:::success[Perfect Organization]
+File naming patterns are your foundation for a perfectly organized library. Set them up once and let Booklore handle the rest! Happy organizing! 📚✨
+:::
