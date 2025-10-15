@@ -34,7 +34,7 @@ Integrate with OpenID Connect (OIDC) providers for centralized authentication:
 
 **Supported Identity Providers:**
 - ✅ Authentik (detailed setup guide available)
-- ✅ Pocket ID (guide coming soon)
+- ✅ Pocket ID (detailed setup guide available)
 - ✅ Authelia (not tested yet)
 
 **Perfect for:**
@@ -62,8 +62,9 @@ No setup needed! Just:
 
 **📚 Setup Guides:**
 - [**Authentik Integration Guide**](./authentik.md) - Complete step-by-step tutorial with screenshots
+- [**Pocket ID Integration Guide**](./pocket-id.md) - Complete step-by-step tutorial with screenshots
 
-> 📝 **Note:** The Authentik guide can be adapted for most OIDC providers. Additional guides coming soon.
+> 📝 **Note:** These guides can be adapted for most OIDC providers. Additional guides coming soon.
 
 ---
 
@@ -121,7 +122,7 @@ A: Yes. Make sure usernames match exactly between Booklore and your identity pro
 
 **Using Local Auth?** You're all set! Just log in and start using Booklore.
 
-**Want to set up OIDC?** Head to the [Authentik Setup Guide](./authentik.md) for a detailed walkthrough.
+**Want to set up OIDC?** Head to the [Authentik Setup Guide](./authentik.md) or [Pocket ID Setup Guide](./pocket-id.md) for a detailed walkthrough.
 
 ---
 

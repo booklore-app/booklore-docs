@@ -46,16 +46,16 @@ const sidebars: SidebarsConfig = {
     {
       type: 'doc',
       id: 'magic-shelf',
-      label: '✨ Magic Shelf',
+      label: '🪄 Magic Shelf',
     },
     {
       type: 'category',
-      label: '🛠️ Metadata',
+      label: '🗂️ Metadata',
       collapsed: true,
       items: [
-        {type: 'doc', id: 'metadata/metadata-fetch-configuration', label: '🔄 Fetch Configuration'},
-        {type: 'doc', id: 'metadata/file-naming-patterns', label: '📝 File Naming Patterns'},
-        {type: 'doc', id: 'metadata/metadata-manager', label: '🪄 Metadata Manager'},
+        {type: 'doc', id: 'metadata/metadata-fetch-configuration', label: '🔃 Fetch Configuration'},
+        {type: 'doc', id: 'metadata/file-naming-patterns', label: '🗒️ File Naming Patterns'},
+        {type: 'doc', id: 'metadata/metadata-manager', label: '🧙 Metadata Manager'},
         {type: 'doc', id: 'metadata/amazon-cookie', label: '🍪 Amazon Cookie'},
         {type: 'doc', id: 'metadata/hardcover-token', label: '🔑 Hardcover API'},
       ],
@@ -66,7 +66,8 @@ const sidebars: SidebarsConfig = {
       collapsed: true,
       items: [
         {type: 'doc', id: 'authentication/overview', label: '🗝️ Overview'},
-        {type: 'doc', id: 'authentication/authentik', label: '🌐 Authentik'}
+        {type: 'doc', id: 'authentication/authentik', label: '🛡️ Authentik'},
+        {type: 'doc', id: 'authentication/pocket-id', label: '💳 Pocket ID'}
       ],
     },
     {
@@ -74,9 +75,9 @@ const sidebars: SidebarsConfig = {
       label: '🔗 Integrations',
       collapsed: true,
       items: [
-        {type: 'doc', id: 'integration/kobo', label: '📱 Kobo'},
-        {type: 'doc', id: 'integration/koreader', label: '📖 KOReader'},
-        {type: 'doc', id: 'integration/opds', label: '🌐 OPDS'}
+        {type: 'doc', id: 'integration/kobo', label: '📲 Kobo'},
+        {type: 'doc', id: 'integration/koreader', label: '📚 KOReader'},
+        {type: 'doc', id: 'integration/opds', label: '🌍 OPDS'}
       ],
     },
     {
@@ -84,22 +85,22 @@ const sidebars: SidebarsConfig = {
       label: '⚙️ Tools',
       collapsed: true,
       items: [
-        {type: 'doc', id: 'tools/task-manager', label: '📊 System Task Manager'}
+        {type: 'doc', id: 'tools/task-manager', label: '🖥️ System Task Manager'}
       ],
     },
     {
       type: 'doc',
       id: 'shelf',
-      label: '🗂️ Shelf',
+      label: '📁 Shelf',
     },
-    {type: 'doc', id: 'email-setup', label: '📧 Email Setup'},
+    {type: 'doc', id: 'email-setup', label: '✉️ Email Setup'},
     {
       type: 'category',
-      label: '📚 Book Browser',
+      label: '📖 Book Browser',
       collapsed: true,
       items: [
-        {type: 'doc', id: 'book-browser/grid', label: '🔲 Grid View'},
-        {type: 'doc', id: 'book-browser/table', label: '📊 Table View'},
+        {type: 'doc', id: 'book-browser/grid', label: '🔳 Grid View'},
+        {type: 'doc', id: 'book-browser/table', label: '📋 Table View'},
       ],
     },
   ],

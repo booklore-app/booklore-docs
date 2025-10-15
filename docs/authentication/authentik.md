@@ -6,10 +6,6 @@ Seamlessly integrate Authentik as your single sign-on (SSO) provider for Booklor
 The username in Authentik must exactly match the username in Booklore for authentication to work properly. Case sensitivity matters. If a user doesn't exist in Booklore with the matching username, authentication will fail.
 :::
 
-:::info[Configuration Scope]
-This guide covers the essential configuration required to integrate Authentik with Booklore. Once the basic integration is functional, you may customize Authentik settings to align with your organization's specific security policies and user management requirements.
-:::
-
 ---
 
 ## 🌟 What You'll Achieve
@@ -277,6 +273,10 @@ If you need to temporarily disable or switch authentication methods (for mainten
 
 :::note[Configuration Persistence]
 Disabling OIDC doesn't delete your Authentik configuration. All settings (Client ID, Issuer URI) are preserved. You can re-enable it anytime by toggling the switch back on. Users who were authenticated via Authentik can still log in with standard credentials if they have them configured.
+:::
+
+:::info[Configuration Scope]
+This guide covered the essential configuration required to integrate Authentik with Booklore. Once the basic integration is functional, you may customize Authentik settings to align with your advanced and specific needs.
 :::
 
 ---
