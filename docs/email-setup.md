@@ -3,7 +3,8 @@
 Booklore allows you to send books directly via email using various email providers. This guide will walk you through setting up Gmail as your email provider, enabling you to use the "Quick Book Send" feature from any book card.
 
 :::info[What's New in v2]
-Users with email permission can now set up their own personal email providers and recipients without interfering with other users' configurations. Each user manages their own email settings independently.
+Users with email permission can now set up their own personal email providers and recipients without interfering with other users' configurations. Each user manages their own email settings independently. Additionally, administrators can optionally share email providers with all users, making it
+easy to provide centralized email configurations while still allowing users to create their own private providers.
 :::
 
 ---
@@ -45,8 +46,8 @@ Save this app password securely. Google will only display it once!
 
 Now let's add Gmail as an email provider in your Booklore settings.
 
-:::info[Personal Configuration]
-Your email provider configuration is personal to your account. Other users won't see or be able to use your email providers, and you won't see theirs.
+:::info[Personal and Shared Providers]
+Your email provider configuration is personal to your account by default. Other users won't see or be able to use your email providers unless you're an admin and choose to share them. Admins can optionally share providers with all users, while non-admin users' providers remain private.
 :::
 
 ![Email Providers Page](/img/email/email-1.jpg)
@@ -60,18 +61,23 @@ Your email provider configuration is personal to your account. Other users won't
 
 Fill in the Gmail configuration details:
 
-| Field            | Value                                                   |
-|------------------|---------------------------------------------------------|
-| **Name**         | Gmail (or any descriptive name)                         |
-| **Host**         | `smtp.gmail.com`                                        |
-| **Port**         | `587`                                                   |
+| Field            | Value                                                  |
+|------------------|--------------------------------------------------------|
+| **Name**         | Gmail (or any descriptive name)                        |
+| **Host**         | `smtp.gmail.com`                                       |
+| **Port**         | `587`                                                  |
 | **Username**     | Your full Gmail address (e.g., `your-email@gmail.com`) |
-| **Password**     | The 16-character app password you generated             |
-| **From Address** | Your Gmail address (same as username)                   |
-| **Auth**         | ✅ Enabled                                               |
-| **StartTLS**     | ✅ Enabled                                               |
+| **Password**     | The 16-character app password you generated            |
+| **From Address** | Your Gmail address (same as username)                  |
+| **Auth**         | ✅ Enabled                                              |
+| **StartTLS**     | ✅ Enabled                                              |
+| **Shared**       | ⬜ (Admin only - check to share with all users)         |
 
 1. Click **Create Email Provider** to save the configuration
+
+:::info[Admin Sharing]
+If you are an administrator, you'll see a **Shared** checkbox. Enabling this option will make the email provider available to all users in your Booklore instance. Shared providers appear with an "S" badge and can only be modified or deleted by the admin who created them.
+:::
 
 ---
 
@@ -92,8 +98,8 @@ Your recipient list is private to your account. Each user maintains their own li
 
 Fill in the recipient details:
 
-| Field                 | Value                                                       |
-|-----------------------|-------------------------------------------------------------|
+| Field                 | Value                                                      |
+|-----------------------|------------------------------------------------------------|
 | **Email Address**     | The recipient's email address (e.g., `friend@example.com`) |
 | **Name**              | A friendly name for the recipient (e.g., `John's Kindle`)  |
 | **Default Recipient** | Check this box to set as your default recipient            |
@@ -159,35 +165,73 @@ Perfect for sending to different recipients or using specific email providers fo
 ## 👥 Multi-User Email Configuration
 
 :::info[Multi-User Email Configuration]
-In the new email configuration system, each user can configure their own email providers and recipients. No interference between users.
+In the new email configuration system, each user can configure their own email providers and recipients. Administrators can optionally share email providers with all users for centralized management.
 :::
 
 ### How Email v2 Works
 
 In the new email configuration system:
 
-- **Personal Email Providers**: Each user can configure their own email providers (Gmail, Outlook, custom SMTP, etc.)
+- **Personal Email Providers**: Each user can configure their own private email providers (Gmail, Outlook, custom SMTP, etc.)
+- **Shared Email Providers (Admin Only)**: Administrators can create shared providers that are available to all users
 - **Personal Recipients**: Each user maintains their own list of email recipients
 - **Independent Defaults**: Each user sets their own default email provider and default recipient
-- **No Interference**: Users cannot see or modify other users' email configurations
+- **Provider Protection**: Users cannot modify or delete shared providers created by other admins
+- **No Interference**: Users cannot see or modify other users' private email configurations
 - **Shared Library**: All users can send any book from the shared library using their own email settings
+
+### Shared Providers
+
+**What are Shared Providers?**
+
+- Administrators can mark email providers as "shared" to make them available to all users
+- Shared providers appear with an "S" badge in the provider list
+- All users can use shared providers to send books
+- Only the admin who created a shared provider can modify or delete it
+
+**Benefits of Shared Providers:**
+
+- **Centralized Management**: Admins can set up instance-wide email providers
+- **Simplified Setup**: Users don't need to configure their own SMTP settings
+- **Cost Efficiency**: Share paid email services across your instance
+- **Consistency**: Ensure all users have access to reliable email providers
+
+**Use Cases for Shared Providers:**
+
+- Shared email service account for the entire instance
+- Educational institutions providing centralized email access
+- Families sharing a single email account for sending books
+- Small teams wanting simplified configuration
 
 ### Use Cases
 
-**Scenario 1: Family Library**
-- Dad uses his Gmail to send to his Kindle
-- Mom uses her Outlook to send to her tablet
-- Each has their own recipient lists and defaults
+**Scenario 1: Instance with Shared Provider**
 
-**Scenario 2: Organization**
-- Team members can send books to their own devices
-- Each person's email configuration is private
-- No shared credentials or confusion
+- Admin sets up a shared Gmail account for all users
+- Users can use the shared provider to send books
+- Users can also add their own personal providers if desired
+- Each user maintains their own recipient list
 
-**Scenario 3: Privacy**
-- Your email provider credentials are yours alone
-- Your recipient list remains private
-- Other users cannot see who you send books to
+**Scenario 2: Family Library with Mixed Setup**
+
+- Parent (admin) shares their Gmail provider with the family
+- Children use the shared provider to send to their devices
+- Other parent adds their own Outlook provider for personal use
+- Each person has their own recipient lists
+
+**Scenario 3: Friend Group Library**
+
+- Admin creates shared email provider for the group
+- Friends can use the shared provider immediately
+- Friends can add personal providers if they prefer
+- Everyone manages their own recipient lists privately
+
+**Scenario 4: Privacy-Focused Users**
+
+- Users create only private email providers
+- No sharing enabled - full privacy
+- Each person's email configuration is completely isolated
+- Suitable for privacy-conscious individuals sharing a library
 
 ---
 
@@ -234,9 +278,22 @@ In the new email configuration system:
 
 **❌ Cannot See Other Users' Providers**
 
-- This is expected behavior - email configurations are personal to each user
-- Each user must set up their own email providers and recipients
+- This is expected behavior - private email configurations are personal to each user
+- Only shared providers (marked with "S" badge) are visible to all users
+- Each user must set up their own private email providers and recipients
 - If you need to send using different credentials, create a new provider in your account
+
+**❌ Cannot Edit or Delete a Shared Provider**
+
+- Shared providers can only be modified by the admin who created them
+- If you need changes to a shared provider, contact your administrator
+- You can always create your own private provider as an alternative
+
+**❌ Cannot Share Providers (No Checkbox)**
+
+- Only administrators can share email providers
+- Contact your administrator if you need a provider shared with all users
+- Regular users can only create private providers
 
 ---
 
@@ -260,9 +317,11 @@ While this guide focuses on Gmail, Booklore supports other email providers:
 The configuration process is similar - simply adjust the host, port, and authentication settings according to your provider's documentation.
 
 :::tip
-You can configure multiple email providers and switch between them as needed. The default provider will be used for Quick Book Send, but you can select different providers when manually sending books. All your email configurations are personal to your account and won't be visible to other users.
+You can configure multiple email providers and switch between them as needed. The default provider will be used for Quick Book Send, but you can select different providers when manually sending books. All your private email configurations are personal to your account and won't be visible to other
+users. Administrators can optionally share providers to make them available to everyone.
 :::
 
 :::note[Privacy Note]
-In email configuration v2, your email provider credentials, recipient lists, and sending history are private to your account. Other users with email permission will have their own separate configurations.
+In email configuration v2, your private email provider credentials, recipient lists, and sending history are private to your account. Administrators can create shared providers that are available to all users, but they can only be modified by the admin who created them. Other users with email
+permission will have their own separate private configurations.
 :::
