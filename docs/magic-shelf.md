@@ -100,6 +100,7 @@ Here are some of the metadata fields you can filter on:
 | Publisher         | Publisher of the book                      |
 | Categories        | Genre or tags                              |
 | Read Status       | Whether the book is unread, reading, etc.  |
+| Date Finished     | Date the current user finished the book    |
 | Published Date    | Date the book was published                |
 | Series Info       | Name, number, and total books in series    |
 | Page Count        | Total pages in the book                    |
