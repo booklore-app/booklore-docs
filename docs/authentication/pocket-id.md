@@ -60,7 +60,7 @@ Begin by configuring Booklore as an OIDC client in Pocket ID. This process shoul
 
    - **Name:** `Booklore` (or your preferred name) - This name will be displayed to users in the Pocket ID dashboard
    - **Callback URLs:** Configure the redirect URIs where Pocket ID should send users after authentication:
-     - `https://<your-booklore-domain>/oauth2/callback/` - The exact callback endpoint (trailing slash required)
+     - `https://<your-booklore-domain>/oauth2-callback` - The exact callback endpoint (trailing slash required)
      - `https://<your-booklore-domain>/*` - Pattern allowing flexibility for various OAuth flows
    - **Public Client:** Toggle **ON** - Public clients are suitable for applications running in browsers
    - **Client Launch URL:** `https://<your-booklore-domain>/` - The main URL where your Booklore instance is hosted
@@ -73,7 +73,7 @@ Begin by configuring Booklore as an OIDC client in Pocket ID. This process shoul
    **Example for a production setup:**
    ```
    Callback URLs:
-   - https://books.example.com/oauth2/callback/
+   - https://books.example.com/oauth2-callback
    - https://books.example.com/*
    Client Launch URL: https://books.example.com/
    ```
@@ -81,7 +81,7 @@ Begin by configuring Booklore as an OIDC client in Pocket ID. This process shoul
    **Example for local testing:**
    ```
    Callback URLs:
-   - http://localhost:3000/oauth2/callback/
+   - http://localhost:3000/oauth2-callback
    - http://localhost:3000/*
    Client Launch URL: http://localhost:3000/
    ```
@@ -233,7 +233,7 @@ Disabling OIDC doesn't delete your Pocket ID configuration. All settings (Client
 
 **Redirect Errors:**
 
-- ✓ Verify callback URL: `/oauth2/callback/` (with trailing slash)
+- ✓ Verify callback URL: `/oauth2-callback` (with trailing slash)
 - ✓ Confirm domain matches exactly in both systems
 - ✓ Ensure HTTPS is used in production
 - ✓ Validate wildcard pattern: `https://your-domain/*`

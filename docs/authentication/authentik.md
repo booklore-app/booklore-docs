@@ -92,7 +92,7 @@ Begin by setting up Booklore as an application in Authentik with OAuth2 authenti
 
    Add the following URIs (replace `<your-booklore-domain>` with your actual domain):
 
-    - **Strict:** `https://<your-booklore-domain>/oauth2/callback/`
+    - **Strict:** `https://<your-booklore-domain>/oauth2-callback`
         - This is the exact callback endpoint that handles the OAuth response
         - The trailing slash is required and must not be omitted
     - **Regex:** `https://<your-booklore-domain>/*`
@@ -105,13 +105,13 @@ Begin by setting up Booklore as an application in Authentik with OAuth2 authenti
 
    **Example for a production setup:**
    ```
-   Strict: https://books.example.com/oauth2/callback/
+   Strict: https://books.example.com/oauth2-callback
    Regex: https://books.example.com/*
    ```
 
    **Example for local testing:**
    ```
-   Strict: http://localhost:3000/oauth2/callback/
+   Strict: http://localhost:3000/oauth2-callback
    Regex: http://localhost:3000/*
    ```
 
@@ -295,7 +295,7 @@ This guide covered the essential configuration required to integrate Authentik w
 
 **Redirect Errors:**
 
-- ✓ Verify redirect URI: `/oauth2/callback/` (with trailing slash)
+- ✓ Verify redirect URI: `/oauth2-callback` (with trailing slash)
 - ✓ Confirm domain matches exactly in both systems
 - ✓ Ensure HTTPS is used in production
 - ✓ Validate regex pattern: `https://your-domain/*`
