@@ -112,6 +112,14 @@ const sidebars: SidebarsConfig = {
         {type: 'doc', id: 'book-browser/table', label: '📋 Table View'},
       ],
     },
+    {
+      type: 'category',
+      label: '🤓 Advanced use',
+      collapsed: true,
+      items: [
+        {type: 'doc', id: 'advanced/api', label: '🤖 Using the API'},
+      ],
+    },
   ],
 };
 
