@@ -145,137 +145,126 @@ sudo systemctl start docker
 
 ### Step 3: Create the `docker-compose.yml` File
 
-Navigate to your Booklore directory and create the configuration file:
+Navigate to your Booklore directory:
 
 ```bash
 cd ~/booklore
-nano docker-compose.yml  # or use your preferred text editor
 ```
 
-Add the following configuration:
+#### Create Environment File
 
-```yaml
+Create a `.env` file with your configuration:
+
+```bash
+nano .env
+```
+
+```ini
+# BookLore Application Settings
+APP_USER_ID=0
+APP_GROUP_ID=0
+TZ=Etc/UTC
+BOOKLORE_PORT=6060
+
+# Database Connection (BookLore)
+DATABASE_URL=jdbc:mariadb://mariadb:3306/booklore
+DB_USER=booklore
+DB_PASSWORD=ChangeMe_BookLoreApp_2025!
+
+# MariaDB Container Settings
+DB_USER_ID=1000
+DB_GROUP_ID=1000
+MYSQL_ROOT_PASSWORD=ChangeMe_MariaDBRoot_2025!
+MYSQL_DATABASE=booklore
+```
+
+:::warning[Security]
+Change default passwords before deploying!
+:::
+
+#### Create Docker Compose File
+
+Create `docker-compose.yml`:
+
+```bash
+nano docker-compose.yml
+```
+
+````yaml
 services:
   booklore:
-    image: booklore/booklore-app:latest
-    # Or use the GitHub Container Registry image:
-    # image: ghcr.io/booklore-app/booklore:latest
+    image: booklore/booklore:latest
     container_name: booklore
     environment:
-      # User/Group IDs (match your system user for proper permissions)
-      - PUID=1000
-      - PGID=1000
-      # Timezone for accurate timestamps
-      - TZ=Etc/UTC
-      # Database connection settings
-      - DATABASE_URL=jdbc:mariadb://mariadb:3306/booklore
-      - DATABASE_USERNAME=booklore
-      - DATABASE_PASSWORD=your_secure_password
-      # Disable Swagger UI in production
-      - SWAGGER_ENABLED=false
+      - USER_ID=${APP_USER_ID}
+      - GROUP_ID=${APP_GROUP_ID}
+      - TZ=${TZ}
+      - DATABASE_URL=${DATABASE_URL}
+      - DATABASE_USERNAME=${DB_USER}
+      - DATABASE_PASSWORD=${DB_PASSWORD}
+      - BOOKLORE_PORT=${BOOKLORE_PORT}
     depends_on:
       mariadb:
         condition: service_healthy
     ports:
-      - "6060:6060"
+      - "${BOOKLORE_PORT}:${BOOKLORE_PORT}"
     volumes:
-      # Application data and cache
-      - /your/local/path/to/booklore/data:/app/data
-      # Your book library
-      - /your/local/path/to/booklore/books:/books
-      # Automatic import folder
-      - /your/local/path/to/booklore/bookdrop:/bookdrop
+      - ./data:/app/data
+      - ./books:/books
+      - ./bookdrop:/bookdrop
     restart: unless-stopped
 
   mariadb:
     image: lscr.io/linuxserver/mariadb:11.4.5
     container_name: mariadb
     environment:
-      # User/Group IDs (should match booklore container)
-      - PUID=1000
-      - PGID=1000
-      # Timezone (should match booklore container)
-      - TZ=Etc/UTC
-      # Database root password (keep this secure!)
-      - MYSQL_ROOT_PASSWORD=super_secure_password
-      # Database name
-      - MYSQL_DATABASE=booklore
-      # Application database user
-      - MYSQL_USER=booklore
-      # Must match DATABASE_PASSWORD in booklore service
-      - MYSQL_PASSWORD=your_secure_password
+      - PUID=${DB_USER_ID}
+      - PGID=${DB_GROUP_ID}
+      - TZ=${TZ}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
     volumes:
-      # Database storage (critical for persistence)
-      - /your/local/path/to/mariadb/config:/config
+      - ./mariadb/config:/config
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "mariadb-admin", "ping", "-h", "localhost"]
+      test: [ "CMD", "mariadb-admin", "ping", "-h", "localhost" ]
       interval: 5s
       timeout: 5s
       retries: 10
-```
+````
 
-#### 🔧 Configuration Details
+#### Key Configuration Notes
 
-##### Environment Variables
+**User IDs:**
+- `APP_USER_ID/GROUP_ID`: Set to your user ID (find with `id -u` and `id -g`)
+- `DB_USER_ID/GROUP_ID`: Typically `1000` or match your user IDs
 
-**PUID & PGID:**
-- Set these to match your system user ID for proper file permissions
-- Find your IDs with: `id -u` (PUID) and `id -g` (PGID)
+**Passwords:**
+- `DB_PASSWORD` must match in both `DATABASE_PASSWORD` and `MYSQL_PASSWORD`
+- Use strong, unique passwords for production
 
-**TZ (Timezone):**
-- Set to your local timezone (e.g., `America/New_York`, `Europe/London`)
-- Ensures accurate timestamps and scheduled tasks
-- List available timezones: `timedatectl list-timezones`
+**Timezone:**
+- Set `TZ` to your timezone (e.g., `America/New_York`)
+- List timezones: `timedatectl list-timezones`
 
-**DATABASE_PASSWORD:**
-- **Must be identical** in both `booklore` and `mariadb` services
-- Use a strong, unique password
-- Avoid special characters that might need escaping
+**Volumes:**
+- Use absolute paths for production: `/home/username/booklore/data:/app/data`
+- Relative paths work for simple setups
 
-**MYSQL_ROOT_PASSWORD:**
-- Separate from `DATABASE_PASSWORD`
-- Used for database administration
-- Keep this extremely secure
-
-**SWAGGER_ENABLED:**
-- Set to `false` in production for security
-- Set to `true` during development for API documentation
-
-##### Volume Paths
-
-> ⚠️ **Critical:** Replace `/your/local/path/to/...` with your actual directory paths from Step 1.
-
-**Example for Linux/macOS:**
+**Image Registry:**
+Alternatively, use GitHub Container Registry:
 ```yaml
-volumes:
-  - /home/username/booklore/data:/app/data
-  - /home/username/booklore/books:/books
-  - /home/username/booklore/bookdrop:/bookdrop
+image: ghcr.io/booklore-app/booklore:latest
 ```
 
-**Example for Windows (WSL2):**
-```yaml
-volumes:
-  - /mnt/c/Users/YourName/booklore/data:/app/data
-  - /mnt/c/Users/YourName/booklore/books:/books
-  - /mnt/c/Users/YourName/booklore/bookdrop:/bookdrop
-```
+:::tip[Version Pinning]
+For production, pin to specific versions (e.g., `booklore/booklore:v1.2.3`). Check [releases](https://github.com/adityachandelgit/booklore/releases).
+:::
 
-##### Image Versions
-
-**Latest Tag (default):**
-```yaml
-image: booklore/booklore-app:latest
-```
-
-**Specific Version (recommended for production):**
-```yaml
-image: booklore/booklore-app:v1.2.3
-```
-
-:::tip[Best Practice]
-Pin images to specific versions in production to prevent unexpected updates. Check [GitHub Releases](https://github.com/adityachandelgit/booklore/releases) for available versions.
+:::tip[Environment File Security]
+Add `.env` to your `.gitignore` file to avoid committing sensitive passwords to version control.
 :::
 
 ---
@@ -347,190 +336,9 @@ Or from another device on your network:
 http://YOUR_SERVER_IP:6060
 ```
 
-#### First-Time Setup
-
-1. **Create Admin Account**  
-   On first access, you'll be prompted to create an administrator account
-
-2. **Configure Libraries**  
-   Set up your first library pointing to the `/books` volume
-
-3. **Optional: Configure Bookdrop**  
-   Enable automatic imports from the `/bookdrop` folder
-
-4. **Optional: API Keys**  
-   Add Google Books API key for enhanced metadata enrichment
-
 :::success[Installation Complete]
 You're now ready to start building your digital library.
 :::
-
----
-
-## 🔧 Post-Installation Configuration
-
-### Adjusting Container Resources
-
-#### Memory Limits (Optional)
-
-If running on limited hardware, add resource constraints:
-
-```yaml
-services:
-  booklore:
-    # ...existing configuration...
-    deploy:
-      resources:
-        limits:
-          memory: 2G
-        reservations:
-          memory: 512M
-```
-
-#### CPU Limits (Optional)
-
-```yaml
-services:
-  booklore:
-    # ...existing configuration...
-    deploy:
-      resources:
-        limits:
-          cpus: '2.0'
-```
-
----
-
-### Setting Up HTTPS with Reverse Proxy
-
-For secure external access, use a reverse proxy:
-
-#### Example: Nginx Configuration
-
-```nginx
-server {
-    listen 443 ssl http2;
-    server_name books.yourdomain.com;
-
-    ssl_certificate /path/to/cert.pem;
-    ssl_certificate_key /path/to/key.pem;
-
-    location / {
-        proxy_pass http://localhost:6060;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-    }
-}
-```
-
-#### Example: Traefik Labels
-
-```yaml
-services:
-  booklore:
-    # ...existing configuration...
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.booklore.rule=Host(`books.yourdomain.com`)"
-      - "traefik.http.routers.booklore.entrypoints=websecure"
-      - "traefik.http.routers.booklore.tls.certresolver=myresolver"
-      - "traefik.http.services.booklore.loadbalancer.server.port=6060"
-```
-
----
-
-### Network Storage (NAS/SMB/NFS)
-
-If storing books on network storage:
-
-#### SMB/CIFS Mount (Linux)
-
-```bash
-# Install cifs-utils
-sudo apt-get install cifs-utils
-
-# Create mount point
-sudo mkdir -p /mnt/nas-books
-
-# Add to /etc/fstab
-//nas-server/books /mnt/nas-books cifs credentials=/home/user/.smbcredentials,uid=1000,gid=1000 0 0
-
-# Mount
-sudo mount -a
-```
-
-#### Update Docker Compose
-
-```yaml
-volumes:
-  - /mnt/nas-books:/books
-```
-
-:::warning[Bookdrop on Network Storage]
-Network storage may not support real-time file watching. See [Bookdrop documentation](bookdrop) for details.
-:::
-
----
-
-## 🛠️ Common Operations
-
-### Starting and Stopping
-
-```bash
-# Start containers
-docker compose up -d
-
-# Stop containers
-docker compose down
-
-# Restart containers
-docker compose restart
-
-# View status
-docker compose ps
-```
-
-### Updating Booklore
-
-```bash
-# Pull latest image
-docker compose pull booklore
-
-# Recreate container with new image
-docker compose up -d booklore
-```
-
-:::tip[Backup First]
-Always backup your database before major updates.
-:::
-
-### Viewing Logs
-
-```bash
-# All logs
-docker compose logs
-
-# Follow logs in real-time
-docker compose logs -f
-
-# Last 100 lines
-docker compose logs --tail=100
-
-# Specific service
-docker compose logs -f booklore
-```
-
-### Accessing Container Shell
-
-```bash
-# Booklore container
-docker compose exec booklore /bin/bash
-
-# MariaDB container
-docker compose exec mariadb /bin/bash
-```
 
 ---
 
@@ -618,79 +426,6 @@ sudo firewall-cmd --reload
 **Verify Docker network:**
 ```bash
 docker network inspect booklore_default
-```
-
----
-
-## 📊 Performance Optimization
-
-### Database Tuning
-
-Add to MariaDB environment in `docker-compose.yml`:
-
-```yaml
-mariadb:
-  environment:
-    # ...existing variables...
-    - MYSQL_INNODB_BUFFER_POOL_SIZE=1G
-    - MYSQL_MAX_CONNECTIONS=100
-```
-
-### Enable Caching
-
-Booklore automatically caches:
-- Metadata lookups
-- Cover images
-- Search results
-
-Cache is stored in `/app/data` volume.
-
-### Scheduled Maintenance
-
-Create a cron job for regular database optimization:
-
-```bash
-# Add to crontab -e
-0 3 * * 0 docker compose exec -T mariadb mariadb-admin optimize booklore
-```
-
----
-
-## 🔒 Security Best Practices
-
-### Use Strong Passwords
-
-```bash
-# Generate secure password
-openssl rand -base64 32
-```
-
-### Disable Root SSH (if exposing to internet)
-
-### Use HTTPS
-
-Never expose HTTP ports directly to the internet. Always use:
-- Reverse proxy with SSL/TLS
-- Let's Encrypt for free certificates
-- Cloudflare for DDoS protection
-
-### Regular Updates
-
-```bash
-# Update Booklore monthly
-docker compose pull
-docker compose up -d
-```
-
-### Backup Strategy
-
-**Automated backup script:**
-```bash
-#!/bin/bash
-DATE=$(date +%Y%m%d)
-tar -czf backup-booklore-$DATE.tar.gz \
-  ~/booklore/config/mariadb \
-  ~/booklore/data
 ```
 
 ---
