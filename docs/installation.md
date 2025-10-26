@@ -97,10 +97,6 @@ mkdir -p ~/booklore/bookdrop
 Always backup `config/mariadb` and `books` to prevent data loss.
 :::
 
-:::tip[Pro Tip]
-Use absolute paths for volumes in production. Relative paths can cause issues with container restarts.
-:::
-
 ---
 
 ### Step 2: Install Docker & Docker Compose
@@ -261,10 +257,6 @@ image: ghcr.io/booklore-app/booklore:latest
 
 :::tip[Version Pinning]
 For production, pin to specific versions (e.g., `booklore/booklore:v1.2.3`). Check [releases](https://github.com/adityachandelgit/booklore/releases).
-:::
-
-:::tip[Environment File Security]
-Add `.env` to your `.gitignore` file to avoid committing sensitive passwords to version control.
 :::
 
 ---
