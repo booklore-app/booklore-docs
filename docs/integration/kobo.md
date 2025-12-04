@@ -10,10 +10,6 @@ With Kobo integration, you can:
 - **Access your entire Booklore library** on your Kobo eReader
 - **Sync books automatically** between Booklore and your device
 
-:::warning[Important Note About Reading Progress]
-Reading progress is **not synchronized** between Booklore's built-in EPUB reader and your Kobo device. Each platform maintains its own reading position independently, as they use different progress tracking systems.
-:::
-
 ---
 
 ## ✨ Key Features & Capabilities
