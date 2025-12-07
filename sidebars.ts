@@ -51,13 +51,32 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: '🗂️ Metadata',
-      collapsed: false,
+      collapsed: true,
       items: [
         {type: 'doc', id: 'metadata/metadata-fetch-configuration', label: '🔃 Fetch Configuration'},
         {type: 'doc', id: 'metadata/file-naming-patterns', label: '🗒️ File Naming Patterns'},
         {type: 'doc', id: 'metadata/metadata-manager', label: '🧙 Metadata Manager'},
         {type: 'doc', id: 'metadata/amazon-cookie', label: '🍪 Amazon Cookie'},
         {type: 'doc', id: 'metadata/hardcover-token', label: '🔑 Hardcover API'},
+      ],
+    },
+    {
+      type: 'category',
+      label: '🔗 Integrations',
+      collapsed: false,
+      items: [
+        {type: 'doc', id: 'integration/kobo', label: '📲 Kobo'},
+        {type: 'doc', id: 'integration/koreader', label: '📚 KOReader'},
+        {type: 'doc', id: 'integration/opds', label: '🌍 OPDS'}
+      ],
+    },
+    {
+      type: 'category',
+      label: '⚙️ Tools',
+      collapsed: false,
+      items: [
+        {type: 'doc', id: 'tools/task-manager', label: '🖥️ System Task Manager'},
+        {type: 'doc', id: 'tools/custom-icons', label: '🎨 Custom Icons'},
       ],
     },
     {
@@ -77,24 +96,6 @@ const sidebars: SidebarsConfig = {
           ],
         },
         {type: 'doc', id: 'authentication/auto-user-provisioning', label: '👥 Auto User Provisioning'},
-      ],
-    },
-    {
-      type: 'category',
-      label: '🔗 Integrations',
-      collapsed: false,
-      items: [
-        {type: 'doc', id: 'integration/kobo', label: '📲 Kobo'},
-        {type: 'doc', id: 'integration/koreader', label: '📚 KOReader'},
-        {type: 'doc', id: 'integration/opds', label: '🌍 OPDS'}
-      ],
-    },
-    {
-      type: 'category',
-      label: '⚙️ Tools',
-      collapsed: true,
-      items: [
-        {type: 'doc', id: 'tools/task-manager', label: '🖥️ System Task Manager'}
       ],
     },
     {
