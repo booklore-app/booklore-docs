@@ -137,9 +137,14 @@ Now configure Booklore to use Pocket ID as the authentication provider. This is 
    - **Issuer URL:** Enter your Pocket ID URL: `https://<your-pocket-id-domain>/`
      - Must include the trailing slash
      - Example: `https://auth.example.com/`
+   - **Claim** Fill out the following claims
+     - Username Claim: preferred_username
+     - Email Claim: email
+     - Display Name Claim: name
+      
    - Click **Save** to store the configuration
 
-3. **Enable OIDC Authentication**  
+4. **Enable OIDC Authentication**  
    Toggle **"OIDC Enabled"** to **ON** to activate Pocket ID authentication
    - When enabled, users will see a "Login with Pocket ID" button on the Booklore login page
    - The standard username/password login will still be available unless specifically disabled
