@@ -100,15 +100,16 @@ Now that your OPDS server is configured, you can connect various reading apps to
 ## 🔄 Example: Connecting KOReader
 
 1. Open KOReader
-2. Go to **File manager** > **Cloud storage**
-3. Select **Add OPDS catalog**
-4. Enter:
+2. In the top menu click on the magnifying glass. (Note that you must not have a book open.)
+3. Select **OPDS catalog**
+4. Click the hamburger menu at the top left. Select **Add catalog**.
+5. Enter:
     - **Name:** Booklore Library
     - **URL:** `http://your-booklore-domain/api/v1/opds`
     - **Username:** Your OPDS username
     - **Password:** Your OPDS password
-5. Tap **Add** to save the catalog
-6. Browse and download books from your Booklore library
+6. Tap **Save** to save the catalog
+7. Browse and download books from your Booklore library
 
 :::tip[KOReader Example]
 KOReader sync only works for books downloaded from Booklore via OPDS. Sideloaded books cannot be synced.
