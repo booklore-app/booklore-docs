@@ -39,9 +39,13 @@ const sidebars: SidebarsConfig = {
       ],
     },
     {
-      type: 'doc',
-      id: 'bookdrop',
+      type: 'category',
       label: '📥 Bookdrop',
+      collapsed: true,
+      items: [
+        {type: 'doc', id: 'bookdrop', label: '📥 Bookdrop Basics'},
+        {type: 'doc', id: 'bookdrop-advanced', label: '🎯 Advanced Features'},
+      ],
     },
     {
       type: 'doc',
