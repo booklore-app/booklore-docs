@@ -6,7 +6,7 @@ Configure cover image handling in **Settings > Application**.
 
 ## Cover Cropping
 
-Automatically crop oversized cover images to prevent display issues. This is particularly useful for web comics and manga that often have very tall images as their first page.
+Automatically crop oversized cover images to prevent display issues. This is particularly useful for web comics that often have very tall images as their first page.
 
 | Setting | Description |
 |---------|-------------|
