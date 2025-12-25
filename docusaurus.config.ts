@@ -6,7 +6,6 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const isProd = process.env.NODE_ENV === 'production';
 
-
 const config: Config = {
   title: 'Booklore',
   tagline: 'Organize knowledge. Preserve lore.',
@@ -19,14 +18,13 @@ const config: Config = {
   
   // Set the production url of your site here
   url: 'https://adityachandelgit.github.io',
-  baseUrl: isProd ? '/booklore-docs/' : '/',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
+  baseUrl: '/',
   
   // GitHub pages deployment config.
-  organizationName: 'adityachandelgit', // Your GitHub org/user name
-  projectName: 'booklore-docs', // The GitHub repo for docs
+  organizationName: 'adityachandelgit',
+  projectName: 'booklore-docs',
   deploymentBranch: 'gh-pages',
+  trailingSlash: false,
   
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -35,6 +33,21 @@ const config: Config = {
     defaultLocale: 'en',
     locales: ['en'],
   },
+  
+  themes: [
+    [
+      require.resolve('@easyops-cn/docusaurus-search-local'),
+      {
+        hashed: true,
+        indexDocs: true,
+        indexBlog: true,
+        indexPages: false,
+        language: ['en'],
+        highlightSearchTermsOnTargetPage: true,
+        explicitSearchResultPath: true,
+      },
+    ],
+  ],
   
   presets: [
     [
@@ -75,7 +88,11 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Tutorial',
+          label: 'Documentation',
+        },
+        {
+          type: 'search',
+          position: 'right',
         },
         {
           href: 'https://discord.gg/Ee5hd458Uz',

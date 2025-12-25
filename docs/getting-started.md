@@ -1,6 +1,6 @@
 # 🚀 Getting Started with Booklore
 
-Welcome to **Booklore** – your self-hosted digital library management system. This guide will help you get up and running quickly.
+Welcome to **Booklore** - your self-hosted digital library management system. This guide will help you get up and running quickly.
 
 ---
 
