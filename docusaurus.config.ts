@@ -18,7 +18,7 @@ const config: Config = {
   
   // Set the production url of your site here
   url: 'https://adityachandelgit.github.io',
-  baseUrl: '/',
+  baseUrl: isProd ? '/booklore-docs/' : '/',
   
   // GitHub pages deployment config.
   organizationName: 'adityachandelgit',
