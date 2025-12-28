@@ -62,6 +62,7 @@ const sidebars: SidebarsConfig = {
         {type: 'doc', id: 'metadata/metadata-manager', label: '🧙 Metadata Manager'},
         {type: 'doc', id: 'metadata/amazon-cookie', label: '🍪 Amazon Cookie'},
         {type: 'doc', id: 'metadata/hardcover-token', label: '🔑 Hardcover API'},
+        {type: 'doc', id: 'metadata/lubimyczytac', label: '📚 LubimyCzytac'},
       ],
     },
     {
