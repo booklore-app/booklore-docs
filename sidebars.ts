@@ -82,6 +82,7 @@ const sidebars: SidebarsConfig = {
         {type: 'doc', id: 'tools/task-manager', label: '🖥️ System Task Manager'},
         {type: 'doc', id: 'tools/custom-icons', label: '🎨 Custom Icons'},
         {type: 'doc', id: 'tools/cover-art-settings', label: '🖼️ Cover Art Settings'},
+        {type: 'doc', id: 'tools/telemetry', label: '📊 Telemetry'},
       ],
     },
     {
