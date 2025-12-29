@@ -1,0 +1,7 @@
+services:
+  booklore-docs:
+    image: ghcr.io/booklore-app/booklore-docs:latest
+    container_name: booklore-docs
+    restart: unless-stopped
+    ports:
+      - "8080:80"
