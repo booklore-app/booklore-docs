@@ -161,10 +161,31 @@ If we see users with large libraries, we know we need to optimize performance. I
 **Example 5: Kobo & KOReader**  
 If these integrations are popular, we'll invest in improving them. If not, we can focus development time elsewhere.
 
+**Example 6: Moods & Tags**  
+If telemetry shows that Moods and Tags are barely used, we might simplify the UI and reduce their prominence. We want to focus screen space on features people actually use. But if they're popular, we'll keep improving them and maybe even add more customization options.
+
+**Example 7: Similar Book Recommendations**  
+The `similarBookRecommendationsEnabled` feature is computation-heavy and can slow down metadata fetching. If usage is low, we might make it opt-in only or reconsider its implementation. Telemetry helps us understand if the performance trade-off is worth it for users.
+
+**Example 8: Magic Shelves**  
+Magic Shelves are a powerful feature, but if only a small percentage of users create them, maybe they need better discoverability or documentation. Or maybe they're just niche. Telemetry helps us understand where to focus our efforts.
+
+:::tip[How Telemetry Guides Development]
+When we see a feature is rarely used, we don't immediately remove it. Instead, we:
+1. **Consider if it needs better documentation** - Maybe users don't know it exists?
+2. **Evaluate maintenance burden** - Is it causing bugs or slowing development?
+3. **Look for alternatives** - Can we achieve the same goal more simply?
+4. **Make informed decisions** - We'd rather improve a feature than blindly remove it
+
+**The key insight:** No telemetry data means we're flying blind. We might accidentally remove something you love, or waste time on features nobody uses. Your telemetry helps us make smarter choices.
+:::
+
 ---
 
 ## 🙌 Help Us Help You
 
-By keeping telemetry enabled, you're helping us make Booklore better for everyone. It's a small, anonymous way to contribute to the project's direction.
+By keeping telemetry enabled, you're helping us make Booklore better for everyone. It's a small, anonymous way to contribute to the project's direction. Think of it as a friendly tap on the shoulder saying *"Hey, I use this feature!"*
+
+We genuinely want to build what users need. Telemetry is how you tell us what matters to you, even if you never file a GitHub issue or join Discord.
 
 Thanks for being part of the Booklore community! 📚✨
