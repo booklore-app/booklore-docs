@@ -215,7 +215,6 @@ services:
       start_period: 60s
       timeout: 10s
     restart: unless-stopped
-    restart: unless-stopped
 
   mariadb:
     image: lscr.io/linuxserver/mariadb:11.4.5
