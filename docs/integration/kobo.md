@@ -315,3 +315,13 @@ After granting permission:
 :::tip[Admin Tip]
 You can revoke Kobo Sync permission at any time by unchecking the permission and saving the user profile.
 :::
+
+## 📈 Viewing Synced Progress in Booklore
+
+Quickly check your Kobo read progress right on the book’s detail page, see a percentage and a red progress bar update in real time.
+
+![Booklore Synced Progress](/img/kobo/kobo-14.jpg)
+
+- In Booklore, you can view synced progress on the book details page as a percentage and as a red progress bar under the cover.
+- To reset progress, click **Reset Progress**. This only resets Kobo progress in Booklore; the device’s read status remains unchanged.
+
