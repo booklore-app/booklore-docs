@@ -41,6 +41,7 @@ Booklore integrates with multiple metadata sources:
 - **Hardcover**: Modern book data with moods and tags
 - **Comicvine**: Specialized comic book metadata
 - **Douban**: Asian literature and international titles
+- **Lubimyczytac**: Poland's largest book rating platform for Polish literature
 
 ### 📋 Field Categories
 

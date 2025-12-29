@@ -115,6 +115,8 @@ Begin by setting up Booklore as an application in Authentik with OAuth2 authenti
    Regex: http://localhost:3000/*
    ```
 
+   Ensure the signing key is set to "authentik Self-signed certificate".
+
 6. **Configure OAuth Scopes**
 
    Define what information Authentik will share with Booklore. Each scope grants access to specific user data:
