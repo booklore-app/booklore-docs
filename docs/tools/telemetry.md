@@ -159,7 +159,8 @@ If 90% of users stick with default icons, maybe custom SVG support isn't worth t
 If we see users with large libraries, we know we need to optimize performance. If most users have smaller collections, we can focus on other features.
 
 **Example 5: Kobo & KOReader**  
-If these integrations are popular, we'll invest in improving them. If not, we can focus development time elsewhere.
+Kobo integration is especially tricky to maintain because there's no official API documentation, it's all reverse-engineered. Every Kobo firmware update could potentially break things. If telemetry shows strong usage, we know it's worth the effort to keep reverse-engineering and maintaining it. If usage is low, we might need to reconsider the investment or make it community-maintained.
+KOReader integration is more straightforward, but still requires ongoing maintenance. Usage data helps us prioritize which reader integrations deserve the most attention.
 
 **Example 6: Moods & Tags**  
 If telemetry shows that Moods and Tags are barely used, we might simplify the UI and reduce their prominence. We want to focus screen space on features people actually use. But if they're popular, we'll keep improving them and maybe even add more customization options.
