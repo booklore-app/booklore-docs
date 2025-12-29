@@ -59,7 +59,7 @@ Here's an example of what actually gets sent. Notice there's nothing personal he
 ```json
 {
   "installationId": "550e8400-e29b-41d4-a716-446655440000",
-  "appVersion": "2.1.0",
+  "appVersion": "v1.10.0",
   "totalLibraries": 2,
   "totalBooks": 247,
   "totalAdditionalBookFiles": 18,
@@ -79,8 +79,13 @@ Here's an example of what actually gets sent. Notice there's nothing personal he
     "oidcEnabled": false
   },
   "metadataStatistics": {
-    "enabledMetadataProviders": [1, 2],
-    "enabledReviewMetadataProviders": [1],
+    "enabledMetadataProviders": [
+      1,
+      2
+    ],
+    "enabledReviewMetadataProviders": [
+      1
+    ],
     "saveMetadataToFile": true,
     "moveFileViaPattern": false,
     "autoBookSearchEnabled": true,
@@ -112,7 +117,6 @@ Here's an example of what actually gets sent. Notice there's nothing personal he
   },
   "libraryStatisticsList": [
     {
-      "libraryName": "Main Library",
       "totalLibraryPaths": 1,
       "bookCount": 180,
       "watchEnabled": true,
@@ -120,7 +124,6 @@ Here's an example of what actually gets sent. Notice there's nothing personal he
       "scanMode": 1
     },
     {
-      "libraryName": "Comics",
       "totalLibraryPaths": 1,
       "bookCount": 67,
       "watchEnabled": false,
