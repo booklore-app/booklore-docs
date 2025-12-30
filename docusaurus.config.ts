@@ -6,6 +6,8 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const isProd = process.env.NODE_ENV === 'production';
 
+const baseUrl = process.env.DOCUSAURUS_BASEURL || '/booklore-docs/';
+
 const config: Config = {
   title: 'Booklore',
   tagline: 'Organize knowledge. Preserve lore.',
@@ -17,8 +19,8 @@ const config: Config = {
   },
   
   // Set the production url of your site here
-  url: 'https://adityachandelgit.github.io',
-  baseUrl: isProd ? '/booklore-docs/' : '/',
+  url: 'https://booklore-app.github.io',
+  baseUrl,
   
   // GitHub pages deployment config.
   organizationName: 'adityachandelgit',
@@ -124,3 +126,4 @@ const config: Config = {
 };
 
 export default config;
+
