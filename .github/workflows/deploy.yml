@@ -3,7 +3,7 @@ name: Deploy Docker Image
 on:
   push:
     branches:
-      - "**"
+      - master
 
 jobs:
   build:
@@ -22,8 +22,6 @@ jobs:
         run: npm ci
       - name: Build website
         run: npm run build
-        env:
-          DOCUSAURUS_BASEURL: /
 
       - name: Upload Build for Docker
         uses: actions/upload-artifact@v4
@@ -77,5 +75,3 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-        env:
-          DOCUSAURUS_BASEURL: /

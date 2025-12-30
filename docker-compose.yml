@@ -1,6 +1,6 @@
 services:
   booklore-docs:
-    image: ghcr.io/booklore-app/booklore-docs:e176938
+    image: ghcr.io/booklore-app/booklore-docs:latest
     container_name: booklore-docs
     restart: unless-stopped
     ports:
