@@ -21,7 +21,7 @@ function HomepageHeader() {
           <div className={styles.buttons}>
             <Link
               className={`button button--primary button--lg ${styles.primaryButton}`}
-              to="/docs/getting-started">
+              to="/getting-started">
               Get Started →
             </Link>
             <Link
@@ -110,7 +110,7 @@ function CallToAction() {
           <div className={styles.ctaButtons}>
             <Link
               className={`button button--primary button--lg ${styles.docsButton}`}
-              to="/docs/getting-started">
+              to="/getting-started">
               📖 Read the Docs
             </Link>
             <Link

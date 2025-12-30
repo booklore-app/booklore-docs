@@ -2,12 +2,6 @@ import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
-// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
-
-const isProd = process.env.NODE_ENV === 'production';
-
-const baseUrl = process.env.DOCUSAURUS_BASEURL || '/booklore-docs/';
-
 const config: Config = {
   title: 'Booklore',
   tagline: 'Organize knowledge. Preserve lore.',
@@ -19,13 +13,9 @@ const config: Config = {
   },
   
   // Set the production url of your site here
-  url: 'https://booklore-app.github.io',
-  baseUrl,
+  url: 'https://docs.booklore.org',
+  baseUrl: '/',
   
-  // GitHub pages deployment config.
-  organizationName: 'adityachandelgit',
-  projectName: 'booklore-docs',
-  deploymentBranch: 'gh-pages',
   trailingSlash: false,
   
   onBrokenLinks: 'throw',
@@ -42,11 +32,14 @@ const config: Config = {
       {
         hashed: true,
         indexDocs: true,
-        indexBlog: true,
+        indexBlog: false,
         indexPages: false,
         language: ['en'],
         highlightSearchTermsOnTargetPage: true,
         explicitSearchResultPath: true,
+        docsRouteBasePath: '/',
+        searchResultLimits: 8,
+        searchResultContextMaxLength: 50,
       },
     ],
   ],
@@ -56,20 +49,10 @@ const config: Config = {
       'classic',
       {
         docs: {
+          routeBasePath: '/',
           sidebarPath: './sidebars.ts',
         },
-        blog: {
-          showReadingTime: true,
-          feedOptions: {
-            type: ['rss', 'atom'],
-            xslt: true,
-          },
-          editUrl:
-            'https://github.com/adityachandelgit/booklore-docs/edit/main/',
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
-        },
+        blog: false,
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -78,7 +61,6 @@ const config: Config = {
   ],
   
   themeConfig: {
-    image: 'img/docusaurus-social-card.jpg',
     navbar: {
       title: 'Booklore',
       logo: {

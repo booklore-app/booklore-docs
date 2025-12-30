@@ -44,3 +44,4 @@ coverage/
 
 # Optional: ignore output from linting or testing tools
 eslintcache
+docker-compose.yml
