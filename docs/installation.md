@@ -256,7 +256,7 @@ image: ghcr.io/booklore-app/booklore:latest
 ```
 
 :::tip[Version Pinning]
-For production, pin to specific versions (e.g., `booklore/booklore:v1.2.3`). Check [releases](https://github.com/adityachandelgit/booklore/releases).
+For production, pin to specific versions (e.g., `booklore/booklore:v1.2.3`). Check [releases](https://github.com/booklore-app/booklore/releases).
 :::
 
 ---
@@ -443,8 +443,8 @@ Now that Booklore is installed, explore these essential features to get started:
 
 ## 💡 Additional Resources
 
-- **[GitHub Repository](https://github.com/adityachandelgit/booklore)** - Source code and issue tracking
-- **[GitHub Releases](https://github.com/adityachandelgit/booklore/releases)** - Version history and changelogs
+- **[GitHub Repository](https://github.com/booklore-app/booklore)** - Source code and issue tracking
+- **[GitHub Releases](https://github.com/booklore-app/booklore/releases)** - Version history and changelogs
 - **[Docker Hub](https://hub.docker.com/r/booklore/booklore-app)** - Official container images
 - **[Community Discord](#)** - Get help and share tips
 

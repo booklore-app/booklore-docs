@@ -49,7 +49,6 @@ const config: Config = {
       'classic',
       {
         docs: {
-          routeBasePath: '/',
           sidebarPath: './sidebars.ts',
         },
         blog: false,
@@ -84,7 +83,7 @@ const config: Config = {
           position: 'right',
         },
         {
-          href: 'https://github.com/adityachandelgit/booklore',
+          href: 'https://github.com/booklore-app/booklore',
           label: 'GitHub',
           position: 'right',
         },
