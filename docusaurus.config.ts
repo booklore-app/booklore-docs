@@ -87,12 +87,17 @@ const config: Config = {
           label: 'GitHub',
           position: 'right',
         },
+        {
+          href: 'https://opencollective.com/booklore',
+          label: 'Open Collective',
+          position: 'right',
+        },
       ],
     },
     footer: {
       style: 'dark',
       links: [],
-      copyright: `Copyright © ${new Date().getFullYear()} Booklore`,
+      copyright: `Copyright © 2025 - ${new Date().getFullYear()} Booklore`,
     },
     prism: {
       theme: prismThemes.github,
@@ -107,4 +112,3 @@ const config: Config = {
 };
 
 export default config;
-
