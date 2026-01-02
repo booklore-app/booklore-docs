@@ -128,7 +128,9 @@ cp /path/to/your/books/* ~/booklore/books/
 
 ### Method 3: Web Upload
 
-:::warning[Cloudflare Tunnels Upload Limit] If you're using a Cloudflare Tunnel to serve your Booklore instance through a reverse proxy, note that there is a [100MB upload limit]([url](https://developers.cloudflare.com/workers/platform/limits/#request-limits)) on the free tier. :::
+:::warning[Cloudflare Tunnels Upload Limit]
+If you're using a Cloudflare Tunnel to serve your Booklore instance through a reverse proxy, note that there is a [100MB upload limit](<[url](https://developers.cloudflare.com/workers/platform/limits/#request-limits)>) on the free tier.
+:::
 
 1. Navigate to your library
 2. Click **"Upload Books"**
