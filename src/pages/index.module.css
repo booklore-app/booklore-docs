@@ -75,40 +75,15 @@
 }
 
 .primaryButton {
-    background: linear-gradient(135deg, #40225f 0%, #3648b8 100%);
-    border: none;
-    color: white !important;
-    font-weight: 600;
-    padding: 0.875rem 2rem;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 14px 0 rgba(54, 72, 184, 0.5);
+    background: white !important;
+    color: #667eea !important;
+    border: none !important;
+    font-weight: 600 !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
 }
 
-.primaryButton:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 24px 0 rgba(54, 72, 184, 0.7);
-    background: linear-gradient(135deg, #3648b8 0%, #40225f 100%);
-}
-
-.primaryButtonFlipped {
-    background: linear-gradient(135deg, #3648b8 0%, #40225f 100%);
-    border: none;
-    color: white !important;
-    font-weight: 600;
-    padding: 0.875rem 2rem;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 14px 0 rgba(54, 72, 184, 0.5);
-}
-
-.primaryButtonFlipped:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 24px 0 rgba(54, 72, 184, 0.7);
-    background: linear-gradient(135deg, #40225f 0%, #3648b8 100%);
-}
-
-/* Docs Button */
 .docsButton {
-    background: #2563eb !important; /* docs blue */
+    background: #2563eb !important;
     color: #fff !important;
     border: none !important;
     font-weight: 600 !important;
@@ -445,6 +420,11 @@
     justify-content: center;
     margin-top: 2rem;
     gap: 1rem;
+}
+
+.modalActions a {
+    font-size: 1rem;
+    padding: 0.65rem 0.85rem;
 }
 
 @media screen and (max-width: 996px) {
