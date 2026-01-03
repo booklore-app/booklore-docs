@@ -130,6 +130,11 @@ Use these placeholders to insert book metadata into your patterns:
 | `{publisher}`       | Publisher name    | "Allen & Unwin"        |
 | `{isbn}`            | ISBN number       | "9780547928227"        |
 | `{currentFilename}` | Original filename | "hobbit_original.epub" |
+| `{custom:<name>}`    | Custom field value | "Special Edition"      |
+
+:::tip[Custom Fields]
+Custom fields are library-specific. Create them in **Settings → Library Metadata Configuration**, then reference them in patterns with `{custom:<name>}` (for example `{custom:edition}`).
+:::
 
 ---
 
