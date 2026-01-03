@@ -9,6 +9,7 @@ They’re useful for tracking things that aren’t covered by standard metadata,
 - Signed copy
 - Source / Purchase date
 - Personal rating notes
+- Comic credits (for example: Editor, Artist, Inker, Letterer)
 
 ---
 
