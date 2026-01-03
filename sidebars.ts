@@ -59,6 +59,7 @@ const sidebars: SidebarsConfig = {
       items: [
         {type: 'doc', id: 'metadata/metadata-fetch-configuration', label: '🔃 Fetch Configuration'},
         {type: 'doc', id: 'metadata/file-naming-patterns', label: '🗒️ File Naming Patterns'},
+        {type: 'doc', id: 'metadata/custom-fields', label: '🏷️ Custom Fields'},
         {type: 'doc', id: 'metadata/metadata-manager', label: '🧙 Metadata Manager'},
         {type: 'doc', id: 'metadata/amazon-cookie', label: '🍪 Amazon Cookie'},
         {type: 'doc', id: 'metadata/hardcover-token', label: '🔑 Hardcover API'},
