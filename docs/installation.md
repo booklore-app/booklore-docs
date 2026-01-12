@@ -78,7 +78,7 @@ Booklore needs several directories to store data, books, and database files. Cre
 
 ```bash
 # Create the main Booklore directory structure
-mkdir -p ~/booklore/config/mariadb
+mkdir -p ~/booklore/mariadb/config
 mkdir -p ~/booklore/data
 mkdir -p ~/booklore/books
 mkdir -p ~/booklore/bookdrop
@@ -88,13 +88,13 @@ mkdir -p ~/booklore/bookdrop
 
 | Directory | Purpose | Important Notes |
 |-----------|---------|-----------------|
-| `config/mariadb` | Database configuration and data files | **Critical:** Never delete - contains all metadata |
+| `mariadb/config` | Database configuration and data files | **Critical:** Never delete - contains all metadata |
 | `data` | Booklore application data, cache, logs | Stores settings and temporary processing files |
 | `books` | Your main library storage | Add books here or import via Bookdrop |
 | `bookdrop` | Automatic import folder | Drop files here for hands-free importing |
 
 :::warning[Backup Important Directories]
-Always backup `config/mariadb` and `books` to prevent data loss.
+Always backup `mariadb/config` and `books` to prevent data loss.
 :::
 
 ---
@@ -364,7 +364,7 @@ docker compose ps mariadb
 **Reset database (last resort):**
 ```bash
 docker compose down
-rm -rf ~/booklore/config/mariadb/*
+rm -rf ~/booklore/mariadb/config/*
 docker compose up -d
 ```
 
