@@ -133,7 +133,7 @@ RanobeDB is community driven and to avoid overloading their servers, Booklore im
 
 ## 🔗 External Links
 
-* **RanobeDB Website**: <https://https://ranobedb.org>
+* [RanobeDB Website](https://https://ranobedb.org)
 
 :::note[API Information]
 RanobeDB API is still under development, and the Booklore integration uses available endpoints to fetch metadata. Future updates may enhance functionality as the API matures.

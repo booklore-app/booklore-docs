@@ -20,6 +20,18 @@ With Kobo integration, you can:
 - **Two-Way Synchronization**: Add/remove books in Booklore or on your Kobo - changes sync both ways
 - **Instant Updates**: Book changes reflect immediately after syncing
 
+### 🏷️ Shelf Sync to Kobo Collections
+
+  Your shelves and magic shelves are automatically synced to your Kobo as collections, helping you organize your reading on the device.
+
+  - **Automatic Sync**: Each shelf in Booklore appears as a collection on your Kobo
+  - **Magic Shelves Included**: Dynamic magic shelves are synced the same way
+
+  :::info[How Collection Filtering Works]
+  Only books that are in your Kobo shelf will appear in collections on your device. For example, if your "Favorites" shelf contains 10 books but only 4 are in your Kobo shelf, the "Favorites" collection on your Kobo will only show those 4 books. Shelves containing no Kobo-synced books won't appear as collections at all.
+
+  This gives you full control - simply manage your Kobo shelf to control which books and collections appear on your reader.
+  :::
 ### 📱 Device Integration
 
 - **Seamless Setup**: One-time configuration connects your Kobo to Booklore
