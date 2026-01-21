@@ -278,8 +278,6 @@ GET /komga/api/v1/series?clean
 GET /komga/api/v1/books/123?clean=true
 ```
 
-For more details, see the [Komga API Clean Mode](komga-clean-mode.md) documentation.
-
 ---
 
 ## 🔍 Troubleshooting
