@@ -32,6 +32,9 @@ With Kobo integration, you can:
 - **Quality Preservation**: Books maintain their original formatting and metadata
 - **No PDF Support**: PDF files are currently not supported for Kobo sync
 
+### 🔄 Hardcover Sync
+
+- **Hardcover Sync**: Sync Reading Progress between Kobo and Hardcover - Follow the instructions in the [Hardcover Sync](/docs/metadata/hardcover-token) section to generate your API token
 ---
 
 ## ⚙️ nginx Proxy Configuration
