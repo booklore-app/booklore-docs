@@ -115,7 +115,7 @@
 
 @media (min-width: 1440px) {
     .container {
-        max-width: 2500px;
+        max-width: 100%;
     }
 }
 
@@ -127,9 +127,12 @@
 
 @media (min-width: 997px) {
     .docItemCol_VOVn {
-        max-width: 2500px !important;
-        width: 2500px !important;
+        max-width: 100% !important;
     }
+}
+
+html, body {
+    overflow-x: hidden;
 }
 
 .theme-code-block {
