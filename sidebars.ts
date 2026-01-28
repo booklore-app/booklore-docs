@@ -74,7 +74,8 @@ const sidebars: SidebarsConfig = {
       items: [
         {type: 'doc', id: 'integration/kobo', label: '📲 Kobo'},
         {type: 'doc', id: 'integration/koreader', label: '📚 KOReader'},
-        {type: 'doc', id: 'integration/opds', label: '🌍 OPDS'}
+        {type: 'doc', id: 'integration/opds', label: '🌍 OPDS'},
+        {type: 'doc', id: 'integration/komga-api', label: '🌍 Komga'},
       ],
     },
     {
