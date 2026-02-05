@@ -71,27 +71,12 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Documentation',
+          label: 'Docs',
         },
         {
           type: 'search',
           position: 'right',
-        },
-        {
-          href: 'https://discord.gg/Ee5hd458Uz',
-          label: 'Discord',
-          position: 'right',
-        },
-        {
-          href: 'https://github.com/booklore-app/booklore',
-          label: 'GitHub',
-          position: 'right',
-        },
-        {
-          href: 'https://opencollective.com/booklore',
-          label: 'Open Collective',
-          position: 'right',
-        },
+        }
       ],
     },
     footer: {
@@ -105,7 +90,7 @@ const config: Config = {
     },
     colorMode: {
       defaultMode: 'dark',
-      disableSwitch: false,
+      disableSwitch: true,
       respectPrefersColorScheme: false,
     },
   } satisfies Preset.ThemeConfig,

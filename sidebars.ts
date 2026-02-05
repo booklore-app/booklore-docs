@@ -36,6 +36,7 @@ const sidebars: SidebarsConfig = {
       items: [
         {type: 'doc', id: 'library/setup-first-library', label: '🆕 Setup First Library'},
         {type: 'doc', id: 'library/edit-library', label: '✏️ Edit Library'},
+        {type: 'doc', id: 'library/folder-structure', label: '📁 Folder Structure'},
       ],
     },
     {

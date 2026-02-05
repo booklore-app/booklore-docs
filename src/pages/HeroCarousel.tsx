@@ -1,9 +1,16 @@
-import React, { useEffect, useRef, useState } from 'react';
-import type { Splide as SplideInstance } from '@splidejs/splide';
-import { Splide, SplideSlide } from '@splidejs/react-splide';
+import React, {useEffect, useRef, useState} from 'react';
+import type {Splide as SplideInstance} from '@splidejs/splide';
+import {Splide, SplideSlide} from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
+import styles from './index.module.css';
 
 const carouselSlides = [
+  {
+    id: 'dashboard',
+    title: 'Main Dashboard',
+    description: 'An overview of your entire library at a glance.',
+    image: '/img/website/web-01.png',
+  },
   {
     id: 'metadata-viewer',
     title: 'Metadata Viewer',
@@ -41,6 +48,12 @@ const carouselSlides = [
     image: '/img/website/web-05.png',
   },
   {
+    id: 'book-browser-grid',
+    title: 'Book Browser (Grid)',
+    description: 'Seamlessly browse your entire library with infinite scrolling.',
+    image: '/img/website/web-06.png',
+  },
+  {
     id: 'book-browser-table',
     title: 'Book Browser (Table)',
     description: 'Switch to a compact table view for dense library browsing.',
@@ -70,18 +83,6 @@ const carouselSlides = [
     description: 'A beautiful, theme-aware login page for a personalized experience.',
     image: '/img/website/web-14.png',
   },
-  {
-    id: 'dashboard',
-    title: 'Main Dashboard',
-    description: 'An overview of your entire library at a glance.',
-    image: '/img/website/web-01.png',
-  },
-  {
-    id: 'book-browser-grid',
-    title: 'Book Browser (Grid)',
-    description: 'Seamlessly browse your entire library with infinite scrolling.',
-    image: '/img/website/web-06.png',
-  },
 ];
 
 type SplideComponentRef = {
@@ -90,7 +91,9 @@ type SplideComponentRef = {
 
 export default function HeroCarousel() {
   const mainRef = useRef<SplideComponentRef | null>(null);
-  const [zoomedImage, setZoomedImage] = useState<null | { src: string; alt: string }>(null);
+  const [zoomedImage, setZoomedImage] = useState<null | {src: string; alt: string}>(null);
+  const [headerVisible, setHeaderVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     if (zoomedImage) {
@@ -103,15 +106,49 @@ export default function HeroCarousel() {
     };
   }, [zoomedImage]);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHeaderVisible(true);
+        }
+      },
+      {threshold: 0.1}
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section style={{ padding: '4rem 0rem' }}>
+    <section ref={sectionRef} className={styles.carouselSection}>
       <div className="container">
         <div
+          className={styles.carouselHeader}
           style={{
-            margin: '0rem 2rem 1rem 2rem',
+            opacity: headerVisible ? 1 : 0,
+            transform: headerVisible ? 'translateY(0)' : 'translateY(20px)',
+            transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+          }}
+        >
+          <h2 className={styles.carouselTitle}>See Booklore in Action</h2>
+          <p className={styles.carouselSubtitle}>
+            A modern, beautiful interface designed for book lovers
+          </p>
+        
+        </div>
+        <div
+          style={{
+            margin: '0 1.5rem',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
+            opacity: headerVisible ? 1 : 0,
+            transform: headerVisible ? 'translateY(0)' : 'translateY(20px)',
+            transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s',
           }}
         >
           <Splide
@@ -123,52 +160,70 @@ export default function HeroCarousel() {
               focus: 'center',
               pagination: true,
               arrows: true,
-              gap: '1rem',
+              gap: '1.5rem',
               autoplay: true,
-              interval: 3000,
+              interval: 4000,
               pauseOnHover: true,
               lazyLoad: 'nearby',
               preloadPages: 1,
               breakpoints: {
                 768: {
                   perPage: 1,
+                  gap: '1rem',
                 },
                 1024: {
                   perPage: 2,
+                  gap: '1rem',
                 },
               },
-            }}>
+            }}
+          >
             {carouselSlides.map((slide, index) => (
               <SplideSlide key={slide.id}>
                 <div
                   style={{
                     position: 'relative',
                     width: '100%',
-                    height: '325px',
-                    borderRadius: '10px',
+                    height: '300px',
+                    borderRadius: '12px',
                     overflow: 'hidden',
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    cursor: 'zoom-in'
+                    cursor: 'zoom-in',
+                    boxShadow: '0 8px 30px rgba(0, 0, 0, 0.12)',
+                    transition: 'all 0.3s ease',
                   }}
-                  onClick={() => setZoomedImage({ src: slide.image, alt: slide.title })}
+                  onClick={() => setZoomedImage({src: slide.image, alt: slide.title})}
                   tabIndex={0}
                   role="button"
                   aria-label={`Zoom ${slide.title}`}
-                  onKeyDown={e => {
-                    if (e.key === 'Enter' || e.key === ' ') setZoomedImage({ src: slide.image, alt: slide.title });
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ')
+                      setZoomedImage({src: slide.image, alt: slide.title});
                   }}
                 >
                   <img
                     src={index < 3 ? slide.image : undefined}
                     data-splide-lazy={index >= 3 ? slide.image : undefined}
                     alt={slide.title}
-                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                    style={{width: '100%', height: '100%', objectFit: 'contain'}}
                   />
-                  <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, padding: '1.5rem', background: 'linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 90%)', color: '#fff' }}>
-                    <h3 style={{ margin: 0, fontSize: '1.2rem' }}>{slide.title}</h3>
-                    <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem' }}>{slide.description}</p>
+                  <div
+                    style={{
+                      position: 'absolute',
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      padding: '1.5rem 1rem 1rem',
+                      background: 'linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%)',
+                      color: '#fff',
+                    }}
+                  >
+                    <h3 style={{margin: 0, fontSize: '1rem', fontWeight: 600}}>{slide.title}</h3>
+                    <p style={{margin: '0.25rem 0 0 0', fontSize: '0.8rem', opacity: 0.85}}>
+                      {slide.description}
+                    </p>
                   </div>
                 </div>
               </SplideSlide>
@@ -185,12 +240,12 @@ export default function HeroCarousel() {
             left: 0,
             width: '100vw',
             height: '100vh',
-            background: 'rgba(0,0,0,0.92)',
+            background: 'rgba(0,0,0,0.95)',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
             cursor: 'zoom-out',
-            transition: 'background 0.2s',
+            backdropFilter: 'blur(10px)',
           }}
           onClick={() => setZoomedImage(null)}
           tabIndex={-1}
@@ -203,24 +258,25 @@ export default function HeroCarousel() {
             style={{
               maxWidth: '90vw',
               maxHeight: '90vh',
-              borderRadius: '12px',
-              boxShadow: '0 4px 32px rgba(0,0,0,0.5)',
-              background: '#222',
+              borderRadius: '16px',
+              boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
+              background: '#1a1a2e',
             }}
-            onClick={e => e.stopPropagation()}
+            onClick={(e) => e.stopPropagation()}
           />
           <button
             onClick={() => setZoomedImage(null)}
             aria-label="Close"
             style={{
               position: 'fixed',
-              top: 32,
-              right: 32,
-              background: 'rgba(0,0,0,0.7)',
-              border: 'none',
+              top: 24,
+              right: 24,
+              background: 'rgba(255,255,255,0.1)',
+              backdropFilter: 'blur(10px)',
+              border: '1px solid rgba(255,255,255,0.2)',
               color: '#fff',
-              fontSize: '2rem',
-              borderRadius: '50%',
+              fontSize: '1.5rem',
+              borderRadius: '12px',
               width: 48,
               height: 48,
               cursor: 'pointer',
@@ -228,7 +284,7 @@ export default function HeroCarousel() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
+              transition: 'all 0.2s ease',
             }}
           >
             &times;
@@ -238,4 +294,3 @@ export default function HeroCarousel() {
     </section>
   );
 }
-

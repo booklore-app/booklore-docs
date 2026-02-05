@@ -1,88 +1,157 @@
 import Link from '@docusaurus/Link';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import styles from './index.module.css';
 
 function HomepageHeader() {
   const [showDemoDialog, setShowDemoDialog] = useState(false);
-  
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
   return (
     <>
       <header className={styles.heroBanner}>
-        <div className={styles.heroBackground}></div>
+        <div className={styles.heroBackground}>
+          <div className={styles.floatingOrb1}></div>
+          <div className={styles.floatingOrb2}></div>
+          <div className={styles.floatingOrb3}></div>
+          <div className={styles.gridPattern}></div>
+        </div>
         <div className="container">
-          <div className={styles.heroContent}>
-            <span className={styles.badge}>✨ Your Personal Knowledge Base</span>
+          <div className={`${styles.heroContent} ${isVisible ? styles.heroVisible : ''}`}>
+            <span className={styles.badge}>
+              <span className={styles.badgePulse}></span>
+              Your Personal Knowledge Base
+            </span>
             <h1 className={styles.heroTitle}>
               Welcome to <span className={styles.gradient}>Booklore</span>
             </h1>
             <p className={styles.heroTagline}>
-              The modern way to organize, search, and preserve your knowledge.
-              Build your digital library with ease.
+              A modern way to organize, read, and own your digital library.
             </p>
             <div className={styles.buttons}>
               <Link
                 className={`button button--primary button--lg ${styles.primaryButton}`}
                 to="/docs/getting-started">
-                Get Started →
+                <span>Get Started</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
               </Link>
               <button
-                className={`button button--secondary button--lg ${styles.secondaryButton}`}
+                className={`button button--lg ${styles.demoButton}`}
                 onClick={() => setShowDemoDialog(true)}>
-                Try Live Demo
+                <span className={styles.demoButtonIcon}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="5 3 19 12 5 21 5 3"/>
+                  </svg>
+                </span>
+                <span>Try Live Demo</span>
               </button>
+            </div>
+            <div className={styles.linksRow}>
+              <a
+                href="https://github.com/booklore-app/booklore"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.linkItem}>
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                  <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+                </svg>
+                <span>9K+ Stars</span>
+              </a>
+              <a
+                href="https://github.com/booklore-app/booklore"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.linkItem}>
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"/>
+                </svg>
+                <span>Self-Hosted</span>
+              </a>
+              <a
+                href="https://discord.gg/Ee5hd458Uz"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.linkItem}>
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                  <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+                </svg>
+                <span>Discord</span>
+              </a>
+              <a
+                href="https://opencollective.com/booklore"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.linkItem}>
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                  <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12c2.54 0 4.894-.79 6.834-2.135l-3.107-3.109a7.715 7.715 0 1 1 0-13.512l3.107-3.109A11.943 11.943 0 0 0 12 0zm9.865 5.166l-3.109 3.107A7.67 7.67 0 0 1 19.715 12a7.682 7.682 0 0 1-.959 3.727l3.109 3.107A11.943 11.943 0 0 0 24 12c0-2.54-.79-4.894-2.135-6.834z"/>
+                </svg>
+                <span>Sponsor</span>
+              </a>
             </div>
           </div>
         </div>
       </header>
-      
+
       {showDemoDialog && (
         <div className={styles.modalOverlay} onClick={() => setShowDemoDialog(false)}>
           <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
             <button className={styles.modalClose} onClick={() => setShowDemoDialog(false)}>
-              ×
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M18 6L6 18M6 6l12 12"/>
+              </svg>
             </button>
-            <h2 className={styles.modalTitle}>🎮 Live Demo: Explore BookLore in Action</h2>
-            <p className={styles.modalDescription}>
-              Experience BookLore's features in a live environment before deploying your own instance.
-            </p>
-            
+
+            <div className={styles.modalHeader}>
+              <div className={styles.modalIcon}>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M13.8 12H3"/>
+                </svg>
+              </div>
+              <div>
+                <h2 className={styles.modalTitle}>Try Live Demo</h2>
+                <p className={styles.modalSubtitle}>Experience Booklore before installing</p>
+              </div>
+            </div>
+
             <div className={styles.demoCredentials}>
-              <div className={styles.credentialItem}>
-                <h3 className={styles.credentialTitle}>🌐 Demo URL</h3>
-                <div className={styles.credentialValue}>
-                  <a href="https://demo.booklore.org" target="_blank" rel="noopener noreferrer">
-                    demo.booklore.org
-                  </a>
-                </div>
+              <div className={styles.credentialRow}>
+                <span className={styles.credentialLabel}>URL</span>
+                <a href="https://demo.booklore.org" target="_blank" rel="noopener noreferrer" className={styles.credentialLink}>
+                  demo.booklore.org
+                </a>
               </div>
-              <div className={styles.credentialItem}>
-                <h3 className={styles.credentialTitle}>👤 Username</h3>
-                <div className={styles.credentialValue}>
-                  <code>booklore</code>
-                </div>
+              <div className={styles.credentialRow}>
+                <span className={styles.credentialLabel}>Username</span>
+                <code className={styles.credentialCode}>booklore</code>
               </div>
-              <div className={styles.credentialItem}>
-                <h3 className={styles.credentialTitle}>🔑 Password</h3>
-                <div className={styles.credentialValue}>
-                  <code>9HC20PGGfitvWaZ1</code>
-                </div>
+              <div className={styles.credentialRow}>
+                <span className={styles.credentialLabel}>Password</span>
+                <code className={styles.credentialCode}>9HC20PGGfitvWaZ1</code>
               </div>
             </div>
-            
+
             <div className={styles.modalNote}>
-              <strong>⚠️ Note:</strong> Demo account has standard user permissions only.
-              Admin features (user management, library setup) require a self-hosted instance.
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+              </svg>
+              <span>Demo has standard user permissions. Admin features require self-hosting.</span>
             </div>
-            
-            <div className={styles.modalActions}>
-              <a
-                href="https://demo.booklore.org"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`button button--primary ${styles.primaryButton}`}>
-                Launch Demo →
-              </a>
-            </div>
+
+            <a
+              href="https://demo.booklore.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.launchButton}>
+              Launch Demo
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M7 17L17 7M17 7H7M17 7v10"/>
+              </svg>
+            </a>
           </div>
         </div>
       )}
