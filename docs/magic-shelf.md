@@ -89,12 +89,18 @@ Magic Shelves can filter on any of the following book metadata fields, organized
 | Last Read | `lastReadTime` | Date | Last time you opened the book |
 | Added On | `addedOn` | Date | When the book was added to your library |
 
+### Quality & Metadata
+
+| Field | Key | Type | Description |
+|---|---|---|---|
+| Metadata Score | `metadataScore` | Decimal (0-100) | BookLore's metadata match confidence |
+| Metadata Presence | `metadataPresence` | Composite | Check whether a specific metadata field is populated or empty. Uses `Has`/`Has Not` operators with a sub-selector of ~45 metadata fields |
+
 ### Ratings & Reviews
 
 | Field | Key | Type | Description |
 |---|---|---|---|
 | Personal Rating | `personalRating` | Decimal (0-10) | Your own rating |
-| Metadata Score | `metadataScore` | Decimal (0-100) | BookLore's metadata match confidence |
 | Amazon Rating | `amazonRating` | Decimal (0-5) | Amazon average rating |
 | Amazon Reviews | `amazonReviewCount` | Number | Amazon review count |
 | Goodreads Rating | `goodreadsRating` | Decimal (0-5) | Goodreads average rating |
@@ -187,7 +193,7 @@ Used exclusively with date fields (`publishedDate`, `dateFinished`, `lastReadTim
 
 ### Composite Field Operators
 
-Used only with `seriesStatus`, `seriesGaps`, and `seriesPosition`. These evaluate the entire series a book belongs to.
+Used with `seriesStatus`, `seriesGaps`, `seriesPosition`, and `metadataPresence`. Series fields evaluate the entire series a book belongs to. `metadataPresence` checks whether a specific metadata field is populated on the book.
 
 | Operator | Key | Description |
 |---|---|---|
@@ -197,6 +203,8 @@ Used only with `seriesStatus`, `seriesGaps`, and `seriesPosition`. These evaluat
 **Series Status values:** `reading`, `not_started`, `fully_read`, `completed`, `ongoing`
 **Series Gaps values:** `any_gap`, `missing_first`, `missing_latest`, `duplicate_number`
 **Series Position values:** `first_in_series`, `last_in_series`, `next_unread`
+
+**Metadata Presence values:** Any metadata field key from the sub-selector dropdown, including: `title`, `subtitle`, `description`, `thumbnailUrl`, `publisher`, `publishedDate`, `language`, `pageCount`, `authors`, `categories`, `moods`, `tags`, `seriesName`, `seriesNumber`, `seriesTotal`, `isbn13`, `isbn10`, `asin`, `ageRating`, `contentRating`, `personalRating`, `amazonRating`, `goodreadsRating`, `hardcoverRating`, `ranobedbRating`, `lubimyczytacRating`, `audibleRating`, `amazonReviewCount`, `goodreadsReviewCount`, `hardcoverReviewCount`, `audibleReviewCount`, `goodreadsId`, `hardcoverId`, `googleId`, `audibleId`, `lubimyczytacId`, `ranobedbId`, `comicvineId`, `narrator`, `abridged`, `audiobookDuration`, `comicCharacters`, `comicTeams`, `comicLocations`, `comicPencillers`, `comicInkers`, `comicColorists`, `comicLetterers`, `comicCoverArtists`, `comicEditors`
 
 ---
 
@@ -996,6 +1004,101 @@ Books without any mood tags assigned. Moods like *Dark*, *Cozy*, *Suspenseful*, 
   "join": "and",
   "rules": [
     { "field": "moods", "operator": "is_empty", "value": null }
+  ]
+}
+```
+
+#### 86. Missing Cover or Description
+
+A quick audit shelf that catches any book missing a cover image or a description. These are the two most visible pieces of metadata — without them, books look incomplete in your library and are harder to browse. Using `metadataPresence` with `Has Not` makes this a single rule per field instead of juggling `is_empty` across different field types.
+
+```json
+{
+  "type": "group",
+  "join": "or",
+  "rules": [
+    { "field": "metadataPresence", "operator": "not_equals", "value": "thumbnailUrl" },
+    { "field": "metadataPresence", "operator": "not_equals", "value": "description" }
+  ]
+}
+```
+
+#### 87. Books Without External IDs
+
+Books that are missing key external identifiers like Goodreads ID, ASIN, and Google ID. Without these, automatic metadata lookups and cross-referencing across platforms won't work. This shelf helps you identify which books need a manual metadata refresh.
+
+```json
+{
+  "type": "group",
+  "join": "and",
+  "rules": [
+    { "field": "metadataPresence", "operator": "not_equals", "value": "goodreadsId" },
+    { "field": "metadataPresence", "operator": "not_equals", "value": "asin" },
+    { "field": "metadataPresence", "operator": "not_equals", "value": "googleId" }
+  ]
+}
+```
+
+#### 88. Audiobooks Missing Narrator Info
+
+Audiobooks that have a duration recorded but no narrator name. The narrator is one of the most important factors in audiobook quality, so having this data helps you search and filter your audio collection effectively.
+
+```json
+{
+  "type": "group",
+  "join": "and",
+  "rules": [
+    { "field": "metadataPresence", "operator": "equals", "value": "audiobookDuration" },
+    { "field": "metadataPresence", "operator": "not_equals", "value": "narrator" }
+  ]
+}
+```
+
+#### 89. Well-Catalogued Books
+
+The gold standard shelf. Books that have all the essentials: cover image, description, authors, categories, and at least one external ID. These are the books whose metadata is in great shape and need no further attention.
+
+```json
+{
+  "type": "group",
+  "join": "and",
+  "rules": [
+    { "field": "metadataPresence", "operator": "equals", "value": "thumbnailUrl" },
+    { "field": "metadataPresence", "operator": "equals", "value": "description" },
+    { "field": "metadataPresence", "operator": "equals", "value": "authors" },
+    { "field": "metadataPresence", "operator": "equals", "value": "categories" },
+    {
+      "type": "group",
+      "join": "or",
+      "rules": [
+        { "field": "metadataPresence", "operator": "equals", "value": "goodreadsId" },
+        { "field": "metadataPresence", "operator": "equals", "value": "isbn13" },
+        { "field": "metadataPresence", "operator": "equals", "value": "asin" }
+      ]
+    }
+  ]
+}
+```
+
+#### 90. Comics Missing Creator Credits
+
+Comic books that have comic metadata but are missing key creator information like pencillers, inkers, or cover artists. Useful for completionists who want their comic collection properly credited.
+
+```json
+{
+  "type": "group",
+  "join": "and",
+  "rules": [
+    { "field": "metadataPresence", "operator": "equals", "value": "comicCharacters" },
+    {
+      "type": "group",
+      "join": "or",
+      "rules": [
+        { "field": "metadataPresence", "operator": "not_equals", "value": "comicPencillers" },
+        { "field": "metadataPresence", "operator": "not_equals", "value": "comicInkers" },
+        { "field": "metadataPresence", "operator": "not_equals", "value": "comicCoverArtists" }
+      ]
+    }
   ]
 }
 ```
