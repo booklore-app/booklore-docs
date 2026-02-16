@@ -12,6 +12,7 @@ Bookdrop may not reliably detect new files on network-mounted storage (e.g., NFS
 - Adjust mount options to enable notification support
 - Restart Booklore to trigger a manual rescan
 - Open the Bookdrop UI and click the manual "Refresh" button to force a reload
+- You can also enable periodic scanning for the Bookdrop folder in **Settings → Tasks**.
 :::
 
 :::tip[Pro Tip]
