@@ -3,7 +3,7 @@ title: Beta Testing Setup
 unlisted: true
 ---
 
-# Booklore Beta Testing Setup
+# Beta Testing Setup
 
 Thank you for helping us test the latest features! This guide will help you set up a **local testing environment** that stays completely separate from your "real" book library.
 
