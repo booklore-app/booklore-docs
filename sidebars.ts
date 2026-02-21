@@ -37,6 +37,8 @@ const sidebars: SidebarsConfig = {
         {type: 'doc', id: 'library/setup-first-library', label: '🆕 Setup First Library'},
         {type: 'doc', id: 'library/edit-library', label: '✏️ Edit Library'},
         {type: 'doc', id: 'library/folder-structure', label: '📁 Folder Structure'},
+        {type: 'doc', id: 'library/physical-books', label: '📖 Physical Books'},
+        {type: 'doc', id: 'library/duplicate-detection', label: '🔍 Duplicate Detection'},
       ],
     },
     {
@@ -58,6 +60,8 @@ const sidebars: SidebarsConfig = {
       label: '🗂️ Metadata',
       collapsed: true,
       items: [
+        {type: 'doc', id: 'metadata/metadata-center', label: '📖 Metadata Center'},
+        {type: 'doc', id: 'metadata/metadata-settings', label: '⚙️ Metadata Settings'},
         {type: 'doc', id: 'metadata/metadata-fetch-configuration', label: '🔃 Fetch Configuration'},
         {type: 'doc', id: 'metadata/file-naming-patterns', label: '🗒️ File Naming Patterns'},
         {type: 'doc', id: 'metadata/metadata-manager', label: '🧙 Metadata Manager'},
@@ -87,6 +91,10 @@ const sidebars: SidebarsConfig = {
         {type: 'doc', id: 'tools/custom-fonts', label: '🔤 Custom Fonts'},
         {type: 'doc', id: 'tools/cover-art-settings', label: '🖼️ Cover Art Settings'},
         {type: 'doc', id: 'tools/telemetry', label: '📊 Telemetry'},
+        {type: 'doc', id: 'tools/audit-logs', label: '🛡️ Audit Logs'},
+        {type: 'doc', id: 'tools/user-management', label: '👥 User Management'},
+        {type: 'doc', id: 'tools/devices', label: '📱 Devices'},
+        {type: 'doc', id: 'tools/global-preferences', label: '⚙️ Global Preferences'},
       ],
     },
     {
@@ -113,6 +121,13 @@ const sidebars: SidebarsConfig = {
       id: 'shelf',
       label: '📁 Shelf',
     },
+    {
+      type: 'doc',
+      id: 'series',
+      label: '📚 Series',
+    },
+    {type: 'doc', id: 'reader-preferences', label: '📖 Reader Preferences'},
+    {type: 'doc', id: 'view-preferences', label: '👁️ View Preferences'},
     {type: 'doc', id: 'email-setup', label: '✉️ Email Setup'},
     {
       type: 'category',
