@@ -116,7 +116,7 @@ identity_providers:
 
 Now configure Booklore to use Authelia as the authentication provider. This is the final configuration step:
 
-![Booklore OIDC Settings](/img/authentication/authelia/authelia-01.jpg)
+![Booklore OIDC Settings](/img/authentication/authelia/booklore-oidc-settings.jpg)
 
 1. **Open Booklore Settings**  
    Navigate to **Settings → Authentication** in your Booklore admin interface. You'll need administrator privileges to access this section.
@@ -158,7 +158,7 @@ Verify that the integration works correctly before rolling it out to users. Test
    - You'll be redirected to Authelia for authentication
    - After logging in, you should be redirected back to Booklore
 
-![Booklore Opens](/img/authentication/authelia/authelia-02.jpg)
+![Booklore Opens](/img/authentication/authelia/login-success.jpg)
 
 :::success[Integration Successful!]
 Your Authelia integration is working correctly. You can now roll it out to your users.
@@ -172,7 +172,7 @@ Your Authelia integration is working correctly. You can now roll it out to your 
 
 If you need to temporarily disable or switch authentication methods (for maintenance or troubleshooting):
 
-![Disable OIDC](/img/authentication/authelia/authelia-03.jpg)
+![Disable OIDC](/img/authentication/authelia/disable-oidc.jpg)
 
 1. **Navigate to Authentication Settings**  
    Go to **Booklore → Settings → Authentication**
@@ -189,7 +189,7 @@ If you need to temporarily disable or switch authentication methods (for mainten
 4. **Standard Login Returns**  
    You'll be redirected to the standard Booklore login page with username/password fields
 
-![Booklore Login](/img/authentication/authelia/authelia-04.jpg)
+![Booklore Login](/img/authentication/authelia/standard-login.jpg)
 
 :::note[Configuration Persistence]
 Disabling OIDC doesn't delete your Authelia configuration. All settings (Client ID, Issuer URL) are preserved. You can re-enable it anytime by toggling the switch back on. Users who were authenticated via Authelia can still log in with standard credentials if they have them configured.

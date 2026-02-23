@@ -17,13 +17,13 @@ Begin by configuring Booklore as an OIDC client in Pocket ID:
 1. **Navigate to OIDC Clients**  
    Open your Pocket ID admin panel and navigate to **Settings → Administration → OIDC Clients**. Click the **"Add OIDC Client"** button to begin the setup process.
 
-   ![Access OIDC Client UI](/img/authentication/pocket-id/pocket-id--1-create-client-access-ui.jpg)
+   ![Access OIDC Client UI](/img/authentication/pocket-id/create-client.jpg)
 
 2. **Configure Client Details**
 
    Fill in the OIDC client configuration form with the following information:
 
-   ![Configure Client](/img/authentication/pocket-id/pocket-id--2-create-client-fill-info.jpg)
+   ![Configure Client](/img/authentication/pocket-id/client-details.jpg)
 
    - **Name:** `Booklore` (or your preferred name) - This name will be displayed to users in the Pocket ID dashboard
    - **Callback URLs:** Configure the redirect URIs where Pocket ID should send users after authentication:
@@ -60,7 +60,7 @@ Begin by configuring Booklore as an OIDC client in Pocket ID:
 
 After creating the OIDC client, you'll need to copy the credentials for Booklore configuration:
 
-![Copy Client ID](/img/authentication/pocket-id/pocket-id--3-create-client-copy-client-id.jpg)
+![Copy Client ID](/img/authentication/pocket-id/copy-client-id.jpg)
 
 1. **Copy Client ID**  
    After saving the client configuration, a **Client ID** will be automatically generated. This is a unique identifier for your Booklore application.
@@ -82,7 +82,7 @@ After creating the OIDC client, you'll need to copy the credentials for Booklore
 
 Now configure Booklore to use Pocket ID as the authentication provider. This is the final configuration step:
 
-![Configure Booklore](/img/authentication/pocket-id/pocket-id--4-configure-booklore.jpg)
+![Configure Booklore](/img/authentication/pocket-id/booklore-oidc-settings.jpg)
 
 1. **Open Booklore Settings**  
    Navigate to **Settings → Authentication** in your Booklore admin interface. You'll need administrator privileges to access this section.
@@ -123,13 +123,13 @@ Verify that the integration works correctly:
    
    Navigate to **Settings → My Apps** in your Pocket ID admin panel. You should see the Booklore application card displayed.
 
-   ![Booklore App Card](/img/authentication/pocket-id/pocket-id--5-booklore-app-card.jpg)
+   ![Booklore App Card](/img/authentication/pocket-id/app-card.jpg)
 
 2. **Launch Booklore**
    
    Click on the **"Booklore"** app card to initiate authentication. Pocket ID will automatically handle the OAuth flow and redirect you to Booklore.
 
-   ![Booklore Opens](/img/authentication/pocket-id/pocket-id--6-booklore-opens.jpg)
+   ![Booklore Opens](/img/authentication/pocket-id/login-success.jpg)
 
 3. **Verify Successful Login**
    
@@ -154,7 +154,7 @@ Verify that the integration works correctly:
 
 If you need to temporarily disable or switch authentication methods (for maintenance or troubleshooting):
 
-![Disable OIDC](/img/authentication/pocket-id/pocket-id--7-disable-pocket-id.jpg)
+![Disable OIDC](/img/authentication/pocket-id/disable-oidc.jpg)
 
 1. **Navigate to Authentication Settings**  
    Go to **Booklore → Settings → Authentication**
@@ -171,7 +171,7 @@ If you need to temporarily disable or switch authentication methods (for mainten
 4. **Standard Login Returns**  
    You'll be redirected to the standard Booklore login page with username/password fields
 
-![Booklore Login](/img/authentication/pocket-id/pocket-id--8-booklore-login-screen.jpg)
+![Booklore Login](/img/authentication/pocket-id/standard-login.jpg)
 
 :::note[Configuration Persistence]
 Disabling OIDC doesn't delete your Pocket ID configuration. All settings (Client ID, Issuer URL) are preserved. You can re-enable it anytime by toggling the switch back on. Users who were authenticated via Pocket ID can still log in with standard credentials if they have them configured.

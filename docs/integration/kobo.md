@@ -97,7 +97,7 @@ Before you can sync books to your Kobo eReader, you need to obtain your unique A
    - You can regenerate the token at any time if needed
    - Regenerating will require updating your Kobo configuration
 
-![Booklore Device Settings](/img/kobo/kobo-1.jpg)
+![Booklore Device Settings](/img/kobo/device-settings.jpg)
 
 :::info[Admin Note]
 Kobo Sync is enabled by default for admin users. Other users may need this permission granted by an administrator.
@@ -120,7 +120,7 @@ You'll need to modify your Kobo's configuration file to point it to your Booklor
    - **Enable viewing hidden files** in your file manager
    - Navigate to `.kobo/Kobo/Kobo eReader.conf`
 
-   ![Open Kobo eReader.conf](/img/kobo/kobo-2.jpg)
+   ![Open Kobo eReader.conf](/img/kobo/config-file-location.jpg)
 
 3. **Open the Configuration:**
    - Open `Kobo eReader.conf` in a text editor (Notepad, TextEdit, etc.)
@@ -134,10 +134,10 @@ You'll need to modify your Kobo's configuration file to point it to your Booklor
 
 2. **Update the Endpoint:**
    - **Before modification:**
-   ![Before change](/img/kobo/kobo-3.jpg)
+   ![Before change](/img/kobo/config-before.jpg)
 
    - **After modification:**
-   ![After change](/img/kobo/kobo-4.jpg)
+   ![After change](/img/kobo/config-after.jpg)
 
 ### Configuration Options
 
@@ -191,13 +191,13 @@ Follow these steps to add books from your Booklore library to your Kobo eReader.
    - Choose your **Kobo shelf** from the list
    - The book will be added to your Kobo shelf
    
-   ![Move book to Kobo shelf](/img/kobo/kobo-5.jpg)
+   ![Move book to Kobo shelf](/img/kobo/assign-shelf.jpg)
 
 3. **Verify books are added:**
    - Repeat for all books you want on your Kobo
    - Your Kobo shelf will show all selected books before syncing
    
-   ![Kobo shelf with books](/img/kobo/kobo-6.jpg)
+   ![Kobo shelf with books](/img/kobo/shelf-with-books.jpg)
 
 ### Syncing to Your Kobo Device
 
@@ -208,13 +208,13 @@ Follow these steps to add books from your Booklore library to your Kobo eReader.
    - Tap the **sync icon** at the top of the screen
    - Tap **"Sync sow"**
    
-   ![Sync Now button](/img/kobo/kobo-7.jpg)
+   ![Sync Now button](/img/kobo/sync-button.jpg)
 
 3. **Verify sync completion:**
    - Wait for the sync process to complete
    - Your Booklore books will now appear on your Kobo eReader
    
-   ![Books synced to Kobo](/img/kobo/kobo-8.jpg)
+   ![Books synced to Kobo](/img/kobo/synced-books.jpg)
 
 :::tip[Sync Tip]
 The sync process may take a few moments depending on the number of books and your internet connection speed.
@@ -232,24 +232,24 @@ You can remove books from your Kobo device in two ways. When you remove a book, 
    - Tap the three dots icon on the book cover
    - Select **"Remove"**
    
-   ![Remove book menu](/img/kobo/kobo-9.jpg)
+   ![Remove book menu](/img/kobo/remove-menu.jpg)
 
 2. **Confirm removal:**
    - Select **"Remove from My Books"**
    
-   ![Confirm removal](/img/kobo/kobo-10.jpg)
+   ![Confirm removal](/img/kobo/remove-confirm.jpg)
 
 3. **Sync the changes:**
    - Tap **"Sync Now"** at the top of the screen
    - The book will be removed from both your Kobo device and your Kobo shelf in Booklore
    
-   ![Sync after removal](/img/kobo/kobo-11.jpg)
+   ![Sync after removal](/img/kobo/sync-after-removal.jpg)
 
 4. **Verify in Booklore:**
    - Check your Kobo shelf in Booklore - the book will no longer appear there
    - The book remains in your main library, just not on the Kobo shelf
    
-   ![Book removed from Kobo shelf](/img/kobo/kobo-12.jpg)
+   ![Book removed from Kobo shelf](/img/kobo/shelf-after-removal.jpg)
 
 ### Method 2: Remove via Booklore
 
@@ -295,7 +295,7 @@ By default, only admin users have Kobo Sync enabled. To allow other users to syn
    - Check the **"Kobo Sync"** permission checkbox
    - Click **Save** to apply the changes
 
-   ![Grant Kobo Sync Permission](/img/kobo/kobo-13.jpg)
+   ![Grant Kobo Sync Permission](/img/kobo/user-permissions.jpg)
 
 ### What Users Get Access To
 
@@ -320,7 +320,7 @@ You can revoke Kobo Sync permission at any time by unchecking the permission and
 
 Quickly check your Kobo read progress right on the book’s detail page, see a percentage and a red progress bar update in real time.
 
-![Booklore Synced Progress](/img/kobo/kobo-14.jpg)
+![Booklore Synced Progress](/img/kobo/synced-progress.jpg)
 
 - In Booklore, you can view synced progress on the book details page as a percentage and as a red progress bar under the cover.
 - To reset progress, click **Reset Progress**. This only resets Kobo progress in Booklore; the device’s read status remains unchanged.

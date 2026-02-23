@@ -2,7 +2,7 @@
 
 Add books to your library by dropping files into a folder. Bookdrop watches for new files, extracts metadata, optionally enriches it from online sources, and queues everything for review before importing.
 
-![Bookdrop Processing](/img/bookdrop/bookdrop-1.jpg)
+![Bookdrop Processing](/img/bookdrop/processing-status.jpg)
 
 :::warning[Network Storage Limitation]
 Bookdrop may not reliably detect new files on network-mounted storage (NFS, SMB). If files aren't detected, use a local folder, restart BookLore, or click the manual **Refresh** button in the Bookdrop UI.

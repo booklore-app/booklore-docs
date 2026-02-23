@@ -16,14 +16,14 @@ KOReader sync **only works for books that have been downloaded from Booklore to 
 
 Before you can sync your reading progress, you need to enable and configure KOReader sync in your Booklore server. This involves setting up credentials and permissions for KOReader access.
 
-![Booklore Device Settings](/img/koreader/1.jpg)
+![Booklore Device Settings](/img/koreader/device-settings.jpg)
 
 1. Go to **Settings** > **Device** in Booklore.
 2. Click the **Edit** button to enable input fields for username and password.
 
 ---
 
-![Booklore KOReader Credentials](/img/koreader/2.jpg)
+![Booklore KOReader Credentials](/img/koreader/credentials-setup.jpg)
 
 1. Enter a username for KOReader.
 2. Enter a strong password for KOReader.
@@ -33,7 +33,7 @@ Before you can sync your reading progress, you need to enable and configure KORe
 
 ---
 
-![Booklore User Permissions](/img/koreader/3.jpg)
+![Booklore User Permissions](/img/koreader/user-permissions.jpg)
 
 1. To allow users to access KOReader sync, assign them the **KOReader Sync** permission in **Settings** > **User**.
    - Only users with this permission can log in and sync their reading progress from KOReader.
@@ -46,13 +46,13 @@ Before you can sync your reading progress, you need to enable and configure KORe
 
 Once Booklore is configured, set up KOReader to connect to your Booklore server and begin syncing your reading progress.
 
-![KOReader Settings](/img/koreader/5.jpg)
+![KOReader Settings](/img/koreader/settings-menu.jpg)
 
 1. Open KOReader and go to **Settings** > **Progress Sync**.
 
 ---
 
-![KOReader Custom Sync](/img/koreader/6.jpg)
+![KOReader Custom Sync](/img/koreader/custom-sync-server.jpg)
 
 1. Select **Custom Sync Server**.
 2. Enter the API URL you copied from Booklore (e.g., `http://your-booklore-domain/api/koreader`).
@@ -60,7 +60,7 @@ Once Booklore is configured, set up KOReader to connect to your Booklore server 
 
 ---
 
-![KOReader Login](/img/koreader/7.jpg)
+![KOReader Login](/img/koreader/login-credentials.jpg)
 
 1. Select **Register / Login**.
 2. Enter the username you set in Booklore.
@@ -69,15 +69,15 @@ Once Booklore is configured, set up KOReader to connect to your Booklore server 
 
 ---
 
-![KOReader Push/Pull](/img/koreader/8.jpg)
+![KOReader Push/Pull](/img/koreader/push-pull-options.jpg)
 
 1. To push your reading progress from KOReader to Booklore, select **Push progress from this device**.
 2. To pull your reading progress from Booklore to KOReader, select **Pull progress from other devices now**.
 
 ---
 
-![KOReader Matching](/img/koreader/9.jpg)
-![KOReader Matching 2](/img/koreader/10.jpg)
+![KOReader Matching](/img/koreader/matching-method.jpg)
+![KOReader Matching 2](/img/koreader/binary-matching.jpg)
 
 1. Ensure the **Document matching method** is set to **Binary** for proper syncing.
 
@@ -87,7 +87,7 @@ Once Booklore is configured, set up KOReader to connect to your Booklore server 
 
 Quickly check your KOReader sync status right on the book’s detail page, see a percentage and a yellow progress bar update in real time.
 
-![Booklore Synced Progress](/img/koreader/11.jpg)
+![Booklore Synced Progress](/img/koreader/synced-progress.jpg)
 
 - In Booklore, you can view synced progress on the book details page as a percentage and as a yellow progress bar under the cover.
 - To reset progress, click **Reset Progress**. This only resets KOReader progress in Booklore; the device’s read status remains unchanged.

@@ -17,11 +17,11 @@ Begin by setting up Booklore as an application in Authentik with OAuth2 authenti
 1. **Navigate to Applications**  
    Open your Authentik dashboard and click **"Create a new application"**. This will launch a setup wizard that guides you through the process.
 
-   ![Create Application](/img/authentication/authentik/authentik-1.jpg)
+   ![Create Application](/img/authentication/authentik/create-application.jpg)
 
 2. **Configure Application Details**
 
-   ![Application Configuration](/img/authentication/authentik/authentik-2.jpg)
+   ![Application Configuration](/img/authentication/authentik/application-details.jpg)
 
    Fill in the application section:
     - **Name:** `Booklore` (or your preferred name) - This name will be displayed to users on the Authentik login page
@@ -30,14 +30,14 @@ Begin by setting up Booklore as an application in Authentik with OAuth2 authenti
 
 3. **Select Provider Type**
 
-   ![Choose Provider](/img/authentication/authentik/authentik-3.jpg)
+   ![Choose Provider](/img/authentication/authentik/provider-type.jpg)
 
     - Choose **OAuth2/OpenID Provider** from the available options
     - Click **Next** to configure provider settings
 
 4. **Configure Provider Settings**
 
-   ![Configure Provider](/img/authentication/authentik/authentik-4.jpg)
+   ![Configure Provider](/img/authentication/authentik/provider-settings.jpg)
 
     - **Name:** `Booklore OAuth2` (or your preferred name) - This is the internal provider name
     - **Authorization Flow:** Select `default-provider-authorization-implicit-consent`
@@ -52,7 +52,7 @@ Begin by setting up Booklore as an application in Authentik with OAuth2 authenti
 
    Configure where Authentik should redirect users after authentication. These URIs are critical for security:
 
-   ![Redirect URIs](/img/authentication/authentik/authentik-5.jpg)
+   ![Redirect URIs](/img/authentication/authentik/redirect-uris.jpg)
 
    Add the following URIs (replace `<your-booklore-domain>` with your actual domain):
 
@@ -85,7 +85,7 @@ Begin by setting up Booklore as an application in Authentik with OAuth2 authenti
 
    Define what information Authentik will share with Booklore. Each scope grants access to specific user data:
 
-   ![OAuth Scopes](/img/authentication/authentik/authentik-6.jpg)
+   ![OAuth Scopes](/img/authentication/authentik/oauth-scopes.jpg)
 
    Add the following scopes (all are required):
     - ✉️ **email** - User's email address for notifications and account identification
@@ -100,7 +100,7 @@ Begin by setting up Booklore as an application in Authentik with OAuth2 authenti
 
    Control which users can access Booklore through Authentik. This step is crucial for access control:
 
-   ![Configure Bindings](/img/authentication/authentik/authentik-7.jpg)
+   ![Configure Bindings](/img/authentication/authentik/user-bindings.jpg)
 
    In the "Configure Bindings" section:
     - **Type:** Select **User** to bind individual users, or **Group** to bind entire groups
@@ -118,12 +118,12 @@ Begin by setting up Booklore as an application in Authentik with OAuth2 authenti
 
 Get the credentials needed to connect Booklore to Authentik. You'll need these in the next step:
 
-![Provider List](/img/authentication/authentik/authentik-8.jpg)
+![Provider List](/img/authentication/authentik/providers-list.jpg)
 
 1. **Navigate to Providers**  
    From the Authentik main page, go to **Applications → Providers** and select the provider you just created (it should be named `Booklore OAuth2` if you followed the naming convention)
 
-![Provider Credentials](/img/authentication/authentik/authentik-9.jpg)
+![Provider Credentials](/img/authentication/authentik/provider-credentials.jpg)
 
 2. **Copy Credentials**  
    You'll need two pieces of information from this screen:
@@ -139,7 +139,7 @@ Get the credentials needed to connect Booklore to Authentik. You'll need these i
 
 Now configure Booklore to use Authentik as the authentication provider. This is the final configuration step:
 
-![Booklore OIDC Settings](/img/authentication/authentik/authentik-10.jpg)
+![Booklore OIDC Settings](/img/authentication/authentik/booklore-oidc-settings.jpg)
 
 1. **Open Booklore Settings**  
    Navigate to **Settings → Authentication** in your Booklore admin interface. You'll need administrator privileges to access this section.
@@ -169,7 +169,7 @@ Now configure Booklore to use Authentik as the authentication provider. This is 
 
 Verify that the integration works correctly:
 
-![User Impersonation](/img/authentication/authentik/authentik-11.jpg)
+![User Impersonation](/img/authentication/authentik/user-impersonation.jpg)
 
 1. **Impersonate a User (Recommended for Testing)**
     - Go to **Authentik → Directory → Users**
@@ -182,7 +182,7 @@ Verify that the integration works correctly:
     - Navigate to your Booklore instance
     - Click "Login with Authentik" (or your configured provider name)
 
-![Authentik Login Page](/img/authentication/authentik/authentik-12.jpg)
+![Authentik Login Page](/img/authentication/authentik/login-page.jpg)
 
 2. **Access Booklore**
     - You'll see the Authentik login page with available applications
@@ -190,7 +190,7 @@ Verify that the integration works correctly:
     - Click the **"Booklore"** tile to initiate authentication
     - You should be automatically redirected and logged into Booklore
 
-![Booklore Homepage](/img/authentication/authentik/authentik-13.jpg)
+![Booklore Homepage](/img/authentication/authentik/booklore-homepage.jpg)
 
 3. **Verify User Information**
     - Check that your username and email are displayed correctly in Booklore
@@ -206,7 +206,7 @@ Verify that the integration works correctly:
 
 If you need to temporarily disable or switch authentication methods (for maintenance or troubleshooting):
 
-![Disable OIDC](/img/authentication/authentik/authentik-14.jpg)
+![Disable OIDC](/img/authentication/authentik/disable-oidc.jpg)
 
 1. **Navigate to Authentication Settings**  
    Go to **Booklore → Settings → Authentication**
@@ -223,7 +223,7 @@ If you need to temporarily disable or switch authentication methods (for mainten
 4. **Standard Login Returns**  
    You'll be redirected to the standard Booklore login page with username/password fields
 
-![Booklore Login](/img/authentication/authentik/authentik-15.jpg)
+![Booklore Login](/img/authentication/authentik/standard-login.jpg)
 
 :::note[Configuration Persistence]
 Disabling OIDC doesn't delete your Authentik configuration. All settings (Client ID, Issuer URI) are preserved. You can re-enable it anytime by toggling the switch back on. Users who were authenticated via Authentik can still log in with standard credentials if they have them configured.

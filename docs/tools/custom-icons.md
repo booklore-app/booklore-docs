@@ -8,7 +8,7 @@ Upload custom SVG icons to use with Libraries, Shelves, and Magic Shelves. Icons
 
 The icon picker appears when assigning icons to a Library, Shelf, or Magic Shelf.
 
-![Prime Icons Tab](/img/icons/0-icons--library-creator.jpg)
+![Prime Icons Tab](/img/icons/icon-picker.jpg)
 
 1. **Navigate to Library/Shelf/Magic Shelf Settings**
 
@@ -24,7 +24,7 @@ The icon picker appears when assigning icons to a Library, Shelf, or Magic Shelf
 
 Browse the default PrimeNG icon library:
 
-![Prime Icons Tab](/img/icons/1-icons--prime.jpg)
+![Prime Icons Tab](/img/icons/prime-icons.jpg)
 
 Browse and search the built-in PrimeNG icon library. Click any icon to select it.
 
@@ -34,7 +34,7 @@ Browse and search the built-in PrimeNG icon library. Click any icon to select it
 
 Browse and manage your custom SVG icons:
 
-![SVG Icons Tab](/img/icons/2-icons--custom.jpg)
+![SVG Icons Tab](/img/icons/custom-icons.jpg)
 
 #### 1. Search Your Icons
 
@@ -79,7 +79,7 @@ Deleted icons cannot be recovered. You'll need to re-add them if needed later.
 
 Add new custom icons by pasting SVG code:
 
-![Add SVG Tab](/img/icons/3-icons--add-custom.jpg)
+![Add SVG Tab](/img/icons/add-svg.jpg)
 
 #### Step-by-Step Guide
 

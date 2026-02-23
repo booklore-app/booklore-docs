@@ -9,8 +9,8 @@ In this guide, we’ll focus on the **Table View**, an efficient, data-rich layo
 
 To switch to Table View, click the view toggle button at the top of the library interface:
 
-![Table Toggle 1](/img/table/table-toggle-1.jpg)
-![Table Toggle 2](/img/table/table-toggle-2.jpg)
+![Table Toggle 1](/img/table/toggle-grid-state.jpg)
+![Table Toggle 2](/img/table/toggle-table-state.jpg)
 
 ---
 
@@ -70,8 +70,8 @@ You can sort sidebar items by:
 - **Alphabetical Order** – For fast lookup by name.
 - **Number of Books** – To prioritize the most-used categories or prolific authors.
 
-![Table Sidebar Sort 1](/img/table/table-sidebar-sort-1.jpg)
-![Table Sidebar Sort 2](/img/table/table-sidebar-sort-2.jpg)
+![Table Sidebar Sort 1](/img/table/sidebar-default.jpg)
+![Table Sidebar Sort 2](/img/table/sidebar-sort-options.jpg)
 
 :::tip[Why it’s useful]
 Customize the sidebar to reflect your browsing style, whether you want fast alphabetical access or to focus on high-volume filters.
@@ -97,8 +97,8 @@ From the same bottom action menu, you can delete selected books entirely. This a
 
 A confirmation dialog will appear to make sure you’re aware of the consequences before proceeding.
 
-![Table Delete Books 1](/img/table/table-delete-books-1.jpg)
-![Table Delete Books 2](/img/table/table-delete-books-2.jpg)
+![Table Delete Books 1](/img/table/delete-menu.jpg)
+![Table Delete Books 2](/img/table/delete-confirm.jpg)
 
 :::danger[Important]
 Deleting books from here will permanently remove the physical files from your drive. Make sure you have backups or truly want to discard them before confirming.

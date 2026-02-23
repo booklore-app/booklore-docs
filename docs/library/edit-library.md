@@ -15,8 +15,8 @@ Open the library menu from either location:
 - Navigate to the library view
 - Click the ellipsis (⋯) icon in the header
 
-![Edit Library 1](/img/edit-library/edit-library-1.jpg)
-![Edit Library 2](/img/edit-library/edit-library-2.jpg)
+![Edit Library 1](/img/edit-library/sidebar-menu.jpg)
+![Edit Library 2](/img/edit-library/header-menu.jpg)
 
 ---
 
@@ -31,7 +31,7 @@ Modify library configuration including name, icon, monitoring settings, and fold
 - Monitoring enable/disable
 - Remove folders from library
 
-![Edit Library 3](/img/edit-library/edit-library-3.jpg)
+![Edit Library 3](/img/edit-library/edit-form.jpg)
 
 ---
 

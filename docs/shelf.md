@@ -19,7 +19,7 @@ You can assign books to shelves in two ways:
 1. Click the three-dot menu on a book card.
 2. Select **Assign Shelf**.
    
-![Shelf Menu - Single Book](/img/shelf/shelf-menu-1.jpg)
+![Shelf Menu - Single Book](/img/shelf/assign-single-book.jpg)
 
 ---
 
@@ -28,7 +28,7 @@ You can assign books to shelves in two ways:
 2. This will activate a bottom action bar.
 3. Click **Assign Shelf** to assign all selected books.
 
-![Shelf Menu - Multiple Books](/img/shelf/shelf-menu-2.jpg)
+![Shelf Menu - Multiple Books](/img/shelf/assign-multiple-books.jpg)
 
 ---
 
@@ -37,7 +37,7 @@ After using either option, the **Assign Shelf** dialog opens:
 - Select one or more existing shelves via checkboxes.
 - Or click **Create Shelf** to add a new one.
 
-![Assign Shelf Dialog](/img/shelf/shelf-create-1.jpg)
+![Assign Shelf Dialog](/img/shelf/assign-dialog.jpg)
 
 ---
 
@@ -46,15 +46,15 @@ After using either option, the **Assign Shelf** dialog opens:
 2. Choose an icon to help distinguish it.
 3. Click **Save**.
 
-![Create Shelf Form](/img/shelf/shelf-create-2.jpg)
+![Create Shelf Form](/img/shelf/create-form.jpg)
 
 You’ll then return to the assign dialog with your new shelf already selected.
 
-![Shelf Created and Assigned](/img/shelf/shelf-create-3.jpg)
+![Shelf Created and Assigned](/img/shelf/create-confirm.jpg)
 
 ---
 
 ### 📂 Viewing Shelves
 All your shelves are listed in the left sidebar. Click on any shelf to view its contents.
 
-![Shelf in Sidebar](/img/shelf/shelf-create-4.jpg)
+![Shelf in Sidebar](/img/shelf/sidebar-listing.jpg)

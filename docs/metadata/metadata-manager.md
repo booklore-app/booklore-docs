@@ -2,7 +2,7 @@
 
 Take complete control of your library's organization. Clean up inconsistencies, merge duplicates, and standardize metadata across your entire book collection with powerful bulk editing tools.
 
-![Metadata Manager Overview](/img/metadata/manager/metadata-manager-0.jpg)
+![Metadata Manager Overview](/img/metadata/manager/overview.jpg)
 
 :::info[File Management Settings]
 If you have enabled "Auto-Move Files on Metadata Update" and/or "Write to File", those settings will be honored when metadata changes are applied.
@@ -83,7 +83,7 @@ For single-value fields (Series, Publisher, Language), merge operations standard
 
 ### Accessing the Metadata Manager
 
-![Metadata Manager Overview](/img/metadata/manager/metadata-manager-1.jpg)
+![Metadata Manager Overview](/img/metadata/manager/access-settings.jpg)
 
 1. **Navigate to Settings:**
     - Click on **Settings** in the main navigation
@@ -119,7 +119,7 @@ Merge metadata when you have:
     - Select at least 2 items
     - Use "Select Similar" to find related entries
 
-   ![Select items to merge](/img/metadata/manager/metadata-manager-2.jpg)
+   ![Select items to merge](/img/metadata/manager/select-items.jpg)
 
 2. **Click "Merge Selected":**
     - The merge dialog will open
@@ -128,7 +128,7 @@ Merge metadata when you have:
 
 3. **Enter Target Value(s):**
 
-   ![Enter merge target](/img/metadata/manager/metadata-manager-3.jpg)
+   ![Enter merge target](/img/metadata/manager/merge-target.jpg)
 
    **For Multi-Value Fields (Authors, Genres, Moods, Tags):**
     - Single value: `Science Fiction` → All books get one tag
@@ -188,13 +188,13 @@ Use rename when you need to:
 
 1. **Find the Item:** 
 
-    ![Confirm merge](/img/metadata/manager/metadata-manager-4.jpg)
+    ![Confirm merge](/img/metadata/manager/rename-button.jpg)
     - Browse or search for the metadata entry
     - Click the **pencil icon** (Rename button)
 
 2. **Enter New Name(s):**
 
-   ![Click rename button](/img/metadata/manager/metadata-manager-5.jpg)
+   ![Click rename button](/img/metadata/manager/rename-input.jpg)
 
    **For Multi-Value Fields:**
     - Single name: Renames the entry
@@ -206,7 +206,7 @@ Use rename when you need to:
 
 3. **Confirm the Change:**
     
-    ![Enter new name](/img/metadata/manager/metadata-manager-6.jpg)
+    ![Enter new name](/img/metadata/manager/rename-confirm.jpg)
     - Review the number of affected books
     - Click "Rename" to proceed
 
@@ -253,7 +253,7 @@ Delete metadata when:
 
 ### Steps to Delete
 
-![Click delete button](/img/metadata/manager/metadata-manager-7.jpg)
+![Click delete button](/img/metadata/manager/delete-option.jpg)
 
 **Option 1: Delete Single Item**
 
