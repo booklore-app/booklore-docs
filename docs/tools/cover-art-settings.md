@@ -14,8 +14,6 @@ Automatically crop oversized cover images to prevent display issues. This is par
 | **Smart Cropping** | Skips solid-color areas at the top of the image to avoid blank cropped results |
 | **Aspect Ratio Threshold** | Sets the threshold for how much larger the image has to be before it gets cropped |
 
-When enabled, covers exceeding the configured height-to-width ratio will be cropped from the top to fit standard cover dimensions.
-
 ---
 
 ## Bulk Cover Actions

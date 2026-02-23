@@ -1,43 +1,10 @@
 # 🔐 Pocket ID Authentication
 
-Seamlessly integrate Pocket ID as your single sign-on (SSO) provider for Booklore. Simplify user authentication, enhance security, and provide a streamlined login experience across your applications.
+Integrate [Pocket ID](https://pocket-id.org/) as an OIDC single sign-on provider for Booklore.
 
 :::danger[Username Matching Required]
-The username in Pocket ID must exactly match the username in Booklore for authentication to work properly. Case sensitivity matters. If a user doesn't exist in Booklore with the matching username, authentication will fail.
+The username in Pocket ID must exactly match the username in Booklore (case-sensitive). If no matching user exists in Booklore, authentication will fail.
 :::
-
----
-
-## 🌟 What You'll Achieve
-
-With Pocket ID integration, you can:
-
-- **Enable single sign-on (SSO)** for seamless access to Booklore without separate login credentials
-- **Centralize user management** across multiple applications from one unified interface
-- **Enhance security** with OAuth2/OpenID Connect protocols and modern authentication standards
-- **Simplify login experience** for your users with automatic session management
-- **Control access** through OIDC client configuration and user permissions
-- **Streamline deployment** with Pocket ID's lightweight and easy-to-configure architecture
-
----
-
-## ✨ How Pocket ID Integration Works
-
-### 🔄 The Authentication Flow
-
-Understanding the authentication flow helps troubleshoot issues and explains what happens behind the scenes:
-
-1. **🎫 User Initiates Login**  
-   User attempts to access Booklore and is redirected to Pocket ID's secure login portal. The original destination URL is preserved for automatic redirect after authentication.
-
-2. **🔑 Pocket ID Authenticates**  
-   User enters credentials in Pocket ID's login page. Pocket ID validates the credentials against its user directory and verifies the user's identity.
-
-3. **✅ Token Exchange**  
-   Pocket ID validates credentials and issues OAuth2 tokens (access token, ID token). These tokens contain user information and are cryptographically signed for security.
-
-4. **🚪 Access Granted**  
-   Booklore receives and validates the tokens, extracts user information, matches it with an existing Booklore user account, and grants access to the authenticated user.
 
 ---
 
@@ -45,7 +12,7 @@ Understanding the authentication flow helps troubleshoot issues and explains wha
 
 ### Step 1: Create OIDC Client in Pocket ID
 
-Begin by configuring Booklore as an OIDC client in Pocket ID. This process should take about 5 minutes:
+Begin by configuring Booklore as an OIDC client in Pocket ID:
 
 1. **Navigate to OIDC Clients**  
    Open your Pocket ID admin panel and navigate to **Settings → Administration → OIDC Clients**. Click the **"Add OIDC Client"** button to begin the setup process.
@@ -86,9 +53,6 @@ Begin by configuring Booklore as an OIDC client in Pocket ID. This process shoul
    Client Launch URL: http://localhost:3000/
    ```
 
-   :::note[Public Client Type]
-   Public client type is appropriate for applications where the client secret cannot be kept confidential. Booklore's frontend needs to initiate the OAuth flow, making this the correct choice.
-   :::
 
 ---
 
@@ -109,9 +73,6 @@ After creating the OIDC client, you'll need to copy the credentials for Booklore
    - Make sure to include the trailing slash
    - This is the base URL where your Pocket ID instance is hosted
 
-:::tip[Save These Credentials]
-Copy the Client ID and note your Pocket ID domain. You'll paste these into Booklore in the next step. Keep this information secure as it's required to establish the connection.
-:::
 
 ---
 
@@ -149,9 +110,6 @@ Now configure Booklore to use Pocket ID as the authentication provider. This is 
    - When enabled, users will see a "Login with Pocket ID" button on the Booklore login page
    - The standard username/password login will still be available unless specifically disabled
 
-:::success[Configuration Complete!]
-Booklore is now configured to use Pocket ID for authentication. The next step is testing the integration to ensure everything works correctly.
-:::
 
 ---
 
@@ -159,7 +117,7 @@ Booklore is now configured to use Pocket ID for authentication. The next step is
 
 ### Step 4: Test Login with Pocket ID
 
-Verify that the integration works correctly before rolling it out to users. Testing ensures a smooth experience:
+Verify that the integration works correctly:
 
 1. **Access Pocket ID Dashboard**
    
@@ -187,9 +145,6 @@ Verify that the integration works correctly before rolling it out to users. Test
    - You'll be redirected to Pocket ID for authentication
    - After logging in, you should be redirected back to Booklore
 
-:::success[Integration Successful!]
-Your Pocket ID integration is working correctly. You can now roll it out to your users.
-:::
 
 ---
 
@@ -276,42 +231,6 @@ Disabling OIDC doesn't delete your Pocket ID configuration. All settings (Client
 
 ---
 
-## 🎯 Best Practices
-
-### Security Recommendations
-
-- 🔒 **Use HTTPS** - Always use HTTPS in production with valid SSL certificates
-- 🔐 **Secure Credentials** - Store Client IDs securely and never expose them in public repositories
-- 🛡️ **Keep Updated** - Regularly update both Pocket ID and Booklore to patch security vulnerabilities
-- 📊 **Monitor Activity** - Track login attempts and set up alerts for unusual patterns
-- 🔑 **Rotate Credentials** - Periodically regenerate Client IDs, especially after personnel changes
-- 🚪 **Restrict Access** - Configure callback URLs as specifically as possible
-- 👥 **Review Users** - Regularly audit user accounts and remove inactive users
-
-### Optimization Tips
-
-- 📝 **Use descriptive names** - Name OIDC clients clearly (e.g., "Booklore Production")
-- 🌐 **Use reverse proxy** - Add rate limiting and IP whitelisting for additional security
-- 🔄 **Test in staging** - Validate changes in a staging environment before production
-- ⚡ **Optimize tokens** - Configure appropriate token expiration times
-- 📋 **Document setup** - Keep detailed records of your configuration for troubleshooting
-
-### User Experience
-
-- 🎨 **Customize branding** - Configure Pocket ID with your organization's branding
-- 📚 **Document the process** - Create user guides with screenshots and support contact info
-- 🆘 **Provide support** - Ensure users know how to get help with authentication issues
-- 🔄 **Test regularly** - Periodically verify the authentication flow works as expected
-
----
-
 ## 📚 Additional Resources
 
-- **[Pocket ID Documentation](https://pocket-id.org/docs):** Official documentation for Pocket ID configuration
-- **OAuth 2.0 Specification:** Understanding the protocol behind SSO
-- **OpenID Connect Core:** Detailed information about OIDC flows
-- **Security Best Practices:** Regular security audits and penetration testing
-
----
-
-Pocket ID provides lightweight, efficient authentication with minimal configuration. Once set up, your users will have secure, streamlined access to Booklore with the convenience of single sign-on and the simplicity of centralized authentication management.
+- **[Pocket ID Documentation](https://pocket-id.org/docs)**

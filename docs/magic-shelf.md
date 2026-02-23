@@ -2,8 +2,6 @@
 
 Magic Shelves are dynamic, rule-based collections that automatically organize your books using metadata filters. Define conditions like *"Unread sci-fi published after 2010 with a Goodreads rating above 4.0"* and the shelf populates itself, no manual sorting required.
 
-As your library grows and changes, Magic Shelves stay current. Adding a new book, updating metadata, or changing a read status instantly reflects across all matching shelves.
-
 ---
 
 ## How Magic Shelves Work

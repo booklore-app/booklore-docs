@@ -51,7 +51,7 @@ Set default preferences for eBook formats (EPUB, FB2, MOBI, AZW3). When "Default
 
 | Setting | Options | Default | Description |
 |---------|---------|---------|-------------|
-| **Font Family** | Default, Serif, Sans Serif, Roboto, Cursive, Monospace, + custom fonts | Serif | Choose a typeface that best suits your reading preference. "Default" uses the font embedded in the book file. Custom fonts uploaded through the [Custom Font Library](#-custom-font-library) also appear here. |
+| **Font Family** | Default, Serif, Sans Serif, Roboto, Cursive, Monospace, + custom fonts | Serif | "Default" uses the font embedded in the book file. Custom fonts uploaded through the [Custom Font Library](#-custom-font-library) also appear here. |
 | **Font Size** | 8pt to 72pt (1pt steps) | 16pt | Increase or decrease text size in points for optimal readability. |
 | **Line Height** | 1.0 to 3.0 (0.1 steps) | 1.5 | Adjust vertical spacing between lines for better legibility. Higher values create more breathing room between lines. |
 | **Text Justification** | Left, Justified | Left | Align text to the left or justify it for a clean edge on both sides. Justified text spreads words to fill the full line width. |

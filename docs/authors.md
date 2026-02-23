@@ -51,8 +51,6 @@ Use the card size slider to scale cards from **0.7x** to **1.3x**. Your preferen
 
 ## 🃏 Author Cards
 
-Each card shows the author's photo (or a placeholder), their name, and a book count badge. A checkmark icon appears on authors that have been matched to an external metadata source.
-
 Hover over a card and click the three-dot menu for quick actions:
 
 | Action | Description |

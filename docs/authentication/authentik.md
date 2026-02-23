@@ -1,43 +1,10 @@
 # 🔐 Authentik Authentication
 
-Seamlessly integrate Authentik as your single sign-on (SSO) provider for Booklore. Centralize user authentication, enhance security, and simplify access management across your applications.
+Integrate [Authentik](https://goauthentik.io/) as an OIDC single sign-on provider for Booklore.
 
 :::danger[Username Matching Required]
-The username in Authentik must exactly match the username in Booklore for authentication to work properly. Case sensitivity matters. If a user doesn't exist in Booklore with the matching username, authentication will fail.
+The username in Authentik must exactly match the username in Booklore (case-sensitive). If no matching user exists in Booklore, authentication will fail.
 :::
-
----
-
-## 🌟 What You'll Achieve
-
-With Authentik integration, you can:
-
-- **Enable single sign-on (SSO)** for seamless access to Booklore without separate login credentials
-- **Centralize user management** across multiple applications from one unified interface
-- **Enhance security** with OAuth2/OpenID Connect protocols and optional multi-factor authentication
-- **Control access** through provider bindings and authorization flows at user or group level
-- **Simplify login experience** for your users with automatic session management
-- **Audit authentication** with comprehensive logging of all login attempts and user activities
-
----
-
-## ✨ How Authentik Integration Works
-
-### 🔄 The Authentication Flow
-
-Understanding the authentication flow helps troubleshoot issues and explains what happens behind the scenes:
-
-1. **🎫 User Initiates Login**  
-   User attempts to access Booklore and is redirected to Authentik's secure login portal. The original destination URL is preserved for automatic redirect after authentication.
-
-2. **🔑 Authentik Authenticates**  
-   User enters credentials in Authentik's secure login page. Authentik validates the credentials against its user directory and can optionally prompt for additional authentication factors (MFA).
-
-3. **✅ Token Exchange**  
-   Authentik validates credentials and issues OAuth2 tokens (access token, ID token, and optionally a refresh token). These tokens contain user information and are cryptographically signed.
-
-4. **🚪 Access Granted**  
-   Booklore receives and validates the tokens, extracts user information, matches it with an existing Booklore user account, and grants access to the authenticated user.
 
 ---
 
@@ -45,7 +12,7 @@ Understanding the authentication flow helps troubleshoot issues and explains wha
 
 ### Step 1: Create Application and Configure OAuth2 Provider
 
-Begin by setting up Booklore as an application in Authentik with OAuth2 authentication. This entire process should take about 5-10 minutes:
+Begin by setting up Booklore as an application in Authentik with OAuth2 authentication:
 
 1. **Navigate to Applications**  
    Open your Authentik dashboard and click **"Create a new application"**. This will launch a setup wizard that guides you through the process.
@@ -80,9 +47,6 @@ Begin by setting up Booklore as an application in Authentik with OAuth2 authenti
         - Public clients are suitable for applications that run in browsers or mobile apps
         - Client secrets cannot be securely stored in these environments
 
-   :::note[Public Client Type]
-   Public client type is appropriate for applications where the client secret cannot be kept confidential. Booklore's frontend needs to initiate the OAuth flow, making this the correct choice.
-   :::
 
 5. **Set Up Redirect URIs**
 
@@ -131,9 +95,6 @@ Begin by setting up Booklore as an application in Authentik with OAuth2 authenti
 
    Click **Save** to apply the configuration.
 
-   :::tip[Privacy-Friendly Scopes]
-   These scopes provide Booklore with essential user information while respecting privacy. Without these scopes, Booklore won't have the necessary data to create or match user sessions.
-   :::
 
 7. **Bind Users to Application**
 
@@ -169,9 +130,6 @@ Get the credentials needed to connect Booklore to Authentik. You'll need these i
     - 🔑 **Client ID** - Your application's unique identifier (looks like a long alphanumeric string)
     - 🌐 **OpenID Configuration Issuer URL** - The authentication endpoint (typically `https://your-authentik-domain/application/o/booklore/`)
 
-:::tip[Save These Credentials]
-Copy both the Client ID and Issuer URL to a secure location. You'll paste these into Booklore in the next step. Keep this tab open or save these values in a password manager.
-:::
 
 ---
 
@@ -202,9 +160,6 @@ Now configure Booklore to use Authentik as the authentication provider. This is 
     - When enabled, users will see a "Login with Authentik" button on the Booklore login page
     - The standard username/password login will still be available unless specifically disabled
 
-:::success[Configuration Complete!]
-Booklore is now configured to use Authentik for authentication. The next step is testing the integration to ensure everything works correctly.
-:::
 
 ---
 
@@ -212,7 +167,7 @@ Booklore is now configured to use Authentik for authentication. The next step is
 
 ### Step 4: Test Login with Authentik
 
-Verify that the integration works correctly before rolling it out to users. Testing ensures a smooth experience:
+Verify that the integration works correctly:
 
 ![User Impersonation](/img/authentication/authentik/authentik-11.jpg)
 
@@ -242,9 +197,6 @@ Verify that the integration works correctly before rolling it out to users. Test
     - Verify that you have access to your expected content and permissions
     - Test logging out and logging back in to ensure session handling works
 
-:::success[Integration Successful!]
-Your Authentik integration is working correctly. You can now roll it out to your users.
-:::
 
 ---
 
@@ -277,9 +229,6 @@ If you need to temporarily disable or switch authentication methods (for mainten
 Disabling OIDC doesn't delete your Authentik configuration. All settings (Client ID, Issuer URI) are preserved. You can re-enable it anytime by toggling the switch back on. Users who were authenticated via Authentik can still log in with standard credentials if they have them configured.
 :::
 
-:::info[Configuration Scope]
-This guide covered the essential configuration required to integrate Authentik with Booklore. Once the basic integration is functional, you may customize Authentik settings to align with your advanced and specific needs.
-:::
 
 ---
 
@@ -333,41 +282,6 @@ This guide covered the essential configuration required to integrate Authentik w
 
 ---
 
-## 🎯 Best Practices
-
-### Security Recommendations
-
-- 🔒 **Use HTTPS** - Always use HTTPS in production with valid SSL certificates
-- 👥 **Review Bindings** - Audit user access regularly and use groups for easier management
-- 🔄 **Enable offline_access** - Improves user experience while maintaining security
-- 📊 **Monitor Activity** - Track login attempts and set up alerts for unusual patterns
-- 🛡️ **Keep Updated** - Regularly update both Authentik and Booklore, test in staging first
-- 🔐 **Enable MFA** - Implement multi-factor authentication, especially for administrators
-- 🔑 **Rotate Credentials** - Review access regularly and regenerate credentials annually
-
-### Optimization Tips
-
-- 📝 **Use descriptive names** - Name providers clearly (e.g., "Booklore Production OAuth2")
-- 🏷️ **Leverage groups** - Organize users by department/role and bind groups instead of individuals
-- ⚡ **Optimize tokens** - Use short access tokens (15-60 min) with long-lived refresh tokens
-- 🌐 **Use reverse proxy** - Add rate limiting, IP whitelisting, and WAF rules
-- 🔄 **Test in staging** - Validate changes in a staging environment before production
-
-### User Experience
-
-- 🎨 **Customize branding** - Add your logo and consistent color schemes to the login page
-- 📚 **Document the process** - Create user guides with screenshots and support contact info
-- 🆘 **Enable self-service** - Allow password resets and MFA device management
-
----
-
 ## 📚 Additional Resources
 
-- **Authentik Documentation:** [goauthentik.io/docs](https://goauthentik.io/docs/)
-- **OAuth 2.0 Specification:** Understanding the protocol behind SSO
-- **OpenID Connect Core:** Detailed information about OIDC flows
-- **Security Best Practices:** Regular security audits and penetration testing
-
----
-
-Authentik provides enterprise-grade authentication with minimal configuration. Once set up, your users will have secure, streamlined access to Booklore with the convenience of single sign-on and the security of centralized authentication management.
+- **[Authentik Documentation](https://goauthentik.io/docs/)**
