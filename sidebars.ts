@@ -126,6 +126,11 @@ const sidebars: SidebarsConfig = {
       id: 'series',
       label: '📚 Series',
     },
+    {
+      type: 'doc',
+      id: 'authors',
+      label: '✍️ Authors',
+    },
     {type: 'doc', id: 'reader-preferences', label: '📖 Reader Preferences'},
     {type: 'doc', id: 'view-preferences', label: '👁️ View Preferences'},
     {type: 'doc', id: 'email-setup', label: '✉️ Email Setup'},
