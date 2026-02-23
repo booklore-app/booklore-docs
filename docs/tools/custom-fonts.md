@@ -9,15 +9,15 @@ Upload custom fonts to personalize your reading experience in BookLore's EPUB re
 1. Navigate to **Settings > Reader** and scroll to the **Custom Font Library** section
 2. Click the **Add New Font** button
 
-   ![Custom Fonts Tab](/img/custom-fonts/font-00.png)
+   ![Custom Fonts Tab](/img/custom-fonts/font-00.jpg)
 
 3. Click the upload area or drag and drop a font file
 
-   ![Font Upload Dialog](/img/custom-fonts/font-01.png)
+   ![Font Upload Dialog](/img/custom-fonts/font-01.jpg)
 
 4. After selecting a file, a preview and name input appear. Enter a display name (or keep the filename).
 
-   ![Font Selected](/img/custom-fonts/font-02.png)
+   ![Font Selected](/img/custom-fonts/font-02.jpg)
 
 5. Click **Upload Font** to save
 
@@ -44,7 +44,7 @@ If you already have 10 fonts, delete one before uploading.
 
 Your font collection is displayed in **Settings > Reader > Custom Font Library**.
 
-![Font Collection](/img/custom-fonts/font-03.png)
+![Font Collection](/img/custom-fonts/font-03.jpg)
 
 To delete a font, click the trash icon on its card and confirm. If the deleted font was selected in your preferences, it reverts to the default.
 
@@ -56,13 +56,13 @@ To delete a font, click the trash icon on its card and confirm. If the deleted f
 
 Set a custom font as the default for all EPUB books in **Settings > Reader > eBook Reader: Default Settings > Typography > Font Family**.
 
-![Global Font Setting](/img/custom-fonts/font-04.png)
+![Global Font Setting](/img/custom-fonts/font-04.jpg)
 
 ### Per-Book Setting
 
 While reading an EPUB, open **Settings > Typography** in the reader header. Custom fonts appear at the bottom of the Font Family dropdown.
 
-![Per-Book Font Setting](/img/custom-fonts/font-05.png)
+![Per-Book Font Setting](/img/custom-fonts/font-05.jpg)
 
 :::info
 Custom fonts only apply to the web-based EPUB reader. PDFs, comics, and device sync (Kobo/KOReader) use their own font settings.
