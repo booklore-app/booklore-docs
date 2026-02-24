@@ -1,253 +1,112 @@
-# 📚 OPDS Integration Guide
+# 🌍 OPDS
 
-OPDS (Open Publication Distribution System) allows you to access your Booklore library from various reading apps and devices. This guide will walk you through setting up OPDS feeds and connecting your favorite reading apps to your Booklore collection.
-
----
-
-## 🔧 What is OPDS?
-
-OPDS is an open standard that enables reading applications to discover and access digital publications. With OPDS enabled in Booklore, you can:
-
-- Browse your library from any OPDS-compatible reading app
-- Download books directly to your reading device
-- Access your collection from multiple devices seamlessly
-- Use apps like KOReader, Aldiko, FBReader, and many others
+OPDS (Open Publication Distribution System) lets you access your Booklore library from reading apps on any device. Booklore also provides a Komga-compatible API for apps like Tachiyomi and Komelia.
 
 ---
 
-## ⚙️ Step 1: Configure OPDS Server
+## Step 1: Enable the OPDS Server
 
-First, let's enable and configure the OPDS server in your Booklore settings.
+1. Go to **Settings > OPDS** in Booklore
+2. Toggle **OPDS Server Enabled** on
 
 ![OPDS Settings](/img/opds/opds.jpg)
 
-1. Navigate to **Settings** > **OPDS** in Booklore
-2. Under **Server Control**, toggle **OPDS Server Enabled** to activate the service
-
-:::info[Note]
-By default, all libraries you have access to will be included in the OPDS feed.
-:::
+By default, all libraries you have access to are included in the OPDS feed.
 
 ---
 
-## 🔗 Step 2: Get Your OPDS Catalog URL
+## Step 2: Copy the Catalog URL
 
-Booklore provides a single OPDS endpoint for accessing your catalog:
+The OPDS Catalog URL is shown in the **OPDS Endpoint** section. Copy it using the button provided.
 
-### OPDS Catalog URL
-
-- **URL:** `http://localhost:8080/api/v1/opds`
-- **Compatibility:** Works with most OPDS-compatible reading apps
-- **Authentication:** Requires OPDS user credentials (see Step 3)
-
-You can copy this URL directly from the **OPDS Endpoint** section in your settings.
+The URL format is: `http://your-server:6060/api/v1/opds`
 
 :::tip[Network Access]
-Replace `localhost:8080` with your actual Booklore server address when accessing from other devices on your network.
+Replace `localhost` with your server's IP address or domain name when connecting from other devices.
 :::
 
 ---
 
-## 👤 Step 3: Create OPDS Users
+## Step 3: Create OPDS Users
 
-To access your OPDS feed, you'll need to create dedicated OPDS user credentials.
+OPDS uses its own user accounts, separate from your Booklore login.
 
 1. In the **OPDS Users** section, click **Add User**
-2. Fill in the user details:
+2. Enter a username and password
+3. Click **Create**
 
-| Field        | Description                                 |
-|--------------|---------------------------------------------|
-| **Username** | Choose a username for OPDS access           |
-| **Password** | Create a strong password for this OPDS user |
-
-3. Click **Create** to create the OPDS user
-
-:::danger[Security Note]
-OPDS users are separate from your main Booklore account and are specifically for reading app access.
-:::
-
-:::warning[Important]
-Passwords are created once and cannot be retrieved later. Make sure to store your OPDS credentials securely before saving.
+:::warning[Passwords]
+Passwords cannot be retrieved after creation. Store your OPDS credentials securely.
 :::
 
 ---
 
-## 📱 Step 4: Connect Reading Apps
+## Step 4: Connect a Reading App
 
-Now that your OPDS server is configured, you can connect various reading apps to access your Booklore library.
+In your reading app, add a new OPDS catalog with:
 
-### Popular OPDS-Compatible Apps:
+- **URL:** Your OPDS Catalog URL
+- **Username:** Your OPDS username
+- **Password:** Your OPDS password
 
-- **KOReader** (Android, iOS, Linux, Windows)
-- **FBReader** (Multiple platforms)
-- **Moon+ Reader** (Android)
-- **Yomu** (iOS)
-- **KyBook 3** (iOS, macOS)
-- **Panels** (iOS, macOS) - Comic reader with OPDS support
-- **Boox** (Android) - E-ink device native reader
+### Compatible Apps
 
-### General Connection Steps:
+| App | Platform |
+|-----|----------|
+| KOReader | Android, iOS, Linux, Windows |
+| Moon+ Reader | Android |
+| FBReader | Multi-platform |
+| Panels | iOS, macOS |
+| Yomu | iOS |
+| KyBook 3 | iOS, macOS |
+| Boox | Android (e-ink devices) |
 
-1. Open your reading app
-2. Look for **OPDS**, **Catalog**, or **Online Library** settings
-3. Add a new OPDS catalog/server
-4. Enter the OPDS URL: `http://your-booklore-domain/api/v1/opds`
-5. Enter your OPDS username and password
+### KOReader Example
+
+1. Open KOReader (with no book open)
+2. Tap the magnifying glass icon in the top menu
+3. Select **OPDS catalog**
+4. Tap the hamburger menu (top left) and select **Add catalog**
+5. Enter a name, your OPDS URL, username, and password
 6. Save and browse your library
 
----
-
-## 🔄 Example: Connecting KOReader
-
-1. Open KOReader
-2. In the top menu click on the magnifying glass. (Note that you must not have a book open.)
-3. Select **OPDS catalog**
-4. Click the hamburger menu at the top left. Select **Add catalog**.
-5. Enter:
-    - **Name:** Booklore Library
-    - **URL:** `http://your-booklore-domain/api/v1/opds`
-    - **Username:** Your OPDS username
-    - **Password:** Your OPDS password
-6. Tap **Save** to save the catalog
-7. Browse and download books from your Booklore library
-
-:::tip[KOReader Example]
-KOReader sync only works for books downloaded from Booklore via OPDS. Sideloaded books cannot be synced.
+:::tip[KOReader Progress Sync]
+KOReader progress sync only works for books downloaded via OPDS. See [KOReader Sync](koreader.md) for setup.
 :::
 
 ---
 
-## 📖 OPDS Feed Types
+## Available Feeds
 
-Booklore provides several OPDS feeds to help you navigate and discover books in your library:
+Most reading apps automatically discover these feeds from the root catalog URL. You typically don't need to enter them manually.
 
-### Root Catalog
+| Feed | URL | Description |
+|------|-----|-------------|
+| Root Catalog | `/api/v1/opds` | Main entry point with navigation links |
+| All Books | `/api/v1/opds/catalog` | Full catalog with pagination |
+| Recently Added | `/api/v1/opds/recent` | Books sorted by date added |
+| Libraries | `/api/v1/opds/libraries` | Browse by library |
+| Shelves | `/api/v1/opds/shelves` | Browse by shelf |
+| Magic Shelves | `/api/v1/opds/magic-shelves` | Browse magic shelves |
+| Authors | `/api/v1/opds/authors` | Browse by author |
+| Series | `/api/v1/opds/series` | Browse by series |
+| Surprise Me | `/api/v1/opds/surprise` | 25 random books |
+| Search | `/api/v1/opds/catalog?q={terms}` | Search titles, series, and authors |
 
-- **URL:** `/api/v1/opds`
-- **Description:** The main entry point for your OPDS catalog. Provides navigation links to all other feeds.
-- **Features:**
-    - Browse all books
-    - Recently added books
-    - Libraries navigation
-    - Shelves navigation
-    - Surprise me (random books)
-    - Search functionality
-
-### All Books Catalog
-
-- **URL:** `/api/v1/opds/catalog`
-- **Description:** Browse your entire book collection with pagination support.
-- **Parameters:**
-    - `page` - Page number (default: 1)
-    - `size` - Items per page (default: 50, max: 100)
-- **Example:** `/api/v1/opds/catalog?page=1&size=50`
-
-### Recently Added
-
-- **URL:** `/api/v1/opds/recent`
-- **Description:** View books sorted by when they were added to your library.
-- **Parameters:**
-    - `page` - Page number (default: 1)
-    - `size` - Items per page (default: 50, max: 100)
-- **Example:** `/api/v1/opds/recent?page=1&size=25`
-
-### Libraries Navigation
-
-- **URL:** `/api/v1/opds/libraries`
-- **Description:** Browse books organized by library. Shows all libraries you have access to.
-- **Usage:** Select a library to view only books from that collection.
-- **Example URL:** `/api/v1/opds/catalog?libraryId=1`
-
-### Shelves Navigation
-
-- **URL:** `/api/v1/opds/shelves`
-- **Description:** Access your personal shelves (collections you've created).
-- **Usage:** Select a shelf to view books you've organized in that collection.
-- **Example URL:** `/api/v1/opds/catalog?shelfId=5`
-- **Note:** Only shows shelves you've created; requires V2 OPDS user authentication.
-
-### Surprise Me
-
-- **URL:** `/api/v1/opds/surprise`
-- **Description:** Returns 25 random books from your accessible libraries.
-- **Features:** Great for discovering books you might have forgotten about or trying something new.
-
-### Search
-
-- **URL:** `/api/v1/opds/catalog?q={searchTerms}`
-- **Description:** Search across book titles, subtitles, series names, and authors.
-- **Parameters:**
-    - `q` - Search query
-    - `libraryId` - Optional: Restrict search to specific library
-    - `page` - Page number (default: 1)
-    - `size` - Items per page (default: 50, max: 100)
-- **Examples:**
-    - `/api/v1/opds/catalog?q=tolkien`
-    - `/api/v1/opds/catalog?q=foundation&libraryId=2`
-
-### OpenSearch Description
-
-- **URL:** `/api/v1/opds/search.opds`
-- **Description:** Provides OpenSearch description document for OPDS-compatible readers.
-- **Note:** This is automatically used by reading apps that support OPDS search.
-
-:::tip[Feed Navigation]
-Most OPDS readers will automatically display these feeds as navigation options when you add the root catalog URL. You typically don't need to manually enter individual feed URLs.
-:::
+Pagination parameters: `page` (default 1) and `size` (default 50, max 100).
 
 ---
 
-## 🔍 Troubleshooting
+## Komga-Compatible API
 
-### Common Issues and Solutions
-
-**❌ Reading App Can't Connect**
-
-- Verify the OPDS server is enabled in Booklore settings
-- Check that you're using the correct OPDS URL: `http://your-server/api/v1/opds`
-- Ensure your OPDS username and password are correct
-- Verify network connectivity to your Booklore server
-
-**❌ Books Not Appearing**
-
-- Confirm you have access to the libraries containing the books
-- Check that the books are properly indexed in Booklore
-- Refresh or restart your reading app
-
-**❌ Download Fails**
-
-- Verify your network connection
-- Check that the book file exists and is accessible
-- Ensure your reading app has sufficient storage space
-
-**❌ Authentication Errors**
-
-- Double-check your OPDS username and password
-- Verify the OPDS user exists in Booklore settings
-- Try creating a new OPDS user if issues persist
+Booklore also exposes a Komga-compatible API at `/komga/api/` for apps that support the Komga protocol, such as Tachiyomi and Komelia. This can be enabled separately in the OPDS settings.
 
 ---
 
-## 🌐 Network Considerations
+## Troubleshooting
 
-### Local Network Access
+**App can't connect:** Verify the OPDS server is enabled, the URL is correct, and your OPDS credentials are right. Check network connectivity to your Booklore server.
 
-:::info[Local Network Access]
-Replace `localhost:8080` with your actual Booklore server IP address when connecting from other devices on your local network.
+**Books not appearing:** Confirm you have access to the libraries containing the books. Try refreshing or restarting your reading app.
 
-Example: `http://192.168.1.100:8080/api/v1/opds`
-:::
-
-### Remote Access
-
-:::info[Remote Access]
-Ensure your Booklore server is accessible from the internet. Use HTTPS for secure connections when accessing remotely.
-
-Example: `https://booklore.yourdomain.com/api/v1/opds`
-:::
-
-### Firewall Settings
-
-:::warning[Firewall Settings]
-Ensure your Booklore server port is accessible and your firewall allows OPDS connections on the appropriate port.
-:::
+**Authentication errors:** Double-check your OPDS username and password. OPDS users are separate from Booklore accounts.
