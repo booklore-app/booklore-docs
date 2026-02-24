@@ -1,76 +1,43 @@
-# 🛡️ Initial Administrator Setup
+# 👤 Setup Admin User
 
-Create an administrator account to access and configure your Booklore instance. This one-time setup provides full system control for managing libraries and settings.
-
-![Admin User Setup](/img/initial-setup/admin-user.jpg)
+On first launch, Booklore shows a setup screen to create the initial administrator account. This is a one-time step.
 
 ---
 
-## 🛠️ Setup Steps
+## 🛠️ Create Your Account
 
-### Step 1: Create Administrator Account
+Open `http://localhost:6060` in your browser and fill in the setup form:
 
-Complete the initial setup form:
+![Admin User Setup](/img/initial-setup/admin-user.jpg)
 
-- **Username**: System login identifier (cannot be changed later)
-- **Password**: Secure password meeting minimum requirements
-- **Confirm Password**: Re-enter to prevent typos
-- **Email** (Optional): For future account recovery features
+| Field | Notes |
+|-------|-------|
+| **Username** | Your login identifier |
+| **Full Name** | Display name shown in the UI |
+| **Email Address** | Used for account-related features |
+| **Password** | Minimum 6 characters |
+| **Confirm Password** | Must match the password above |
 
-:::warning[Important]
-Store credentials securely. Password recovery currently requires database access.
+All fields are required. Click **"Create Admin Account"** when done.
+
+:::warning[Save Your Credentials]
+There is no password recovery flow yet. If you lose your password, you'll need to reset it directly in the database. Use a password manager.
 :::
 
 ---
 
-### Step 2: Login
+## 🔑 Login
 
-After account creation, you'll be redirected to the login page. Sign in with your new credentials.
+After creating the account, you'll be redirected to the login page. Sign in with the username and password you just created.
 
 ![Login Page](/img/initial-setup/login.jpg)
 
 ---
 
-### Step 3: Dashboard
+## 🏠 Dashboard
 
-Your empty dashboard displays after successful login:
+After logging in, you'll see an empty dashboard prompting you to create your first library.
 
 ![Empty Dashboard](/img/initial-setup/empty-dashboard.jpg)
 
-**Next**: Click **"Add a Library"** to begin building your collection. See [Setting Up Your First Library](./library/setup-first-library.md).
-
----
-
-## 🎯 Post-Setup Checklist
-
-- [ ] Create your first library
-- [ ] Configure metadata providers
-- [ ] Customize system settings
-- [ ] Add additional users (optional)
-
----
-
-## 📋 Troubleshooting
-
-### Cannot Access Dashboard
-
-**Solutions:**
-- Clear browser cache and cookies
-- Verify JavaScript is enabled
-- Check Docker container status
-
-### Forgot Password
-
-**Solutions:**
-- Access Docker container database volume
-- Manually reset password hash (advanced)
-- Use password manager to prevent this
-
----
-
-## 🔐 Security Best Practices
-
-- Use strong passwords (8+ characters, mixed case, numbers, symbols)
-- Never share administrator credentials
-- Create separate accounts for multiple users
-- Store passwords in a password manager
+Click **"Add a Library"** to get started. See [Setup First Library](library/setup-first-library.md) for a walkthrough.

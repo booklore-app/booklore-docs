@@ -1,228 +1,152 @@
-# 🚀 Getting Started with Booklore
+# 🚀 Getting Started
 
-Welcome to **Booklore** - your self-hosted digital library management system. This guide will help you get up and running quickly.
-
----
-
-## 🎯 What is Booklore?
-
-Booklore is an open-source library management system that gives you complete control over your digital book collection. Your books and data stay on your own server, ensuring privacy and independence.
-
-### Key Benefits
-
-- **🔒 Privacy First** - Your books, your data, your server
-- **💰 Free & Open Source** - No subscription fees
-- **🌐 Access Anywhere** - Web, e-readers, and mobile devices
-- **👥 Multi-User** - Support for family and friends
-- **🤖 Smart Metadata** - Automatic book information enrichment
+Booklore is a self-hosted library management system for ebooks, comics, and audiobooks. Your books and data stay on your server, with no subscription fees or cloud dependency.
 
 ---
 
 ## 📋 Prerequisites
 
-Before you start:
-
 - **Docker & Docker Compose** (v20.10+ / v2.0+)
-- **System Resources:** 2GB RAM, 10GB+ storage
+- **2GB RAM**, 10GB+ storage
 - **Port 6060** available
 - **Internet connection** for metadata fetching
 
-> 📖 See the [Installation Guide](/docs/installation) for detailed setup instructions.
-
 ---
 
-## 🏁 Quick Start
-
-### Your 5-Step Journey
-
-```
-1. Install → 2. Create Admin → 3. Add Library → 4. Import Books → 5. Start Reading
-```
-
----
-
-## 📥 Step 1: Installation
+## 📥 Step 1: Install
 
 Create the directory structure and start the containers:
 
 ```bash
-# Create directories
 mkdir -p ~/booklore/{config/mariadb,data,books,bookdrop}
 cd ~/booklore
-
-# Create and configure docker-compose.yml
-# (See Installation Guide for complete configuration)
-
-# Start containers
-docker compose up -d
-
-# Verify
-docker compose ps
 ```
 
-> 📖 **Full Guide:** [Installation Documentation](/docs/installation)
+Create a `docker-compose.yml` with the Booklore and MariaDB services. The key volumes to mount are:
+
+| Volume | Purpose |
+|--------|---------|
+| `./data:/app/data` | Application data, settings, and metadata cache |
+| `./books:/books` | Your book library folder |
+| `./bookdrop:/bookdrop` | Drop folder for automatic importing |
+
+```bash
+docker compose up -d
+docker compose ps   # verify both containers are running
+```
+
+See the [Installation Guide](installation.md) for the complete `docker-compose.yml` with all environment variables and configuration options.
 
 ---
 
 ## 👤 Step 2: Create Admin Account
 
-1. Open your browser: `http://localhost:6060`
-2. Complete the setup wizard:
-   - Create administrator username and password
-   - Set your email address
-   - Configure timezone (optional)
-3. Click "Complete Setup"
+Open `http://localhost:6060` in your browser. On first launch, Booklore shows a setup wizard to create the admin account:
 
-> 🔐 **Security Tip:** Use a strong, unique password with a password manager.
+| Field | Required | Notes |
+|-------|----------|-------|
+| Username | Yes | |
+| Full Name | Yes | |
+| Email | Yes | Must be a valid email address |
+| Password | Yes | Minimum 6 characters |
+| Confirm Password | Yes | Must match |
 
-> 📖 **Details:** [Initial Setup Guide](/docs/initial-setup)
+After submitting, you'll be redirected to the login page. See [Initial Setup](initial-setup.md) for details.
 
 ---
 
-## 📚 Step 3: Create Your First Library
+## 📚 Step 3: Create a Library
 
-Libraries organize your books by folder paths. You can create multiple libraries for different collections.
+Click **"Add a Library"** from the dashboard to open the library creation dialog.
 
-1. Go to **Settings** → **Libraries**
-2. Click **"Add Library"**
-3. Configure:
-   - **Name:** "My Main Library"
-   - **Path:** `/books`
-   - **Enable scanning:** On
-4. Click **"Save"** then **"Scan Library"**
+**Library Details:** Give it a name and optionally pick an icon.
 
-> 💡 **Tip:** Start with one library to learn the workflow.
+**Book Folders:** Add one or more folders containing your book files. Navigate the directory picker to select them.
 
-> 📖 **Learn More:** [Setup First Library](/docs/library/setup-first-library)
+**Options:**
+
+| Option | Description |
+|--------|-------------|
+| Watch Folders | Automatically detects new, changed, or deleted books in your folders |
+| Metadata Source | Where to read metadata during scans: embedded file metadata, sidecar files, or both |
+| Format Priority | Drag to reorder which format is treated as primary when a book exists in multiple formats |
+| Allowed Formats | Restrict which file formats this library will scan |
+
+Booklore supports EPUB, PDF, MOBI, AZW3, FB2, CBZ/CBR/CB7, M4B, M4A, and MP3.
+
+After saving, the library scans your folders automatically. See [Setup First Library](library/setup-first-library.md) for a full walkthrough, and [Folder Structure](library/folder-structure.md) for how to organize your files.
 
 ---
 
 ## 📖 Step 4: Add Books
 
-Choose the method that works best for you:
-
-### Method 1: Direct File Copy
-
-**Best for:** Initial bulk import
+**Direct copy:** Place files in your library folder, then rescan from the UI (or let Watch Folders pick them up automatically).
 
 ```bash
-# Copy books to the directory
 cp /path/to/your/books/* ~/booklore/books/
-
-# Trigger scan in Booklore UI
-# Settings → Libraries → Scan Now
 ```
 
-### Method 2: Bookdrop (Recommended)
+**Bookdrop:** Drop files into the bookdrop folder. Booklore auto-detects them, fetches metadata, and stages them for review. You can edit metadata, assign a destination library, and finalize the import from the UI. See [Bookdrop](bookdrop/bookdrop-basics.md).
 
-**Best for:** Automatic, hands-free importing
+**Web upload:** Use the upload button in the toolbar. You can upload directly to a library or to BookDrop for staging. The default file size limit is 100 MB per file (configurable by admins).
 
-1. Enable in **Settings** → **Bookdrop**
-2. Drop files into the folder:
-   ```bash
-   cp /path/to/book.epub ~/booklore/bookdrop/
-   ```
-3. Booklore processes automatically
-
-> 📖 **Full Guide:** [Bookdrop Configuration](/docs/bookdrop)
-
-### Method 3: Web Upload
-
-:::warning[Cloudflare Tunnels Upload Limit]
-If you're using a Cloudflare Tunnel to serve your Booklore instance through a reverse proxy, note that there is a [100 MB upload limit](https://developers.cloudflare.com/workers/platform/limits/#request-limits) on the free tier.
+:::warning[Cloudflare Tunnels]
+If you serve Booklore through a Cloudflare Tunnel, the free tier has a [100 MB upload limit](https://developers.cloudflare.com/workers/platform/limits/#request-limits).
 :::
-
-1. Navigate to your library
-2. Click **"Upload Books"**
-3. Select and upload files
 
 ---
 
 ## 📱 Step 5: Start Reading
 
-### Web Reader
+Click any book cover, then click **"Read"** to open the built-in reader. Booklore has dedicated readers for each format:
 
-1. Click any book cover
-2. Click **"Read"**
-3. Customize settings (font, theme, size)
-4. Enjoy!
+| Reader | Formats | Highlights |
+|--------|---------|------------|
+| Ebook Reader | EPUB, MOBI, AZW3, FB2 | Bookmarks, annotations, highlights, search, custom fonts, progress sync |
+| PDF Reader | PDF | Page-level progress sync, zoom, page spread modes, annotations |
+| Comic Reader | CBZ, CBR, CB7 | Fit/scroll modes, reading direction (LTR/RTL), slideshow, bookmarks |
+| Audiobook Player | M4B, MP3 | Chapters, track listing, playback speed, progress sync |
 
-### E-Reader/Mobile App
+### 📲 E-Readers and Mobile Apps
 
-**For Kobo devices:**
-- Follow the [Kobo Integration](/docs/integration/kobo) guide
+Connect external reading apps via OPDS:
 
-**For other OPDS clients:**
-- Get your OPDS URL from **Settings** → **OPDS**
-- Add to your reading app
+1. Go to **Settings > OPDS Configuration**
+2. Toggle the OPDS server on
+3. Copy the catalog URL shown in the API Endpoints section
+4. Add it to your reading app (KOReader, Moon+ Reader, etc.)
 
-> 📖 **More Options:** [OPDS Integration](/docs/integration/opds)
+Booklore also provides a Komga-compatible API for apps like Tachiyomi and Komelia. OPDS uses its own user accounts, created by admins in the OPDS settings page.
 
----
-
-## 🔧 Essential Configuration
-
-### Metadata Enrichment
-
-Enable automatic book information fetching:
-
-1. **Settings** → **Metadata**
-2. Add Google Books API key (optional but recommended)
-3. Enable auto-fetch on import
-
-> 📖 **Setup Guide:** [Metadata Configuration](/docs/metadata/metadata-fetch-configuration)
-
-### Organization
-
-**Shelves:** Create custom or magic shelves for categorization  
-**Tags:** Add flexible labels to your books  
-**Series:** Group related books together
-
-> 📖 **Learn More:** [Magic Shelf](/docs/magic-shelf)
+See [Kobo Integration](integration/kobo.md) and [OPDS](integration/opds.md) for detailed setup guides.
 
 ---
 
-## 🎓 Next Steps
+## ⚙️ What to Explore Next
 
-Once you're comfortable with the basics, explore:
-
-- **[Setup Admin User](/docs/initial-setup)** - Detailed account configuration
-- **[Bookdrop](/docs/bookdrop)** - Automatic import setup
-- **[Magic Shelf](/docs/magic-shelf)** - Dynamic organization
-- **[Kobo Integration](/docs/integration/kobo)** - Connect your e-reader
-- **[OPDS Integration](/docs/integration/opds)** - Mobile app access
-- **[Task Manager](/docs/tools/task-manager)** - Monitor system operations
-
----
-
-## 💡 Quick Tips
-
-- **Start small:** Import 10-20 books first to learn the system
-- **Let metadata work:** Enable auto-fetching for enriched book info
-- **Use Bookdrop:** Set it up early for hassle-free importing
-- **Backup regularly:** `data` and `books` directories
-- **Check Task Manager:** Monitor import and scan progress
+| Feature | Description |
+|---------|-------------|
+| [Metadata Configuration](metadata/metadata-fetch-configuration.md) | Set up automatic metadata enrichment from online sources |
+| [Bookdrop Advanced Features](bookdrop/bookdrop-advanced.md) | Bulk editing, filename pattern extraction, and more |
+| [Magic Shelf](magic-shelf.md) | Dynamic, auto-updating shelves based on filters |
+| [Authentication](authentication/overview.md) | OIDC providers, multi-user setup, and permissions |
 
 ---
 
 ## ❓ Common Questions
 
-**Q: Can I access Booklore remotely?**  
-A: Yes, set up a reverse proxy with HTTPS. See [Installation Guide](/docs/installation#setting-up-https-with-reverse-proxy).
+**Can I access Booklore remotely?**
+Yes, set up a reverse proxy with HTTPS. See the [Installation Guide](installation.md).
 
-**Q: How do I backup my library?**  
-A: Backup `~/booklore/data` and `~/your-books-directory/books` directories regularly.
+**How do I backup my library?**
+Backup your `data` directory (application state) and your books directory regularly.
 
-**Q: What e-readers work with Booklore?**  
-A: Any device supporting OPDS: Kobo, Kindle (with apps), Android/iOS apps, etc.
-
----
-
-## 🌟 Get Help
-
-- **[GitHub Issues](https://github.com/booklore-app/booklore)** - Report bugs
-- **[Community Discord](https://discord.gg/Ee5hd458Uz)** - Chat and get support
+**What e-readers work with Booklore?**
+Any device or app that supports OPDS. Kobo devices have a dedicated integration with deeper sync support.
 
 ---
 
-Happy reading! 📚✨ If you need detailed information on any feature, check the linked guides above.
+## 🔗 Get Help
+
+- [GitHub Issues](https://github.com/booklore-app/booklore) for bug reports
+- [Community Discord](https://discord.gg/Ee5hd458Uz) for questions and support

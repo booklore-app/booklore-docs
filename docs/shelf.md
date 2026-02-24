@@ -1,60 +1,53 @@
-# 🗄️ Shelves
+# 📁 Shelves
 
-Shelves are one of the key organization features in Booklore. Just like shelves in a physical library, they let you group books by theme, purpose, or preference, for example: *"To Read Next"*, *"My Favorites"*, or *"Sci-Fi Picks"*.
+Shelves let you organize books across libraries by theme, purpose, or preference. A book can belong to multiple shelves, and shelves can contain books from different libraries.
 
-Books on a shelf can come from multiple libraries, and a single book can belong to multiple shelves.
-
-:::info[Default Shelves]
-Booklore comes with a built-in **Favorites** shelf to help you quickly access your favorite reads.  
-You’ll also see an **Unshelved** section, this automatically lists books that haven’t been added to any shelf yet.
-:::
+Booklore comes with a built-in **Favorites** shelf and an **Unshelved** section that automatically lists books not assigned to any shelf.
 
 ---
 
-## 📚 How to Create a Shelf and Assign Books
+## 📚 Assigning Books to Shelves
 
-You can assign books to shelves in two ways:
+### From a Single Book
 
-### ➤ Option 1: From a Single Book
-1. Click the three-dot menu on a book card.
-2. Select **Assign Shelf**.
-   
-![Shelf Menu - Single Book](/img/shelf/assign-single-book.jpg)
+Click the three-dot menu on any book card and select **Assign Shelf**.
 
----
+![Single Book Menu](/img/shelf/assign-single-book.jpg)
 
-### ➤ Option 2: From Multiple Books
-1. Hover over any book card and check the box.
-2. This will activate a bottom action bar.
-3. Click **Assign Shelf** to assign all selected books.
+### From Multiple Books
 
-![Shelf Menu - Multiple Books](/img/shelf/assign-multiple-books.jpg)
+Hover over a book card and check the checkbox to select it. A bottom action bar appears. Select more books, then click the **Assign Shelf** button in the action bar.
+
+![Multiple Books Selection](/img/shelf/assign-multiple-books.jpg)
 
 ---
 
-### 🗂️ The Assign Shelf Dialog
-After using either option, the **Assign Shelf** dialog opens:
-- Select one or more existing shelves via checkboxes.
-- Or click **Create Shelf** to add a new one.
+## 🗂️ The Assign Shelf Dialog
 
-![Assign Shelf Dialog](/img/shelf/assign-dialog.jpg)
+After using either method, the **Update Book's Shelves** dialog opens. Check one or more shelves to assign, or click **Create Shelf** to make a new one.
 
----
-
-### 🛠️ Creating a New Shelf
-1. Enter a name for your shelf.
-2. Choose an icon to help distinguish it.
-3. Click **Save**.
-
-![Create Shelf Form](/img/shelf/create-form.jpg)
-
-You’ll then return to the assign dialog with your new shelf already selected.
-
-![Shelf Created and Assigned](/img/shelf/create-confirm.jpg)
+![Assign Dialog](/img/shelf/assign-dialog.jpg)
 
 ---
 
-### 📂 Viewing Shelves
-All your shelves are listed in the left sidebar. Click on any shelf to view its contents.
+## 🛠️ Creating a Shelf
 
-![Shelf in Sidebar](/img/shelf/sidebar-listing.jpg)
+1. Click **Create Shelf** in the assign dialog
+2. Enter a name and optionally pick an icon
+3. Click **Save**
+
+![Create Shelf](/img/shelf/create-form.jpg)
+
+The new shelf is automatically selected in the assign dialog. Click **Save** to confirm.
+
+![Shelf Created](/img/shelf/create-confirm.jpg)
+
+---
+
+## 📂 Viewing Shelves
+
+All shelves appear in the left sidebar under the **Shelves** section. Click any shelf to browse its contents.
+
+![Sidebar Listing](/img/shelf/sidebar-listing.jpg)
+
+When viewing a shelf, the bottom action bar includes a **Remove from Shelf** option for bulk-removing books.

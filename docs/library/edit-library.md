@@ -1,6 +1,6 @@
-# 🏛️ Library Management
+# ✏️ Edit Library
 
-Modify library settings, trigger re-scans, refresh metadata, or remove libraries from your Booklore instance.
+Modify library settings, trigger rescans, refresh metadata, or remove a library entirely.
 
 ---
 
@@ -8,113 +8,69 @@ Modify library settings, trigger re-scans, refresh metadata, or remove libraries
 
 Open the library menu from either location:
 
-**Option 1: Sidebar**
-- Click the ellipsis (⋯) icon next to the library name
+- **Sidebar:** Click the ellipsis icon next to the library name
+- **Header:** Navigate to the library, then click the ellipsis icon in the header bar
 
-**Option 2: Library Header**
-- Navigate to the library view
-- Click the ellipsis (⋯) icon in the header
-
-![Edit Library 1](/img/edit-library/sidebar-menu.jpg)
-![Edit Library 2](/img/edit-library/header-menu.jpg)
+![Sidebar Menu](/img/edit-library/sidebar-menu.jpg)
+![Header Menu](/img/edit-library/header-menu.jpg)
 
 ---
 
 ## 📋 Available Actions
 
-### Edit Library
+### ✏️ Edit Library
 
-Modify library configuration including name, icon, monitoring settings, and folder associations.
+Opens the same dialog used during creation, with all settings editable:
 
-**Editable Settings:**
 - Library name and icon
-- Monitoring enable/disable
-- Remove folders from library
+- Book folders (add or remove)
+- Watch Folders toggle
+- Metadata source
+- Format priority
+- Allowed formats
 
-![Edit Library 3](/img/edit-library/edit-form.jpg)
+![Edit Form](/img/edit-library/edit-form.jpg)
 
 ---
 
-### Re-scan Library
+### 🔄 Re-scan Library
 
-Manually trigger a folder scan to detect changes:
+Manually scans all library folders for changes. Use this when:
 
-**Use Cases:**
-- Monitoring is disabled
-- New books not automatically detected
-- Books removed but still appear in library
-- File system monitoring failed
+- Watch Folders is disabled
+- New books weren't automatically detected
+- You've reorganized files on disk
+- Deleted files still appear in the library
 
-**Process:**
-- Scans all library folders
-- Imports newly added books
-- Removes deleted books from index
-- Updates modified files
+The scan imports new books, removes deleted ones, and updates modified files.
 
-:::info[Monitoring vs. Manual Scan]
-Re-scanning is unnecessary if monitoring is enabled and working correctly.
+:::info[When to Rescan]
+If Watch Folders is enabled and working, manual rescans are unnecessary. Use them as a fallback if automatic detection missed something.
 :::
 
 ---
 
-### Refresh Book Metadata
+### 📥 Refresh Books Metadata
 
-Download and update metadata for all books in the library using configured providers.
+Re-fetches metadata for all books in the library from your configured online providers. Useful after setting up a new metadata source or when you want to bulk-update book information.
 
-**Configuration Options:**
-- Select metadata providers
-- Choose which fields to update
-- Set override behavior for existing data
+See [Metadata Configuration](../metadata/metadata-fetch-configuration.md) for provider setup.
 
 :::warning[Large Libraries]
-Metadata fetching is time-consuming for libraries with many books. Consider running during off-hours.
+Metadata fetching for large libraries can take a while since it queries external APIs for each book. Consider running during off-hours.
 :::
-
-See [Metadata Configuration](../metadata/metadata-fetch-configuration.md) for detailed provider setup.
 
 ---
 
-### Delete Library
+### 🗑️ Delete Library
 
-Permanently remove the library from Booklore.
+Permanently removes the library from Booklore. This deletes:
 
-**What Gets Deleted:**
-- Library configuration
-- Book metadata from database
+- Library configuration and metadata from the database
 - Generated thumbnails and cache
 
-**What Remains:**
-- Original book files (untouched)
-- Files remain in their folders
+Your original book files on disk are **not touched**.
 
 :::danger[Permanent Action]
-Library deletion cannot be undone. All metadata and customizations will be lost.
+Library deletion cannot be undone. All metadata customizations, reading progress, and shelving for books in this library will be lost.
 :::
-
----
-
-## 🎯 Common Workflows
-
-### Adding New Books
-
-**With Monitoring Enabled:**
-- Books detected automatically
-- No action required
-
-**With Monitoring Disabled:**
-1. Add books to library folder
-2. Open library menu
-3. Select "Re-scan Library"
-
-### Fixing Missing Metadata
-
-1. Open library menu
-2. Select "Refresh Book Metadata"
-3. Configure providers and options
-4. Confirm to start batch update
-
-### Reorganizing Libraries
-
-1. Create new library with desired structure
-2. Re-scan to populate
-3. Delete old library if no longer needed
