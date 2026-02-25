@@ -86,7 +86,7 @@ After saving, the library scans your folders automatically. See [Setup First Lib
 cp /path/to/your/books/* ~/booklore/books/
 ```
 
-**Bookdrop:** Drop files into the bookdrop folder. Booklore auto-detects them, fetches metadata, and stages them for review. You can edit metadata, assign a destination library, and finalize the import from the UI. See [Bookdrop](bookdrop/bookdrop-basics.md).
+**Bookdrop:** Drop files into the bookdrop folder. Booklore auto-detects them, fetches metadata, and stages them for review. You can edit metadata, assign a destination library, and finalize the import from the UI. See [Bookdrop](bookdrop.md).
 
 **Web upload:** Use the upload button in the toolbar. You can upload directly to a library or to BookDrop for staging. The default file size limit is 100 MB per file (configurable by admins).
 
@@ -127,7 +127,7 @@ See [Kobo Integration](integration/kobo.md) and [OPDS](integration/opds.md) for 
 | Feature | Description |
 |---------|-------------|
 | [Metadata Configuration](metadata/metadata-fetch-configuration.md) | Set up automatic metadata enrichment from online sources |
-| [Bookdrop Advanced Features](bookdrop/bookdrop-advanced.md) | Bulk editing, filename pattern extraction, and more |
+| [Bookdrop Advanced Features](bookdrop-advanced.md) | Bulk editing, filename pattern extraction, and more |
 | [Magic Shelf](magic-shelf.md) | Dynamic, auto-updating shelves based on filters |
 | [Authentication](authentication/overview.md) | OIDC providers, multi-user setup, and permissions |
 
