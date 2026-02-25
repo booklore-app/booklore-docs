@@ -54,7 +54,11 @@ So `American_Gods (Audiobook).m4b` and `American Gods.epub` both normalize to `a
 When files are inside a subfolder, Booklore uses the **folder name as the reference title**. Each file is compared against it:
 
 - **Exact or substring match** groups the file with the folder
-- **Edition suffixes** like `unabridged`, `abridged`, `deluxe`, `collector`, `10th anniversary` are stripped before comparing
+- **Edition suffixes** are stripped before comparing. This includes:
+  - Ordinal editions: `first edition`, `2nd edition`, `10th anniversary`
+  - Production styles: `unabridged`, `abridged`, `complete`, `full cast`
+  - Special editions: `deluxe`, `special`, `collector`
+  - Format labels: `audiobook`, `audio book`, `ebook`, `e-book`
 - **Fuzzy matching** (similarity threshold of 60%) catches minor naming differences
 
 ```
