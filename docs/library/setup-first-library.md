@@ -55,7 +55,7 @@ Make sure Docker has read access to the selected paths. If folders aren't showin
 
 **Format Priority** sets which file format is treated as primary when a book exists in multiple formats. Drag the chips to reorder.
 
-**Allowed Formats** restricts which file types this library scans. All formats are allowed by default: EPUB, PDF, CBX (CBZ/CBR/CB7), MOBI, AZW3, FB2, and Audiobook (M4B/M4A/MP3).
+**Allowed Formats** restricts which file types this library scans. All formats are allowed by default: EPUB, PDF, CBX (CBZ/CBR/CB7), MOBI, AZW3, FB2, and Audiobook (M4B/M4A/MP3/Opus).
 
 ---
 

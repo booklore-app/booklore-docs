@@ -72,7 +72,7 @@ Click **"Add a Library"** from the dashboard to open the library creation dialog
 | Format Priority | Drag to reorder which format is treated as primary when a book exists in multiple formats |
 | Allowed Formats | Restrict which file formats this library will scan |
 
-Booklore supports EPUB, PDF, MOBI, AZW3, FB2, CBZ/CBR/CB7, M4B, M4A, and MP3.
+Booklore supports EPUB, PDF, MOBI, AZW3, FB2, CBZ/CBR/CB7, M4B, M4A, MP3 and Opus.
 
 After saving, the library scans your folders automatically. See [Setup First Library](library/setup-first-library.md) for a full walkthrough, and [Folder Structure](library/folder-structure.md) for how to organize your files.
 
@@ -105,7 +105,7 @@ Click any book cover, then click **"Read"** to open the built-in reader. Booklor
 | Ebook Reader | EPUB, MOBI, AZW3, FB2 | Bookmarks, annotations, highlights, search, custom fonts, progress sync |
 | PDF Reader | PDF | Page-level progress sync, zoom, page spread modes, annotations |
 | Comic Reader | CBZ, CBR, CB7 | Fit/scroll modes, reading direction (LTR/RTL), slideshow, bookmarks |
-| Audiobook Player | M4B, MP3 | Chapters, track listing, playback speed, progress sync |
+| Audiobook Player | M4B, MP3, Opus | Chapters, track listing, playback speed, progress sync |
 
 ### 📲 E-Readers and Mobile Apps
 
