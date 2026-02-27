@@ -5,7 +5,18 @@ Add books to your library by dropping files into a folder. Bookdrop watches for 
 ![Bookdrop Processing](/img/bookdrop/processing-status.jpg)
 
 :::warning[Network Storage Limitation]
-Bookdrop may not reliably detect new files on network-mounted storage (NFS, SMB). If files aren't detected, use a local folder, restart BookLore, or click the manual **Refresh** button in the Bookdrop UI.
+Bookdrop may not reliably detect new files on network-mounted storage (e.g., NFS or SMB). Many network filesystems do not propagate real-time filesystem events to the host process, so Bookdrop may not notice newly added files.
+
+**If Bookdrop doesn't react when you add files:**
+- Use a local folder instead
+- Adjust mount options to enable notification support
+- Restart Booklore to trigger a manual rescan
+- Open the Bookdrop UI and click the manual "Refresh" button to force a reload
+- You can also enable periodic scanning for the Bookdrop folder in **Settings → Tasks**.
+:::
+
+:::tip[Pro Tip]
+Drop entire folders of books at once. Bookdrop processes them sequentially and queues everything for easy review.
 :::
 
 ---
