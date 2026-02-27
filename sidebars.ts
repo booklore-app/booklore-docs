@@ -141,6 +141,19 @@ const sidebars: SidebarsConfig = {
       ],
     },
   ],
+
+  // Testing sidebar
+  testingSidebar: [
+    {
+      type: 'category',
+      label: 'Booklore Beta Testing',
+      collapsible: true,
+      collapsed: false,
+      items: [
+        'testing/testing-setup',
+      ],
+    },
+  ],
 };
 
 export default sidebars;
