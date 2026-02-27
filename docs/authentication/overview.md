@@ -1,130 +1,95 @@
 # 🔐 Authentication Overview
 
-Booklore offers flexible authentication to secure your library while keeping things simple. Out of the box, it works with built-in username and password authentication, no setup required. If you're already running an identity provider like Authentik or Pocket ID for your other self-hosted apps, Booklore can integrate seamlessly via OpenID Connect (OIDC), giving you single sign-on across your entire stack.
-
-Both methods can run side-by-side, so you can keep local authentication as a backup while using OIDC for daily access. This guide will help you understand your options and get started with the authentication method that fits your setup.
+Booklore supports three authentication methods that can run side by side: local (built-in), OpenID Connect (OIDC), and remote header-based authentication. You can enable any combination of these.
 
 ---
 
-## 🎯 Authentication Methods
+## Local Authentication
 
-### 🏠 Local Authentication (Built-in)
+Built-in username and password authentication. Works immediately after installation with no external dependencies.
 
-Booklore includes built-in username and password authentication that works immediately after installation:
-
-- **Self-Contained** - No external dependencies required
-- **Quick Setup** - Ready to use with zero configuration
-- **Always Available** - Works as a fallback even when OIDC is enabled
-
-**Perfect for:**
-- Getting started without extra dependencies
-- Keeping authentication simple and self-contained
-- Running Booklore as a standalone service
+- Ready to use out of the box
+- Always available as a fallback, even when other methods are enabled
+- Users are created and managed directly in Booklore
 
 ---
 
-### 🌐 OIDC Authentication (Optional)
+## OIDC Authentication
 
-Integrate with OpenID Connect (OIDC) providers for centralized authentication:
+Integrate with any OpenID Connect provider for single sign-on across your self-hosted apps.
 
-- **Single Sign-On (SSO)** - Authenticate once across multiple applications
-- **Centralized Management** - Control users from your identity provider
-- **Enhanced Security** - MFA, audit logs, and additional security features
-- **Standard Compliant** - Works with any OAuth2/OIDC provider
+Booklore has detailed setup guides for:
 
-**Supported Identity Providers:**
-- ✅ Authelia  (detailed setup guide available)
-- ✅ Authentik (detailed setup guide available)
-- ✅ Pocket ID (detailed setup guide available)
+- [Authentik](authentik.md)
+- [Pocket ID](pocket-id.md)
+- [Authelia](authelia.md)
 
-**Perfect for:**
-- Already running an identity provider for other apps
-- Want single login across all your services
-- Need MFA or advanced security features
+These guides can be adapted for most OIDC-compliant providers.
 
----
+### Configuration
 
-## 🚀 Getting Started
+Go to **Settings > Authentication** to configure your OIDC provider. The required fields are:
 
-### Using Local Authentication
+| Field | Description |
+|-------|-------------|
+| Provider Name | Display name shown on the login page |
+| Client ID | OAuth2 client ID from your provider |
+| Issuer URI | Your provider's OIDC issuer URL |
+| Claim Mappings | Map provider claims to Booklore fields (username, name, email) |
 
-No setup needed! Just:
-1. Access your Booklore instance
-2. Log in with your username and password
-3. You're done!
+### Auto User Provisioning
 
-### Setting Up OIDC
+When enabled, users who log in via OIDC for the first time are automatically created in Booklore with configurable default permissions and library access. This avoids having to manually create every user.
 
-1. Choose your identity provider
-2. Create an OAuth2/OIDC application in your provider
-3. Add the credentials to Booklore's authentication settings
-4. Test the login flow
+See [Auto User Provisioning](auto-user-provisioning.md) for details.
 
-**📚 Setup Guides:**
-- [**Authelia Integration Guide**](./authelia.md) - Complete step-by-step tutorial with screenshots
-- [**Authentik Integration Guide**](./authentik.md) - Complete step-by-step tutorial with screenshots
-- [**Pocket ID Integration Guide**](./pocket-id.md) - Complete step-by-step tutorial with screenshots
+### Emergency Override
 
-> 📝 **Note:** These guides can be adapted for most OIDC providers. Additional guides coming soon.
+Set the environment variable `FORCE_DISABLE_OIDC=true` to disable OIDC at the infrastructure level, regardless of the database setting. Useful if a misconfigured OIDC provider locks you out.
 
 ---
 
-## 🔧 Configuration
+## Remote Header Authentication
 
-Access authentication settings: **Settings → Authentication**
+For setups where a reverse proxy handles authentication (e.g., Authelia or Traefik forward auth), Booklore can trust user identity from HTTP headers.
 
-### Running Both Methods
+Configured via environment variables:
 
-You can enable both local and OIDC authentication at the same time:
-- Users can choose how they want to log in
-- Local auth always works as a fallback
-- The login page shows available options automatically
-
----
-
-## ❓ Common Questions
-
-**Q: Can I use both local and OIDC authentication?**  
-A: Yes! Enable both and users can choose their preferred method.
-
-**Q: What if my identity provider goes down?**  
-A: Local authentication stays available, so you can always log in.
-
-**Q: Do I need to migrate users when enabling OIDC?**  
-A: No. Just create matching usernames in your identity provider when you're ready.
-
-**Q: Does OIDC support MFA?**  
-A: Yes! Whatever security features your identity provider has (MFA, hardware keys, etc.) will work automatically.
-
-**Q: Are usernames case-sensitive?**  
-A: Yes. Make sure usernames match exactly between Booklore and your identity provider.
+| Variable | Description |
+|----------|-------------|
+| `REMOTE_AUTH_ENABLED` | Enable remote header auth |
+| `REMOTE_AUTH_HEADER_NAME` | Header containing the username |
+| `REMOTE_AUTH_HEADER_USER` | Header for the display name |
+| `REMOTE_AUTH_HEADER_EMAIL` | Header for the email |
+| `REMOTE_AUTH_HEADER_GROUPS` | Header for group membership |
+| `REMOTE_AUTH_ADMIN_GROUP` | Group name that grants admin access |
+| `REMOTE_AUTH_GROUPS_DELIMITER` | Delimiter for the groups header |
+| `REMOTE_AUTH_CREATE_NEW_USERS` | Auto-create users from headers |
 
 ---
 
-## 🎯 Which Method Should I Choose?
+## Which Method to Choose
 
-**Local Authentication:**
-- Just want to get started quickly
-- Don't run other authentication services
-- Prefer keeping everything self-contained
+**Local only:** You just want to get started quickly, or don't run other self-hosted services with SSO.
 
-**OIDC Authentication:**
-- Already running Authentik, Authelia, or similar
-- Want to log in once for all your apps
-- Need extra security like MFA
+**OIDC:** You already run Authentik, Authelia, Keycloak, or a similar provider and want a single login across all your apps. Also gives you MFA and centralized user management for free.
 
-**Both Methods:**
-- Testing OIDC while keeping local as backup
-- Want maximum flexibility
+**Remote header auth:** Your reverse proxy already handles authentication and you want Booklore to trust it.
+
+**Multiple methods:** You can enable all three simultaneously. The login page shows the available options, and local auth always works as a fallback.
 
 ---
 
-## 📚 Next Steps
+## Common Questions
 
-**Using Local Auth?** You're all set! Just log in and start using Booklore.
+**What if my identity provider goes down?**
+Local authentication stays available, so you can always log in.
 
-**Want to set up OIDC?** Head to the [Authentik Setup Guide](./authentik.md) or [Pocket ID Setup Guide](./pocket-id.md) for a detailed walkthrough.
+**Do I need to migrate users when enabling OIDC?**
+No. Users logging in via OIDC can be auto-provisioned, or you can create matching usernames manually.
 
----
+**Are usernames case-sensitive?**
+Yes. Usernames must match exactly between Booklore and your identity provider.
 
-Choose the authentication method that fits your setup. You can always change it later.
+**Does OIDC support MFA?**
+Yes. Whatever security features your identity provider supports (MFA, hardware keys, etc.) work automatically.

@@ -1,109 +1,67 @@
-# 📊 Browsing Books in Table View
+# 📋 Table View
 
-Booklore offers two primary ways to explore your book collection:
+The table view displays books in a data-rich tabular layout with sortable columns, ideal for managing large libraries. Switch to table view using the toggle button in the toolbar.
 
-- **Grid View**
-- **Table View**
-
-In this guide, we’ll focus on the **Table View**, an efficient, data-rich layout ideal for managing large libraries. Books are displayed in a tabular format with sortable columns and quick actions.
-
-To switch to Table View, click the view toggle button at the top of the library interface:
-
-![Table Toggle 1](/img/table/table-toggle-1.jpg)
-![Table Toggle 2](/img/table/table-toggle-2.jpg)
+![Grid State Toggle](/img/table/toggle-grid-state.jpg)
+![Table State Toggle](/img/table/toggle-table-state.jpg)
 
 ---
 
-## Table View Features
+## 👁️ Visible Columns
 
-At the top of the table, you'll find several controls to customize how your books are displayed and managed.
+Click the eye icon in the toolbar to choose which columns to show or hide.
 
----
+![Visible Columns](/img/table/table-visible-columns.jpg)
 
-### 1. Visible Columns
-
-Click the eye icon in the library header to open the **Visible Columns** panel. From here, you can choose which data columns to show or hide, such as ratings, format, source, or publisher.
-
-![Table Visible Columns](/img/table/table-visible-columns.jpg)
-
-:::tip[Why it’s useful]
-Tailor the table to show only the information that matters to you. Hide less relevant columns to reduce clutter and focus on the fields you care about most.
-:::
+Available columns: Title, Authors, Publisher, Series, Series #, Genres, Published, Last Read, Added On, File Size, Language, ISBN, Pages, Read Status, Amazon Rating, Goodreads Rating, Hardcover Rating, and their review counts.
 
 ---
 
-### 2. Column Sorting
+## 🔃 Sorting
 
-Click the sort icon next to any column header (e.g., Title, Author, Date Added) to sort the table by that field.
+Click the sort icon in the toolbar to open the sort popover. Works the same as in grid view: multi-sort with drag-to-reorder priority and ascending/descending toggles per field.
 
-- First click: Sorts ascending (A → Z).
-- Second click: Sorts descending (Z → A).
-
-![Table Sorting](/img/table/table-sorting.jpg)
-
-:::tip[Why it’s useful]
-Quickly organize your books by any field, making it easier to browse alphabetically, locate recent additions, or group by author.
-:::
+![Sorting](/img/table/table-sorting.jpg)
 
 ---
 
-### 3. Live Search
+## 🔍 Search
 
-Use the search bar in the library header to find books in real time. As you type, the table instantly filters matching results.
+The search bar filters the table in real time, matching across title, series, and author fields.
 
-- Searches across **title**, **series**, and **author** fields.
-
-![Table Search](/img/table/table-search.jpg)
-
-:::tip[Why it’s useful]
-Instantly locate any book without scrolling through the full list, especially helpful in large libraries.
-:::
+![Search](/img/table/table-search.jpg)
 
 ---
 
-### 4. Sidebar Filter Sorting
+## 🗂️ Sidebar Filters
 
-This option controls how filters (e.g., authors, categories, series) are sorted in the sidebar.
+The sidebar filter panel works identically to the grid view, with the same filter categories and AND/OR mode toggle.
 
-You can sort sidebar items by:
-
-- **Alphabetical Order** – For fast lookup by name.
-- **Number of Books** – To prioritize the most-used categories or prolific authors.
-
-![Table Sidebar Sort 1](/img/table/table-sidebar-sort-1.jpg)
-![Table Sidebar Sort 2](/img/table/table-sidebar-sort-2.jpg)
-
-:::tip[Why it’s useful]
-Customize the sidebar to reflect your browsing style, whether you want fast alphabetical access or to focus on high-volume filters.
-:::
+![Sidebar Filters](/img/table/sidebar-default.jpg)
+![Sidebar Sort Options](/img/table/sidebar-sort-options.jpg)
 
 ---
 
-### 5. Select or Deselect All
+## ✅ Bulk Selection
 
-Use the action bar at the bottom to select or deselect all visible books. Once selected, you can perform batch actions such as shelving or metadata updates.
+Check the checkbox next to books to select them, or use **Select All** in the bottom action bar to select every visible book.
 
-![Table Select All](/img/table/table-select-all.jpg)
+![Select All](/img/table/table-select-all.jpg)
 
-:::tip[Why it’s useful]
-Manage groups of books efficiently, perfect for organizing, updating, or shelving multiple items at once.
-:::
+The action bar provides bulk operations: metadata actions, shelf assignment, lock/unlock, organize files, and more (based on your permissions).
 
 ---
 
-### 6. Delete Selected Books (Permanent File Removal)
+## 🗑️ Delete Books
 
-From the same bottom action menu, you can delete selected books entirely. This action doesn’t just remove them from the library, it **deletes the actual files from your system**.
+Click the delete button in the bottom action bar to delete selected books. This **permanently removes the files from disk**, not just from the library.
 
-A confirmation dialog will appear to make sure you’re aware of the consequences before proceeding.
+![Delete Menu](/img/table/delete-menu.jpg)
 
-![Table Delete Books 1](/img/table/table-delete-books-1.jpg)
-![Table Delete Books 2](/img/table/table-delete-books-2.jpg)
+A confirmation dialog shows how many books will be deleted.
 
-:::danger[Important]
-Deleting books from here will permanently remove the physical files from your drive. Make sure you have backups or truly want to discard them before confirming.
-:::
+![Delete Confirm](/img/table/delete-confirm.jpg)
 
-:::tip[Why it’s useful]
-A convenient way to clean up books you no longer need, without having to manually hunt down files on disk. But use it with care!
+:::danger[Permanent File Deletion]
+Deleting books removes the actual files from your drive. Make sure you have backups before confirming.
 :::

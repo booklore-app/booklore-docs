@@ -1,336 +1,242 @@
-# 📁 Recommended Folder Structure
+# 📁 Folder Structure
 
-Organize your book files for optimal performance with Booklore. A well-structured folder hierarchy ensures accurate book detection, proper multi-format grouping, and seamless metadata association. This guide covers folder organization best practices for different library types.
+How you organize your book files determines how Booklore groups them. This page covers how the detection works and the best ways to lay out your library folders.
 
-:::tip[Pro Tip]
-Choose your folder structure before adding books to Booklore. Migrating an existing disorganized library is more complex than starting with a clean structure.
+---
+
+## 📖 Supported Formats
+
+Booklore recognizes the following file types:
+
+| Category | Extensions |
+|----------|-----------|
+| **Ebooks** | `.epub`, `.pdf`, `.mobi`, `.azw3`, `.azw`, `.fb2` |
+| **Comics** | `.cbz`, `.cbr`, `.cb7` |
+| **Audiobooks** | `.m4b`, `.m4a`, `.mp3` |
+
+Files with any other extension are silently ignored during scans.
+
+---
+
+## 🔍 How Detection Works
+
+Booklore supports two organization modes, configured per library:
+
+| Mode | Behavior |
+|------|----------|
+| **Book Per Folder** | Every file in the same folder belongs to one book. Simple and predictable. |
+| **Auto Detect** | Files are grouped by name similarity using fuzzy matching and series detection. More flexible but requires sensible naming. |
+
+:::tip[Which Mode to Choose]
+**Book Per Folder** is the safer choice if you keep each book in its own folder. **Auto Detect** is better when you have mixed structures or multiple books per folder.
 :::
 
 ---
 
-## 🌟 What You'll Achieve
+### 🏷️ Name Normalization
 
-With proper folder organization, you can:
+Before comparing filenames, Booklore normalizes them by:
 
-- **Group multiple formats automatically** (EPUB, PDF, audiobook) as a single book
-- **Improve metadata accuracy** with predictable file locations
-- **Enable smart series detection** with numbered entries kept separate
-- **Simplify library maintenance** with logical, browsable structures
+1. Removing the file extension
+2. Replacing underscores with spaces
+3. Stripping format indicators in brackets: `[epub]`, `(pdf)`, `(audiobook)`, `[m4b]`
+4. Stripping part/disc indicators: `(part 1)`, `[cd 2]`, `- disc 3`
+5. Stripping trailing author names: `- J.R.R. Tolkien`
+6. Repositioning trailing articles: `Hobbit, The` becomes `The Hobbit`
+7. Collapsing whitespace and lowercasing
+
+So `American_Gods (Audiobook).m4b` and `American Gods.epub` both normalize to `american gods` and will group together.
 
 ---
 
-## ✨ How Booklore Detects Books
+### 📂 Folder-Based Grouping (Auto Detect)
 
-Booklore uses intelligent detection to determine which files belong together as a single book.
+When files are inside a subfolder, Booklore uses the **folder name as the reference title**. Each file is compared against it:
 
-### Folder-Based Grouping
-
-When files are inside a subfolder, Booklore uses the **folder name as reference** and groups files that match it.
+- **Exact or substring match** groups the file with the folder
+- **Edition suffixes** are stripped before comparing. This includes:
+  - Ordinal editions: `first edition`, `2nd edition`, `10th anniversary`
+  - Production styles: `unabridged`, `abridged`, `complete`, `full cast`
+  - Special editions: `deluxe`, `special`, `collector`
+  - Format labels: `audiobook`, `audio book`, `ebook`, `e-book`
+- **Fuzzy matching** (similarity threshold of 60%) catches minor naming differences
 
 ```
 Library/
 └── American Gods/
-    ├── American Gods.epub          ← Matches folder name
-    ├── American Gods.pdf           ← Matches folder name
-    └── American Gods (Audiobook).m4b   ← Matches folder name
+    ├── American Gods.epub              ← matches folder name
+    ├── American Gods.pdf               ← matches folder name
+    └── American Gods (Unabridged).m4b  ← matches after stripping edition suffix
 ```
 
 All three files become **one book** with three format options.
 
-### Smart Matching
+---
 
-Booklore applies fuzzy matching to handle common variations:
+### 🔢 Series Detection
 
-- Format indicators in parentheses: `1984 (Audiobook).m4b`, `Dune [EPUB].epub`
-- Edition descriptors: `The Hobbit - 10th Anniversary Edition.pdf`, `Dune - Unabridged.m4b`
-- Underscore/space variations: `American_Gods.epub` matches `American Gods`
+Files with series indicators are kept as **separate books**, even if they share a folder. Recognized patterns:
 
-:::info[What Gets Stripped]
-Format indicators like `(pdf)`, `[epub]`, `(audiobook)` in brackets/parentheses are removed before matching. Edition terms like `unabridged`, `abridged`, `deluxe`, `special`, `collector`, and numbered editions (`1st edition`, `10th anniversary`) are also stripped.
-:::
-
-### Series Detection
-
-Numbered entries are kept as **separate books**, not grouped together:
+| Pattern | Examples |
+|---------|---------|
+| `Book N` | `Mistborn Book 1.epub`, `Mistborn Book 2.epub` |
+| `Vol. N` / `Volume N` | `Vol. 1 - The Eye of the World.epub` |
+| `Part N` | `Part 1 - Foundation.epub` |
+| `Chapter N` / `Episode N` | `Chapter 1.epub` |
+| `#N` / `No. N` | `#1 - Batman Year One.cbz` |
+| Bare number prefix | `01 - The Colour of Magic.epub`, `02 - The Light Fantastic.epub` |
+| Trailing number | `Mistborn 1.epub`, `Mistborn 2.epub` |
 
 ```
 Library/
 └── Mistborn/
-    ├── Mistborn Book 1.epub    ← Separate book
-    ├── Mistborn Book 2.epub    ← Separate book
-    └── Mistborn Book 3.epub    ← Separate book
+    ├── Mistborn Book 1.epub  ← separate book
+    ├── Mistborn Book 2.epub  ← separate book
+    └── Mistborn Book 3.epub  ← separate book
 ```
 
-Booklore recognizes patterns like `Book 1`, `Vol. 2`, `Volume 3`, `Part 4`, `Chapter 5`, `Episode 6`, `#7`, and `No. 8` as series indicators.
+---
 
-### Root-Level Files
+### 📄 Root-Level Files
 
-Files placed directly at the library root (not in subfolders) are grouped by **exact base name match**:
+Files placed directly at the library root (not in any subfolder) are grouped by **exact normalized name match only**. No fuzzy matching, no edition stripping.
 
 ```
 Library/
-├── American Gods.epub     ← These two group together
-├── American Gods.pdf      ← (same base name)
-├── The Hobbit.epub        ← Separate book
-└── Dune.pdf               ← Separate book
+├── Dune.epub        ← groups with Dune.pdf (same base name)
+├── Dune.pdf         ← groups with Dune.epub
+├── The Hobbit.epub  ← standalone
+└── 1984.pdf         ← standalone
 ```
 
 :::warning[Root-Level Limitation]
-Root-level grouping only works for exact name matches. The folder-based fuzzy matching (which handles variations like edition suffixes) only applies to files within subfolders. For best results, use subfolders.
+Fuzzy matching and edition stripping only apply inside subfolders. At root level, filenames must match exactly (after normalization) to group together. Use subfolders for reliable multi-format grouping.
 :::
+
+---
+
+### 🎧 Audiobook Folder Detection
+
+When a folder contains **2 or more audio files** and **no ebook/comic files**, Booklore checks whether the folder represents a single audiobook or a series of separate audiobooks:
+
+- **Single audiobook:** If all audio files share essentially the same base title (after stripping track numbers, part/disc indicators, and generic terms like `chapter`, `track`, `intro`), the entire folder is treated as **one audiobook**. The folder name becomes the book title.
+- **Series folder:** If audio files have distinctly different base titles, each file becomes its own book.
+
+```
+Library/
+└── Project Hail Mary/
+    ├── 01 - Chapter 1.mp3     ← same base title
+    ├── 02 - Chapter 2.mp3     ← same base title
+    └── 03 - Chapter 3.mp3     ← same base title
+```
+
+This entire folder becomes **one audiobook** called "Project Hail Mary".
 
 ---
 
 ## 📚 Recommended Structures
 
-### Structure 1: One Folder Per Book
+### ⭐ Structure 1: One Folder Per Book (Recommended)
 
-The simplest and most reliable structure. Each book lives in its own folder.
+The simplest and most reliable layout. Each book gets its own folder. Works perfectly with both organization modes.
 
 ```
 Library/
-├── The Name of the Wind/
-│   ├── The Name of the Wind.epub
-│   └── The Name of the Wind.pdf
-├── The Wise Man's Fear/
-│   └── The Wise Man's Fear.epub
-└── The Doors of Stone/
-    └── The Doors of Stone.epub
+├── American Gods/
+│   ├── American Gods.epub
+│   ├── American Gods.pdf
+│   └── American Gods.m4b
+├── Project Hail Mary/
+│   ├── Project Hail Mary.epub
+│   └── Project Hail Mary (Unabridged).m4b
+├── The Hobbit/
+│   └── The Hobbit.epub
+└── Dune/
+    └── Dune.epub
 ```
 
-**Advantages:**
-- Crystal-clear book boundaries
-- Perfect for multi-format collections
-- Best fuzzy matching support
-- Easy to add new formats later
+This is the best option for most users:
+
+- Multi-format grouping works automatically
+- Fuzzy matching handles minor naming differences
+- Clear boundaries between books
+- Easy to add new formats later (just drop a file in the folder)
+
+For series, give each entry its own folder:
+
+```
+Library/
+├── Mistborn 1 - The Final Empire/
+│   ├── The Final Empire.epub
+│   └── The Final Empire.m4b
+├── Mistborn 2 - The Well of Ascension/
+│   └── The Well of Ascension.epub
+└── Mistborn 3 - The Hero of Ages/
+    └── The Hero of Ages.epub
+```
 
 ---
 
-### Structure 2: Author Folders with Book Subfolders
+### 📂 Structure 2: Author Folders
 
-Organize by author, then by book. Ideal for large collections.
+Group books by author, then by book. Good for large collections where you want your filesystem to be browsable outside of Booklore too.
 
 ```
 Library/
-├── Patrick Rothfuss/
-│   ├── The Name of the Wind/
-│   │   └── The Name of the Wind.epub
-│   └── The Wise Man's Fear/
-│       └── The Wise Man's Fear.epub
+├── Neil Gaiman/
+│   ├── American Gods/
+│   │   ├── American Gods.epub
+│   │   └── American Gods.m4b
+│   └── Coraline/
+│       └── Coraline.epub
 ├── Brandon Sanderson/
 │   ├── Elantris/
 │   │   └── Elantris.epub
-│   └── Warbreaker/
-│       └── Warbreaker.epub
-└── Neil Gaiman/
-    └── American Gods/
-        ├── American Gods.epub
-        └── American Gods.m4b
+│   └── Mistborn 1 - The Final Empire/
+│   │   └── The Final Empire.epub
+│   └── Mistborn 2 - The Well of Ascension/
+│       └── The Well of Ascension.epub
+└── Andy Weir/
+    └── Project Hail Mary/
+        ├── Project Hail Mary.epub
+        └── Project Hail Mary.pdf
 ```
 
-**Advantages:**
-- Easy to browse by author
-- Clear separation between books
-- Scales well for large libraries
+Booklore only looks at the **immediate parent folder** for grouping, so intermediate author folders don't interfere. The rules are the same as Structure 1, just nested one level deeper.
 
 ---
 
-### Structure 3: Series Organization
+### 📄 Structure 3: Flat Files
 
-Group books by series, with each entry in its own folder.
-
-```
-Library/
-├── Discworld/
-│   ├── 01 - The Colour of Magic/
-│   │   └── The Colour of Magic.epub
-│   ├── 02 - The Light Fantastic/
-│   │   └── The Light Fantastic.epub
-│   └── 03 - Equal Rites/
-│       └── Equal Rites.epub
-├── Harry Potter/
-│   ├── 01 - Harry Potter and the Philosopher's Stone/
-│   │   └── Harry Potter and the Philosopher's Stone.epub
-│   └── 02 - Harry Potter and the Chamber of Secrets/
-│       └── Harry Potter and the Chamber of Secrets.epub
-└── Standalone/
-    └── The Alchemist/
-        └── The Alchemist.epub
-```
-
-**Advantages:**
-- Series order is visually clear
-- Numbered prefixes ensure correct sorting
-- Standalone books have a dedicated home
-
----
-
-### Structure 4: Flat File Structure
-
-All books at root level without subfolders. Simple but limited.
+All files dumped at the library root with no subfolders. Minimal effort, but limited.
 
 ```
 Library/
 ├── American Gods.epub
+├── American Gods.pdf
+├── Dune.epub
 ├── The Hobbit.epub
-├── 1984.pdf
-└── Dune.epub
+└── 1984.pdf
 ```
 
-**Limitations:**
-- Only exact name matches group together
-- No fuzzy matching for variations
-- No author/series organization
-- Harder to manage large collections
-
-:::info[When to Use Flat Structure]
-Flat structure works for simple, single-format libraries. If you have multiple formats, ensure filenames match exactly (e.g., `Book.epub` and `Book.pdf`).
-:::
+This works fine for single-format collections. Multi-format grouping requires **exact** name matches since root-level files don't get fuzzy matching. Fine for a small personal library, but doesn't scale well.
 
 ---
 
-## 🎯 Multi-Format Grouping
+## 🚫 Ignored Paths
 
-When you have multiple formats of the same book (EPUB, PDF, audiobook), Booklore can group them as a single book entry with multiple files.
+Booklore automatically skips these during scans:
 
-### Requirements for Grouping
-
-**For files in subfolders:**
-1. Files must be in the **same subfolder**
-2. Filenames should **match or be similar** to the folder name
-3. Files should **not have different series numbers**
-
-**For files at root level:**
-1. Filenames must have the **exact same base name** (before extension)
-2. Files should **not have different series numbers**
-
-### Example: Proper Multi-Format Setup
-
-```
-Library/
-└── Project Hail Mary/
-    ├── Project Hail Mary.epub
-    ├── Project Hail Mary.pdf
-    └── Project Hail Mary (Unabridged).m4b
-```
-
-All three files become **one book** with three format options.
-
-### Example: Files That Stay Separate
-
-```
-Library/
-└── Mistborn/
-    ├── Mistborn Book 1.epub
-    ├── Mistborn Book 2.epub
-    └── Mistborn Book 3.epub
-```
-
-These remain **three separate books** because they have different series numbers.
+- Hidden files and directories (anything starting with `.`)
+- Synology system directories: `#recycle`, `@eaDir`
+- Calibre trash: `.caltrash`
 
 ---
 
-## 🔧 Naming Conventions
+## ⚡ Tips
 
-### File Naming Best Practices
-
-| Do | Don't |
-|-----|--------|
-| `The Hobbit.epub` | `hobbit_final_v2.epub` |
-| `American Gods.pdf` | `AG_scan.pdf` |
-| `1984 (Audiobook).m4b` | `audiobook.m4b` |
-
-### Folder Naming Best Practices
-
-| Do | Don't |
-|-----|--------|
-| `The Name of the Wind/` | `book1/` |
-| `01 - The Colour of Magic/` | `discworld1/` |
-| `Brandon Sanderson/` | `author_bs/` |
-
-:::tip[Match Names to Folders]
-Name your files similarly to the parent folder for best automatic grouping results.
-:::
-
----
-
-## 🐛 Troubleshooting
-
-### Books Not Grouping Correctly
-
-**Issue:** Multiple formats appear as separate books
-
-**Solutions:**
-- Ensure files are in the same subfolder
-- Verify filenames are similar to the folder name
-- Check that files don't have different series numbers
-- Rescan the library after reorganizing files
-
----
-
-### Series Books Merged Together
-
-**Issue:** Different series entries merged into one book
-
-**Solutions:**
-- Use separate folders for each series entry
-- Include series indicators in filenames (`Book 1`, `Vol. 2`)
-- Ensure each series entry has a unique folder
-
----
-
-### Root-Level Files Not Grouping
-
-**Issue:** Files at library root with similar names not grouping
-
-**Explanation:** Root-level files only group on exact base name match. Move files into a subfolder for fuzzy matching support.
-
-```
-# Before (won't group - different keys at root level)
-Library/
-├── The Hobbit.epub
-└── The Hobbit - 10th Anniversary.pdf
-
-# After (will group via substring matching)
-Library/
-└── The Hobbit/
-    ├── The Hobbit.epub
-    └── The Hobbit - 10th Anniversary.pdf
-```
-
----
-
-### Inconsistent Detection Results
-
-**Issue:** Some books detected correctly, others not
-
-**Solutions:**
-- Standardize your folder structure
-- Use consistent naming conventions
-- Check for hidden characters in filenames
-- Ensure folder names match the book titles
-
----
-
-## 🎓 Best Practices Summary
-
-### Do's
-
-- Use one folder per book for multi-format collections
-- Name files similarly to their parent folder
-- Include series numbers in folder or file names
-- Organize by author or series for large collections
-- Use descriptive, readable folder names
-
-### Don'ts
-
-- Don't mix different books in the same folder
-- Don't use cryptic folder names like `book1/` or `new/`
-- Don't rely on filename alone for series differentiation
-- Don't change folder structure without rescanning the library
-
----
-
-:::success[Organized Library]
-A well-organized folder structure is the foundation of a great Booklore experience. Take time to plan your structure, and Booklore will reward you with accurate detection and seamless multi-format support!
-:::
+- **Name files to match the folder** for the most reliable grouping
+- **Use subfolders** if you have multiple formats of the same book
+- **Don't mix different books** in the same folder when using Book Per Folder mode
+- **Rescan your library** after reorganizing files on disk
+- **Watch Folders** can be enabled to auto-detect new, changed, or deleted files without manual rescans

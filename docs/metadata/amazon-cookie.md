@@ -1,11 +1,9 @@
 # 🍪 Amazon Cookie Setup
 
-When fetching book metadata from Amazon, you might encounter 503 service errors due to Amazon's automated traffic detection systems. This guide will help you configure browser cookies to resolve these issues and ensure reliable metadata fetching.
-
-Amazon uses sophisticated anti-bot measures to protect their services. By using cookies from an authenticated browser session, Booklore can appear as a legitimate user request, significantly improving the success rate of metadata retrieval.
+If you encounter 503 errors when fetching metadata from Amazon, you can configure browser cookies to bypass Amazon's automated traffic detection.
 
 :::warning[Security Note]
-Use a secondary Amazon account when possible to protect your main account from any potential restrictions. Cookies contain session information - keep them private and regenerate them periodically for security.
+Use a secondary Amazon account when possible to protect your main account from potential restrictions.
 :::
 
 ---
@@ -17,11 +15,7 @@ Use a secondary Amazon account when possible to protect your main account from a
    - UK: https://www.amazon.co.uk
    - Other regions: Use your local Amazon domain
 
-2. **Sign in to Amazon** using a secondary account if available. This helps protect your main account from any potential restrictions.
-
-:::tip[Account Protection]
-Creating a dedicated Amazon account for metadata fetching protects your primary account from potential rate limiting or restrictions.
-:::
+2. **Sign in to Amazon** using a secondary account if available
 
 ---
 
