@@ -32,7 +32,6 @@
     align-items: center;
     height: var(--ifm-navbar-height);
     background: var(--custom-navbar-bg);
-    -webkit-backdrop-filter: blur(12px);
     box-shadow: var(--ifm-navbar-shadow);
     padding-left: calc(var(--ifm-navbar-padding-horizontal) + 0.5rem);
 }
