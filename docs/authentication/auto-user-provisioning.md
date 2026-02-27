@@ -92,7 +92,7 @@ If you haven't already configured OIDC authentication, follow one of our compreh
 
 This is what the UI will look like once OIDC setup is complete:
 
-![Enable Auto-Provisioning](/img/authentication/auto-provisioning/auto-provision-1--setup-oidc.jpg)
+![Enable Auto-Provisioning](/img/authentication/auto-provisioning/setup-oidc.jpg)
 
 #### 2. Test OIDC Login with Existing User
 
@@ -133,7 +133,7 @@ Once OIDC authentication works reliably with existing users, you're ready to ena
 
 Now configure automatic provisioning with appropriate defaults:
 
-![Enable Auto-Provisioning](/img/authentication/auto-provisioning/auto-provision-2--enable-auto-prov.jpg)
+![Enable Auto-Provisioning](/img/authentication/auto-provisioning/enable-auto-provisioning.jpg)
 
 1. **Navigate to Provisioning Section**  
    In **Settings → Authentication**, scroll to the **"OIDC User Provisioning"** section (visible when OIDC is enabled)
@@ -187,7 +187,7 @@ Verify that automatic provisioning works correctly before rolling it out:
    - Verify the new user appears in the user list
    - Check that the user has correct username, email, and display name
 
-   ![Verify User](/img/authentication/auto-provisioning/auto-provision-3--verify-user-creation.jpg)
+   ![Verify User](/img/authentication/auto-provisioning/verify-user-creation.jpg)
 
 4. **Verify Permissions**  
    Click on the newly created user to view their details:

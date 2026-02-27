@@ -59,6 +59,12 @@
     letter-spacing: -0.5px;
 }
 
+.markdown img {
+    width: auto;
+    max-width: 100%;
+    border-radius: 8px;
+}
+
 .markdown h1 {
     font-size: 2.5rem;
 }

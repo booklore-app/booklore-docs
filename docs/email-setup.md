@@ -1,327 +1,186 @@
-# 📧 Email Setup Guide
+# ✉️ Email Configuration
 
-Booklore allows you to send books directly via email using various email providers. This guide will walk you through setting up Gmail as your email provider, enabling you to use the "Quick Book Send" feature from any book card.
+Configure email settings to send books directly to your devices or recipients. Set up email providers (like Gmail, Outlook, or custom SMTP servers) and manage recipient email addresses.
 
-:::info[What's New in v2]
-Users with email permission can now set up their own personal email providers and recipients without interfering with other users' configurations. Each user manages their own email settings independently. Additionally, administrators can optionally share email providers with all users, making it
-easy to provide centralized email configurations while still allowing users to create their own private providers.
-:::
+Navigate to **Settings > Email** to access this page. Requires the **Email Books** permission.
 
 ---
 
-## 🔧 Prerequisites
+## 📋 Overview
 
-Before setting up Gmail as your email provider, ensure you have:
+The Email Configuration page has two sections:
 
-1. **A Gmail account** with email sending privileges
-2. **2-Factor Authentication enabled** on your Google account (required for app passwords)
-3. **App Password generated** for Booklore (we'll guide you through this process)
-4. **Email permission** in your Booklore account (contact your administrator if needed)
+- **Email Providers**: SMTP server configurations used to send books
+- **Recipient Emails**: Email addresses where books are delivered
 
----
+Once you have a default provider and a default recipient configured, you can send books with a single click using **Quick Send** from any book card menu.
 
-## 🔐 Step 1: Generate Gmail App Password
-
-Since Gmail requires secure authentication, you'll need to create an app-specific password for Booklore.
-
-1. Go to your [Google Account Security Settings](https://myaccount.google.com/security)
-2. Ensure **2-Step Verification** is enabled (required for app passwords)
-3. Click on **App passwords** under "Signing in to Google"
+![Email Configuration](/img/email-setup/email-configuration.jpg)
 
 ---
 
-1. Select **Mail** as the app type
-2. Choose **Other (Custom name)** for the device
-3. Enter "Booklore" as the custom name
-4. Click **Generate**
-5. **Copy the 16-character password** - you'll need this for the Booklore setup
+## 📧 Email Providers
 
-:::warning[Important]
-Save this app password securely. Google will only display it once!
-:::
+An email provider is an SMTP server configuration that Booklore uses to send books. You can add multiple providers and set one as the default.
 
----
+### Adding a Provider
 
-## ⚙️ Step 2: Configure Email Provider in Booklore
+Click **"+ Add Provider"** to open the creation dialog.
 
-Now let's add Gmail as an email provider in your Booklore settings.
+![Create Email Provider](/img/email-setup/create-provider-dialog.jpg)
 
-:::info[Personal and Shared Providers]
-Your email provider configuration is personal to your account by default. Other users won't see or be able to use your email providers unless you're an admin and choose to share them. Admins can optionally share providers with all users, while non-admin users' providers remain private.
-:::
+| Field | Required | Description |
+|-------|----------|-------------|
+| **Provider Name** | Yes | A descriptive name (e.g., "Gmail", "Office SMTP") |
+| **Host** | Yes | SMTP server hostname (e.g., `smtp.gmail.com`) |
+| **Port** | Yes | SMTP server port (typically `587` for STARTTLS or `465` for SSL) |
+| **Username** | No | Authentication username (usually your email address) |
+| **Password** | No | Authentication password or app password |
+| **From Address** | No | The sender email address displayed to recipients |
 
-![Email Providers Page](/img/email/email-1.jpg)
+**Checkboxes:**
 
-1. Navigate to **Settings** > **Email** in Booklore
-2. Click **Create Provider**
+| Option | Description |
+|--------|-------------|
+| **Authentication** | Enable SMTP authentication with the username and password above |
+| **StartTLS** | Enable STARTTLS encryption (recommended for port 587) |
+| **Shared** | Admin only. Makes this provider available to all users on the instance. |
 
----
+### Default Provider
 
-![Gmail Configuration](/img/email/email-2.jpg)
-
-Fill in the Gmail configuration details:
-
-| Field            | Value                                                  |
-|------------------|--------------------------------------------------------|
-| **Name**         | Gmail (or any descriptive name)                        |
-| **Host**         | `smtp.gmail.com`                                       |
-| **Port**         | `587`                                                  |
-| **Username**     | Your full Gmail address (e.g., `your-email@gmail.com`) |
-| **Password**     | The 16-character app password you generated            |
-| **From Address** | Your Gmail address (same as username)                  |
-| **Auth**         | ✅ Enabled                                              |
-| **StartTLS**     | ✅ Enabled                                              |
-| **Shared**       | ⬜ (Admin only - check to share with all users)         |
-
-1. Click **Create Email Provider** to save the configuration
-
-:::info[Admin Sharing]
-If you are an administrator, you'll see a **Shared** checkbox. Enabling this option will make the email provider available to all users in your Booklore instance. Shared providers appear with an "S" badge and can only be modified or deleted by the admin who created them.
-:::
-
----
-
-## 📮 Step 3: Set Up Recipient Emails
-
-After configuring your email provider, you'll need to add recipients who will receive your books via email.
-
-:::info[Personal Recipients]
-Your recipient list is private to your account. Each user maintains their own list of recipients independently.
-:::
-
-1. Navigate to **Email** > **Recipients** in Booklore
-2. Click **Create Recipient**
-
----
-
-![Add Recipient](/img/email/email-3.jpg)
-
-Fill in the recipient details:
-
-| Field                 | Value                                                      |
-|-----------------------|------------------------------------------------------------|
-| **Email Address**     | The recipient's email address (e.g., `friend@example.com`) |
-| **Name**              | A friendly name for the recipient (e.g., `John's Kindle`)  |
-| **Default Recipient** | Check this box to set as your default recipient            |
-
-1. Click **Save** to add the recipient
-
-:::tip
-You can add multiple recipients such as family members, friends, or different devices (Kindle, tablet, etc.)
-:::
-
-:::success[Quick Send Ready]
-Once you have configured a default email provider and default recipient, you can send books with one click using "Quick Book Send" from any book card. Your default settings are personal to your account.
-:::
-
----
-
-This is how the interface should look after setting up both the email provider and recipient:
-
-![Recipients List](/img/email/email-4.jpg)
-
----
-
-## 📚 Step 4: Sending Books via Email
-
-Booklore offers two convenient methods to send books via email:
-
-:::info
-When sending books, you'll use your own configured email providers and recipients. Other users sending books will use their own configurations.
-:::
-
-![Advanced Send](/img/email/email-5.jpg)
-
-### 🚀 Quick Book Send (One-Click)
-
-For fast, streamlined sending using your default settings:
-
-1. Navigate to any book in your library
-2. Click the **three-dot menu** on the book card
-3. Select **Book Send** > **Quick Send**
-4. The book is instantly sent using your **default email provider** to your **default recipient**
-
-:::tip
-Perfect for regular sending to the same recipient (such as your Kindle).
-:::
-
-### ⚙️ Custom/Advanced Send
-
-For flexible sending with specific provider and recipient selection:
-
-1. Navigate to any book in your library
-2. Click the **three-dot menu** on the book card
-3. Select **Book Send** > **Custom Send**
-4. Choose your desired **email provider** from the dropdown
-5. Select the **recipient** from the dropdown
-6. Click **Send**
-
-:::tip
-Perfect for sending to different recipients or using specific email providers for certain books.
-:::
-
----
-
-## 👥 Multi-User Email Configuration
-
-:::info[Multi-User Email Configuration]
-In the new email configuration system, each user can configure their own email providers and recipients. Administrators can optionally share email providers with all users for centralized management.
-:::
-
-### How Email v2 Works
-
-In the new email configuration system:
-
-- **Personal Email Providers**: Each user can configure their own private email providers (Gmail, Outlook, custom SMTP, etc.)
-- **Shared Email Providers (Admin Only)**: Administrators can create shared providers that are available to all users
-- **Personal Recipients**: Each user maintains their own list of email recipients
-- **Independent Defaults**: Each user sets their own default email provider and default recipient
-- **Provider Protection**: Users cannot modify or delete shared providers created by other admins
-- **No Interference**: Users cannot see or modify other users' private email configurations
-- **Shared Library**: All users can send any book from the shared library using their own email settings
+The radio button next to each provider controls which one is the **default**. The default provider is used for Quick Send. Your first provider is automatically set as the default.
 
 ### Shared Providers
 
-**What are Shared Providers?**
+Admins can mark a provider as **Shared** to make it available to all users. This is useful for organization-wide SMTP servers so individual users don't need to configure their own.
 
-- Administrators can mark email providers as "shared" to make them available to all users
-- Shared providers appear with an "S" badge in the provider list
-- All users can use shared providers to send books
-- Only the admin who created a shared provider can modify or delete it
+- Shared providers appear in every user's provider list
+- Only the admin who created a shared provider can edit or delete it
+- Non-admin users see shared providers as read-only
 
-**Benefits of Shared Providers:**
+### Editing and Deleting
 
-- **Centralized Management**: Admins can set up instance-wide email providers
-- **Simplified Setup**: Users don't need to configure their own SMTP settings
-- **Cost Efficiency**: Share paid email services across your instance
-- **Consistency**: Ensure all users have access to reliable email providers
+Each provider has edit and delete buttons. Click edit to modify settings inline, or delete to remove the provider. If you delete the default provider, another provider is automatically assigned as the new default.
 
-**Use Cases for Shared Providers:**
+---
 
-- Shared email service account for the entire instance
-- Educational institutions providing centralized email access
-- Families sharing a single email account for sending books
-- Small teams wanting simplified configuration
+## 👤 Recipient Emails
 
-### Use Cases
+Recipients are the email addresses where books are sent. Each user manages their own private list of recipients.
 
-**Scenario 1: Instance with Shared Provider**
+### Adding a Recipient
 
-- Admin sets up a shared Gmail account for all users
-- Users can use the shared provider to send books
-- Users can also add their own personal providers if desired
-- Each user maintains their own recipient list
+Click **"+ Add Recipient"** to add a new recipient.
 
-**Scenario 2: Family Library with Mixed Setup**
+| Field | Required | Description |
+|-------|----------|-------------|
+| **Email** | Yes | The recipient's email address |
+| **Name** | Yes | A label for the recipient (e.g., "My Kindle", "John's iPad") |
 
-- Parent (admin) shares their Gmail provider with the family
-- Children use the shared provider to send to their devices
-- Other parent adds their own Outlook provider for personal use
-- Each person has their own recipient lists
+### Default Recipient
 
-**Scenario 3: Friend Group Library**
+The radio button next to each recipient controls which one is the **default**. The default recipient is used for Quick Send. Your first recipient is automatically set as the default.
 
-- Admin creates shared email provider for the group
-- Friends can use the shared provider immediately
-- Friends can add personal providers if they prefer
-- Everyone manages their own recipient lists privately
+---
 
-**Scenario 4: Privacy-Focused Users**
+## 📚 Sending Books
 
-- Users create only private email providers
-- No sharing enabled - full privacy
-- Each person's email configuration is completely isolated
-- Suitable for privacy-conscious individuals sharing a library
+Once your email provider and recipients are configured, you can send books from any book card menu.
+
+### 🚀 Quick Send
+
+Select **Email Book > Quick Send** from the book card menu. The book is sent immediately using your default provider and default recipient with no further interaction.
+
+:::tip[Perfect for E-Readers]
+Quick Send is ideal for sending books to a Kindle or other e-reader. Set the device's email as your default recipient and send books with one click.
+:::
+
+### ⚙️ Custom Send
+
+Select **Email Book > Custom Send** from the book card menu to open a dialog where you can:
+
+1. **Choose a provider** from your available providers (personal + shared)
+2. **Choose a recipient** from your recipient list
+3. **Choose a file format** if the book has multiple formats (e.g., EPUB and PDF)
+
+The dialog shows the file size for each format and warns you if a file exceeds 25 MB.
+
+:::info[No Format Conversion]
+Books are sent as-is in their original format. Booklore does not convert between formats before sending.
+:::
+
+---
+
+## 🔐 Gmail Setup
+
+Gmail is the most common provider. Here's how to set it up:
+
+### Step 1: Generate an App Password
+
+1. Go to [Google Account Security Settings](https://myaccount.google.com/security)
+2. Ensure **2-Step Verification** is enabled (required for app passwords)
+3. Navigate to **App Passwords**
+4. Select **Mail** as the app type, choose **Other**, enter "Booklore"
+5. Click **Generate** and copy the 16-character password
+
+:::warning[Save Your App Password]
+Google only displays the app password once. Save it before closing the dialog.
+:::
+
+### Step 2: Add Gmail as a Provider
+
+Use these settings when creating the provider:
+
+| Field | Value |
+|-------|-------|
+| **Provider Name** | Gmail |
+| **Host** | `smtp.gmail.com` |
+| **Port** | `587` |
+| **Username** | Your Gmail address |
+| **Password** | The 16-character app password |
+| **From Address** | Your Gmail address |
+| **Authentication** | Checked |
+| **StartTLS** | Checked |
+
+---
+
+## 📋 Other Common Providers
+
+| Provider | Host | Port | Auth | StartTLS |
+|----------|------|------|------|----------|
+| **Gmail** | `smtp.gmail.com` | 587 | Yes | Yes |
+| **Outlook/Hotmail** | `smtp-mail.outlook.com` | 587 | Yes | Yes |
+| **Yahoo** | `smtp.mail.yahoo.com` | 587 | Yes | Yes |
+| **Custom SMTP** | Your server's hostname | Per your server | Per your server | Per your server |
 
 ---
 
 ## 🔍 Troubleshooting
 
-### Common Issues and Solutions
+### Authentication Failed
+- Verify you're using an **app password**, not your regular account password
+- Confirm 2-Factor Authentication is enabled (required by Gmail for app passwords)
+- Double-check the username and password fields
 
-**❌ Authentication Failed**
+### Connection Timeout
+- Confirm the host and port are correct
+- Ensure StartTLS is enabled for port 587
+- Check that your network or Docker container allows outbound SMTP connections
 
-- Double-check your Gmail address and app password
-- Ensure 2-Factor Authentication is enabled on your Google account
-- Verify you're using the app password, not your regular Gmail password
-
-**❌ Connection Timeout**
-
-- Confirm the host is `smtp.gmail.com` and port is `587`
-- Check that StartTLS is enabled
-- Verify your network allows SMTP connections
-
-**❌ "Less Secure App" Error**
-
-- This usually indicates you're using your regular password instead of an app password
-- Generate a new app password and use that instead
-
-**❌ Books Not Arriving**
-
+### Books Not Arriving
 - Check the recipient's spam/junk folder
 - Verify the recipient email address is correct
-- Ensure your Gmail account has sufficient sending limits
+- For Kindle users, ensure your sending address is added to the [Approved Personal Document Email List](https://www.amazon.com/hz/mycd/myx#/home/settings/payment) in your Amazon account
 
-**❌ Recipient Not Receiving Books**
-
-- Verify the recipient's email address is correct
-- Check if the recipient needs to whitelist your Gmail address
-- For Kindle users, ensure your Gmail address is added to their approved email list in their Amazon account settings
-
-### Permission and Visibility Issues
-
-**❌ Cannot See Email Settings**
-
-- Verify you have email permission in your Booklore account
-- Contact your administrator to request email access
-- Check that you're logged into the correct account
-
-**❌ Cannot See Other Users' Providers**
-
-- This is expected behavior - private email configurations are personal to each user
-- Only shared providers (marked with "S" badge) are visible to all users
-- Each user must set up their own private email providers and recipients
-- If you need to send using different credentials, create a new provider in your account
-
-**❌ Cannot Edit or Delete a Shared Provider**
-
-- Shared providers can only be modified by the admin who created them
-- If you need changes to a shared provider, contact your administrator
-- You can always create your own private provider as an alternative
-
-**❌ Cannot Share Providers (No Checkbox)**
-
-- Only administrators can share email providers
-- Contact your administrator if you need a provider shared with all users
-- Regular users can only create private providers
+### Cannot See Email Settings
+- Verify you have the **Email Books** permission. Contact your administrator if needed.
 
 ---
 
-## 🔒 Security Best Practices
+## 📋 Notes
 
-1. **Use App Passwords Only**: Never use your main Gmail password for third-party applications
-2. **Limit Access**: Only enable the minimum permissions required
-3. **Monitor Usage**: Regularly check your Gmail sent folder for unexpected activity
-4. **Revoke When Needed**: If you stop using Booklore, revoke the app password from your Google Account
-
----
-
-## 📋 Alternative Email Providers
-
-While this guide focuses on Gmail, Booklore supports other email providers:
-
-- **Outlook/Hotmail**: Use `smtp-mail.outlook.com` on port `587`
-- **Yahoo**: Use `smtp.mail.yahoo.com` on port `587`
-- **Custom SMTP**: Any SMTP server with the appropriate settings
-
-The configuration process is similar - simply adjust the host, port, and authentication settings according to your provider's documentation.
-
-:::tip
-You can configure multiple email providers and switch between them as needed. The default provider will be used for Quick Book Send, but you can select different providers when manually sending books. All your private email configurations are personal to your account and won't be visible to other
-users. Administrators can optionally share providers to make them available to everyone.
-:::
-
-:::note[Privacy Note]
-In email configuration v2, your private email provider credentials, recipient lists, and sending history are private to your account. Administrators can create shared providers that are available to all users, but they can only be modified by the admin who created them. Other users with email
-permission will have their own separate private configurations.
-:::
+- Email providers and recipients are personal to each user. Other users cannot see or use your private configurations.
+- All email provider and recipient changes are recorded in the [Audit Log](tools/audit-logs.md).
+- The connection type is auto-detected: port 465 uses SSL, port 587 with StartTLS uses STARTTLS, otherwise plain SMTP.
+- Email sending happens asynchronously. You'll see a toast notification when the send completes or fails.
+- Supported formats for sending: EPUB, PDF, CBX (CBZ/CBR/CB7), MOBI, AZW3, FB2, and Audiobook (M4B/M4A/MP3).

@@ -1,141 +1,14 @@
 # 📝 File Naming Patterns
 
-Take control of your library organization with powerful, customizable file naming patterns. Automatically rename and organize books using metadata placeholders, ensuring consistent naming across your entire collection. Whether you're uploading new books, moving existing ones, or updating metadata,
-your files stay perfectly organized.
+Configure automatic file organization using metadata placeholders. Patterns are applied when uploading books, finalizing Bookdrop imports, moving files between libraries, and (optionally) after metadata updates.
 
 ![File Naming Patterns UI](/img/metadata/file-naming-patterns.jpg)
 
-:::tip[Pro Tip]
-Patterns are applied automatically during uploads, file moves, and metadata updates. Set them once and let Booklore handle the rest!
-:::
-
 ---
 
-## 🌟 What You'll Achieve
+## How Patterns Work
 
-With File Naming Patterns, you can:
-
-- **Automate file organization** using metadata-driven naming conventions
-- **Create library-specific patterns** for different collections
-- **Build dynamic folder structures** with nested paths
-- **Handle missing metadata gracefully** with optional blocks
-- **Maintain consistency** across your entire library
-- **Customize naming** for series, standalone books, and more
-
----
-
-## ✨ How File Naming Patterns Work
-
-### 🔄 The Pattern System
-
-1. **🎯 Pattern Definition**  
-   Define patterns using metadata placeholders like `{title}`, `{authors}`, and `{year}`.
-
-2. **📚 Library-Specific Overrides**  
-   Each library can have its own custom pattern, or fall back to the default.
-
-3. **🔍 Metadata Replacement**  
-   When processing files, Booklore replaces placeholders with actual book metadata.
-
-4. **📁 Automatic Organization**  
-   Files are renamed and moved to the correct locations based on your patterns.
-
-5. **🛡️ Graceful Fallbacks**  
-   Optional blocks ensure patterns work even when some metadata is missing.
-
----
-
-## 🚀 Getting Started
-
-### Understanding Pattern Basics
-
-Patterns are simple text templates with special placeholders enclosed in curly braces:
-
-```
-{authors} - {title} ({year})
-```
-
-This pattern produces filenames like:
-
-```
-J.K. Rowling - Harry Potter and the Sorcerer's Stone (1997).epub
-```
-
----
-
-## 📖 Pattern Configuration
-
-### Default File Naming Pattern
-
-The default pattern serves as the fallback for all libraries unless overridden.
-
-**Key Features:**
-
-- Applied to all books by default
-- Used when no library-specific pattern is configured
-- Must be valid before saving (no special characters except those in placeholders)
-
-**How to Configure:**
-
-1. Enter your pattern in the "Default Pattern" field
-2. Preview updates in real-time
-3. Click "Save" to apply the pattern
-
-:::warning[Validation Required]
-Patterns are validated before saving. Invalid characters will trigger an error message.
-:::
-
----
-
-### Library-Specific Overrides
-
-Customize naming patterns for individual libraries to match different organizational needs.
-
-**Use Cases:**
-
-- Comic books library: `{series}/{seriesIndex} - {title}`
-- Academic library: `{authors}/{year} - {title}`
-- Fiction library: `{title} - {authors}`
-- Audiobooks library: `{authors}/{title}/`
-
-**How to Configure:**
-
-1. Scroll to "Library-Specific Overrides" section
-2. Enter a pattern for any library you want to customize
-3. Leave empty to use the default pattern
-4. Click "Clear" to remove a library-specific pattern
-5. Click "Save All Library Patterns" to apply changes
-
-:::tip[Inheritance Tip]
-Leave patterns empty to inherit the default. This makes it easy to maintain consistency while allowing specific libraries to have unique organization.
-:::
-
----
-
-## 🎨 Available Placeholders
-
-### Metadata Placeholders
-
-Use these placeholders to insert book metadata into your patterns:
-
-| Placeholder         | Description       | Example Value          |
-|---------------------|-------------------|------------------------|
-| `{title}`           | Book title        | "The Hobbit"           |
-| `{subtitle}`        | Book subtitle     | "There and Back Again" |
-| `{authors}`         | Author name(s)    | "J.R.R. Tolkien"       |
-| `{year}`            | Publication year  | "1937"                 |
-| `{series}`          | Series name       | "Middle-earth"         |
-| `{seriesIndex}`     | Series position   | "01"                   |
-| `{language}`        | Language code     | "en"                   |
-| `{publisher}`       | Publisher name    | "Allen & Unwin"        |
-| `{isbn}`            | ISBN number       | "9780547928227"        |
-| `{currentFilename}` | Original filename | "hobbit_original.epub" |
-
----
-
-### Creating Folder Structures
-
-Use forward slashes (`/`) to create nested folder structures:
+Patterns are text templates with placeholders in curly braces. When a file is processed, Booklore replaces each placeholder with the book's actual metadata and renames/moves the file accordingly.
 
 ```
 {authors}/{series}/{seriesIndex} - {title}
@@ -147,62 +20,77 @@ Produces:
 J.K. Rowling/Harry Potter/01 - Harry Potter and the Sorcerer's Stone.epub
 ```
 
-**Special Cases:**
-
-- **Trailing slash:** Pattern ending with `/` keeps the original filename
-  ```
-  {title}/
-  → Harry Potter and the Sorcerer's Stone/original_file.epub
-  ```
-
-- **Leading slash:** Pattern starting with `/` creates an absolute path from library root
-  ```
-  /{authors}/{title}
-  → /J.K. Rowling/Harry Potter and the Sorcerer's Stone.epub
-  ```
+The file extension is always added automatically.
 
 ---
 
-## 🎯 Optional Blocks
+## Available Placeholders
 
-Optional blocks allow parts of your pattern to be excluded when metadata is missing.
+| Placeholder | Description | Example |
+|---|---|---|
+| `{title}` | Book title | The Hobbit |
+| `{subtitle}` | Book subtitle | There and Back Again |
+| `{authors}` | Author name(s) | J.R.R. Tolkien |
+| `{year}` | Publication year | 1937 |
+| `{series}` | Series name | Middle-earth |
+| `{seriesIndex}` | Series position, zero-padded | 01 |
+| `{language}` | Language code | en |
+| `{publisher}` | Publisher name | Allen & Unwin |
+| `{isbn}` | ISBN (prefers ISBN-13) | 9780547928227 |
+| `{currentFilename}` | Original filename with extension | hobbit_original.epub |
 
-### Syntax
+---
 
-Wrap content in angle brackets: `<...>`
+## Folder Structures
+
+Use forward slashes to create nested folder structures:
+
+```
+{authors}/{series}/{seriesIndex} - {title}
+→ J.K. Rowling/Harry Potter/01 - Harry Potter and the Sorcerer's Stone.epub
+```
+
+**Trailing slash** keeps the original filename:
+
+```
+{title}/
+→ Harry Potter and the Sorcerer's Stone/harry1_original.epub
+```
+
+**Leading slash** creates an absolute path from the library root:
+
+```
+/{authors}/{title}
+→ /J.K. Rowling/Harry Potter and the Sorcerer's Stone.epub
+```
+
+---
+
+## Optional Blocks
+
+Wrap parts of a pattern in angle brackets (`<...>`) to make them conditional. If any placeholder inside the block has no value, the entire block is removed.
 
 ```
 <{seriesIndex} - >{title}
 ```
 
-### How It Works
+- With series index: `01 - Dune.epub`
+- Without series index: `Dune.epub`
 
-If `seriesIndex` has a value:
+This is essential for metadata that may be missing, like series, subtitle, or ISBN.
 
-```
-01 - Dune.epub
-```
+### Examples
 
-If `seriesIndex` is missing:
-
-```
-Dune.epub
-```
-
-The entire block (including the dash and space) is removed!
-
-### Advanced Examples
-
-**Multiple placeholders in one block:**
+**Subtitle block:**
 
 ```
 {title}<: {subtitle}>
 ```
 
 - With subtitle: `Project Hail Mary: A Novel.epub`
-- Without subtitle: `Project Hail Mary.epub`
+- Without: `Project Hail Mary.epub`
 
-**Nested structures:**
+**Full series path with fallbacks:**
 
 ```
 {authors}/<{series}/><{seriesIndex}. >{title}
@@ -211,284 +99,71 @@ The entire block (including the dash and space) is removed!
 - Full metadata: `Andy Weir/The Martian Series/02. Project Hail Mary.epub`
 - No series: `Andy Weir/Project Hail Mary.epub`
 
-**Decorative elements:**
+**Decorative brackets:**
 
 ```
 <[{series}] >{title} - {authors}
 ```
 
-- With series: `[Harry Potter] Harry Potter and the Chamber of Secrets - J.K. Rowling.epub`
-- Without series: `Harry Potter and the Chamber of Secrets - J.K. Rowling.epub`
-
-:::tip[Best Practice]
-Use optional blocks for any metadata that might be missing (series, subtitle, ISBN, etc.)
-:::
+- With series: `[Harry Potter] Chamber of Secrets - J.K. Rowling.epub`
+- Without: `Chamber of Secrets - J.K. Rowling.epub`
 
 ---
 
-## 📚 Pattern Examples
+## Worked Examples
 
-### Examples with Complete Metadata
+### With Complete Metadata
 
-**Sample Book:**
+**Sample book:** Harry Potter and the Sorcerer's Stone by J.K. Rowling, Series: Harry Potter #1, Year: 1997, Original file: `harry1_original.epub`
 
-- Title: `Harry Potter and the Sorcerer's Stone`
-- Subtitle: `The Boy Who Lived`
-- Authors: `J.K. Rowling`
-- Series: `Harry Potter`
-- Series Index: `01`
-- Year: `1997`
-- Current Filename: `harry1_original.epub`
+| Pattern | Output |
+|---|---|
+| `{authors} - {title}` | `J.K. Rowling - Harry Potter and the Sorcerer's Stone.epub` |
+| `{authors}/{series}/{seriesIndex} - {title}` | `J.K. Rowling/Harry Potter/01 - Harry Potter and the Sorcerer's Stone.epub` |
+| `{title}/` | `Harry Potter and the Sorcerer's Stone/harry1_original.epub` |
+| `{authors}/{series}/{currentFilename}` | `J.K. Rowling/Harry Potter/harry1_original.epub` |
+| `/{authors}/{title}` | `/J.K. Rowling/Harry Potter and the Sorcerer's Stone.epub` |
 
-#### Basic Pattern
+### With Missing Metadata
 
-**Pattern:** `{authors} - {title}`  
-**Output:** `J.K. Rowling - Harry Potter and the Sorcerer's Stone.epub`
+**Sample book:** Project Hail Mary by Andy Weir, Year: 2021, no series, no subtitle. Original file: `project_hail_mary_final.epub`
 
-#### With Punctuation
-
-**Pattern:** `{title}: {series}`  
-**Output:** `Harry Potter and the Sorcerer's Stone: Harry Potter.epub`
-
-#### Series Organization
-
-**Pattern:** `{authors}/{series}/{seriesIndex} - {title}`  
-**Output:** `J.K. Rowling/Harry Potter/01 - Harry Potter and the Sorcerer's Stone.epub`
-
-#### Folder Only
-
-**Pattern:** `{title}/`  
-**Output:** `Harry Potter and the Sorcerer's Stone/harry1_original.epub`
-
-#### Absolute Path
-
-**Pattern:** `/{authors}/{title}`  
-**Output:** `/J.K. Rowling/Harry Potter and the Sorcerer's Stone.epub`
-
-#### Preserve Original Filename
-
-**Pattern:** `{authors}/{series}/{currentFilename}`  
-**Output:** `J.K. Rowling/Harry Potter/harry1_original.epub`
-
-#### With Subtitle
-
-**Pattern:** `{title}: {subtitle}`  
-**Output:** `Harry Potter and the Sorcerer's Stone: The Boy Who Lived.epub`
+| Pattern | Output | What happened |
+|---|---|---|
+| `{authors}/<{series}/><{seriesIndex}. >{title}< ({year})>` | `Andy Weir/Project Hail Mary (2021).epub` | Series and index blocks removed, year block kept |
+| `<{seriesIndex}. >{title}< - {authors}>` | `Project Hail Mary - Andy Weir.epub` | Index block removed |
+| `<[{series}] >{title} - {authors}` | `Project Hail Mary - Andy Weir.epub` | Brackets and series removed entirely |
+| `{title}<: {subtitle}>` | `Project Hail Mary.epub` | Subtitle block removed |
 
 ---
 
-### Examples with Missing Metadata
+## Configuration
 
-**Sample Book:**
+### Default Pattern
 
-- Title: `Project Hail Mary`
-- Subtitle: *(missing)*
-- Authors: `Andy Weir`
-- Year: `2021`
-- Series: *(missing)*
-- Series Index: *(missing)*
-- Current Filename: `project_hail_mary_final.epub`
+The default pattern applies to all libraries unless overridden. Set it in the **Default File Naming Pattern** section, then click **Save**. A live preview shows what the output would look like.
 
-#### Optional Blocks Pattern
+If no pattern is configured at all, files keep their original filename.
 
-**Pattern:** `{authors}/<{series}/><{seriesIndex}. >{title}< ({year})>`  
-**Output:** `Andy Weir/Project Hail Mary (2021).epub`
+### Library-Specific Overrides
 
-**What happened:**
+Each library can have its own pattern. Leave a library's pattern empty to inherit the default. Click **Clear** to remove an override.
 
-- Series block removed (no series)
-- Series index block removed (no index)
-- Year block kept (year present)
+Some useful per-library patterns:
 
-#### Fallback with Index
-
-**Pattern:** `<{seriesIndex}. >{title}< - {authors}>`  
-**Output:** `Project Hail Mary - Andy Weir.epub`
-
-#### Brackets & Punctuation
-
-**Pattern:** `<[{series}] >{title} - {authors}`  
-**Output:** `Project Hail Mary - Andy Weir.epub`
-
-**What happened:** The brackets and series name were removed entirely.
-
-#### Series with Colon
-
-**Pattern:** `<{series}: >{title} by {authors}`  
-**Output:** `Project Hail Mary by Andy Weir.epub`
-
-#### Original Filename with Year
-
-**Pattern:** `{authors}/{year}__{currentFilename}`  
-**Output:** `Andy Weir/2021__project_hail_mary_final.epub`
-
-#### Subtitle Fallback
-
-**Pattern:** `{title}<: {subtitle}>`  
-**Output:** `Project Hail Mary.epub`
+| Library Type | Pattern |
+|---|---|
+| Comics/Manga | `{series}/{seriesIndex} - {title}` |
+| Academic | `{year}/{authors} - {title}` |
+| Audiobooks | `{authors}/{title}/` |
+| Fiction | `{authors}/<{series}/><{seriesIndex}. >{title}` |
+| Multi-language | `{language}/{authors}/{title}` |
 
 ---
 
-## 🎓 Best Practices
+## When Patterns Are Applied
 
-### ✅ Do's
-
-- **Use optional blocks** for metadata that may be missing (series, subtitle, ISBN)
-- **Test patterns** with the live preview before saving
-- **Keep patterns readable** with meaningful separators (` - `, `: `)
-- **Organize by author/series** for large collections
-- **Use library-specific patterns** for different media types
-- **Include year** for academic or non-fiction libraries
-
-### ❌ Don'ts
-
-- **Avoid special characters** like `*`, `?`, `|`, `<`, `>` (except in optional block syntax)
-- **Don't create overly complex patterns** that are hard to understand
-- **Avoid deeply nested folders** that make navigation difficult
-- **Don't forget file extensions** (Booklore adds them automatically)
-- **Avoid patterns that could create conflicts** (e.g., `{year}` only)
-
----
-
-## 🔧 Advanced Use Cases
-
-### Comic Books & Manga
-
-```
-{series}/{seriesIndex} - {title} ({year})
-```
-
-Output: `Batman/142 - The Dark Knight Returns (1986).cbz`
-
-### Academic Papers
-
-```
-{year}/{authors} - {title}
-```
-
-Output: `2021/Smith, Johnson - Machine Learning Fundamentals.pdf`
-
-### Audiobooks
-
-```
-{authors}/{title}/
-```
-
-Output: `Stephen King/The Shining/the_shining_unabridged.m4b`
-
-### Series Collections
-
-```
-{authors}/<{series}/><{seriesIndex}. >{title}
-```
-
-- With series: `Brandon Sanderson/Mistborn/01. The Final Empire.epub`
-- Without series: `Brandon Sanderson/Elantris.epub`
-
-### Publisher Organization
-
-```
-{publisher}/{year} - {title}
-```
-
-Output: `Tor Books/2015 - The Fifth Season.epub`
-
-### Multi-Language Library
-
-```
-{language}/{authors}/{title}
-```
-
-Output: `en/Haruki Murakami/Norwegian Wood.epub`
-
----
-
-## ⚙️ When Patterns Are Applied
-
-File naming patterns are automatically applied in these scenarios:
-
-1. **📤 Upload**  
-   When you upload new books to your library
-
-2. **📦 Bookdrop Import**  
-   When finalizing books from the Bookdrop queue
-
-3. **↔️ File Move**  
-   When moving books between libraries or subfolders
-
-4. **✏️ Metadata Update**  
-   When you edit and save book metadata
-
-5. **🔄 Bulk Operations**  
-   When performing bulk metadata updates or reorganization
-
-:::warning[Automatic Application]
-Once configured, patterns work behind the scenes. No manual intervention needed!
-:::
-
----
-
-## 🐛 Troubleshooting
-
-### Pattern Won't Save
-
-**Issue:** Error message appears when clicking "Save"
-
-**Solutions:**
-
-- Check for invalid characters (only letters, numbers, spaces, and allowed symbols)
-- Ensure placeholders are properly formatted with curly braces
-- Verify optional blocks have matching angle brackets
-
-:::tip[Quick Fix]
-Copy a working example pattern and modify it gradually to identify problematic characters.
-:::
-
----
-
-### Preview Shows Unexpected Output
-
-**Issue:** Preview doesn't match expectations
-
-**Solutions:**
-
-- Check if optional blocks are correctly placed
-- Verify metadata placeholders are spelled correctly
-- Test with the example metadata shown in the UI
-- Remember trailing slashes preserve original filenames
-
----
-
-### Files Not Being Renamed
-
-**Issue:** Uploads keep original filenames
-
-**Solutions:**
-
-- Verify pattern is saved (check for success message)
-- Ensure library has correct pattern applied
-- Check if library-specific pattern overrides default
-- Try re-uploading a test file
-
-:::warning[Common Mistake]
-Make sure you clicked "Save" after entering the pattern. Unsaved patterns won't be applied.
-:::
-
----
-
-### Folder Structure Not Created
-
-**Issue:** Files not organized into folders
-
-**Solutions:**
-
-- Verify pattern includes forward slashes for folders
-- Check if leading/trailing slashes are correct
-- Ensure Booklore has write permissions
-- Test pattern with preview first
-
----
-
-:::success[Perfect Organization]
-File naming patterns are your foundation for a perfectly organized library. Set them up once and let Booklore handle the rest! Happy organizing! 📚✨
-:::
+- **Uploads** to a library
+- **Bookdrop imports** when finalizing files into a library
+- **File moves** between libraries or subfolders
+- **Metadata updates**, if the "Auto-Move Files on Metadata Update" setting is enabled for that library

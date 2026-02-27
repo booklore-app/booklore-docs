@@ -1,53 +1,14 @@
 # 🎨 Custom SVG Icons
 
-Personalize your Booklore library with custom SVG icons for collections, tags, and more. Add your own icon designs or delete unwanted ones with an intuitive drag-and-drop interface.
-
-:::tip[Pro Tip]
-Use SVG icons from sites like, [Lucide](https://lucide.dev/), [Iconoir](https://iconoir.com/) , [Heroicons](https://heroicons.com/), or [Feather Icons](https://feathericons.com/) for professional, consistent designs.
-:::
+Upload custom SVG icons to use with Libraries, Shelves, and Magic Shelves. Icons from [Lucide](https://lucide.dev/), [Iconoir](https://iconoir.com/), [Heroicons](https://heroicons.com/), or [Feather Icons](https://feathericons.com/) work well.
 
 ---
 
-## 🌟 What You'll Achieve
-
-With Custom SVG Icons, you can:
-
-- **Add unique icons** by pasting SVG code directly
-- **Preview icons instantly** before saving
-- **Browse your collection** with search and pagination
-- **Delete icons easily** using drag-and-drop to trash
-- **Use icons anywhere** in collections, tags, and library organization
-
----
-
-## ✨ How Custom Icons Work
-
-### 🔄 The Icon Management Flow
-
-1. **🎨 Create or Find SVG**  
-   Design your own SVG or copy from icon libraries online.
-
-2. **📋 Paste & Preview**  
-   Paste the SVG code into Booklore and see an instant preview.
-
-3. **💾 Save with Name**  
-   Give your icon a memorable name and save it to your collection.
-
-4. **🔍 Browse & Search**  
-   Find your icons quickly with search and pagination.
-
-5. **🗑️ Delete When Needed**  
-   Drag unwanted icons to the trash bin for easy removal.
-
----
-
-## 🚀 Getting Started
-
-### Opening the Icon Picker
+## 🚀 Opening the Icon Picker
 
 The icon picker appears when assigning icons to a Library, Shelf, or Magic Shelf.
 
-![Prime Icons Tab](/img/icons/0-icons--library-creator.jpg)
+![Prime Icons Tab](/img/icons/icon-picker.jpg)
 
 1. **Navigate to Library/Shelf/Magic Shelf Settings**
 
@@ -57,29 +18,15 @@ The icon picker appears when assigning icons to a Library, Shelf, or Magic Shelf
 
 ---
 
-## 📖 Understanding the Icon Picker Interface
-
-### Interface Overview
-
-The Icon Picker has three main tabs for different icon sources:
-
----
+## 📖 Icon Picker Tabs
 
 ### Tab 1: Prime Icons (Built-in)
 
 Browse the default PrimeNG icon library:
 
-![Prime Icons Tab](/img/icons/1-icons--prime.jpg)
+![Prime Icons Tab](/img/icons/prime-icons.jpg)
 
-#### Features:
-
-- **🔍 Search Bar**: Quickly filter icons by name
-- **🎯 Icon Grid**: Visual grid of all available icons
-- **✅ Selection**: Click any icon to select and apply it
-
-:::info[Built-in Library]
-Prime Icons come pre-installed with Booklore and cover common use cases like folders, tags, books, and more.
-:::
+Browse and search the built-in PrimeNG icon library. Click any icon to select it.
 
 ---
 
@@ -87,7 +34,7 @@ Prime Icons come pre-installed with Booklore and cover common use cases like fol
 
 Browse and manage your custom SVG icons:
 
-![SVG Icons Tab](/img/icons/2-icons--custom.jpg)
+![SVG Icons Tab](/img/icons/custom-icons.jpg)
 
 #### 1. Search Your Icons
 
@@ -132,7 +79,7 @@ Deleted icons cannot be recovered. You'll need to re-add them if needed later.
 
 Add new custom icons by pasting SVG code:
 
-![Add SVG Tab](/img/icons/3-icons--add-custom.jpg)
+![Add SVG Tab](/img/icons/add-svg.jpg)
 
 #### Step-by-Step Guide
 
@@ -199,120 +146,10 @@ Click the **"Save SVG"** button to finalize:
 
 ---
 
-## 🎨 Best Practices
-
-### Finding Quality SVG Icons
-
-#### Recommended Icon Libraries
-
-1. **[Lucide](https://lucide.dev/)**
-2. **[Iconoir](https://iconoir.com/)**
-3. **[Heroicons](https://heroicons.com/)**
-4. **[Feather Icons](https://feathericons.com/)**
-
-:::tip[Icon Consistency]
-Choose icons from the same library for a cohesive look across your collections.
-:::
-
----
-
-### Naming Conventions
-
-Use consistent naming for easier management:
-
-#### Good Names ✅
-
-```
-book-open
-folder-filled
-tag-outline
-star-filled-blue
-```
-
-#### Bad Names ❌
-
-```
-Icon1
-MyIcon
-NEW ICON!!!
-icon_with_spaces
-```
-
-**Best Practices:**
-
-- Use lowercase letters
-- Separate words with hyphens
-- Be descriptive but concise
-- Avoid version numbers (use meaningful names instead)
-
----
-
 ## 🔧 Troubleshooting
 
-### Common Issues and Solutions
-
-#### Issue: "Invalid SVG content"
-
-**Causes:**
-
-- Missing `<svg>` tag
-- Incomplete or corrupted SVG code
-- Non-XML characters
-
-**Solutions:**
-
-- Copy the entire SVG code (from `<svg>` to `</svg>`)
-- Validate SVG using [SVG Validator](https://www.svgviewer.dev/)
-- Try downloading the SVG file and copying from there
-
----
-
-#### Issue: Icon doesn't appear after saving
-
-**Causes:**
-
-- Browser cache
-- Network error during save
-
-**Solutions:**
-
-1. Refresh the page (F5)
-2. Clear browser cache
-3. Try saving again
-4. Check browser console for errors
-
----
-
-#### Issue: Icon appears too large/small
-
-**Causes:**
-
-- Missing `viewBox` attribute
-- Hardcoded `width` and `height`
-
-**Solutions:**
-
-```xml
-<!-- Add or fix viewBox -->
-<svg viewBox="0 0 24 24">
-    <!-- Remove width/height if present -->
-</svg>
-```
-
----
-
-#### Issue: Icon colors don't match theme
-
-**Causes:**
-
-- Hardcoded `fill` or `stroke` colors in SVG
-
-**Solutions:**
-
-```xml
-<!-- Replace hardcoded colors -->
-        fill="#000000" → fill="none"
-        stroke="#ff0000" → stroke="white"
-```
-
----
+| Issue | Solution |
+|---|---|
+| **Invalid SVG content** | Ensure you copied the full code from `<svg>` to `</svg>`. Validate at [svgviewer.dev](https://www.svgviewer.dev/). |
+| **Icon too large/small** | Add a `viewBox` attribute (e.g., `viewBox="0 0 24 24"`) and remove hardcoded `width`/`height`. |
+| **Colors don't match theme** | Use `fill="none"` and `stroke="white"` instead of hardcoded colors. |
