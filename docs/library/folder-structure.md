@@ -136,33 +136,160 @@ This entire folder becomes **one audiobook** called "Project Hail Mary".
 
 ## 📚 Recommended Structures
 
-### ⭐ Structure 1: One Folder Per Book (Recommended)
+Put each book in its own folder. The folder name is used as the reference title. Pick the layout below that matches your file collection.
 
-The simplest and most reliable layout. Each book gets its own folder. Works perfectly with both organization modes.
+---
+
+### 📖 Ebooks Only
+
+```
+Library/
+├── American Gods/
+│   └── American Gods.epub
+├── Dune/
+│   └── Dune.pdf
+└── The Hobbit/
+    └── The Hobbit.mobi
+```
+
+---
+
+### 📖 Ebooks with Multiple Formats
+
+All files in the same folder are grouped as one book with multiple format options. Filenames don't need to match exactly; fuzzy matching handles minor differences like `American_Gods.epub` or `American Gods - Neil Gaiman.epub`.
 
 ```
 Library/
 ├── American Gods/
 │   ├── American Gods.epub
 │   ├── American Gods.pdf
-│   └── American Gods.m4b
-├── Project Hail Mary/
-│   ├── Project Hail Mary.epub
-│   └── Project Hail Mary (Unabridged).m4b
-├── The Hobbit/
-│   └── The Hobbit.epub
-└── Dune/
-    └── Dune.epub
+│   └── American Gods.azw3
+└── Project Hail Mary/
+    ├── Project Hail Mary.epub
+    └── Project Hail Mary.pdf
 ```
 
-This is the best option for most users:
+---
 
-- Multi-format grouping works automatically
-- Fuzzy matching handles minor naming differences
-- Clear boundaries between books
-- Easy to add new formats later (just drop a file in the folder)
+### 🎧 Single-File Audiobook
 
-For series, give each entry its own folder:
+A single `.m4b`, `.m4a`, or `.mp3` file in a folder is treated like any other book format.
+
+```
+Library/
+├── Project Hail Mary/
+│   └── Project Hail Mary.m4b
+└── Dune/
+    └── Dune.m4b
+```
+
+---
+
+### 🎧 Chaptered Audiobook
+
+When a folder contains **2 or more audio files**, the entire folder is treated as **one audiobook**. The folder name becomes the book title. Individual chapter files are not listed as separate books.
+
+```
+Library/
+└── Project Hail Mary/
+    ├── 01 - Chapter 1.mp3
+    ├── 02 - Chapter 2.mp3
+    ├── 03 - Chapter 3.mp3
+    └── 04 - Chapter 4.mp3
+```
+
+**Filenames don't matter.** Booklore only checks that the folder has 2 or more audio files. The folder name becomes the book title. Any naming pattern works, including Audible/CD rip conventions:
+
+```
+Library/
+└── Project Hail Mary/
+    ├── projecthailmary_01_of_16.mp3
+    ├── projecthailmary_02_of_16.mp3
+    └── projecthailmary_03_of_16.mp3
+```
+
+#### What won't work
+
+**Only 1 audio file in a folder** is not treated as a folder-based audiobook. The file is added as an individual entry:
+
+```
+Library/
+└── Dune/
+    └── Dune Part 1.mp3         ← individual audiobook, not folder-based
+```
+
+**Multiple different audiobooks in one folder** are wrongly merged into a single entry:
+
+```
+Library/
+└── Audiobooks/                 ← detected as one audiobook "Audiobooks"
+    ├── Project Hail Mary.m4b
+    └── Dune.m4b
+```
+
+Give each audiobook its own folder to avoid this.
+
+**Chaptered audio files alongside ebook files** in the same folder creates separate books. The ebook and the folder-based audiobook end up with different grouping keys internally:
+
+```
+Library/
+└── Project Hail Mary/
+    ├── Project Hail Mary.epub  ← detected as one book
+    ├── 01 - Chapter 1.mp3     ← detected as a separate audiobook
+    ├── 02 - Chapter 2.mp3
+    └── 03 - Chapter 3.mp3
+```
+
+If you have both an ebook and a chaptered audiobook for the same title, keep them in separate folders:
+
+```
+Library/
+├── Project Hail Mary/
+│   └── Project Hail Mary.epub
+└── Project Hail Mary (Audiobook)/
+    ├── 01 - Chapter 1.mp3
+    ├── 02 - Chapter 2.mp3
+    └── 03 - Chapter 3.mp3
+```
+
+---
+
+### 📖🎧 Ebook + Audiobook Together
+
+Ebook and single-file audiobook (`.m4b`) can coexist in the same folder. They are grouped as one book with multiple format options.
+
+```
+Library/
+└── American Gods/
+    ├── American Gods.epub
+    ├── American Gods.pdf
+    └── American Gods.m4b
+```
+
+:::warning[Only single-file audiobooks]
+This only works with a single `.m4b`/`.m4a`/`.mp3` per folder. Chaptered audiobooks (2+ audio files) in the same folder as ebooks will be detected as separate books. See [Chaptered Audiobook > What won't work](#what-wont-work) above.
+:::
+
+---
+
+### 🦸 Comics
+
+Supported extensions: `.cbz`, `.cbr`, `.cb7`. Works just like ebooks.
+
+```
+Library/
+├── Batman Year One/
+│   └── Batman Year One.cbz
+└── Watchmen/
+    ├── Watchmen.cbz
+    └── Watchmen.pdf
+```
+
+---
+
+### 📚 Series
+
+Give each book in the series its own folder:
 
 ```
 Library/
@@ -177,9 +304,9 @@ Library/
 
 ---
 
-### 📂 Structure 2: Author Folders
+### 📂 Author Folders
 
-Group books by author, then by book. Good for large collections where you want your filesystem to be browsable outside of Booklore too.
+You can optionally nest book folders inside author folders. Booklore only looks at the **immediate parent folder** for grouping, so intermediate author directories don't interfere.
 
 ```
 Library/
@@ -192,7 +319,7 @@ Library/
 ├── Brandon Sanderson/
 │   ├── Elantris/
 │   │   └── Elantris.epub
-│   └── Mistborn 1 - The Final Empire/
+│   ├── Mistborn 1 - The Final Empire/
 │   │   └── The Final Empire.epub
 │   └── Mistborn 2 - The Well of Ascension/
 │       └── The Well of Ascension.epub
@@ -202,13 +329,11 @@ Library/
         └── Project Hail Mary.pdf
 ```
 
-Booklore only looks at the **immediate parent folder** for grouping, so intermediate author folders don't interfere. The rules are the same as Structure 1, just nested one level deeper.
-
 ---
 
-### 📄 Structure 3: Flat Files
+### 📄 Flat Files (No Folders)
 
-All files dumped at the library root with no subfolders. Minimal effort, but limited.
+All files at the library root with no subfolders. Multi-format grouping requires **exact** name matches since root-level files don't get fuzzy matching.
 
 ```
 Library/
@@ -219,7 +344,9 @@ Library/
 └── 1984.pdf
 ```
 
-This works fine for single-format collections. Multi-format grouping requires **exact** name matches since root-level files don't get fuzzy matching. Fine for a small personal library, but doesn't scale well.
+:::warning[No folder-based audiobooks at root level]
+Audio files placed directly at the library root are always treated as individual entries, even if there are multiple. Folder-based audiobook detection only works inside subfolders.
+:::
 
 ---
 
