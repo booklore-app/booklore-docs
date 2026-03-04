@@ -1,95 +1,78 @@
 # 🔐 Authentication Overview
 
-Booklore supports three authentication methods that can run side by side: local (built-in), OpenID Connect (OIDC), and remote header-based authentication. You can enable any combination of these.
+Booklore supports two authentication methods: **local** (built-in username/password) and **OIDC** (single sign-on with an external identity provider). You can use either one or both at the same time.
 
 ---
 
-## Local Authentication
+## 🔑 Local Authentication
 
-Built-in username and password authentication. Works immediately after installation with no external dependencies.
+Built-in username and password login. Works immediately after installation with zero external dependencies. You create users in **Settings > Users** and they log in with a password. Simple as that.
 
-- Ready to use out of the box
-- Always available as a fallback, even when other methods are enabled
-- Users are created and managed directly in Booklore
+Local auth is always available as a fallback, even when OIDC is enabled. Admins can reach the local login form at `/login?local=true` regardless of any OIDC settings.
 
 ---
 
-## OIDC Authentication
+## 🌐 OIDC Authentication
 
-Integrate with any OpenID Connect provider for single sign-on across your self-hosted apps.
+Sign in with an external identity provider like [Authentik](https://goauthentik.io/), [Keycloak](https://www.keycloak.org/), [Authelia](https://www.authelia.com/), or [Pocket ID](https://pocket-id.org/). Users click one button and authenticate with the same account they use for your other self-hosted apps.
 
-Booklore has detailed setup guides for:
+Booklore's OIDC support includes:
+
+- **Server-side token exchange** with PKCE
+- **Automatic user provisioning** on first login
+- **Group mapping** to sync provider groups to Booklore permissions and library access
+- **Back-channel logout** to keep sessions in sync across apps
+- **OIDC-Only Mode** to hide local login and redirect everyone to your provider
+- **Account linking** to migrate existing users without losing their data
+
+### Provider Setup Guides
+
+Step-by-step walkthroughs with screenshots:
 
 - [Authentik](authentik.md)
 - [Pocket ID](pocket-id.md)
 - [Authelia](authelia.md)
 
-These guides can be adapted for most OIDC-compliant providers.
+### Full Settings Reference
 
-### Configuration
-
-Go to **Settings > Authentication** to configure your OIDC provider. The required fields are:
-
-| Field | Description |
-|-------|-------------|
-| Provider Name | Display name shown on the login page |
-| Client ID | OAuth2 client ID from your provider |
-| Issuer URI | Your provider's OIDC issuer URL |
-| Claim Mappings | Map provider claims to Booklore fields (username, name, email) |
-
-### Auto User Provisioning
-
-When enabled, users who log in via OIDC for the first time are automatically created in Booklore with configurable default permissions and library access. This avoids having to manually create every user.
-
-See [Auto User Provisioning](auto-user-provisioning.md) for details.
-
-### Emergency Override
-
-Set the environment variable `FORCE_DISABLE_OIDC=true` to disable OIDC at the infrastructure level, regardless of the database setting. Useful if a misconfigured OIDC provider locks you out.
+See [OIDC Settings](oidc-settings.md) for every configuration option, claim mappings, group mapping, and example configurations.
 
 ---
 
-## Remote Header Authentication
+## 🤔 Which Should I Use?
 
-For setups where a reverse proxy handles authentication (e.g., Authelia or Traefik forward auth), Booklore can trust user identity from HTTP headers.
-
-Configured via environment variables:
-
-| Variable | Description |
-|----------|-------------|
-| `REMOTE_AUTH_ENABLED` | Enable remote header auth |
-| `REMOTE_AUTH_HEADER_NAME` | Header containing the username |
-| `REMOTE_AUTH_HEADER_USER` | Header for the display name |
-| `REMOTE_AUTH_HEADER_EMAIL` | Header for the email |
-| `REMOTE_AUTH_HEADER_GROUPS` | Header for group membership |
-| `REMOTE_AUTH_ADMIN_GROUP` | Group name that grants admin access |
-| `REMOTE_AUTH_GROUPS_DELIMITER` | Delimiter for the groups header |
-| `REMOTE_AUTH_CREATE_NEW_USERS` | Auto-create users from headers |
+| Setup | When to use it |
+|-------|---------------|
+| **Local only** | Solo use or a small group. No identity provider needed. |
+| **OIDC** | You already run an identity provider and want SSO, MFA, and centralized access control. |
+| **Both** | During migration from local to OIDC. Users can use either method. |
+| **OIDC-Only** | You want to enforce SSO for everyone. Local login is hidden (admin backdoor still works). |
 
 ---
 
-## Which Method to Choose
+## 🛡️ Safety Nets
 
-**Local only:** You just want to get started quickly, or don't run other self-hosted services with SSO.
+**Admin backdoor:** `/login?local=true` always shows the local login form, even in OIDC-Only Mode.
 
-**OIDC:** You already run Authentik, Authelia, Keycloak, or a similar provider and want a single login across all your apps. Also gives you MFA and centralized user management for free.
+**Kill switch:** Set `FORCE_DISABLE_OIDC=true` as an environment variable and restart to disable OIDC entirely, regardless of database settings.
 
-**Remote header auth:** Your reverse proxy already handles authentication and you want Booklore to trust it.
-
-**Multiple methods:** You can enable all three simultaneously. The login page shows the available options, and local auth always works as a fallback.
+**Loop protection:** If OIDC-Only Mode is on and your provider keeps failing, Booklore stops auto-redirecting after 3 attempts and shows a link to local login.
 
 ---
 
-## Common Questions
+## ❓ Common Questions
 
 **What if my identity provider goes down?**
-Local authentication stays available, so you can always log in.
+Local login still works. Use `/login?local=true`.
 
-**Do I need to migrate users when enabling OIDC?**
-No. Users logging in via OIDC can be auto-provisioned, or you can create matching usernames manually.
+**Do I need to migrate existing users when enabling OIDC?**
+No. Enable "Link Existing Local Accounts" and users are linked to their OIDC identity on first SSO login, keeping all their data.
 
 **Are usernames case-sensitive?**
-Yes. Usernames must match exactly between Booklore and your identity provider.
+Yes. The OIDC username must exactly match the Booklore username.
 
 **Does OIDC support MFA?**
-Yes. Whatever security features your identity provider supports (MFA, hardware keys, etc.) work automatically.
+Yes. Whatever your provider supports works automatically.
+
+**Can different users have different permissions?**
+Yes. Use [Group Mapping](oidc-settings.md#group-mapping) to map provider groups to Booklore permissions and library access.

@@ -1,74 +1,32 @@
-# 🔐 Authelia Authentication
+# 🔐 Authelia
 
-Seamlessly integrate Authelia as your single sign-on (SSO) provider for Booklore. Simplify user authentication, enhance security, and provide a streamlined login experience across your applications.
+This guide walks you through setting up [Authelia](https://www.authelia.com/) as an OIDC provider for Booklore. Authelia is a popular self-hosted authentication server that provides SSO and multi-factor authentication for your reverse proxy setup. If you're already using Authelia to protect your services behind Traefik, Caddy, or nginx, adding Booklore as an OIDC client is straightforward.
 
-:::danger[Username Matching Required]
-The username in Authelia must exactly match the username in Booklore for authentication to work properly. Case sensitivity matters. If a user doesn't exist in Booklore with the matching username, authentication will fail.
+By the end of this guide, your users will be able to sign in to Booklore with their Authelia account. The setup takes about 5 minutes.
+
+:::info[Already have OIDC working?]
+This guide covers the initial setup. For details on user provisioning, group mapping, OIDC-Only Mode, and other advanced features, see the [OIDC Settings](oidc-settings.md) reference.
 :::
 
 ---
 
-## 🌟 What You'll Achieve
+## 🚀 Part 1: Add Booklore as an OIDC Client in Authelia
 
-With Authelia integration, you can:
+Authelia's OIDC configuration lives in its YAML config file. Add a client entry for Booklore under `identity_providers.oidc.clients`.
 
-- **Enable single sign-on (SSO)** for seamless access to Booklore without separate login credentials
-- **Centralize user management** across multiple applications from one unified interface
-- **Enhance security** with OAuth2/OpenID Connect protocols and modern authentication standards
-- **Simplify login experience** for your users with automatic session management
-- **Control access** through OIDC client configuration and user permissions
-- **Streamline deployment** with Authelia's lightweight and easy-to-configure architecture
-
----
-
-## ✨ How Authelia Integration Works
-
-### 🔄 The Authentication Flow
-
-Understanding the authentication flow helps troubleshoot issues and explains what happens behind the scenes:
-
-1. **🎫 User Initiates Login**  
-   User attempts to access Booklore and is redirected to Authelia's secure login portal. The original destination URL is preserved for automatic redirect after authentication.
-
-2. **🔑 Authelia Authenticates**  
-   User enters credentials in Authelia's login page. Authelia validates the credentials against its user directory and verifies the user's identity.
-
-3. **✅ Token Exchange**  
-   Authelia validates credentials and issues OAuth2 tokens (access token, ID token). These tokens contain user information and are cryptographically signed for security.
-
-4. **🚪 Access Granted**  
-   Booklore receives and validates the tokens, extracts user information, matches it with an existing Booklore user account, and grants access to the authenticated user.
-
----
-
-## 🚀 Setting Up Authelia
-
-### Step 1: Create OIDC Client in Authelia
-
-The essential parts of the Authelia config are highlighted below, and should be adapted to your specific setup.  
-
-`booklore.dev` will need changing to your actual domain name.
-
-It's also best practice to change the `client_id` parameter to a randomly generated string, the following restrictions apply:
-
-Valid Client ID’s have the following characteristics:
-
-  - Less than or equal to 100 characters.
-  - Only contains [RFC3986 Unreserved Characters.](https://datatracker.ietf.org/doc/html/rfc3986#section-2.3)
-  - Completely unique from other configured clients.
-
+Here's a complete working configuration. Replace `booklore.example.com` with your actual Booklore domain and `auth.example.com` with your Authelia domain:
 
 ```yaml
 identity_providers:
   oidc:
-
     lifespans:
       access_token: 1h
       authorize_code: 1m
       id_token: 1h
       refresh_token: 90m
-    enable_client_debug_messages: true
+
     enforce_pkce: public_clients_only
+
     cors:
       endpoints:
         - authorization
@@ -79,28 +37,32 @@ identity_providers:
         - userinfo
       allowed_origins_from_client_redirect_uris: true
 
-
     claims_policies:
-      legacy:
-        id_token: ['email', 'email_verified', 'preferred_username', 'name']
+      booklore:
+        id_token:
+          - email
+          - email_verified
+          - preferred_username
+          - name
+          - groups
 
     clients:
       - client_id: booklore
         client_name: Booklore
         public: true
         authorization_policy: two_factor
-        claims_policy: legacy
+        claims_policy: booklore
         consent_mode: implicit
         require_pkce: true
         pkce_challenge_method: S256
         scopes:
-          - offline_access
           - openid
           - profile
           - email
+          - groups
+          - offline_access
         redirect_uris:
-          - https://booklore.booklore.dev/oauth2-callback
-          - https://booklore.booklore.dev/*
+          - https://booklore.example.com/oauth2-callback
         response_types:
           - code
         grant_types:
@@ -108,182 +70,135 @@ identity_providers:
           - refresh_token
 ```
 
+### What Each Section Does
+
+**`claims_policy`** controls which user attributes are included in the ID token. Booklore needs `preferred_username`, `email`, `name`, and `groups` (if you plan to use group mapping).
+
+**`public: true`** means Booklore uses PKCE instead of a client secret. This is the recommended approach for browser-based apps.
+
+**`consent_mode: implicit`** means users won't be prompted to approve access each time they log in.
+
+**`authorization_policy: two_factor`** requires 2FA. Change to `one_factor` if you don't use MFA, or adjust based on your security needs.
+
+**`scopes`** must include `groups` if you want to use Booklore's [Group Mapping](oidc-settings.md#group-mapping) feature. Without it, Authelia won't include group memberships in the token.
+
+:::danger[Don't forget the `groups` scope]
+If you plan to use group mapping, you must include `groups` in both the `scopes` list and the `claims_policy`. Without it, Authelia won't send group information to Booklore, and group mapping will silently do nothing.
+:::
+
+:::tip[Generating a random Client ID]
+While `booklore` works fine as a client ID, you can use a random string for extra security. It must be 100 characters or fewer and contain only [RFC3986 unreserved characters](https://datatracker.ietf.org/doc/html/rfc3986#section-2.3) (letters, digits, `-`, `.`, `_`, `~`).
+:::
+
+Restart Authelia after saving the config.
+
 ---
 
-## ⚙️ Configuring Booklore
+## ⚙️ Part 2: Configure Booklore
 
-### Step 2: Connect Booklore to Authelia
-
-Now configure Booklore to use Authelia as the authentication provider. This is the final configuration step:
+Navigate to **Settings > OIDC** in Booklore.
 
 ![Booklore OIDC Settings](/img/authentication/authelia/booklore-oidc-settings.jpg)
 
-1. **Open Booklore Settings**  
-   Navigate to **Settings → Authentication** in your Booklore admin interface. You'll need administrator privileges to access this section.
+Fill in the provider configuration:
 
-2. **Configure OIDC Provider**
-   Enter the credentials you copied from Authelia:
-    - **Provider Name:** `Authelia` (or your preferred display name)
-        - This name appears on the login button, so make it recognizable to users
-    - **Client ID:** Paste the Client ID from Authelia (`booklore`)
-        - Make sure there are no extra spaces before or after
-    - **Issuer URI:** Paste the OpenID Configuration Issuer URL from Authelia  **without a trailing slash**
-        - Example: `https://auth.booklore.dev`
-    - **Username Claim:** `preferred_username`
-    - **Email Claim:** `email`
-    - **Display Name Claim:** `name`     
-    - Click **Save** to store the configuration
+| Field | Value |
+|-------|-------|
+| **Provider Name** | `Authelia` (shown on the login button) |
+| **Client ID** | `booklore` (or whatever you set as `client_id` in the Authelia config) |
+| **Client Secret** | Leave empty (public client) |
+| **Issuer URI** | Your Authelia URL **without** a trailing slash (e.g., `https://auth.example.com`) |
 
-3. **Enable OIDC Authentication**  
-   Toggle **"OIDC Enabled"** to ON to activate Authelia authentication
-    - When enabled, users will see a "Login with Authelia" button on the Booklore login page
-    - The standard username/password login will still be available unless specifically disabled
-
-:::success[Configuration Complete!]
-Booklore is now configured to use Authelia for authentication. The next step is testing the integration to ensure everything works correctly.
+:::danger[No trailing slash on the Issuer URI]
+Authelia's issuer does **not** use a trailing slash, unlike Authentik. Using `https://auth.example.com/` (with slash) will cause discovery to fail. Use `https://auth.example.com` (without slash).
 :::
+
+The default claim mappings work with Authelia:
+
+| Claim | Value |
+|-------|-------|
+| **Username** | `preferred_username` |
+| **Email** | `email` |
+| **Display Name** | `name` |
+| **Groups** | `groups` |
+
+Click **Test Connection** to verify Booklore can reach Authelia. All checks should pass.
+
+Click **Save**, then toggle **OIDC Login** to **ON** in the Login Methods section.
+
+### Optional: Configure Back-Channel Logout
+
+To keep sessions in sync (so logging out of Authelia also ends the Booklore session):
+
+1. Copy the **Back-Channel Logout URI** from Booklore's Provider Configuration Reference panel
+2. If your Authelia version supports back-channel logout, add it to the client config:
+   ```yaml
+   backchannel_logout_uri: https://booklore.example.com/api/v1/auth/oidc/backchannel-logout
+   ```
 
 ---
 
-## 🧪 Testing the Integration
+## 🧪 Test It
 
-### Step 4: Test Login with Authelia
+Open an incognito/private browser window and navigate to your Booklore instance. Click "Sign in with Authelia". You'll be redirected to Authelia's login page.
 
-Verify that the integration works correctly before rolling it out to users. Testing ensures a smooth experience:
+After authenticating (including 2FA if configured), you should be redirected back to Booklore and logged in.
 
- **Open an incognito/private browser window**
-   
-   - Navigate to your Booklore instance
-   - Click "Login with Authelia" (or your configured provider name)
-   - You'll be redirected to Authelia for authentication
-   - After logging in, you should be redirected back to Booklore
+![Login Success](/img/authentication/authelia/login-success.jpg)
 
-![Booklore Opens](/img/authentication/authelia/login-success.jpg)
-
-:::success[Integration Successful!]
-Your Authelia integration is working correctly. You can now roll it out to your users.
-:::
+Verify that your username and email are correct.
 
 ---
 
-## 🔄 Managing Authentication
+## 🔧 What's Next
 
-### Disabling Authelia Authentication
+Now that basic OIDC is working, you can configure additional features in Booklore's [OIDC Settings](oidc-settings.md):
 
-If you need to temporarily disable or switch authentication methods (for maintenance or troubleshooting):
-
-![Disable OIDC](/img/authentication/authelia/disable-oidc.jpg)
-
-1. **Navigate to Authentication Settings**  
-   Go to **Booklore → Settings → Authentication**
-
-2. **Disable OIDC**  
-   Toggle **"OIDC Enabled"** to **OFF**
-   - This immediately disables Authelia authentication
-   - Active sessions remain valid until they expire
-   - New login attempts will use standard authentication
-
-3. **Log Out**  
-   Click **Logout** to end your current session and verify the change
-
-4. **Standard Login Returns**  
-   You'll be redirected to the standard Booklore login page with username/password fields
-
-![Booklore Login](/img/authentication/authelia/standard-login.jpg)
-
-:::note[Configuration Persistence]
-Disabling OIDC doesn't delete your Authelia configuration. All settings (Client ID, Issuer URL) are preserved. You can re-enable it anytime by toggling the switch back on. Users who were authenticated via Authelia can still log in with standard credentials if they have them configured.
-:::
+- **[User Provisioning](oidc-settings.md#-user-provisioning):** Automatically create Booklore accounts when users sign in for the first time
+- **[Group Mapping](oidc-settings.md#group-mapping):** Map Authelia groups to Booklore permissions and library access (make sure you included `groups` in the scopes and claims policy)
+- **[OIDC-Only Mode](oidc-settings.md#-oidc-only-mode):** Hide the local login form and redirect everyone to Authelia
+- **[Account Linking](oidc-settings.md#link-existing-local-accounts):** Migrate existing local users to OIDC without losing their data
 
 ---
 
 ## 🛠️ Troubleshooting
 
-### Common Issues and Solutions
+### Test Connection Fails
 
-**Authentication Fails:**
+- The Issuer URI must **not** have a trailing slash. Use `https://auth.example.com`, not `https://auth.example.com/`.
+- Make sure Booklore's server can reach Authelia. If both run in Docker, they need to be on the same network or the external URL must be reachable.
+- Check that Authelia restarted successfully after your config change. A YAML syntax error can prevent the OIDC provider from starting.
 
-- ✓ Verify usernames match exactly between Authelia and Booklore (case-sensitive)
-- ✓ Check callback URLs **DO NOT** include trailing slashes
-- ✓ Ensure user exists in both Authelia and Booklore
-- ✓ Verify Client ID is correctly copied (no extra spaces)
-- ✓ Check browser console for errors (F12)
+### Login Redirects But Fails
 
-**Redirect Errors:**
+- The **redirect URI** in Authelia's config must match exactly: `https://booklore.example.com/oauth2-callback`
+- Make sure `response_types` includes `code` and `grant_types` includes `authorization_code`.
+- Check Authelia's logs for a detailed error message.
 
-- ✓ Verify callback URL: `/oauth2/callback` (**without** trailing slash)
-- ✓ Confirm domain matches exactly in both systems
-- ✓ Ensure HTTPS is used in production
-- ✓ Validate wildcard pattern: `https://your-domain/*`
+### "User Not Provisioned" Error
 
-**User Not Found:**
+Auto-provisioning is off by default. Either enable it in [OIDC Settings](oidc-settings.md#-user-provisioning), or create a Booklore user with a username that exactly matches the Authelia username (case-sensitive).
 
-- ✓ Create matching username in Booklore (case-sensitive)
-- ✓ Verify user account is active in Authelia
-- ✓ Check that email addresses match between systems
+### Group Mapping Not Working
 
-**"Invalid Client" Error:**
+- Make sure `groups` is in both the `scopes` list and the `claims_policy` in Authelia's config.
+- Verify the **Groups Claim** in Booklore is set to `groups`.
+- Check that **Group Sync Mode** in Booklore is not set to Disabled.
+- The group names must match exactly (case-sensitive) between Authelia and Booklore's group mappings.
 
-- ✓ Check Client ID is copied correctly (no extra spaces)
-- ✓ Ensure Issuer URL **DOES NOT** have a trailing slash
+### 2FA Prompt Every Time
 
-**Connection Refused:**
+This is controlled by Authelia's `authorization_policy`. If you set it to `two_factor`, users authenticate with 2FA. Change to `one_factor` if you don't want MFA for Booklore.
 
-- ✓ Verify Authelia service is running and accessible
-- ✓ Check network connectivity between Booklore and Authelia
-- ✓ Ensure firewall rules allow communication
-- ✓ Validate DNS resolution for both domains
+### Can't Access Booklore At All
 
-**SSL/Certificate Errors:**
-
-- ✓ Ensure valid SSL certificates on both systems
-- ✓ Verify Issuer URL uses HTTPS in production
-- ✓ Check certificate chains are properly configured
-- ✓ Validate certificate expiration dates
-
-### Viewing Logs
-
-**Authelia:** Check application logs for OAuth-related events and errors  
-**Booklore:** Review authentication logs in the application logs directory
-
----
-
-## 🎯 Best Practices
-
-### Security Recommendations
-
-- 🔒 **Use HTTPS** - Always use HTTPS in production with valid SSL certificates
-- 🔐 **Secure Credentials** - Store Client IDs securely and never expose them in public repositories
-- 🛡️ **Keep Updated** - Regularly update both Authelia and Booklore to patch security vulnerabilities
-- 📊 **Monitor Activity** - Track login attempts and set up alerts for unusual patterns
-- 🔑 **Rotate Credentials** - Periodically regenerate Client IDs, especially after personnel changes
-- 🚪 **Restrict Access** - Configure callback URLs as specifically as possible
-- 👥 **Review Users** - Regularly audit user accounts and remove inactive users
-
-### Optimization Tips
-
-- 📝 **Use descriptive names** - Name OIDC clients clearly (e.g., "Booklore Production")
-- 🌐 **Use reverse proxy** - Add rate limiting and IP whitelisting for additional security
-- 🔄 **Test in staging** - Validate changes in a staging environment before production
-- ⚡ **Optimize tokens** - Configure appropriate token expiration times
-- 📋 **Document setup** - Keep detailed records of your configuration for troubleshooting
-
-### User Experience
-
-- 🎨 **Customize branding** - Configure Authelia with your organization's branding
-- 📚 **Document the process** - Create user guides with screenshots and support contact info
-- 🆘 **Provide support** - Ensure users know how to get help with authentication issues
-- 🔄 **Test regularly** - Periodically verify the authentication flow works as expected
+- Admin backdoor: `/login?local=true`
+- Nuclear option: set `FORCE_DISABLE_OIDC=true` as an environment variable and restart
 
 ---
 
 ## 📚 Additional Resources
 
-- **[Authelia Documentation](https://www.authelia.com/):** Official documentation for Authelia configuration
-- **OAuth 2.0 Specification:** Understanding the protocol behind SSO
-- **OpenID Connect Core:** Detailed information about OIDC flows
-- **Security Best Practices:** Regular security audits and penetration testing
-
----
-
-Authelia is an open-source authentication and authorization server and portal fulfilling the identity and access management (IAM) role of information security in providing multi-factor authentication and single sign-on (SSO) for your applications via a web portal. Authelia is an OpenID Connect 1.0 Provider which is OpenID Certified™ allowing comprehensive integrations, and acts as a companion for common reverse proxies.
+- [Authelia OpenID Connect Documentation](https://www.authelia.com/configuration/identity-providers/openid-connect/provider/)
+- [Authelia OIDC Client Configuration](https://www.authelia.com/configuration/identity-providers/openid-connect/clients/)
+- [Booklore OIDC Settings Reference](oidc-settings.md)
