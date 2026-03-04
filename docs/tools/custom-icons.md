@@ -1,155 +1,81 @@
-# 🎨 Custom SVG Icons
+# Custom SVG Icons
 
-Upload custom SVG icons to use with Libraries, Shelves, and Magic Shelves. Icons from [Lucide](https://lucide.dev/), [Iconoir](https://iconoir.com/), [Heroicons](https://heroicons.com/), or [Feather Icons](https://feathericons.com/) work well.
-
----
-
-## 🚀 Opening the Icon Picker
-
-The icon picker appears when assigning icons to a Library, Shelf, or Magic Shelf.
-
-![Prime Icons Tab](/img/icons/icon-picker.jpg)
-
-1. **Navigate to Library/Shelf/Magic Shelf Settings**
-
-2. **Click the Choose Icon Button**
-
-3. **Choose Your Tab**: Select from Prime Icons, SVG Icons, or Add SVG Icon
+Booklore lets you upload custom SVG icons to use with libraries, shelves, and magic shelves. The icon picker gives you access to a built-in PrimeNG icon set, your uploaded SVG collection, and a form to add new icons by pasting SVG code. Icons from [Lucide](https://lucide.dev/), [Iconoir](https://iconoir.com/), [Heroicons](https://heroicons.com/), or [Feather Icons](https://feathericons.com/) work well.
 
 ---
 
-## 📖 Icon Picker Tabs
+## Opening the Icon Picker
 
-### Tab 1: Prime Icons (Built-in)
+The icon picker appears whenever you're creating or editing a library, shelf, or magic shelf. Click the **Choose an Icon** button in the icon field to open it.
 
-Browse the default PrimeNG icon library:
+![Create New Library dialog showing the Library Icon field with a "Choose an Icon" button](/img/icons/icon-picker.jpg)
 
-![Prime Icons Tab](/img/icons/prime-icons.jpg)
-
-Browse and search the built-in PrimeNG icon library. Click any icon to select it.
+This opens a modal with three tabs: **Prime Icons**, **SVG Icons**, and **Add SVG Icon**.
 
 ---
 
-### Tab 2: SVG Icons (Your Collection)
+## Prime Icons
 
-Browse and manage your custom SVG icons:
+The first tab shows the built-in PrimeNG icon library. Use the search bar at the top to filter by name, then click any icon to select it.
 
-![SVG Icons Tab](/img/icons/custom-icons.jpg)
+![Choose an Icon modal on the Prime Icons tab, showing a search bar and a grid of built-in icons](/img/icons/prime-icons.jpg)
 
-#### 1. Search Your Icons
+---
 
-Use the search bar to filter icons by name:
+## SVG Icons
 
-```
-Search: "book" → Shows: book-open, book-closed, bookmark
-```
+The second tab shows your uploaded custom SVG icons. If you've added icons through the Add SVG Icon tab, they appear here as a searchable grid.
 
-#### 2. Icon Grid Display
+![SVG Icons tab showing a search bar, a grid of uploaded custom icons, and a "Drag here to delete icon" trash zone at the bottom-right](/img/icons/custom-icons.jpg)
 
-Each icon displays as a clickable tile with:
+Click any icon to select it. Use the search bar to filter by name.
 
-- Visual preview of the SVG
-- Icon name on hover
-
-#### 3. Trash Bin (Delete Icons)
-
-Located in the bottom-right corner for easy access.
-
-**How to Delete:**
-
-1. **Drag the Icon**  
-   Click and hold on any SVG icon
-
-2. **Drag to Trash**  
-   Move your cursor to the trash bin area
-
-3. **Drop to Delete**  
-   Release to permanently delete the icon
-
-4. **Visual Feedback**  
-   The trash bin highlights when you hover over it
+To delete an icon, drag it to the **"Drag here to delete icon"** zone at the bottom-right. The zone highlights when you hover over it. Drop the icon to permanently delete it.
 
 :::danger[Permanent Deletion]
-Deleted icons cannot be recovered. You'll need to re-add them if needed later.
+Deleted icons cannot be recovered. You'll need to re-upload them if needed later.
 :::
 
 ---
 
-### Tab 3: Add SVG Icon (Create New)
+## Adding a New Icon
 
-Add new custom icons by pasting SVG code:
+Switch to the **Add SVG Icon** tab to upload a new icon by pasting its SVG code.
 
-![Add SVG Tab](/img/icons/add-svg.jpg)
+![Add SVG Icon tab with a name field ("king"), an SVG code textarea with pasted content, a live preview showing the rendered icon, and a Save SVG button](/img/icons/add-svg.jpg)
 
-#### Step-by-Step Guide
+1. **Name your icon** in the text field. Use lowercase with hyphens or underscores (e.g., `chess-king`). Only letters, numbers, hyphens, and underscores are allowed, up to 255 characters.
 
-##### 1. Name Your Icon
+2. **Paste the SVG code** into the textarea. Copy the full `<svg>...</svg>` markup from your icon source.
 
-Enter a descriptive name in the input field:
+   ```xml
+   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+        viewBox="0 0 24 24" fill="none" stroke="white"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+     <path d="M4 20a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/>
+     <path d="m6.7 18-1-1C4.35 15.682 3 14.09 3 12a5 5 0 0 1 ..."/>
+     <path d="M10 4h4"/>
+     <path d="M12 2v6.818"/>
+   </svg>
+   ```
 
-```
-Icon Name: "rocket-ship"
-```
+3. **Check the preview**. It updates automatically as you paste, showing exactly how the icon will look in Booklore.
 
-**Naming Rules:**
+4. **Click Save SVG**. The icon is saved, and you're automatically switched to the SVG Icons tab with your new icon pre-selected.
 
-- Only letters, numbers, and underscores
-- Maximum 255 characters
-- No spaces or special characters
-
-:::warning[Naming Convention]
-Use lowercase with hyphens for consistency: `my-custom-icon` instead of `MyCustomIcon`
+:::info[SVG Tips]
+- Include a `viewBox` attribute (e.g., `viewBox="0 0 24 24"`) for proper scaling. Remove hardcoded `width`/`height` if the icon doesn't scale correctly.
+- Use `fill="none"` and `stroke="white"` for the best visual consistency with Booklore's dark theme. Hardcoded colors may not look right.
+- Maximum file size is 1MB.
+- Icons are saved to `~/booklore/data/icons/svg/` on disk.
 :::
-
-##### 2. Paste SVG Code
-
-Copy SVG code from your source and paste into the textarea:
-
-```xml
-
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chess-king-icon lucide-chess-king">
-    <path d="M4 20a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/>
-    <path d="m6.7 18-1-1C4.35 15.682 3 14.09 3 12a5 5 0 0 1 4.95-5c1.584 0 2.7.455 4.05 1.818C13.35 7.455 14.466 7 16.05 7A5 5 0 0 1 21 12c0 2.082-1.359 3.673-2.7 5l-1 1"/>
-    <path d="M10 4h4"/>
-    <path d="M12 2v6.818"/>
-</svg>
-```
-
-**Valid SVG Sources:**
-
-- Icon libraries (Lucide, Iconoir, Heroicons, etc.)
-- Custom designs from Figma, Sketch, or Illustrator
-
-:::info[SVG Requirements]
-
-- Must include `<svg>` tag
-- Maximum file size: 1MB
-- Should include `viewBox` for proper scaling
-- **Recommended**: Use `fill="none"` and `stroke="white"` for best visual alignment
-  :::
-
-##### 3. Preview Your Icon
-
-As you paste, the preview updates automatically.
-
-The preview shows exactly how your icon will appear in Booklore.
-
-##### 4. Save the Icon
-
-Click the **"Save SVG"** button to finalize:
-
-**What Happens Next:**
-
-1. ✅ Icon is saved to ~/booklore/data/icons/svg/
-2. 🔄 You're automatically switched to the SVG Icons tab
-3. 🎯 Your new icon is pre-selected and ready to use
 
 ---
 
-## 🔧 Troubleshooting
+## Troubleshooting
 
-| Issue | Solution |
-|---|---|
-| **Invalid SVG content** | Ensure you copied the full code from `<svg>` to `</svg>`. Validate at [svgviewer.dev](https://www.svgviewer.dev/). |
-| **Icon too large/small** | Add a `viewBox` attribute (e.g., `viewBox="0 0 24 24"`) and remove hardcoded `width`/`height`. |
-| **Colors don't match theme** | Use `fill="none"` and `stroke="white"` instead of hardcoded colors. |
+| Problem | What to check |
+|---------|---------------|
+| "Invalid SVG content" error | Make sure you copied the full code from `<svg>` to `</svg>`. Validate your SVG at [svgviewer.dev](https://www.svgviewer.dev/). |
+| Icon too large or small | Add a `viewBox` attribute and remove hardcoded `width`/`height` values. |
+| Icon invisible or wrong color | Use `stroke="white"` and `fill="none"` instead of hardcoded colors. Some icons use `fill` instead of `stroke`, so try `fill="white"` and `stroke="none"`. |

@@ -24,17 +24,23 @@ Nine chart types are available. Each chart includes hover tooltips and contextua
 
 ![Charts Detail](/img/library-stats/library-stats-charts.jpg)
 
-| Chart | Type | What it shows |
-|---|---|---|
-| **Book Formats** | Pie | Distribution of file formats (EPUB, PDF, CBX, MOBI, FB2, Audiobook, etc.) |
-| **Languages** | Pie | Languages represented in your collection |
-| **Metadata Score** | Doughnut | Quality of book metadata rated from Excellent to Very Poor |
-| **Page Count Distribution** | Bar | Books grouped by page ranges (0-100, 101-200, up to 1000+) |
-| **Publication Timeline** | Horizontal Bar | Books grouped by decade (Pre-1900 through 2020s) |
-| **Publication Trend** | Line | Number of books published per year |
-| **Reading Journey** | Line | Cumulative books added vs books finished over time |
-| **Top Items** | Stacked Bar | Top 15 by count with read status breakdown. Switchable between Authors, Categories, Series, Publishers, Tags, and Moods |
-| **Author Universe** | Bubble | Authors plotted by book count (x-axis) and average rating (y-axis). Bubble size represents total pages, color indicates completion percentage |
+- **Book Formats**: Distribution of file formats (EPUB, PDF, CBX, MOBI, FB2, Audiobook, etc.).
+
+- **Languages**: Languages represented in your collection.
+
+- **Metadata Score**: Quality of book metadata rated from Excellent to Very Poor.
+
+- **Page Count Distribution**: Books grouped by page ranges (0-100, 101-200, up to 1000+).
+
+- **Publication Timeline**: Books grouped by decade (Pre-1900 through 2020s).
+
+- **Publication Trend**: When the books in your collection were originally published, plotted year by year. Reveals whether your taste skews modern or classic, highlights peak publication years, and surfaces patterns like a heavy concentration in a particular era. Helpful for readers who want to diversify the time periods they read from.
+
+- **Reading Journey**: Tracks your library growth alongside your reading progress over time. The two lines show how fast you're adding books vs finishing them, making the growing (or shrinking) gap between them your reading backlog. Useful for spotting whether you're keeping up with your acquisitions or falling behind, and for identifying your most productive reading periods.
+
+- **Top Items**: Ranks the most represented authors, categories, series, publishers, tags, or moods in your library, with each bar broken down by read status. Lets you quickly see not just what you have the most of, but how much of it you've actually read. The category switcher makes it easy to slice your collection from different angles.
+
+- **Author Universe**: A bird's-eye view of your relationship with every author in your collection. Each bubble represents an author, positioned by how many books you own and how highly they're rated, with bubble size reflecting total page count. Color coding shows how much of each author's work you've actually read. Great for discovering which authors dominate your shelves, finding highly-rated authors you haven't started yet, and spotting your biggest unread backlogs.
 
 ---
 

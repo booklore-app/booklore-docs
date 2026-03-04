@@ -1,54 +1,22 @@
-# 📲 Kobo Integration
+# Kobo Integration
 
-Sync books from your Booklore library to your Kobo eReader. Books are managed through a dedicated Kobo shelf. Adding or removing books from this shelf controls what syncs to your device.
+Kobo sync lets you send books from Booklore to your Kobo eReader and keep reading progress in sync between both. You control what gets synced through a dedicated Kobo shelf: add a book to the shelf and it appears on your device, remove it and it disappears on the next sync. Your shelves and magic shelves carry over as Kobo collections, so the organization you've built in Booklore follows you to the device.
 
----
+The integration works by redirecting your Kobo's built-in sync to Booklore instead of the Kobo Store. Your Kobo still functions normally (store purchases, firmware updates), but it also pulls books from your Booklore library.
 
-## 🌟 What You'll Achieve
+:::info[File Format Support]
+Kobo sync supports **EPUB** files natively. **CBX** (CBZ/CBR/CB7) files can be converted to EPUB on the fly if enabled in app settings. **PDF** files are not supported.
 
-With Kobo integration, you can:
-- **Access your entire Booklore library** on your Kobo eReader
-- **Sync books automatically** between Booklore and your device
-
----
-
-## ✨ Key Features & Capabilities
-
-### 📖 Smart Shelf Management
-
-- **Dedicated Kobo Shelf**: Each user gets a special Kobo shelf that automatically syncs with their device
-- **Two-Way Synchronization**: Add/remove books in Booklore or on your Kobo - changes sync both ways
-- **Instant Updates**: Book changes reflect immediately after syncing
-
-### 🏷️ Shelf Sync to Kobo Collections
-
-  Your shelves and magic shelves are automatically synced to your Kobo as collections, helping you organize your reading on the device.
-
-  - **Automatic Sync**: Each shelf in Booklore appears as a collection on your Kobo
-  - **Magic Shelves Included**: Dynamic magic shelves are synced the same way
-
-  :::info[How Collection Filtering Works]
-  Only books that are in your Kobo shelf will appear in collections on your device. For example, if your "Favorites" shelf contains 10 books but only 4 are in your Kobo shelf, the "Favorites" collection on your Kobo will only show those 4 books. Shelves containing no Kobo-synced books won't appear as collections at all.
-
-  This gives you full control - simply manage your Kobo shelf to control which books and collections appear on your reader.
-  :::
-### 📱 Device Integration
-
-- **Seamless Setup**: One-time configuration connects your Kobo to Booklore
-- **Proxy Support**: Access both your Booklore library and Kobo Store purchases
-- **Multiple Users**: Each user has their own independent Kobo integration
-
-### 📄 File Support
-
-- **EPUB Files**: Full support for EPUB format books
-- **Quality Preservation**: Books maintain their original formatting and metadata
-- **No PDF Support**: PDF files are currently not supported for Kobo sync
+Admins can also enable automatic **EPUB to KePub conversion** in app settings, which adds Kobo-specific reading enhancements like better page stats and chapter navigation.
+:::
 
 ---
 
-## Nginx Reverse Proxy Configuration
+## Reverse Proxy Configuration
 
-If you use nginx as a reverse proxy, add these settings for Kobo sync to work properly:
+If Booklore sits behind a reverse proxy, the proxy needs to forward the right headers for Kobo sync to work. Without these, the Kobo can't authenticate or sync properly.
+
+### Nginx
 
 ```nginx
 proxy_set_header Host $host;
@@ -65,100 +33,115 @@ large_client_header_buffers 8 32k;
 ```
 
 :::info[Nginx Proxy Manager]
-The proxy headers are already set automatically, but you still need to add the buffer settings manually.
+The proxy headers are set automatically, but you still need to add the buffer settings manually under Advanced > Custom Nginx Configuration.
 :::
 
 :::warning[Other Reverse Proxies]
-If you use Caddy, Traefik, or another reverse proxy, configure equivalent headers and buffer settings. Consult your proxy's documentation.
+If you use Caddy, Traefik, or another reverse proxy, configure equivalent forwarded headers and buffer sizes. Consult your proxy's documentation.
 :::
 
 ---
 
 ## Step 1: Get Your API Token
 
-1. Go to **Settings > Devices** in Booklore
-2. Find the **Kobo Sync Settings** section
-3. Copy your unique API token
+Go to **Settings > Devices** in Booklore and scroll down to **Kobo Sync Settings**. Your unique sync token is displayed there. Copy it.
 
-![Device Settings](/img/kobo/device-settings.jpg)
+![Booklore Settings > Devices page showing the Kobo Sync Token and Regenerate Token button](/img/kobo/device-settings.jpg)
 
-You can regenerate the token at any time, but you'll need to update your Kobo's configuration afterward.
+You can regenerate the token at any time with the **Regenerate Token** button, but you'll need to update the Kobo's config file afterward.
 
 :::info[Permissions]
-Admin users have Kobo Sync enabled by default. Other users need the permission granted by an admin (see below).
+Admins have Kobo Sync enabled by default. Other users need the **Kobo Sync** permission granted by an admin (see [Granting Access to Other Users](#granting-access-to-other-users) below).
 :::
 
 ---
 
 ## Step 2: Configure Your Kobo
 
-1. Connect your Kobo to your computer via USB
-2. Enable hidden files in your file manager
+Connect your Kobo to your computer via USB. You need to edit a configuration file on the device to point it at your Booklore instance.
+
+1. Enable hidden files in your file manager (the folder you need is hidden by default)
+2. Navigate to the Kobo drive and open the `.kobo` folder
+
+![Finder showing the KOBOeReader drive with the .kobo hidden folder visible](/img/kobo/config-file-location.jpg)
+
 3. Open `.kobo/Kobo/Kobo eReader.conf` in a text editor
+4. Find the `[OneStoreServices]` section and look for the `api_endpoint` line
 
-![Config File Location](/img/kobo/config-file-location.jpg)
+![The original Kobo eReader.conf showing api_endpoint pointing to storeapi.kobo.com](/img/kobo/config-before.jpg)
 
-4. Find the `[OneStoreServices]` section and update the `api_endpoint` line:
+5. Replace the `api_endpoint` value with your Booklore URL followed by `/api/kobo/` and your token:
 
-**Local network:**
-
+**Local network (no reverse proxy):**
 ```text
 api_endpoint=http://192.168.1.100:6060/api/kobo/your-token-here
 ```
 
-**Remote server (with reverse proxy):**
-
+**Remote server (with reverse proxy and HTTPS):**
 ```text
 api_endpoint=https://booklore.example.com/api/kobo/your-token-here
 ```
 
-![Before Change](/img/kobo/config-before.jpg)
-![After Change](/img/kobo/config-after.jpg)
+![The modified Kobo eReader.conf with api_endpoint pointing to the Booklore instance](/img/kobo/config-after.jpg)
 
-5. Save the file and safely eject your Kobo
+6. Save the file and safely eject your Kobo
+
+That's the only device-side configuration needed. From now on, when your Kobo syncs, it talks to Booklore.
 
 ---
 
 ## Step 3: Sync Books
 
-1. In Booklore, click the three-dot menu on any book card and select **Assign Shelf**
-2. Choose your **Kobo** shelf
+With the Kobo configured, you control what appears on the device through the Kobo shelf in Booklore.
 
-![Assign Shelf](/img/kobo/assign-shelf.jpg)
+1. On any book card, click the three-dot menu and select **Assign Shelf**
+2. Check the **Kobo** shelf and save
 
-3. Repeat for all books you want on your device
+![Book card context menu showing Assign Shelf option with shelf list](/img/kobo/assign-shelf.jpg)
 
-![Shelf With Books](/img/kobo/shelf-with-books.jpg)
+3. Repeat for all books you want on the device. The Kobo shelf shows everything queued for sync.
 
-4. On your Kobo, go to **My Books** and tap the sync icon, then **Sync Now**
+![Booklore's Kobo shelf view showing 7 books ready to sync](/img/kobo/shelf-with-books.jpg)
 
-![Sync Button](/img/kobo/sync-button.jpg)
+4. On your Kobo, go to **My Books**, tap the sync icon in the top-right corner, and tap **Sync now**
 
-5. Your Booklore books appear on the device
+![Kobo device showing the Sync complete dialog with Sync now button](/img/kobo/sync-button.jpg)
 
-![Synced Books](/img/kobo/synced-books.jpg)
+5. Your Booklore books appear on the device, ready to read
+
+![Kobo device My Books screen showing the synced books from Booklore](/img/kobo/synced-books.jpg)
+
+---
+
+## Shelves as Collections
+
+Your Booklore shelves (including magic shelves) automatically sync to the Kobo as collections. This means the shelf organization you've set up in Booklore is mirrored on the device.
+
+There's one important filter: only books that are in your Kobo shelf appear in collections on the device. If your "Favorites" shelf has 10 books but only 4 of those are also in the Kobo shelf, the "Favorites" collection on the Kobo shows just those 4. Shelves with no Kobo-synced books don't appear as collections at all.
+
+This gives you full control. The Kobo shelf determines *which* books are on the device, and your other shelves determine *how* they're organized.
 
 ---
 
 ## Removing Books
 
-### From the Kobo device
+### From the Kobo
 
-1. Tap the three dots on the book cover and select **Remove**
+1. On the device, tap the three dots on a book cover and select **Remove**
 
-![Remove Menu](/img/kobo/remove-menu.jpg)
+![Kobo context menu on a book showing Read now, View Details, Add to collection, Mark as finished, and Remove options](/img/kobo/remove-menu.jpg)
 
-2. Select **Remove from My Books**
+2. Select **Remove from My Books** and tap **Remove**
 
-![Remove Confirm](/img/kobo/remove-confirm.jpg)
+![Kobo removal dialog with Remove download and Remove from My Books options](/img/kobo/remove-confirm.jpg)
 
-3. Tap **Sync Now** to push the change back to Booklore
+3. Tap **Sync now** to push the change back to Booklore
 
-![Sync After Removal](/img/kobo/sync-after-removal.jpg)
+![Kobo after removal showing one fewer book, with Sync complete dialog](/img/kobo/sync-after-removal.jpg)
 
-The book is removed from your Kobo shelf in Booklore but remains in your main library.
+The book is removed from your Kobo shelf in Booklore but stays in your library. It's not deleted, just unsynced.
 
-![Shelf After Removal](/img/kobo/shelf-after-removal.jpg)
+![Booklore Kobo shelf after sync showing the book has been removed from the shelf](/img/kobo/shelf-after-removal.jpg)
 
 ### From Booklore
 
@@ -169,13 +152,13 @@ The book is removed from your Kobo shelf in Booklore but remains in your main li
 
 ---
 
-## Viewing Synced Progress
+## Reading Progress
 
-Reading progress from your Kobo appears on the book's detail page in Booklore as a percentage with a red progress bar under the cover.
+When you read a book on your Kobo, the reading progress syncs back to Booklore. It appears on the book's detail page as a percentage labeled **Kobo Progress** with a progress indicator.
 
-![Synced Progress](/img/kobo/synced-progress.jpg)
+![Book detail page showing Kobo Progress at 11% alongside other metadata](/img/kobo/synced-progress.jpg)
 
-Click **Reset Progress** to clear the Kobo progress in Booklore. This does not affect the device's read status.
+Click the reset icon next to the progress to clear it in Booklore. This does not affect the reading position on the device.
 
 ---
 
@@ -184,10 +167,23 @@ Click **Reset Progress** to clear the Kobo progress in Booklore. This does not a
 By default, only admins have Kobo Sync enabled. To grant it to other users:
 
 1. Go to **Settings > Users**
-2. Click on the user
-3. Enable the **Kobo Sync** permission
+2. Click the edit icon on the user row
+3. Enable the **Kobo Sync** checkbox
 4. Save
 
-![User Permissions](/img/kobo/user-permissions.jpg)
+![Settings > Users page showing the user list with permission columns including Kobo Sync](/img/kobo/user-permissions.jpg)
 
-The user can then find their own API token in **Settings > Devices** and follow the setup steps above. Each user gets their own token and Kobo shelf.
+Once granted, the user can find their own sync token in **Settings > Devices** and follow the same setup steps. Each user gets their own token and their own independent Kobo shelf.
+
+---
+
+## Troubleshooting
+
+| Problem | What to check |
+|---------|---------------|
+| Books not appearing on Kobo | Make sure the books are in your Kobo shelf, then trigger a sync on the device. Check that the `api_endpoint` in the config file is correct and reachable from the Kobo's network. |
+| Sync hangs or fails | If behind a reverse proxy, verify the proxy headers and buffer settings are configured (see above). The Kobo sends large headers that default buffer sizes will reject. |
+| "Store unavailable" on Kobo | The Kobo can't reach Booklore. Check the URL in `api_endpoint`, make sure the port is accessible, and confirm HTTPS is working if you're using it. |
+| Reading progress not syncing back | Progress syncs during the next device sync. Make sure you trigger a sync on the Kobo after reading. |
+| PDF books not syncing | PDF is not supported for Kobo sync. Only EPUB (and optionally CBX with conversion) files are synced. |
+| Token changed, Kobo won't sync | If you regenerated your token, update the `api_endpoint` line in the Kobo's config file with the new token. |

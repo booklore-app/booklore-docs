@@ -1,78 +1,51 @@
-# 🍪 Amazon Cookie Setup
+# Amazon Cookie Setup
 
-If you encounter 503 errors when fetching metadata from Amazon, you can configure browser cookies to bypass Amazon's automated traffic detection.
+Amazon metadata works out of the box, but if you run into 503 errors or rate limiting, providing a browser session cookie gives Booklore a way to look like a regular logged-in user. The cookie is optional but recommended for the most reliable results.
 
-:::warning[Security Note]
-Use a secondary Amazon account when possible to protect your main account from potential restrictions.
+:::warning[Use a Secondary Account]
+Consider using a secondary Amazon account for this. Automated requests from Booklore could theoretically trigger Amazon's bot detection on the account you use.
 :::
 
 ---
 
-## 🛠️ Step 1: Prepare Your Browser Session
+## Get the Cookie from Your Browser
 
-1. **Open your web browser** and navigate to your regional Amazon website:
-   - US: https://www.amazon.com
-   - UK: https://www.amazon.co.uk
-   - Other regions: Use your local Amazon domain
+1. Open your regional Amazon site (e.g., [amazon.com](https://www.amazon.com), [amazon.co.uk](https://www.amazon.co.uk)) and sign in
+2. Open your browser's developer tools (`F12`, or `Cmd+Option+I` on Mac)
+3. Switch to the **Network** tab
+4. Refresh the page so new requests appear
+5. Click the first request in the list (the main page load)
+6. In the **Headers** panel, scroll down to **Request Headers** and find the `Cookie` field
+7. Copy the entire cookie value
 
-2. **Sign in to Amazon** using a secondary account if available
+![Browser developer tools showing the Cookie header in Amazon's request headers](/img/metadata/amazon-cookie/amazon-cookie-1.jpg)
 
----
-
-## 🔧 Step 2: Access Developer Tools
-
-1. **Open Developer Tools** using one of these methods:
-   - Press `F12` on your keyboard
-   - Right-click anywhere on the page and select "Inspect" or "Inspect Element"
-   - Use the keyboard shortcut `Ctrl+Shift+I` (Windows/Linux) or `Cmd+Option+I` (Mac)
-
-2. **Navigate to the Network tab** in the developer tools panel
+The cookie is a long string containing multiple key-value pairs separated by semicolons. Copy the whole thing.
 
 ---
 
-## 📡 Step 3: Capture Network Requests and Extract Cookie Information
+## Paste It into Booklore
 
-![Accessing Amazon cookies in browser developer tools](/img/metadata/amazon-cookie/amazon-cookie-1.jpg)
+1. Open **Settings > Metadata 1**
+2. Under **Amazon**, select your **Region** from the dropdown
+3. Paste the cookie string into the **Cookie** field
+4. Click **Save**
 
-1. **Refresh the page** by pressing `F5` or clicking the refresh button
-2. **Wait for all requests to load** - you'll see a list of network requests appear
-3. **Locate the main request** - Look for the first request in the list, typically showing the Amazon homepage URL
-4. **Click on this request** to view its detailed information
-5. **Find the Headers section** in the request details panel
-6. **Scroll to Request Headers** and locate the `cookie` field
-7. **Copy the entire cookie value** - This will be a long string of text
+![Booklore Metadata 1 settings showing the Amazon region dropdown and cookie field](/img/metadata/amazon-cookie/amazon-cookie-2.jpg)
 
-:::info[Cookie Location]
-Look for the first request in the Network tab - it typically shows the Amazon homepage URL. Click it to view detailed headers.
-:::
+That's it. Booklore will include the cookie when fetching metadata from Amazon, which gives access to richer results and avoids rate limits.
 
 ---
 
-## ⚙️ Step 4: Configure Booklore
+## Troubleshooting
 
-![Copying the cookie header value](/img/metadata/amazon-cookie/amazon-cookie-2.jpg)
+| Problem | What to check |
+|---------|---------------|
+| Still getting 503 errors | The cookie may have expired. Repeat the process to grab a fresh one. Make sure you're signed in to Amazon before capturing. |
+| Metadata missing or sparse | Make sure the **Region** dropdown matches the Amazon site you got the cookie from. A cookie from amazon.co.uk won't work for amazon.com. |
+| Different regions needed | If your library has books from multiple Amazon regions, you'll need to update the cookie and region when switching. Booklore stores one cookie at a time. |
+| Cookie seems too short | Make sure you copied the full value from the `Cookie` request header, not a single `Set-Cookie` response header. The request cookie is one long combined string. |
 
-1. **Open Booklore settings**
-2. **Navigate to the metadata section**
-3. **Find the "Amazon Cookies" field**
-4. **Paste the copied cookie value** into this field
-5. **Save your settings**
-
----
-
-## 🔧 Troubleshooting
-
-If you're still experiencing issues after setting up cookies:
-
-- ✅ Ensure you copied the complete cookie string
-- 🌐 Try using a different browser
-- 🔐 Verify your Amazon account is properly logged in
-- 🗑️ Consider clearing your browser cache and repeating the process
-
-:::tip[Pro Tips]
-Cookies typically remain valid for several weeks. If you encounter issues again, simply repeat this process. Different Amazon regions may require separate cookies.
-:::
-
-:::note[Regional Considerations]
-If you're fetching metadata for books from different Amazon regions (US, UK, etc.), you may need to configure separate cookies for each region.
+:::tip[Cookie Lifespan]
+Amazon session cookies typically last a few weeks before expiring. When metadata fetches start failing again, just repeat the steps above to grab a new cookie.
 :::

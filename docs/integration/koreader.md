@@ -1,65 +1,85 @@
-# 📚 KOReader Sync
+# KOReader Sync
 
-Synchronize reading progress between KOReader and Booklore. Push your current progress from KOReader to Booklore, or pull updates from Booklore back into KOReader.
+KOReader sync lets you push and pull reading progress between [KOReader](https://koreader.rocks/) and Booklore. Read a few chapters on your e-reader, push the progress, and it shows up in Booklore. Pick up on another device, pull the latest position, and continue where you left off.
 
-:::warning[Important Limitations]
-- Sync **only works for books downloaded from Booklore via OPDS**. Sideloaded books (copied manually or from other sources) cannot be synced, since the system relies on Booklore's internal identifiers assigned during OPDS download.
-- Progress from the built-in Booklore reader and KOReader is tracked **separately**. They use different formats and do not sync with each other.
+Booklore matches books by file content hash, so the same physical file must exist in both places. In practice this means KOReader needs to have downloaded the book from Booklore (typically via OPDS) so the file bytes match. A book sideloaded from a different source won't produce the same hash, and progress won't link up.
+
+:::tip[Sync with Booklore Reader]
+By default, KOReader progress and the built-in Booklore web reader progress are tracked independently (they use different position formats). You can optionally enable **Sync reading progress with Booklore eBook Reader** in the KOReader settings on the Devices page, which converts KOReader's XPointer positions to EPUB CFI so your web reader picks up where you left off. This conversion is approximate and may update by chapter rather than exact page.
 :::
 
 ---
 
 ## Step 1: Configure KOReader Sync in Booklore
 
-1. Go to **Settings > Devices** in Booklore
-2. Click **Edit** to enable the input fields
+Go to **Settings > Devices** in Booklore. You'll see the **KOReader Settings** section with an enable toggle, an API path, and username/password fields.
 
-![Device Settings](/img/koreader/device-settings.jpg)
+1. Click **Edit** to unlock the credential fields
 
-3. Enter a username and password for KOReader
-4. Click **Save**
-5. Toggle **Enable KOReader Sync** on
-6. Copy the **API URL** shown (you'll need it in KOReader)
+![Booklore Settings > Devices page showing KOReader Settings with Enable toggle, API Path, Username, and Password fields with an Edit button](/img/koreader/device-settings.jpg)
 
-![Credentials Setup](/img/koreader/credentials-setup.jpg)
+2. Enter a **username** and **password** for KOReader to authenticate with (these are KOReader-specific credentials, separate from your Booklore login)
+3. Click **Save**
+4. Toggle **Enable KOReader Sync** on
+5. Copy the **KOReader API Path** shown (e.g., `http://192.168.0.2:6060/api/koreader`). You'll need this in KOReader.
 
-### User Permissions
+![KOReader Settings with sync enabled, API path populated, username and password filled in, and Save button](/img/koreader/credentials-setup.jpg)
 
-Only users with the **KOReader Sync** permission can use this feature. Assign it in **Settings > Users**.
+:::info[Permissions]
+Only users with the **KOReader Sync** permission can use this feature. Admins have it by default. To grant it to other users, go to **Settings > Users** and enable the **KOReader Sync** checkbox on their row.
+:::
 
-![User Permissions](/img/koreader/user-permissions.jpg)
+![Settings > Users page showing the user list with permission columns including KOReader Sync](/img/koreader/user-permissions.jpg)
 
 ---
 
 ## Step 2: Set Up Sync in KOReader
 
-1. Open KOReader and go to **Settings > Progress Sync**
+Open a book in KOReader to access the tools menu.
 
-![Settings Menu](/img/koreader/settings-menu.jpg)
+1. Tap the **tools icon** (wrench) in the top toolbar, then select **Progress sync**
 
-2. Select **Custom Sync Server** and enter the API URL you copied from Booklore
+![KOReader tools menu showing Progress sync option](/img/koreader/settings-menu.jpg)
 
-![Custom Sync Server](/img/koreader/custom-sync-server.jpg)
+2. Tap **Custom sync server** and enter the API path you copied from Booklore
 
-3. Select **Register / Login** and enter the username and password you set in Booklore
+![KOReader Custom sync server dialog with the Booklore API URL entered](/img/koreader/custom-sync-server.jpg)
 
-![Login Credentials](/img/koreader/login-credentials.jpg)
+3. Tap **Register / Login**, enter the username and password you set in Booklore, and tap **Login**
 
-4. Use **Push progress from this device** to send progress to Booklore, or **Pull progress from other devices now** to get progress from Booklore
+![KOReader login dialog with username and password fields and Login button](/img/koreader/login-credentials.jpg)
 
-![Push Pull Options](/img/koreader/push-pull-options.jpg)
+4. You're connected. Use **Push progress from this device now** to send your current position to Booklore, or **Pull progress from other devices now** to retrieve the latest position from Booklore.
 
-5. Make sure the **Document matching method** is set to **Binary**
+![KOReader Progress sync menu showing Push and Pull options, along with auto-sync settings](/img/koreader/push-pull-options.jpg)
 
-![Matching Method](/img/koreader/matching-method.jpg)
-![Binary Matching](/img/koreader/binary-matching.jpg)
+5. One important setting: tap **Document matching method** and make sure **Binary** is selected. This matches books by file content (the same method Booklore uses), ensuring the right book gets the right progress.
+
+![KOReader Document matching method menu](/img/koreader/matching-method.jpg)
+![Binary option selected: "Only identical files will be kept in sync"](/img/koreader/binary-matching.jpg)
+
+:::tip[Auto Sync]
+KOReader can sync automatically. Enable **Automatically keep documents in sync** and optionally set **Periodically sync every # pages** so you don't have to push/pull manually each time.
+:::
 
 ---
 
-## Viewing Synced Progress in Booklore
+## Viewing Synced Progress
 
-KOReader progress appears on the book's detail page as a percentage with a yellow progress bar under the cover.
+KOReader progress appears on the book's detail page in Booklore as **KOReader Progress** with a percentage and a green progress indicator.
 
-![Synced Progress](/img/koreader/synced-progress.jpg)
+![Book detail page for Digital Fortress showing KOReader Progress at 21.1% alongside Booklore Progress and other metadata](/img/koreader/synced-progress.jpg)
 
-Click **Reset Progress** to clear KOReader progress in Booklore. This does not affect the device's read status.
+Click the reset icon next to the KOReader progress to clear it in Booklore. This does not affect the reading position stored on your KOReader device.
+
+---
+
+## Troubleshooting
+
+| Problem | What to check |
+|---------|---------------|
+| Login fails in KOReader | Make sure the username and password match exactly what you set in Booklore's Devices settings. These are case-sensitive. Also verify the API path is reachable from your e-reader's network. |
+| Progress not appearing in Booklore | Tap **Push progress from this device now** in KOReader after reading. If auto-sync is off, progress doesn't send automatically. |
+| Wrong book gets the progress | Make sure **Document matching method** is set to **Binary**, not Filename. Binary matches by file content hash, which is what Booklore expects. |
+| Sideloaded book won't sync | The book file must be byte-identical to the one in Booklore. Download it from Booklore via OPDS to ensure the hashes match. A file from a different source (even the same title) will have a different hash. |
+| API path not accessible | If Booklore is behind a reverse proxy, make sure `/api/koreader/**` paths are forwarded correctly. If using Docker, the API path shown in settings may use a container IP that isn't reachable from your e-reader's network. Use your external hostname or LAN IP instead. |
