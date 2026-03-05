@@ -145,7 +145,7 @@ When you enable OIDC-Only Mode:
 This is ideal when you want your OIDC provider to be the single gatekeeper for access, handling MFA, conditional access policies, and account lifecycle centrally.
 
 :::danger[Admin Backdoor]
-Admins always have a way in. Navigate to `/login?local=true` to reach the local login form, even in OIDC-Only Mode. Bookmark this URL for emergencies.
+Admins always have a way in. Navigate to `/login?localOnly=true` to reach the local login form, even in OIDC-Only Mode. Bookmark this URL for emergencies.
 :::
 
 ### When Things Go Wrong
@@ -154,7 +154,7 @@ If your OIDC provider goes down or a misconfiguration locks everyone out:
 
 **Option 1:** Use the admin backdoor URL:
 ```
-https://books.example.com/login?local=true
+https://books.example.com/login?localOnly=true
 ```
 
 **Option 2:** Disable OIDC entirely at the infrastructure level by adding an environment variable to your Docker Compose or system config:
@@ -516,7 +516,7 @@ This means auto-provisioning is disabled and no Booklore account matches the OID
 
 Two escape hatches:
 
-1. **Admin backdoor URL:** `https://books.example.com/login?local=true`
+1. **Admin backdoor URL:** `https://books.example.com/login?localOnly=true`
 2. **Environment variable override:** Add `FORCE_DISABLE_OIDC=true` to your Docker Compose and restart
 
 ### Auto-Redirect Loop

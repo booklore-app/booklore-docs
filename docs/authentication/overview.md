@@ -8,7 +8,7 @@ Booklore supports two authentication methods: **local** (built-in username/passw
 
 Built-in username and password login. Works immediately after installation with zero external dependencies. You create users in **Settings > Users** and they log in with a password. Simple as that.
 
-Local auth is always available as a fallback, even when OIDC is enabled. Admins can reach the local login form at `/login?local=true` regardless of any OIDC settings.
+Local auth is always available as a fallback, even when OIDC is enabled. Admins can reach the local login form at `/login?localOnly=true` regardless of any OIDC settings.
 
 ---
 
@@ -52,7 +52,7 @@ See [OIDC Settings](oidc-settings.md) for every configuration option, claim mapp
 
 ## 🛡️ Safety Nets
 
-**Admin backdoor:** `/login?local=true` always shows the local login form, even in OIDC-Only Mode.
+**Admin backdoor:** `/login?localOnly=true` always shows the local login form, even in OIDC-Only Mode.
 
 **Kill switch:** Set `FORCE_DISABLE_OIDC=true` as an environment variable and restart to disable OIDC entirely, regardless of database settings.
 
@@ -63,7 +63,7 @@ See [OIDC Settings](oidc-settings.md) for every configuration option, claim mapp
 ## ❓ Common Questions
 
 **What if my identity provider goes down?**
-Local login still works. Use `/login?local=true`.
+Local login still works. Use `/login?localOnly=true`.
 
 **Do I need to migrate existing users when enabling OIDC?**
 No. Enable "Link Existing Local Accounts" and users are linked to their OIDC identity on first SSO login, keeping all their data.

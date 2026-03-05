@@ -216,7 +216,7 @@ If you're using group mapping, check that:
 
 ### Can't Access Booklore At All
 
-- Admin backdoor: `/login?local=true`
+- Admin backdoor: `/login?localOnly=true`
 - Nuclear option: set `FORCE_DISABLE_OIDC=true` as an environment variable and restart
 
 ---
