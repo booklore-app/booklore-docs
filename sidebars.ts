@@ -25,6 +25,7 @@ const sidebars: SidebarsConfig = {
       items: [
         {type: 'doc', id: 'library/setup-first-library', label: '🆕 Setup First Library'},
         {type: 'doc', id: 'library/edit-library', label: '✏️ Edit Library'},
+        {type: 'doc', id: 'library/organization-modes', label: '📂 Organization Modes'},
         {type: 'doc', id: 'library/folder-structure', label: '📁 Folder Structure'},
         {type: 'doc', id: 'library/physical-books', label: '📖 Physical Books'},
         {type: 'doc', id: 'library/duplicate-detection', label: '🔍 Duplicate Detection'},
