@@ -39,19 +39,15 @@ Library/
 
 ### Audiobooks
 
-Chaptered audiobooks (multiple audio files in a folder) are **not** grouped into a single audiobook. Each audio file becomes its own book entry.
+Chaptered audiobooks (2+ audio files in a folder) are still grouped into a single audiobook. Booklore detects folder-based audiobooks before the organization mode is applied, so this works the same in both modes.
 
 ```
 Library/
 └── Project Hail Mary/
-    ├── 01 - Chapter 1.mp3   ← book 1
-    ├── 02 - Chapter 2.mp3   ← book 2
-    └── 03 - Chapter 3.mp3   ← book 3
+    ├── 01 - Chapter 1.mp3   ← ┐
+    ├── 02 - Chapter 2.mp3   ← ├─ one audiobook
+    └── 03 - Chapter 3.mp3   ← ┘
 ```
-
-:::warning[Not ideal for chaptered audiobooks]
-If your library contains chaptered audiobooks (multiple `.mp3` files per book), use **Book Per Folder** instead. Book Per File will create a separate entry for every chapter file.
-:::
 
 ---
 
@@ -163,7 +159,7 @@ Library/
 | | Book Per File | Book Per Folder |
 |---|---|---|
 | **Multi-format grouping** | No | Yes |
-| **Chaptered audiobooks** | No (each file = separate book) | Yes (folder = one audiobook) |
+| **Chaptered audiobooks** | Yes (folder = one audiobook) | Yes (folder = one audiobook) |
 | **Ebook + audiobook together** | No | Yes (with audio absorption) |
 | **Series in one folder** | Works (each file is separate) | Doesn't work (all merged) |
 | **Predictability** | Very high | High |
