@@ -24,7 +24,7 @@
     margin: 0;
     padding: 0;
     width: 100%;
-    max-width: var(--ifm-container-width-3xl);
+    max-width: var(--ifm-container-width-3xl); 
 }
 
 .navbar {
@@ -35,6 +35,10 @@
     -webkit-backdrop-filter: blur(12px);
     box-shadow: var(--ifm-navbar-shadow);
     padding-left: calc(var(--ifm-navbar-padding-horizontal) + 0.5rem);
+}
+
+.navbar-sidebar--show {
+    backdrop-filter: none !important;
 }
 
 .theme-doc-sidebar-container {
