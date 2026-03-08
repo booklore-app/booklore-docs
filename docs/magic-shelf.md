@@ -282,7 +282,23 @@ The recipient can then import this JSON when creating a new Magic Shelf (see bel
 
 ## 📥 Importing Shelves
 
-You can add Magic Shelves directly to the database using SQL. Replace `<USER_ID>` with your user ID and paste the `filter_json` from any example below.
+### From the UI
+
+The easiest way to import a shelf is through the Magic Shelf Builder.
+
+1. Open the builder by clicking **New Magic Shelf** (or editing an existing one).
+2. Click the **Import** button at the bottom-left of the dialog.
+3. Paste the JSON into the text area and click **Apply**.
+
+![Pasting JSON into the import text area](/img/magic-shelf/magic-shelf-import-json.jpg)
+
+The builder validates the JSON and populates the rule tree so you can review or tweak the rules before saving.
+
+![Rules populated after applying imported JSON](/img/magic-shelf/magic-shelf-import-applied.jpg)
+
+### Via SQL
+
+You can also insert Magic Shelves directly into the database. Replace `<USER_ID>` with your user ID and paste the `filter_json` from any example below.
 
 ```sql
 INSERT INTO magic_shelf (user_id, name, icon, icon_type, filter_json, is_public)
