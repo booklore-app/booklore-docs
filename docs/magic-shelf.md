@@ -270,6 +270,16 @@ This matches: **Unread books** that are **either Fantasy or Science Fiction**.
 
 ---
 
+## 📤 Sharing Shelves
+
+To share a Magic Shelf configuration with another user, right-click the shelf in the sidebar and select **Copy JSON**. The full rule tree is copied to your clipboard as JSON.
+
+![Copy JSON option in the Magic Shelf context menu](/img/magic-shelf/magic-shelf-export.jpg)
+
+The recipient can then import this JSON when creating a new Magic Shelf (see below), or you can use it as a backup of your shelf configuration.
+
+---
+
 ## 📥 Importing Shelves
 
 You can add Magic Shelves directly to the database using SQL. Replace `<USER_ID>` with your user ID and paste the `filter_json` from any example below.

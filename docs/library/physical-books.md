@@ -11,7 +11,7 @@ Physical books live alongside your digital books in any library. They show up in
 | | Digital Books | Physical Books |
 |---|---|---|
 | **File required** | Yes (EPUB, PDF, CBZ, etc.) | No |
-| **Added via** | Library scan or Bookdrop | Manual form |
+| **Added via** | Library scan or Bookdrop | Manual form or bulk ISBN import |
 | **Reader** | Built-in reader | Not applicable |
 | **Cover generation** | Extracted from file | Fetched via metadata or uploaded manually |
 | **Metadata fetch** | Automatic or manual | Manual entry, then fetchable via metadata providers |
@@ -64,6 +64,44 @@ The Authors and Categories fields suggest values from books already in your coll
 Once created, the physical book appears in the library alongside your digital books. It will display a purple **PHYSICAL** badge on the book card so you can easily tell it apart.
 
 You can edit its metadata, assign it to shelves, upload a cover image, or fetch metadata from online providers just like any other book.
+
+---
+
+## 📦 Bulk ISBN Import
+
+If you have a large collection of physical books, adding them one by one can be tedious. The bulk ISBN import lets you add dozens (or hundreds) of books at once by providing a list of ISBNs. This is especially handy if you use a barcode scanner app on your phone to scan your shelves, then export the list.
+
+### Step 1: Open the Import Dialog
+
+Right-click a library in the sidebar and select **Import ISBNs from...**.
+
+![Import ISBNs option in the library context menu](/img/physical-books/isbn-import-menu.jpg)
+
+### Step 2: Provide ISBNs
+
+You can either paste ISBNs directly or upload a file (`.txt`, `.csv`, `.tsv`). The dialog accepts both ISBN-10 and ISBN-13 formats. For CSV/TSV files, it auto-detects delimiters and headers.
+
+Select the target **Library**, then review the parsed results. The dialog shows how many valid ISBNs were found, how many were skipped (invalid format), and how many duplicates were removed.
+
+![Import ISBNs dialog showing parsed and validated ISBNs](/img/physical-books/isbn-import-dialog.jpg)
+
+:::tip[Barcode Scanner Workflow]
+Use a mobile barcode scanner app (like Alfa ISBN Scanner) to scan your physical books, export the list as a `.csv` or `.txt` file, and upload it here.
+:::
+
+### Step 3: Import
+
+Click **Start Import** to begin. BookLore processes each ISBN sequentially, looking up metadata from your configured providers and creating the book entry. A progress bar and real-time status updates show which book is being processed.
+
+![Import in progress with real-time metadata lookup](/img/physical-books/isbn-import-progress.jpg)
+
+You can stop the import at any time. Books already created up to that point are kept.
+
+### Step 4: Review Results
+
+Once complete, you get a summary showing all imported books with their resolved titles. The books are immediately available in your library with whatever metadata was found.
+
+![Import complete summary showing all created books](/img/physical-books/isbn-import-complete.jpg)
 
 ---
 
