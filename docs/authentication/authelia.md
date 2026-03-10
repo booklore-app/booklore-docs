@@ -19,40 +19,11 @@ Here's a complete working configuration. Replace `booklore.example.com` with you
 ```yaml
 identity_providers:
   oidc:
-    lifespans:
-      access_token: 1h
-      authorize_code: 1m
-      id_token: 1h
-      refresh_token: 90m
-
-    enforce_pkce: public_clients_only
-
-    cors:
-      endpoints:
-        - authorization
-        - pushed-authorization-request
-        - token
-        - revocation
-        - introspection
-        - userinfo
-      allowed_origins_from_client_redirect_uris: true
-
-    claims_policies:
-      booklore:
-        id_token:
-          - email
-          - email_verified
-          - preferred_username
-          - name
-          - groups
-
     clients:
-      - client_id: booklore
-        client_name: Booklore
-        public: true
+      - client_name: Booklore
+        client_id: # generate this: https://www.authelia.com/integration/openid-connect/frequently-asked-questions/#how-do-i-generate-a-client-identifier-or-client-secret
+        client_secret: # generate this: https://www.authelia.com/integration/openid-connect/frequently-asked-questions/#how-do-i-generate-a-client-identifier-or-client-secret
         authorization_policy: two_factor
-        claims_policy: booklore
-        consent_mode: implicit
         require_pkce: true
         pkce_challenge_method: S256
         scopes:
@@ -63,20 +34,9 @@ identity_providers:
           - offline_access
         redirect_uris:
           - https://booklore.example.com/oauth2-callback
-        response_types:
-          - code
-        grant_types:
-          - authorization_code
-          - refresh_token
 ```
 
 ### What Each Section Does
-
-**`claims_policy`** controls which user attributes are included in the ID token. Booklore needs `preferred_username`, `email`, `name`, and `groups` (if you plan to use group mapping).
-
-**`public: true`** means Booklore uses PKCE instead of a client secret. This is the recommended approach for browser-based apps.
-
-**`consent_mode: implicit`** means users won't be prompted to approve access each time they log in.
 
 **`authorization_policy: two_factor`** requires 2FA. Change to `one_factor` if you don't use MFA, or adjust based on your security needs.
 
@@ -84,10 +44,6 @@ identity_providers:
 
 :::danger[Don't forget the `groups` scope]
 If you plan to use group mapping, you must include `groups` in both the `scopes` list and the `claims_policy`. Without it, Authelia won't send group information to Booklore, and group mapping will silently do nothing.
-:::
-
-:::tip[Generating a random Client ID]
-While `booklore` works fine as a client ID, you can use a random string for extra security. It must be 100 characters or fewer and contain only [RFC3986 unreserved characters](https://datatracker.ietf.org/doc/html/rfc3986#section-2.3) (letters, digits, `-`, `.`, `_`, `~`).
 :::
 
 Restart Authelia after saving the config.
@@ -105,8 +61,8 @@ Fill in the provider configuration:
 | Field | Value |
 |-------|-------|
 | **Provider Name** | `Authelia` (shown on the login button) |
-| **Client ID** | `booklore` (or whatever you set as `client_id` in the Authelia config) |
-| **Client Secret** | Leave empty (public client) |
+| **Client ID** | Whatever you set as `client_id` in the Authelia config |
+| **Client Secret** | The client secret you generated and used in the Authelia config |
 | **Issuer URI** | Your Authelia URL **without** a trailing slash (e.g., `https://auth.example.com`) |
 
 :::danger[No trailing slash on the Issuer URI]
@@ -126,15 +82,9 @@ Click **Test Connection** to verify Booklore can reach Authelia. All checks shou
 
 Click **Save**, then toggle **OIDC Login** to **ON** in the Login Methods section.
 
-### Optional: Configure Back-Channel Logout
+### Back-Channel Logout
 
-To keep sessions in sync (so logging out of Authelia also ends the Booklore session):
-
-1. Copy the **Back-Channel Logout URI** from Booklore's Provider Configuration Reference panel
-2. If your Authelia version supports back-channel logout, add it to the client config:
-   ```yaml
-   backchannel_logout_uri: https://booklore.example.com/api/v1/auth/oidc/backchannel-logout
-   ```
+Authelia [does not currently support](https://www.authelia.com/roadmap/active/openid-connect-1.0-provider/#openid-connect-back-channel-logout-10) back-channel logout, so it cannot be used.
 
 ---
 
@@ -172,7 +122,6 @@ Now that basic OIDC is working, you can configure additional features in Booklor
 ### Login Redirects But Fails
 
 - The **redirect URI** in Authelia's config must match exactly: `https://booklore.example.com/oauth2-callback`
-- Make sure `response_types` includes `code` and `grant_types` includes `authorization_code`.
 - Check Authelia's logs for a detailed error message.
 
 ### "User Not Provisioned" Error
@@ -181,7 +130,7 @@ Auto-provisioning is off by default. Either enable it in [OIDC Settings](oidc-se
 
 ### Group Mapping Not Working
 
-- Make sure `groups` is in both the `scopes` list and the `claims_policy` in Authelia's config.
+- Make sure `groups` is in the `scopes` list in Authelia's config.
 - Verify the **Groups Claim** in Booklore is set to `groups`.
 - Check that **Group Sync Mode** in Booklore is not set to Disabled.
 - The group names must match exactly (case-sensitive) between Authelia and Booklore's group mappings.
