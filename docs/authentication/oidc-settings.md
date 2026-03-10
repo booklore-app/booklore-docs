@@ -43,7 +43,7 @@ This is where you connect Booklore to your identity provider. You'll need to cre
 | **Client ID** | The client/application ID from your provider | Copy this exactly from your provider's dashboard. |
 | **Client Secret** | The client secret, if your provider requires one | Leave empty for **public clients** (most common for self-hosted setups using PKCE). Only needed for **confidential clients**. |
 | **Issuer URI** | Your provider's OIDC issuer URL | Booklore appends `/.well-known/openid-configuration` to this URL to auto-discover all endpoints. |
-| **Scope** | Space-separated list of OIDC scopes | The default `openid profile email offline_access` works for most providers. |
+| **Scopes** | Space-separated list of OIDC scopes | Defaults to `openid profile email groups offline_access` if left empty. For Microsoft Entra ID, use `openid profile email offline_access` (without `groups`). |
 | **Session Duration** | How long OIDC sessions last (in hours) | Leave on "System default" unless you want OIDC sessions to differ from local ones. |
 
 :::tip[Public vs. Confidential Clients]
