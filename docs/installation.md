@@ -49,8 +49,8 @@ Create a `.env` file:
 
 ```ini
 # BookLore Application Settings
-APP_USER_ID=0
-APP_GROUP_ID=0
+APP_USER_ID=1000
+APP_GROUP_ID=1000
 TZ=Etc/UTC
 BOOKLORE_PORT=6060
 
