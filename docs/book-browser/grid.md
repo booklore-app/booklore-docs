@@ -16,7 +16,7 @@ Click the gear icon in the toolbar to open the display settings popover.
 |---------|-------------|
 | **Collapse Series** | When checked, series are collapsed into a single card showing the count. Uncheck to show every book individually. |
 | **Grid Item Size** | Slider to control the size of book cards. Your preference is saved automatically. |
-| **Sidebar Filter Sort** | Controls how items in the sidebar filters are ordered: alphabetically or by book count. |
+| **Book type overlay** | When checked, a small overlay is shown on top of each book cover indicating its file type. |
 
 ### 📚 Collapse Series
 
@@ -65,9 +65,7 @@ The **AND / OR** toggle at the top of the sidebar controls how multiple filters 
 | **AND** | Books must match all selected filter values |
 | **OR** | Books match if they fit any selected filter value |
 
-Switching between the sort options changes how items within each filter section are listed:
-
-![Sidebar Sort Options](/img/grid/sidebar-sort-options.jpg)
+Sidebar items are sorted alphabetically.
 
 ---
 
