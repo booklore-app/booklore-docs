@@ -183,4 +183,4 @@ Use these settings when creating the provider:
 - All email provider and recipient changes are recorded in the [Audit Log](tools/audit-logs.md).
 - The connection type is auto-detected: port 465 uses SSL, port 587 with StartTLS uses STARTTLS, otherwise plain SMTP.
 - Email sending happens asynchronously. You'll see a toast notification when the send completes or fails.
-- Supported formats for sending: EPUB, PDF, CBX (CBZ/CBR/CB7), MOBI, AZW3, FB2, and Audiobook (M4B/M4A/MP3).
+- Supported formats for sending: EPUB, PDF, CBX (CBZ/CBR/CB7), MOBI, AZW3, FB2, and Audiobook (M4B/M4A/MP3/Opus).
