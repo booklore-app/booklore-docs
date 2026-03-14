@@ -153,6 +153,14 @@ const sidebars: SidebarsConfig = {
         'testing/testing-setup',
       ],
     },
+    {
+      type: 'category',
+      label: '🤓 Advanced use',
+      collapsed: true,
+      items: [
+        {type: 'doc', id: 'advanced/api', label: '🤖 Using the API'},
+      ],
+    },
   ],
 };
 
